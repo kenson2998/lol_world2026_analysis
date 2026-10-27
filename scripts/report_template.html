@@ -856,7 +856,7 @@ function mvpBoard(W) {
 function matchupRows(W) {
   const byGame = {};
   (W.player_games || []).forEach(g => (byGame[`${g.round}|${g.match}`] ||= []).push(g));
-  const rows = new Map(), avgOf = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
+  const rows = new Map();
   Object.values(byGame).forEach(gs => gs.forEach(me => {
     const op = gs.find(o => o.role === me.role && o.team !== me.team);
     if (!op || !me.champion || !op.champion) return;
@@ -865,9 +865,7 @@ function matchupRows(W) {
     rows.get(k).games.push({ me, op, rname: W.rounds[me.round]?.name || "" });
   }));
   return [...rows.values()].map(r => { const g = r.games, n = g.length, wins = g.filter(x => x.me.win).length;
-    return { ...r, n, wins, wr: wins / n,
-      gd15: avgOf(g.map(x => x.me.gd15).filter(v => v != null)), csd15: avgOf(g.map(x => x.me.csd15).filter(v => v != null)),
-      dmgd: avgOf(g.filter(x => x.me.dmg != null && x.op.dmg != null).map(x => x.me.dmg - x.op.dmg)) }; });
+    return { ...r, n, wins, wr: wins / n }; });
 }
 
 function renderMatchups(W, sec) {
@@ -886,8 +884,7 @@ function renderMatchups(W, sec) {
   const avgOf = xs => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
   const champs = [...byChamp.values()].map(c => { const g = c.games, n = g.length, wins = g.filter(x => x.me.win).length;
     return { ...c, n, wins, wr: wins / n, opps: c.opps.sort((x, y) => y.n - x.n || y.wr - x.wr),
-      gd15: avgOf(g.map(x => x.me.gd15).filter(v => v != null)), csd15: avgOf(g.map(x => x.me.csd15).filter(v => v != null)),
-      dmgd: avgOf(g.filter(x => x.me.dmg != null && x.op.dmg != null).map(x => x.me.dmg - x.op.dmg)) }; });
+      gd15: avgOf(g.map(x => x.me.gd15).filter(v => v != null)) }; });
 
   // per lane: top 5 champions by lane win rate over all their opponents (at least 2 games)
   const lanes = Object.entries(ROLE_SHORT).map(([role, name]) => {
@@ -900,7 +897,7 @@ function renderMatchups(W, sec) {
 
   // an opponent chip: its icon, this champion's record against it, and the games as a hover title
   const opp = o => `<span class="mo ${o.wins * 2 > o.n ? "w" : o.wins * 2 < o.n ? "l" : ""}"
-    title="${esc(o.games.map(x => `${x.rname} ${x.me.player} ${x.me.win ? "勝" : "敗"} ${x.op.player}`).join("\n"))}">${icon(o.opp)}<b>${o.wins}-${o.n - o.wins}</b></span>`;
+    title="${esc(o.games.map(x => `${x.rname} ${x.me.player} ${x.me.win ? "勝" : "敗"} ${x.op.player}`).join("\n"))}">${icon(o.opp)}<b>${Math.round(o.wr * 100)}%(${o.wins}W-${o.n - o.wins}L)</b></span>`;
 
   const cols = [
     ["路線", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
@@ -909,8 +906,6 @@ function renderMatchups(W, sec) {
     ["戰績", r => r.wins - (r.n - r.wins), false, r => `<td>${r.wins}-${r.n - r.wins}</td>`],
     ["勝率", r => r.wr, false, r => `<td><span class="wr ${wrCls(r.wr * 100)}">${Math.round(r.wr * 100)}%</span></td>`],
     ["15分經濟差", r => r.gd15, false, r => `<td>${sgn(r.gd15)}</td>`],
-    ["15分補兵差", r => r.csd15, false, r => `<td>${sgn(r.csd15)}</td>`],
-    ["傷害差", r => r.dmgd, false, r => `<td>${sgn(r.dmgd)}</td>`],
     ["對位英雄（戰績）", null, false, r => `<td class="l"><span class="mo-list">${r.opps.map(opp).join("")}</span></td>`],
   ];
   const T = sortTable("mu-table", cols, champs, [{ col: 4, desc: true }, { col: 2, desc: true }],   // win rate, then games
@@ -932,7 +927,7 @@ function renderMatchups(W, sec) {
     document.getElementById("mu-champ")?.addEventListener("change", e => { st.champ = e.target.value; drawTable(T); });
   };
   body.innerHTML = sec("各路線對位表現", "每條路線中，面對所有對手合計勝率最高的前五名英雄。", `<div class="cb-grid">${lanes}</div>`, "mu-lanes")
-    + sec("對位明細", "同一路線的同一隻英雄整合成一列，依該英雄的對位勝率排序（同勝率再依場數）；右欄列出它遇過的每個對位英雄與戰績，滑鼠移到戰績上可看每場對局。經濟差／補兵差／傷害差皆為「英雄方 − 對位方」的平均。",
+    + sec("對位明細", "同一路線的同一隻英雄整合成一列，依該英雄的對位勝率排序（同勝率再依場數）；右欄列出它遇過的每個對位英雄與戰績，滑鼠移到戰績上可看每場對局。15 分經濟差為「英雄方 − 對位方」的平均。",
       sortTableHTML("mu-table", controls), "mu-detail");
 }
 
