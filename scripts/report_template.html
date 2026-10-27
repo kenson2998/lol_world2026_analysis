@@ -270,14 +270,18 @@ footer a { color: var(--accent) }
 .rolef .chip { font-size: 12px; padding: 2px 10px }
 .mu-pick { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; margin-right: 8px }
 .mu-pick select { font: 13px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 3px 6px; max-width: 220px }
-.anc { font: 600 13px var(--f-data); color: var(--muted); text-decoration: none; opacity: .45; margin-left: 8px; padding: 0 3px; border-radius: 4px; vertical-align: middle }
+.anc { display: inline-grid; place-items: center; width: 24px; height: 24px; margin-left: 6px; border-radius: 6px; vertical-align: middle;
+  color: var(--muted); opacity: .55; text-decoration: none }
+.anc svg { display: block }
 .anc:hover, .anc:focus-visible { opacity: 1; color: var(--accent); background: var(--accent-soft) }
+.share-pop { position: fixed; z-index: 30; display: grid; gap: 2px; max-width: min(460px, calc(100vw - 16px));
+  background: var(--ink); color: var(--surface); border-radius: 8px; padding: 8px 12px; box-shadow: 0 4px 16px rgb(0 0 0 / .2) }
+.share-pop b { font: 600 13px var(--f-body) }
+.share-pop .url { font: 500 11.5px var(--f-data); opacity: .85; overflow-wrap: anywhere; user-select: all }
 .wsec, .cb, .res, .series { scroll-margin-top: 16px }
 .flash { animation: flash 1.6s ease-out }
 @keyframes flash { 0%, 30% { box-shadow: 0 0 0 3px var(--accent) } 100% { box-shadow: 0 0 0 3px transparent } }
 @media (prefers-reduced-motion: reduce) { .flash { animation: none; box-shadow: 0 0 0 3px var(--accent) } }
-.toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 20; max-width: calc(100% - 32px); overflow-wrap: anywhere;
-  background: var(--ink); color: var(--surface); font: 600 13px var(--f-body); border-radius: 8px; padding: 8px 14px }
 .mo-list { display: flex; flex-wrap: wrap; gap: 4px; min-width: 260px; white-space: normal }
 .mo { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px 2px 2px; cursor: default }
 .mo .ci { width: 22px; height: 22px; border-radius: 4px }
@@ -417,9 +421,11 @@ function setupTips() {
 }
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const wrCls = w => (w >= 60 ? "hi" : w <= 40 ? "lo" : "");
-// share anchors: every section and card carries a stable id plus a small "#" link that copies its URL
+// share anchors: every section and card carries a stable id plus a small share icon that copies its URL
 const slug = s => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, "");
-const anc = id => `<a class="anc" href="#${encodeURIComponent(id)}" data-anc="${esc(id)}" title="複製此區塊的分享連結" aria-label="複製分享連結">#</a>`;
+const SHARE_ICON = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"
+  stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 10H5v11h14V10h-3.5"/><path d="M12 15V3"/><path d="M7.5 7.5 12 3l4.5 4.5"/></svg>`;
+const anc = id => `<a class="anc" href="#${encodeURIComponent(id)}" data-anc="${esc(id)}" aria-label="複製此區塊的分享連結">${SHARE_ICON}</a>`;
 // champion icon with hover/tap name tooltip; falls back to a text tile if Data Dragon has no match
 // champion display name: English (Taiwan-server zh_TW name), e.g. "Ahri (阿璃)"
 const cname = name => (DATA.zh?.[name] ? `${name} (${DATA.zh[name]})` : name);
@@ -1091,11 +1097,21 @@ function render() {
 // "#" links copy a URL ending in that block's id; opening such a URL switches to its tab (and round tab),
 // scrolls there and flashes it
 function setupAnchors() {
-  const toast = document.createElement("div");
-  toast.className = "toast"; toast.hidden = true; toast.setAttribute("role", "status");
-  document.body.append(toast);
+  // popup next to the clicked icon: "copied" (or a fallback hint) plus the URL itself
+  const pop = document.createElement("div");
+  pop.className = "share-pop"; pop.hidden = true; pop.setAttribute("role", "status");
+  document.body.append(pop);
   let timer;
-  const say = t => { toast.textContent = t; toast.hidden = false; clearTimeout(timer); timer = setTimeout(() => { toast.hidden = true; }, 2500); };
+  const say = (btn, ok, url) => {
+    // show the readable form (e.g. #cb-KDA之王); the clipboard keeps the encoded URL, which pastes safely anywhere
+    pop.innerHTML = `<b>${ok ? "已複製連結" : "請手動複製連結"}</b><span class="url">${esc(ok ? decodeURI(url) : url)}</span>`;
+    pop.hidden = false;
+    const r = btn.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight;
+    pop.style.left = `${Math.min(Math.max(8, r.left + r.width / 2 - w / 2), innerWidth - w - 8)}px`;
+    pop.style.top = `${r.bottom + 8 + h <= innerHeight ? r.bottom + 8 : Math.max(8, r.top - h - 8)}px`;
+    clearTimeout(timer); timer = setTimeout(() => { pop.hidden = true; }, ok ? 3000 : 8000);
+  };
+  addEventListener("scroll", () => { pop.hidden = true; }, true);
   const go = () => {
     const id = decodeURIComponent(location.hash.slice(1));
     const el = id && !VIEWS.includes(id) && document.getElementById(id); if (!el) return;
@@ -1110,10 +1126,9 @@ function setupAnchors() {
     const a = e.target.closest("[data-anc]"); if (!a) return;
     e.preventDefault();
     const hash = `#${encodeURIComponent(a.dataset.anc)}`, url = location.href.split("#")[0] + hash;
-    try { history.replaceState(null, "", hash); } catch (_) {}
-    go();
+    try { history.replaceState(null, "", hash); } catch (_) {}   // address bar now shows the shared URL
     const copied = navigator.clipboard?.writeText(url);
-    copied ? copied.then(() => say("已複製連結"), () => say(url)) : say(url);
+    copied ? copied.then(() => say(a, true, url), () => say(a, false, url)) : say(a, false, url);
   });
   addEventListener("hashchange", go);
   go();
