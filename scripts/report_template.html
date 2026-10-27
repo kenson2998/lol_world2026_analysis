@@ -118,7 +118,7 @@ section.cmp > p { margin: 0 0 14px; color: var(--muted) }
 .cmp-card tr.upd td, .mt tr.upd td { background: var(--hl); color: var(--hl-ink) }
 .legend .upd { cursor: default }
 #tipbox { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--bg);
-  font: 600 12px/1.4 var(--f-body); padding: 3px 8px; border-radius: 4px; white-space: nowrap }
+  font: 600 12px/1.4 var(--f-body); padding: 3px 8px; border-radius: 4px; white-space: pre }
 .av { width: 52px; height: 52px; border-radius: 50%; display: block; object-fit: cover; object-position: center top;
   background: var(--mid-soft); border: 1px solid var(--line) }
 .av.txt { display: grid; place-items: center; font: 700 15px/1 var(--f-display); color: var(--muted); line-height: 1 }
@@ -429,9 +429,10 @@ const anc = id => `<a class="anc" href="#${encodeURIComponent(id)}" data-anc="${
 // champion icon with hover/tap name tooltip; falls back to a text tile if Data Dragon has no match
 // champion display name: English (Taiwan-server zh_TW name), e.g. "Ahri (阿璃)"
 const cname = name => (DATA.zh?.[name] ? `${name} (${DATA.zh[name]})` : name);
-const icon = name => `<span class="tip" tabindex="0" data-champ="${esc(name)}" data-tip="${esc(cname(name))}">` + (DATA.icons?.[name]
+const champImg = name => (DATA.icons?.[name]
   ? `<img class="ci" src="${DATA.icons[name]}" alt="${esc(cname(name))}" width="36" height="36">`
-  : `<span class="ci txt">${esc(name)}</span>`) + `</span>`;
+  : `<span class="ci txt">${esc(name)}</span>`);
+const icon = name => `<span class="tip" tabindex="0" data-champ="${esc(name)}" data-tip="${esc(cname(name))}">${champImg(name)}</span>`;
 // player headshot (LoL Esports) with the same tooltip; initials when there is no photo
 const avatar = (team, name, small) => {
   const src = DATA.avatars?.[`${team}/${name}`], cls = small ? "av sm" : "av", px = small ? 26 : 52;
@@ -895,9 +896,11 @@ function renderMatchups(W, sec) {
           <span class="val">${Math.round(c.wr * 100)}%</span></li>`).join("")}</ol>` : `<div class="cb-empty">尚無 2 場以上的英雄</div>`}</article>`;
   }).join("");
 
-  // an opponent chip: its icon, this champion's record against it, and the games as a hover title
-  const opp = o => `<span class="mo ${o.wins * 2 > o.n ? "w" : o.wins * 2 < o.n ? "l" : ""}"
-    title="${esc(o.games.map(x => `${x.rname} ${x.me.player} ${x.me.win ? "勝" : "敗"} ${x.op.player}`).join("\n"))}">${icon(o.opp)}<b>${Math.round(o.wr * 100)}%(${o.wins}W-${o.n - o.wins}L)</b></span>`;
+  // an opponent chip: its icon and this champion's record against it; hovering lists each game as
+  // "TEAM-player vs TEAM-player（round・result）" in the shared tooltip box
+  const opp = o => { const tip = [cname(o.opp), ...o.games.map(x =>
+      `${x.me.team}-${x.me.player} vs ${x.op.team}-${x.op.player}（${x.rname}・${x.me.win ? "勝" : "敗"}）`)].join("\n");
+    return `<span class="mo tip ${o.wins * 2 > o.n ? "w" : o.wins * 2 < o.n ? "l" : ""}" tabindex="0" data-tip="${esc(tip)}">${champImg(o.opp)}<b>${Math.round(o.wr * 100)}%(${o.wins}W-${o.n - o.wins}L)</b></span>`; };
 
   const cols = [
     ["路線", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
