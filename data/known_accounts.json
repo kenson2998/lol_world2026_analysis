@@ -1,0 +1,842 @@
+{
+ "GEN/top": [
+  {
+   "region": "KR",
+   "game_name": "kiin",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "asdzxcvqwe",
+   "tagline": "123"
+  }
+ ],
+ "GEN/jungle": [
+  {
+   "region": "KR",
+   "game_name": "JUGKlNG",
+   "tagline": "kr"
+  },
+  {
+   "region": "NA",
+   "game_name": "Concrete jungle",
+   "tagline": "USA"
+  }
+ ],
+ "GEN/mid": [
+  {
+   "region": "KR",
+   "game_name": "허거덩",
+   "tagline": "0303"
+  },
+  {
+   "region": "NA",
+   "game_name": "calm down",
+   "tagline": "can"
+  }
+ ],
+ "GEN/bot": [
+  {
+   "region": "KR",
+   "game_name": "강 철",
+   "tagline": "샤 넬"
+  },
+  {
+   "region": "NA",
+   "game_name": "proteinmonster",
+   "tagline": "thief"
+  }
+ ],
+ "GEN/support": [
+  {
+   "region": "KR",
+   "game_name": "Duro",
+   "tagline": "Gen"
+  },
+  {
+   "region": "NA",
+   "game_name": "New York",
+   "tagline": "1114"
+  }
+ ],
+ "HLE/top": [
+  {
+   "region": "KR",
+   "game_name": "Athene",
+   "tagline": "lll"
+  },
+  {
+   "region": "NA",
+   "game_name": "Austin",
+   "tagline": "lll"
+  }
+ ],
+ "HLE/jungle": [
+  {
+   "region": "KR",
+   "game_name": "Black",
+   "tagline": "294"
+  },
+  {
+   "region": "NA",
+   "game_name": "Lillie",
+   "tagline": "397"
+  }
+ ],
+ "HLE/mid": [
+  {
+   "region": "KR",
+   "game_name": "Kiruru",
+   "tagline": "kr7"
+  },
+  {
+   "region": "KR",
+   "game_name": "suis",
+   "tagline": "kr7"
+  },
+  {
+   "region": "NA",
+   "game_name": "DAZBEEE",
+   "tagline": "777"
+  }
+ ],
+ "HLE/bot": [
+  {
+   "region": "KR",
+   "game_name": "HLE Gumayusi",
+   "tagline": "0298"
+  },
+  {
+   "region": "NA",
+   "game_name": "Know my name",
+   "tagline": "9999"
+  }
+ ],
+ "HLE/support": [
+  {
+   "region": "KR",
+   "game_name": "플레이리스트겨울",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "2026sup1",
+   "tagline": "111"
+  }
+ ],
+ "T1/top": [
+  {
+   "region": "KR",
+   "game_name": "어리고싶다",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "buriburii",
+   "tagline": "1234"
+  }
+ ],
+ "T1/jungle": [
+  {
+   "region": "KR",
+   "game_name": "오 너",
+   "tagline": "111"
+  },
+  {
+   "region": "NA",
+   "game_name": "worlds",
+   "tagline": "111"
+  }
+ ],
+ "T1/mid": [
+  {
+   "region": "KR",
+   "game_name": "Hide on bush",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "Hide in bush",
+   "tagline": "NYKR"
+  }
+ ],
+ "T1/bot": [
+  {
+   "region": "KR",
+   "game_name": "Peyz",
+   "tagline": "KR11"
+  },
+  {
+   "region": "NA",
+   "game_name": "gaesalbuger",
+   "tagline": "aaaa"
+  }
+ ],
+ "T1/support": [
+  {
+   "region": "KR",
+   "game_name": "Ciro",
+   "tagline": "KR10"
+  },
+  {
+   "region": "NA",
+   "game_name": "doryunnim",
+   "tagline": "Frank"
+  }
+ ],
+ "DK/top": [
+  {
+   "region": "KR",
+   "game_name": "TOPKING",
+   "tagline": "asd"
+  },
+  {
+   "region": "KR",
+   "game_name": "다죽이는게정",
+   "tagline": "L을가져가"
+  },
+  {
+   "region": "NA",
+   "game_name": "Siuuuuuuuuuuuuuu",
+   "tagline": "yarrr"
+  }
+ ],
+ "DK/jungle": [
+  {
+   "region": "KR",
+   "game_name": "DK Lucid",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "tyjoierg",
+   "tagline": "123"
+  }
+ ],
+ "DK/mid": [
+  {
+   "region": "KR",
+   "game_name": "DK ShowMaker",
+   "tagline": "KR1"
+  },
+  {
+   "region": "KR",
+   "game_name": "MIDKING",
+   "tagline": "asd"
+  },
+  {
+   "region": "KR",
+   "game_name": "DWG KIA",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "Sonny Hayes",
+   "tagline": "722"
+  }
+ ],
+ "DK/bot": [
+  {
+   "region": "KR",
+   "game_name": "DK Smash",
+   "tagline": "KR7"
+  },
+  {
+   "region": "NA",
+   "game_name": "123321",
+   "tagline": "KR12"
+  }
+ ],
+ "DK/support": [
+  {
+   "region": "KR",
+   "game_name": "팽도리",
+   "tagline": "1015"
+  },
+  {
+   "region": "NA",
+   "game_name": "하이용",
+   "tagline": "1015"
+  }
+ ],
+ "AL/top": [
+  {
+   "region": "NA",
+   "game_name": "qwewadas",
+   "tagline": "23123"
+  },
+  {
+   "region": "KR",
+   "game_name": "aierlanxiaozhu",
+   "tagline": "01321"
+  },
+  {
+   "region": "KR",
+   "game_name": "cold skin",
+   "tagline": "KR1"
+  }
+ ],
+ "AL/jungle": [
+  {
+   "region": "KR",
+   "game_name": "타 잔",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "Fortuna",
+   "tagline": "0823"
+  }
+ ],
+ "AL/mid": [
+  {
+   "region": "NA",
+   "game_name": "leagueoflegend11",
+   "tagline": "123"
+  }
+ ],
+ "AL/bot": [
+  {
+   "region": "NA",
+   "game_name": "jusaka",
+   "tagline": "cn1"
+  }
+ ],
+ "AL/support": [
+  {
+   "region": "KR",
+   "game_name": "AL Kael",
+   "tagline": "0211"
+  },
+  {
+   "region": "KR",
+   "game_name": "봄방학기간",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "6 7",
+   "tagline": "BTSHK"
+  }
+ ],
+ "BLG/top": [
+  {
+   "region": "KR",
+   "game_name": "빈 스토리",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "hfdgjhfgdnh",
+   "tagline": "123"
+  }
+ ],
+ "BLG/jungle": [
+  {
+   "region": "NA",
+   "game_name": "xxxzz",
+   "tagline": "8988"
+  }
+ ],
+ "BLG/mid": [
+  {
+   "region": "NA",
+   "game_name": "hdjsaunqnsk",
+   "tagline": "2026"
+  }
+ ],
+ "BLG/bot": [
+  {
+   "region": "KR",
+   "game_name": "Blue",
+   "tagline": "KR33"
+  },
+  {
+   "region": "NA",
+   "game_name": "painn",
+   "tagline": "110"
+  }
+ ],
+ "BLG/support": [
+  {
+   "region": "KR",
+   "game_name": "키보드에음료쏟아서고장내는이도윤",
+   "tagline": "KR1"
+  },
+  {
+   "region": "KR",
+   "game_name": "BLG 온",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "burgershutiao",
+   "tagline": "zxcvb"
+  }
+ ],
+ "TES/top": [
+  {
+   "region": "KR",
+   "game_name": "qsxmiocmio",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "godrjs",
+   "tagline": "gktpd"
+  }
+ ],
+ "TES/jungle": [
+  {
+   "region": "KR",
+   "game_name": "yiqunsb",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "sharkbee",
+   "tagline": "369"
+  }
+ ],
+ "TES/mid": [
+  {
+   "region": "KR",
+   "game_name": "livinli",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "tideeee",
+   "tagline": "21314"
+  }
+ ],
+ "TES/bot": [
+  {
+   "region": "KR",
+   "game_name": "qweasdqweasdqw",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "zxczxzxczxczx",
+   "tagline": "1111"
+  }
+ ],
+ "TES/support": [
+  {
+   "region": "NA",
+   "game_name": "aubgaojnfoaif",
+   "tagline": "123"
+  }
+ ],
+ "IG/top": [
+  {
+   "region": "NA",
+   "game_name": "woaini1111111111",
+   "tagline": "123"
+  }
+ ],
+ "IG/jungle": [
+  {
+   "region": "KR",
+   "game_name": "Deftones",
+   "tagline": "12121"
+  },
+  {
+   "region": "KR",
+   "game_name": "Kimman",
+   "tagline": "zxfkk"
+  },
+  {
+   "region": "NA",
+   "game_name": "qweasdzxc",
+   "tagline": "TWSJM"
+  }
+ ],
+ "IG/mid": [
+  {
+   "region": "NA",
+   "game_name": "qwerasdfzxcv",
+   "tagline": "0311"
+  },
+  {
+   "region": "KR",
+   "game_name": "모든일은같이",
+   "tagline": "KR1"
+  }
+ ],
+ "IG/bot": [
+  {
+   "region": "KR",
+   "game_name": "wanan theworld",
+   "tagline": "xdbx1"
+  },
+  {
+   "region": "KR",
+   "game_name": "번치코",
+   "tagline": "블레이즈킥"
+  },
+  {
+   "region": "NA",
+   "game_name": "Whymesod1ao",
+   "tagline": "Jiaq3"
+  }
+ ],
+ "IG/support": [
+  {
+   "region": "KR",
+   "game_name": "qweasdqweasdb",
+   "tagline": "1372"
+  },
+  {
+   "region": "NA",
+   "game_name": "IGlGIGlG",
+   "tagline": "IGlG"
+  }
+ ],
+ "G2/top": [
+  {
+   "region": "NA",
+   "game_name": "BrokenBlade",
+   "tagline": "12345"
+  }
+ ],
+ "G2/jungle": [
+  {
+   "region": "NA",
+   "game_name": "G2 Egghead",
+   "tagline": "Bald"
+  }
+ ],
+ "G2/mid": [
+  {
+   "region": "NA",
+   "game_name": "G2 Caps",
+   "tagline": "1324"
+  }
+ ],
+ "G2/bot": [
+  {
+   "region": "NA",
+   "game_name": "Hans von melzer",
+   "tagline": "1234"
+  }
+ ],
+ "G2/support": [
+  {
+   "region": "NA",
+   "game_name": "cheap book key",
+   "tagline": "6767"
+  }
+ ],
+ "MKOI/top": [
+  {
+   "region": "NA",
+   "game_name": "Shirin",
+   "tagline": "ilmgf"
+  }
+ ],
+ "MKOI/jungle": [
+  {
+   "region": "NA",
+   "game_name": "Yoyadeodo",
+   "tagline": "tuki"
+  }
+ ],
+ "MKOI/mid": [
+  {
+   "region": "NA",
+   "game_name": "jojooooooooo",
+   "tagline": "9999"
+  },
+  {
+   "region": "NA",
+   "game_name": "KOIIIIIIIII",
+   "tagline": "1234"
+  }
+ ],
+ "MKOI/bot": [
+  {
+   "region": "NA",
+   "game_name": "Charmander",
+   "tagline": "MKOI"
+  }
+ ],
+ "MKOI/support": [
+  {
+   "region": "NA",
+   "game_name": "Treecko",
+   "tagline": "MKOI"
+  }
+ ],
+ "KC/top": [
+  {
+   "region": "KR",
+   "game_name": "칸 나",
+   "tagline": "0211"
+  },
+  {
+   "region": "NA",
+   "game_name": "worldspro0073",
+   "tagline": "world"
+  }
+ ],
+ "KC/jungle": [
+  {
+   "region": "NA",
+   "game_name": "quentin",
+   "tagline": "dawg"
+  }
+ ],
+ "KC/mid": [
+  {
+   "region": "KR",
+   "game_name": "전설의용사김창동",
+   "tagline": "canna"
+  },
+  {
+   "region": "NA",
+   "game_name": "yeahoo",
+   "tagline": "yaho"
+  }
+ ],
+ "KC/bot": [
+  {
+   "region": "NA",
+   "game_name": "MASTERMOVE",
+   "tagline": "WORLD"
+  }
+ ],
+ "KC/support": [
+  {
+   "region": "NA",
+   "game_name": "basiil",
+   "tagline": "fan"
+  },
+  {
+   "region": "NA",
+   "game_name": "KC Busio",
+   "tagline": "000"
+  }
+ ],
+ "TLAW/top": [
+  {
+   "region": "NA",
+   "game_name": "PORDER",
+   "tagline": "MON"
+  }
+ ],
+ "TLAW/jungle": [
+  {
+   "region": "NA",
+   "game_name": "Josedeodo",
+   "tagline": "NA12"
+  }
+ ],
+ "TLAW/mid": [
+  {
+   "region": "NA",
+   "game_name": "Samuel Broadley",
+   "tagline": "Gday"
+  },
+  {
+   "region": "NA",
+   "game_name": "Jake Tiberi",
+   "tagline": "BALD"
+  }
+ ],
+ "TLAW/bot": [
+  {
+   "region": "NA",
+   "game_name": "TL Yeon",
+   "tagline": "7lol"
+  }
+ ],
+ "TLAW/support": [
+  {
+   "region": "NA",
+   "game_name": "From Iron",
+   "tagline": "1123"
+  },
+  {
+   "region": "NA",
+   "game_name": "EDG Meiko",
+   "tagline": "NA12"
+  }
+ ],
+ "LYON/top": [
+  {
+   "region": "NA",
+   "game_name": "Dhokla",
+   "tagline": "NA1"
+  }
+ ],
+ "LYON/jungle": [
+  {
+   "region": "NA",
+   "game_name": "a Special One",
+   "tagline": "1of1"
+  }
+ ],
+ "LYON/mid": [
+  {
+   "region": "NA",
+   "game_name": "Jesse Pinkman",
+   "tagline": "LYON"
+  }
+ ],
+ "LYON/bot": [
+  {
+   "region": "NA",
+   "game_name": "LYON Berserker",
+   "tagline": "ddd"
+  }
+ ],
+ "LYON/support": [
+  {
+   "region": "NA",
+   "game_name": "Isles",
+   "tagline": "000"
+  },
+  {
+   "region": "NA",
+   "game_name": "depresion",
+   "tagline": "NA2"
+  }
+ ],
+ "TSW/top": [
+  {
+   "region": "NA",
+   "game_name": "aesansang",
+   "tagline": "hihi"
+  }
+ ],
+ "TSW/jungle": [
+  {
+   "region": "KR",
+   "game_name": "hjzt0ahjhj",
+   "tagline": "KR2"
+  },
+  {
+   "region": "NA",
+   "game_name": "New York",
+   "tagline": "15097"
+  }
+ ],
+ "TSW/mid": [
+  {
+   "region": "KR",
+   "game_name": "gaubeo202",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "reina",
+   "tagline": "244"
+  }
+ ],
+ "TSW/bot": [
+  {
+   "region": "NA",
+   "game_name": "doublex2Nquila",
+   "tagline": "1706"
+  },
+  {
+   "region": "KR",
+   "game_name": "edhdcntsw",
+   "tagline": "KR11"
+  }
+ ],
+ "TSW/support": [
+  {
+   "region": "KR",
+   "game_name": "caideoma",
+   "tagline": "KR2"
+  },
+  {
+   "region": "NA",
+   "game_name": "son of universe",
+   "tagline": "111"
+  }
+ ],
+ "CFO/top": [
+  {
+   "region": "KR",
+   "game_name": "ieada",
+   "tagline": "KR1"
+  },
+  {
+   "region": "NA",
+   "game_name": "qwdfa",
+   "tagline": "usa1"
+  }
+ ],
+ "CFO/jungle": [
+  {
+   "region": "NA",
+   "game_name": "BBQ LOVER",
+   "tagline": "0225"
+  }
+ ],
+ "CFO/mid": [
+  {
+   "region": "NA",
+   "game_name": "bug cat capoo",
+   "tagline": "123"
+  }
+ ],
+ "CFO/bot": [
+  {
+   "region": "KR",
+   "game_name": "hongqkule",
+   "tagline": "1212"
+  },
+  {
+   "region": "NA",
+   "game_name": "CFOROGER",
+   "tagline": "1212"
+  }
+ ],
+ "CFO/support": [
+  {
+   "region": "NA",
+   "game_name": "7 Eleven Clerk",
+   "tagline": "0418"
+  }
+ ],
+ "LOS/top": [
+  {
+   "region": "NA",
+   "game_name": "iced Americano",
+   "tagline": "Venti"
+  }
+ ],
+ "LOS/jungle": [
+  {
+   "region": "NA",
+   "game_name": "BrazilLastHope",
+   "tagline": "777"
+  }
+ ],
+ "LOS/mid": [
+  {
+   "region": "NA",
+   "game_name": "worldss",
+   "tagline": "2026"
+  }
+ ],
+ "LOS/bot": [
+  {
+   "region": "NA",
+   "game_name": "FatYusi",
+   "tagline": "BR18"
+  }
+ ],
+ "LOS/support": [
+  {
+   "region": "NA",
+   "game_name": "B4CKZZ",
+   "tagline": "LOS"
+  }
+ ]
+}

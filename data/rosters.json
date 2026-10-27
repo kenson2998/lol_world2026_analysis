@@ -1,0 +1,18 @@
+[
+{"team":"GEN","full":"Gen.G","region":"LCK","top":"Kiin","jungle":"Canyon","mid":"Chovy","bot":"Ruler","support":"Duro"},
+{"team":"HLE","full":"Hanwha Life Esports","region":"LCK","top":"Zeus","jungle":"Kanavi","mid":"Zeka","bot":"Gumayusi","support":"Delight"},
+{"team":"T1","full":"T1","region":"LCK","top":"Doran","jungle":"Oner","mid":"Faker","bot":"Peyz","support":"Keria"},
+{"team":"DK","full":"Dplus KIA","region":"LCK","top":"Siwoo","jungle":"Lucid","mid":"ShowMaker","bot":"Smash","support":"Career"},
+{"team":"AL","full":"Anyone's Legend","region":"LPL","top":"Breathe","jungle":"Tarzan","mid":"Shanks","bot":"Hope","support":"Kael"},
+{"team":"BLG","full":"Bilibili Gaming","region":"LPL","top":"Bin","jungle":"Xun","mid":"Knight","bot":"Viper","support":"ON"},
+{"team":"TES","full":"Top Esports","region":"LPL","top":"369","jungle":"Tian","mid":"Creme","bot":"JackeyLove","support":"Zhuo"},
+{"team":"IG","full":"Invictus Gaming","region":"LPL","top":"TheShy","jungle":"Wei","mid":"Rookie","bot":"JiaQi","support":"Meiko"},
+{"team":"G2","full":"G2 Esports","region":"LEC","top":"BrokenBlade","jungle":"SkewMond","mid":"Caps","bot":"Hans Sama","support":"Labrov"},
+{"team":"MKOI","full":"Movistar KOI","region":"LEC","top":"Myrwn","jungle":"Elyoya","mid":"Jojopyun","bot":"Supa","support":"Alvaro"},
+{"team":"KC","full":"Karmine Corp","region":"LEC","top":"Canna","jungle":"Yike","mid":"Kyeahoo","bot":"Caliste","support":"Busio"},
+{"team":"TLAW","full":"Team Liquid Alienware","region":"LCS","top":"Morgan","jungle":"Josedeodo","mid":"Quid","bot":"Yeon","support":"CoreJJ"},
+{"team":"LYON","full":"LYON","region":"LCS","top":"Dhokla","jungle":"Inspired","mid":"Saint","bot":"Berserker","support":"Isles"},
+{"team":"TSW","full":"Team Secret Whales","region":"LCP","top":"Pun","jungle":"Hizto","mid":"Dire","bot":"Eddie","support":"Bie"},
+{"team":"CFO","full":"CTBC Flying Oyster","region":"LCP","top":"Rest","jungle":"Shad0w","mid":"Pout","bot":"Doggo","support":"Kino"},
+{"team":"LOS","full":"Los Grandes","region":"CBLOL","top":"Zest","jungle":"Curse","mid":"Feisty","bot":"Duduhh","support":"Ackerman"}
+]

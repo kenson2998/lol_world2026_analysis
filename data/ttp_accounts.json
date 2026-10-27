@@ -1,0 +1,3631 @@
+[
+ {
+  "team": "GEN",
+  "full": "Gen.G",
+  "role": "top",
+  "player": "Kiin",
+  "ttp_team": "Gen.G",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "kiin#KR1",
+    "rank": "Ch 2,314LP",
+    "active": true
+   },
+   {
+    "region": "BR",
+    "riot_id": "123412314#1234",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "빅파이초코파이#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "아정글맘에안드네#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "나는돌거북#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "asdfzxcv#3347",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "addddsas#1234",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "GEN",
+  "full": "Gen.G",
+  "role": "jungle",
+  "player": "Canyon",
+  "ttp_team": "Gen.G",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "JUGKlNG#kr",
+    "rank": "Ch 2,285LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "HUANG TONG DAYE#KR1",
+    "rank": "Ch 1,417LP",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "São Paulo#3628",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "그어살#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "happy gαme#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "GRAND CANY0N#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "asfdwrqe#123",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "밴쿠버#123",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "GEN",
+  "full": "Gen.G",
+  "role": "mid",
+  "player": "Chovy",
+  "ttp_team": "Gen.G",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "허거덩#0303",
+    "rank": "GM 1,588LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "맞짱깔류민석#KR1",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Pd8JbseaJwwjQpNH#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95500174del#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Shrimp Shark#43083",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Jeremy Bernstein#95102",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "lIlIlIIllIlllIIl#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Lehends#원숭이",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "아라비#생각없음",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "KKintube#낀낀이형",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "gunz#123",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "GEN",
+  "full": "Gen.G",
+  "role": "bot",
+  "player": "Ruler",
+  "ttp_team": "Gen.G",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "강 철#샤 넬",
+    "rank": "Ch 2,046LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "황금고블린1#KR1",
+    "rank": "Ch 1,149LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95660171del#KR1",
+    "rank": "Diamond IV",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "wogurwogur#12345",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "케빈추 Ruler#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "corejjoppa#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Gen G 코어장전#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "잘해야해#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Gen G Ru1er#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "gnghlgoeheho#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "tkffuwnjwpqkf#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Ruler#145",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "GEN",
+  "full": "Gen.G",
+  "role": "support",
+  "player": "Duro",
+  "ttp_team": "Gen.G",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Duro#Gen",
+    "rank": "Ch 2,439LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "안녕 캐나다#캐나다",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "Rio de Janeiro#브라질",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "HLE",
+  "full": "Hanwha Life Esports",
+  "role": "top",
+  "player": "Zeus",
+  "ttp_team": "Hanwha Life Esports",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Athene#lll",
+    "rank": "Ch 2,189LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "굿뉴스#000",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2887168005588736#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "T1 Haaland#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "최우제04#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Pom Michutda#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Zimmer#god",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "HLE",
+  "full": "Hanwha Life Esports",
+  "role": "jungle",
+  "player": "Kanavi",
+  "ttp_team": "Hanwha Life Esports",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Black#294",
+    "rank": "Master 367LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "95360218del#KR1",
+    "rank": "Master 326LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "vinaka#KR1",
+    "rank": "Master 252LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "lqslqslqslqs#KR1",
+    "rank": "Diamond IV",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "38801035del#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "alltimesleepy#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "srcrd#EUW",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "HLE",
+  "full": "Hanwha Life Esports",
+  "role": "mid",
+  "player": "Zeka",
+  "ttp_team": "Hanwha Life Esports",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "suis#kr7",
+    "rank": "Ch 2,187LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "95190213del#KR1",
+    "rank": "Ch 864LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Kiruru#kr7",
+    "rank": "Diamond II",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Dkdldb#516",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "HLE",
+  "full": "Hanwha Life Esports",
+  "role": "bot",
+  "player": "Gumayusi",
+  "ttp_team": "Hanwha Life Esports",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "HLE Gumayusi#0298",
+    "rank": "Ch 2,417LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "JXN1MVc6dAdqVY1I#KR1",
+    "rank": "Ch 1,372LP",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Giant Monster#09494",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "gumaguma12#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "최애의 구마유시#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "MQLWKENRK#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "taco genius#8848",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Beaver Tails#4444",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "HLE",
+  "full": "Hanwha Life Esports",
+  "role": "support",
+  "player": "Delight",
+  "ttp_team": "Hanwha Life Esports",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "플레이리스트겨울#KR1",
+    "rank": "GM 1,623LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "GDB CARRY#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Delight11#kor",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "T1",
+  "full": "T1",
+  "role": "top",
+  "player": "Doran",
+  "ttp_team": "T1",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "어리고싶다#KR1",
+    "rank": "GM 1,600LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "95540172del#KR1",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "h9aM1DQHxKnrilLD#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "123123123213213#KR1",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2633831929956160#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "F1F1F1F1#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "HO1WQYETAN#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "HLE TOP#1234",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "TOPTOPTOP#1234",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "T1",
+  "full": "T1",
+  "role": "jungle",
+  "player": "Oner",
+  "ttp_team": "T1",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "오 너#111",
+    "rank": "Ch 2,062LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "T1 Oner#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Thinking PLZ #EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2887168037291584#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Wakanda f0rever#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "에휴휴휴휴휴#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "T1 Roach#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "BONG BONG U#123",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "hi hello#12341",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "T1",
+  "full": "T1",
+  "role": "mid",
+  "player": "Faker",
+  "ttp_team": "T1",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Hide on bush#KR1",
+    "rank": "Ch 2,256LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "wincg#84926",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Neo Hide on bush#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "silent silence#08022",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Hide on bush#61151",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Hide on bush#canad",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "T1",
+  "full": "T1",
+  "role": "bot",
+  "player": "Peyz",
+  "ttp_team": "T1",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Peyz#KR11",
+    "rank": "Ch 2,206LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "ABCDPEYZ#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "qwewqrsad2w#11111",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "T1",
+  "full": "T1",
+  "role": "support",
+  "player": "Keria",
+  "ttp_team": "T1",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Ciro#KR10",
+    "rank": "Ch 1,871LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "credit#kk123",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "The Kid Keria#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Aim First#68441",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Ai Aqua Ruby#66298",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "triplestar#star",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "durcjsrhl#1014",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "DK",
+  "full": "Dplus KIA",
+  "role": "top",
+  "player": "Siwoo",
+  "ttp_team": "Dplus KIA",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "TOPKING#asd",
+    "rank": "Ch 2,154LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "다죽이는게정#L을가져가",
+    "rank": "Master 1,081LP",
+    "active": true
+   }
+  ]
+ },
+ {
+  "team": "DK",
+  "full": "Dplus KIA",
+  "role": "jungle",
+  "player": "Lucid",
+  "ttp_team": "Dplus KIA",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "DK Lucid#KR1",
+    "rank": "Ch 2,206LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "nicemeetyou#1234",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "DK",
+  "full": "Dplus KIA",
+  "role": "mid",
+  "player": "ShowMaker",
+  "ttp_team": "Dplus KIA",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "MIDKING#asd",
+    "rank": "Ch 2,297LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "DK ShowMaker#KR1",
+    "rank": "Ch 2,256LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "DWG KIA#KR1",
+    "rank": "Diamond I",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "asdmklasdfmkll#KR1",
+    "rank": "Diamond III",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "dntmdgkrhtlvdjdy#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "WWVWVVWVWVWVWVWW#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Syndra#0722",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "DK",
+  "full": "Dplus KIA",
+  "role": "bot",
+  "player": "Smash",
+  "ttp_team": "Dplus KIA",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "DK Smash#KR7",
+    "rank": "Ch 2,439LP",
+    "active": true
+   }
+  ]
+ },
+ {
+  "team": "DK",
+  "full": "Dplus KIA",
+  "role": "support",
+  "player": "Career",
+  "ttp_team": "Dplus KIA",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "팽도리#1015",
+    "rank": "Ch 2,233LP",
+    "active": true
+   }
+  ]
+ },
+ {
+  "team": "AL",
+  "full": "Anyone's Legend",
+  "role": "top",
+  "player": "Breathe",
+  "ttp_team": "Weibo Gaming",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "aierlanxiaozhu#01321",
+    "rank": "GM 1,557LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "하필칭찬받다#KR1",
+    "rank": "GM 617LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95200227del#KR1",
+    "rank": "GM 539LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "cold skin#KR1",
+    "rank": "Unranked",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639445234058720#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891444903970304#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "buenos dias#80637",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Guten Morgen#4797",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "AL",
+  "full": "Anyone's Legend",
+  "role": "jungle",
+  "player": "Tarzan",
+  "ttp_team": "Anyone's Legend",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "타 잔#KR1",
+    "rank": "Ch 2,329LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "jgggggg#KR1",
+    "rank": "Master 159LP",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "QhQVHRzOPoR9uLnE#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "QQQQQQQQQQQQ#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "런던 가자#2024",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Tar2an#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639437926827392#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "LngLng#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "fortuna#9817",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Mai Paura#2025",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "AL",
+  "full": "Anyone's Legend",
+  "role": "mid",
+  "player": "Shanks",
+  "ttp_team": "Anyone's Legend",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "98133485del#KR1",
+    "rank": "Master 216LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "xiangshen1#KR1",
+    "rank": "Diamond I",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639445650703648#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891445608047712#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "FA Smlz#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "almid#1111",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "AL",
+  "full": "Anyone's Legend",
+  "role": "bot",
+  "player": "Hope",
+  "ttp_team": "Anyone's Legend",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "KennyBB#ruloo",
+    "rank": "Diamond I",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "95360216del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "42194700del#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "af senan #KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639435390542880#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891446153274720#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Jusaka#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "wfzydg#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Hope#0929",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "AL",
+  "full": "Anyone's Legend",
+  "role": "support",
+  "player": "Kael",
+  "ttp_team": "Anyone's Legend",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "AL Kael#0211",
+    "rank": "Ch 2,454LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "봄방학기간#KR1",
+    "rank": "GM 1,843LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "7 DAY#2025",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "BLG",
+  "full": "Bilibili Gaming",
+  "role": "top",
+  "player": "Bin",
+  "ttp_team": "Bilibili Gaming",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "빈 스토리#KR1",
+    "rank": "Master 864LP",
+    "active": true
+   },
+   {
+    "region": "BR",
+    "riot_id": "chenzebin#5599",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639442525209632#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891444445488928#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "BLGBin ge#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "rsdfsaasq#1111",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Bin#K620",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "BLG",
+  "full": "Bilibili Gaming",
+  "role": "jungle",
+  "player": "Xun",
+  "ttp_team": "Bilibili Gaming",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "90051229del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "eewqoeowqeqwoo#2223",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639432731706400#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891444741678432#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "6784878#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "쯔지 쌰 쯔지#4165",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "BLG",
+  "full": "Bilibili Gaming",
+  "role": "mid",
+  "player": "Knight",
+  "ttp_team": "Bilibili Gaming",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "kk9qwq#KR1",
+    "rank": "Ch 1,485LP",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "gaotianliang#is9",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "이센스God#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639443464873088#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891447839056992#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "qweqweqwr#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "ZZXE0BYCNW#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255263752267328#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Oamvl#KR2",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "asdfadsasdfads#1234",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "paraworld#369",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "BLG",
+  "full": "Bilibili Gaming",
+  "role": "bot",
+  "player": "Viper",
+  "ttp_team": "Bilibili Gaming",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Blue#KR33",
+    "rank": "Ch 1,918LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "Bot01#KR1",
+    "rank": "Master 312LP",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "jkr9bcQujpLZPySS#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "Bomdia#0313",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Viscose#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639435808802272#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Víþer#84863",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891445925373472#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "1697865#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Happy#A33",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "BLG",
+  "full": "Bilibili Gaming",
+  "role": "support",
+  "player": "ON",
+  "ttp_team": "Bilibili Gaming",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "키보드에음료쏟아서고장내는이도윤#KR1",
+    "rank": "Ch 2,349LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "BLG 온#KR1",
+    "rank": "Master 405LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "82730636del#KR1",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "cheers#nsc",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639442944698272#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "hanbaoshutiao#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "줘패놓기전에 눈 깔고다녀라#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "onc#12345",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "TFTChallenger#11111",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TES",
+  "full": "Top Esports",
+  "role": "top",
+  "player": "369",
+  "ttp_team": "Top Esports",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Xxqqq#KR1",
+    "rank": "Ch 908LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "qsxmiocmio#KR1",
+    "rank": "Master 430LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "78120855del#KR1",
+    "rank": "Master 97LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95260218del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639443362113504#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891446023996480#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "MM9 ghost#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "JZDKVFYPNO#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255263694111840#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "tesguohao#124",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TES",
+  "full": "Top Esports",
+  "role": "jungle",
+  "player": "Tian",
+  "ttp_team": "Weibo Gaming",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "yiqunsb#KR1",
+    "rank": "Master 1,293LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "diming#ziyou",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "mymx#KR1",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "ziyou#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891447777723904#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Last Breathe 12#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "G2 NiKO#2000",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TES",
+  "full": "Top Esports",
+  "role": "mid",
+  "player": "Creme",
+  "ttp_team": "Top Esports",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "10502958del#KR1",
+    "rank": "Ch 1,012LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "livinli#KR1",
+    "rank": "GM 1,783LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891447037077248#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "cinema#6800",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TES",
+  "full": "Top Esports",
+  "role": "bot",
+  "player": "JackeyLove",
+  "ttp_team": "Top Esports",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "qweasdqweasdqw#KR1",
+    "rank": "Ch 1,885LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "eeevoLyekcaJ#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "我就是我#tian",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TES",
+  "full": "Top Esports",
+  "role": "support",
+  "player": "Zhuo",
+  "ttp_team": "LNG Esports",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "ovoowo#0213",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891447904060480#KR1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "IG",
+  "full": "Invictus Gaming",
+  "role": "top",
+  "player": "TheShy",
+  "ttp_team": "Invictus Gaming",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "The shy#asdf",
+    "rank": "Diamond I",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "u2Izr3YvE7y7H7TT#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95150229del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95250221del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "눈사람#cold1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "saddassdasad#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "스몰더 아빠#tsts",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639432097637440#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "토론지 대장#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891448321344960#KR1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "IG",
+  "full": "Invictus Gaming",
+  "role": "jungle",
+  "player": "Wei",
+  "ttp_team": "Bilibili Gaming",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Kimman#zxfkk",
+    "rank": "Ch 2,066LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "2021Worlds#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891444480927232#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "SMBBMS#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "aassddwwe#blg",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "IG",
+  "full": "Invictus Gaming",
+  "role": "mid",
+  "player": "Rookie",
+  "ttp_team": "Invictus Gaming",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "모든일은같이#KR1",
+    "rank": "Ch 1,873LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "7pogJg826MGnRHn4#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "스타2잘하고싶다#KR1",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "dyjkbysb#KR1",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95190219del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "asdfzxcvasdfwqer#KR2",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "iG roooookie#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "4463953del#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "wpldklg04#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639431890560256#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891448034370784#KR1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "IG",
+  "full": "Invictus Gaming",
+  "role": "bot",
+  "player": "JiaQi",
+  "ttp_team": "Invictus Gaming",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "wanan theworld#xdbx1",
+    "rank": "GM 1,451LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "번치코#블레이즈킥",
+    "rank": "Diamond I",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "徘徊着的#asdf",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2689107329664096#KR1",
+    "rank": "Platinum I",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "IG",
+  "full": "Invictus Gaming",
+  "role": "support",
+  "player": "Meiko",
+  "ttp_team": "Invictus Gaming",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "미나모토 치세#KR1",
+    "rank": "Ch 968LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95270217del#KR1",
+    "rank": "Ch 904LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "qweasdqweasdb#1372",
+    "rank": "Master 1,256LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "1773786del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "K1rito#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "블핑대박나세요#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2639435600627104#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Heimskáut réfur#91448",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891445957125216#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "iv0ry tower#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "我就是天#9866",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "G2",
+  "full": "G2 Esports",
+  "role": "top",
+  "player": "BrokenBlade",
+  "ttp_team": "G2 Esports",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "G2 BrokenBlade#1918",
+    "rank": "GM 1,777LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 BrokenBlade#1918",
+    "rank": "GM 556LP",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "BrokenBlade#12345",
+    "rank": "Master 1,032LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "str8 beefy mode#KR1",
+    "rank": "Master 202LP",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "pwdbdRaA2UKR8nHD#NA1",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Vasco Shot#12345",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "brokenblade22#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "G2 Fogo de Chão#1918",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "brokenblade12#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2960771328525440#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "THEONEPIEEEEEECE#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255262115972864#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "BrokenBlade#1918",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 BrokenBlade#1819",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "G2",
+  "full": "G2 Esports",
+  "role": "jungle",
+  "player": "SkewMond",
+  "ttp_team": "G2 Esports",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "G2 SkewMond#3327",
+    "rank": "Ch 2,992LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 Egghead#Bald",
+    "rank": "Master 912LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "G2G2G2#G2G2",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "G2 Joga Bonito#G2G2",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Miyamoto Musashi#2783",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 Hydreigon#9452",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "G2",
+  "full": "G2 Esports",
+  "role": "mid",
+  "player": "Caps",
+  "ttp_team": "G2 Esports",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "G2 Caps#1323",
+    "rank": "GM 2,229LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 Caps#1324",
+    "rank": "Master 351LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "wEDKca0Gxe#EUW",
+    "rank": "Master 44LP",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "g2caps#g123",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "TheShackledCaps#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Speedy McJingles#EUW",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "EqCR0QW8Vm9PvhKz#EUW",
+    "rank": "Bronze III",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "A 99 mid laner#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "IIIlllllIllI#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2960771393824640#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 Rodrigo#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255262173709984#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 Caps#LOL1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "G2G2G2#G2G2",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "G2",
+  "full": "G2 Esports",
+  "role": "bot",
+  "player": "Hans Sama",
+  "ttp_team": null,
+  "ttp_role": null,
+  "accounts": []
+ },
+ {
+  "team": "G2",
+  "full": "G2 Esports",
+  "role": "support",
+  "player": "Labrov",
+  "ttp_team": "G2 Esports",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "G2 Labrov#8085",
+    "rank": "Ch 2,564LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "cheap book key#6767",
+    "rank": "Master 262LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "12356060564#6767",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "Alexandre Pato#67679",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "school phobia#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "skliks#EUNE",
+    "rank": "Unranked",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "LYXNNH#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "BGfXFaXs132#EUW2",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255262030373984#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "G2 Labrov#ltyol",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "MKOI",
+  "full": "Movistar KOI",
+  "role": "top",
+  "player": "Myrwn",
+  "ttp_team": "Movistar KOI",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Shirin#ilmgf",
+    "rank": "Master 942LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "daemon#mirin",
+    "rank": "Diamond II",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "shirin#lover",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Mualani C6#Myrwn",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Bb trickz#Tipz",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "MKOI",
+  "full": "Movistar KOI",
+  "role": "jungle",
+  "player": "Elyoya",
+  "ttp_team": "Movistar KOI",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Yoyadeodo#tuki",
+    "rank": "Master 1,056LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "komanche uchiha#elite",
+    "rank": "Master 790LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Ratón calvo#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "domyos#mchla",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Andrew Laedis#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Ashton Klutcher#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255261550233312#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Dani Flow#myrwn",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "MKOI",
+  "full": "Movistar KOI",
+  "role": "mid",
+  "player": "Jojopyun",
+  "ttp_team": "Movistar KOI",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "jojooooooooo#9999",
+    "rank": "Diamond I",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "VJBYYTF0AO#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "KOIIIIIIIII#1234",
+    "rank": "Unranked",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "ég jojopyun#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2960769804248160#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2960771781657632#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "C9C9C9C9C9#NA1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "MKOI",
+  "full": "Movistar KOI",
+  "role": "bot",
+  "player": "Supa",
+  "ttp_team": "Movistar KOI",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "tukaan#tukan",
+    "rank": "GM 2,250LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "Charmander#MKOI",
+    "rank": "Master 1,226LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Perro de Elyoya#EUW",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "4tukano4#TUKAN",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "K1374n0#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Tukaan#tuknn",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "MKOI",
+  "full": "Movistar KOI",
+  "role": "support",
+  "player": "Alvaro",
+  "ttp_team": "Movistar KOI",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Treecko#MKOI",
+    "rank": "GM 1,340LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "alvarooo#000",
+    "rank": "Master 1,504LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "Articuno#sup",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "KC",
+  "full": "Karmine Corp",
+  "role": "top",
+  "player": "Canna",
+  "ttp_team": "Karmine Corp",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "칸 나#0211",
+    "rank": "Master 498LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "worldspro0073#world",
+    "rank": "Master 332LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Savage love#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "EJRKLJ0#0000",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "KC",
+  "full": "Karmine Corp",
+  "role": "jungle",
+  "player": "Yike",
+  "ttp_team": "Karmine Corp",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "KC Yiken#1111",
+    "rank": "Master 1,667LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "quentin#dawg",
+    "rank": "Master 427LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "YKE#1111",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Yikos#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255262144873952#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "YIK#YIK",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "KC",
+  "full": "Karmine Corp",
+  "role": "mid",
+  "player": "Kyeahoo",
+  "ttp_team": "Karmine Corp",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "전설의용사김창동#canna",
+    "rank": "Master 485LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "yeahoo#yaho",
+    "rank": "Master 52LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "팔차선팔협지개벡스팔붕이#123",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "KC",
+  "full": "Karmine Corp",
+  "role": "bot",
+  "player": "Caliste",
+  "ttp_team": "Karmine Corp",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "KC NEXT ADKING#EUW",
+    "rank": "Ch 2,529LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "MASTERMOVE#WORLD",
+    "rank": "Master 505LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "KC CALISTE#MSI",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "MOMO KOZUKI#soloq",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "KC Caliste#0001",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "KC",
+  "full": "Karmine Corp",
+  "role": "support",
+  "player": "Busio",
+  "ttp_team": "Karmine Corp",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "basiil#fan",
+    "rank": "Master 305LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "yuh#yah",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "KC Busio#000",
+    "rank": "Diamond IV",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "Busio3#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "yuuh#woah",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "OG Mithy#Moo",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Fly Busio#lalu",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "MADHATTER#HAT",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TLAW",
+  "full": "Team Liquid Alienware",
+  "role": "top",
+  "player": "Morgan",
+  "ttp_team": "Team Liquid",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Morgan#5358",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "95310217del#KR1",
+    "rank": "Diamond III",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "47920137del#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Star is coming#EUW",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TLAW",
+  "full": "Team Liquid Alienware",
+  "role": "jungle",
+  "player": "Josedeodo",
+  "ttp_team": "Team Liquid",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Josedeodo#NA12",
+    "rank": "Ch 2,204LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "Lionel Messi#TL10",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891407957263904#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Josedeodo#KR12",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "Josedeodo2#BR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Josedeodo#2929",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TLAW",
+  "full": "Team Liquid Alienware",
+  "role": "mid",
+  "player": "Quid",
+  "ttp_team": "Team Liquid",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Samuel Broadley#Gday",
+    "rank": "Ch 3,266LP",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "Jake Tiberi#BALD",
+    "rank": "Diamond I",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "Chop Chop Butter#CUP",
+    "rank": "Diamond II",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "tree frog#100",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "quid not quad#100",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TLAW",
+  "full": "Team Liquid Alienware",
+  "role": "bot",
+  "player": "Yeon",
+  "ttp_team": "Team Liquid",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "TL Yeon#7lol",
+    "rank": "Ch 2,719LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "HeungMin Son#TL7",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2891407826478432#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Su Muqiu#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "TL Honda Yeon#Honda",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "IHATEYOU#TL7",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "TL Honda Yeon#Rin",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TLAW",
+  "full": "Team Liquid Alienware",
+  "role": "support",
+  "player": "CoreJJ",
+  "ttp_team": "Team Liquid",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "From Iron#1123",
+    "rank": "Ch 2,544LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "BOL4#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Kangin Lee#TL19",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "EDG Meiko#NA12",
+    "rank": "Diamond II",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "MataLehendsLife#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "1521819del#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "CoreJangJeon#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "CoreJJNA#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "리퀴드 코어장전#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "GONEBYSPRING#WNTER",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "ChatDisabler94#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "TL Honda CoreJJ#Honda",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "TL Honda CoreJJ#EUEU",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LYON",
+  "full": "LYON",
+  "role": "top",
+  "player": "Dhokla",
+  "ttp_team": "LYON",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Dhokla#NA1",
+    "rank": "Ch 2,254LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "INDIAN SUPERSTAR#LYON",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "INDIAN SUPERSTAR#LYON",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "NRG Dhokla#KR1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LYON",
+  "full": "LYON",
+  "role": "jungle",
+  "player": "Inspired",
+  "ttp_team": "LYON",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "Inspireeed#EUW",
+    "rank": "Diamond II",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "Polaco de pastor#ptm",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "gobackna#kmc",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "turboking123#jdjd",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "GWIAZDECZKA#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Great server xD#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2960771749275136#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "FLAGGED 47890506#68047",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "INSPIREEED#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "CAPTAIN AMERICA#jd123",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "Andrew Barton#FLYGM",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Lost to 100T#XDD",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "I will farm#FLY",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LYON",
+  "full": "LYON",
+  "role": "mid",
+  "player": "Saint",
+  "ttp_team": "LYON",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Jesse Pinkman#LYON",
+    "rank": "Ch 2,475LP",
+    "active": true
+   },
+   {
+    "region": "BR",
+    "riot_id": "vamos#lyon",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "saint#50101",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Saint#KR0",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "coreano#LYON",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LYON",
+  "full": "LYON",
+  "role": "bot",
+  "player": "Berserker",
+  "ttp_team": "LYON",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "LYON#09012",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "BR",
+    "riot_id": "040444#444",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "C9 Berserker#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "xczasdqwedfh1dv#2336",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "p1ss elo MVP#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "qaxu#KR1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LYON",
+  "full": "LYON",
+  "role": "support",
+  "player": "Isles",
+  "ttp_team": "LYON",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "NA",
+    "riot_id": "Isles#000",
+    "rank": "Ch 2,812LP",
+    "active": true
+   },
+   {
+    "region": "BR",
+    "riot_id": "sojourner#LYON",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "lenix#style",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "depresion#NA2",
+    "rank": "Diamond IV",
+    "active": true
+   }
+  ]
+ },
+ {
+  "team": "TSW",
+  "full": "Team Secret Whales",
+  "role": "top",
+  "player": "Pun",
+  "ttp_team": "Team Secret Whales",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "BR",
+    "riot_id": "NO1PUN#KaKa",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "No1Pun#1111",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TSW",
+  "full": "Team Secret Whales",
+  "role": "jungle",
+  "player": "Hizto",
+  "ttp_team": "Team Secret Whales",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "hjzt0ahjhj#KR2",
+    "rank": "Master 1,119LP",
+    "active": true
+   },
+   {
+    "region": "BR",
+    "riot_id": "chimorangrua#LCP1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TSW",
+  "full": "Team Secret Whales",
+  "role": "mid",
+  "player": "Dire",
+  "ttp_team": "Team Secret Whales",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "BR",
+    "riot_id": "haufo#2204",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "haufo#2211",
+    "rank": "Diamond II",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TSW",
+  "full": "Team Secret Whales",
+  "role": "bot",
+  "player": "Eddie",
+  "ttp_team": "Team Secret Whales",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "edhdcntsw#KR11",
+    "rank": "Ch 1,867LP",
+    "active": true
+   },
+   {
+    "region": "BR",
+    "riot_id": "cottonedd123#asd",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "TSW",
+  "full": "Team Secret Whales",
+  "role": "support",
+  "player": "Bie",
+  "ttp_team": "Team Secret Whales",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "BR",
+    "riot_id": "Keria#131",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "hihihihi#131",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "caideoma#KR2",
+    "rank": "Diamond IV",
+    "active": true
+   },
+   {
+    "region": "NA",
+    "riot_id": "keep go1ng#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255263378924864#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "VKE SUP#kkkk",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "CFO",
+  "full": "CTBC Flying Oyster",
+  "role": "top",
+  "player": "Rest",
+  "ttp_team": "CTBC Flying Oyster",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "ieada#KR1",
+    "rank": "Master 734LP",
+    "active": true
+   },
+   {
+    "region": "EUW",
+    "riot_id": "no15ff#EUW",
+    "rank": "Diamond I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "2028461del#KR1",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "ku a men #KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "qtqt#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "3255262517167712#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "dsfsqw#123",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "CFO",
+  "full": "CTBC Flying Oyster",
+  "role": "jungle",
+  "player": "Shad0w",
+  "ttp_team": "FunPlus Phoenix",
+  "ttp_role": "Jungle",
+  "accounts": [
+   {
+    "region": "EUW",
+    "riot_id": "The Qiaang#EUW",
+    "rank": "Platinum I",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "JZADfans#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "The Qiaang#The",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "CFO",
+  "full": "CTBC Flying Oyster",
+  "role": "mid",
+  "player": "Pout",
+  "ttp_team": null,
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "FLAGGED 98356738#01757",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "pout2023#11234",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "lianbaixia#KR 1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "CFO",
+  "full": "CTBC Flying Oyster",
+  "role": "bot",
+  "player": "Doggo",
+  "ttp_team": "CTBC Flying Oyster",
+  "ttp_role": "ADC",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "hongqkule#1212",
+    "rank": "Ch 2,092LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "2654324878558656#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "BYG Liang#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "gougoujingzhang#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "fish0il#hongq",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "CFO",
+  "full": "CTBC Flying Oyster",
+  "role": "support",
+  "player": "Kino",
+  "ttp_team": null,
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "2654324980450880#KR1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "LanPeiFang#EUW",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "I dont wanna go#NA1",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LOS",
+  "full": "Los Grandes",
+  "role": "top",
+  "player": "Zest",
+  "ttp_team": "GameWard",
+  "ttp_role": "Top",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Zest#김동민",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "Zest#D P",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LOS",
+  "full": "Los Grandes",
+  "role": "jungle",
+  "player": "Curse",
+  "ttp_team": null,
+  "ttp_role": null,
+  "accounts": []
+ },
+ {
+  "team": "LOS",
+  "full": "Los Grandes",
+  "role": "mid",
+  "player": "Feisty",
+  "ttp_team": "GIANTX Pride",
+  "ttp_role": "Mid",
+  "accounts": [
+   {
+    "region": "KR",
+    "riot_id": "Seven#KR1",
+    "rank": "Diamond II",
+    "active": false
+   }
+  ]
+ },
+ {
+  "team": "LOS",
+  "full": "Los Grandes",
+  "role": "bot",
+  "player": "Duduhh",
+  "ttp_team": null,
+  "ttp_role": null,
+  "accounts": []
+ },
+ {
+  "team": "LOS",
+  "full": "Los Grandes",
+  "role": "support",
+  "player": "Ackerman",
+  "ttp_team": "Isurus Estral",
+  "ttp_role": "Support",
+  "accounts": [
+   {
+    "region": "BR",
+    "riot_id": "ÁCK#br01",
+    "rank": "Diamond II",
+    "active": false
+   },
+   {
+    "region": "NA",
+    "riot_id": "ACKÈRMAN#NA1",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "EUW",
+    "riot_id": "ACKERMÁN#91217",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "Ackerman#XDD",
+    "rank": "Unranked",
+    "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "ACKERMAN#XDD",
+    "rank": "Unranked",
+    "active": false
+   }
+  ]
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {"team": "T1", "role": "top", "player": "Doran", "riot_id": "buriburii#1234"},
+ {"team": "T1", "role": "jungle", "player": "Oner", "riot_id": "worlds#111"},
+ {"team": "T1", "role": "mid", "player": "Faker", "riot_id": "Hide in bush#NYKR"},
+ {"team": "T1", "role": "bot", "player": "Peyz", "riot_id": "gaesalbuger#aaaa"},
+ {"team": "T1", "role": "support", "player": "Keria", "riot_id": "doryunnim#Frank"},
+ {"team": "GEN", "role": "top", "player": "Kiin", "riot_id": "asdzxcvqwe#123"},
+ {"team": "GEN", "role": "jungle", "player": "Canyon", "riot_id": "Concrete jungle#USA"},
+ {"team": "GEN", "role": "mid", "player": "Chovy", "riot_id": "calm down#can"},
+ {"team": "GEN", "role": "bot", "player": "Ruler", "riot_id": "proteinmonster#thief"},
+ {"team": "GEN", "role": "support", "player": "Duro", "riot_id": "New York#1114"},
+ {"team": "HLE", "role": "top", "player": "Zeus", "riot_id": "Austin#lll"},
+ {"team": "HLE", "role": "jungle", "player": "Kanavi", "riot_id": "Lillie#397"},
+ {"team": "HLE", "role": "mid", "player": "Zeka", "riot_id": "DAZBEEE#777"},
+ {"team": "HLE", "role": "bot", "player": "Gumayusi", "riot_id": "Know my name#9999"},
+ {"team": "HLE", "role": "support", "player": "Delight", "riot_id": "2026sup1#111"}
+]

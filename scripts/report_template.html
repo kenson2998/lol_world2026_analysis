@@ -1,0 +1,1294 @@
+<title>Worlds 2026 單排球探</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: scouting sheet — team filter bar, then one block per team with a row per lane; role meta table at the end */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --line: #dde2e8; --ink: #141a22; --muted: #5d6877;
+  --accent: #0d7480; --accent-soft: #d8eef0;
+  --good: #1f7a3d; --good-soft: #dcefe2; --bad: #b3362b; --bad-soft: #f6e0dd; --mid-soft: #eceff3;
+  --hl: #fff176; --hl-ink: #3a3000;
+  --medal1: #e9c46a; --medal1-ink: #8a6500; --medal2: #c3cad3; --medal3: #e39b62;
+  --dmg-a: #a9dce1; --dmg-b: #f4c7b1;
+  --f-display: "Saira Condensed", "Noto Sans TC", "Arial Narrow", sans-serif;
+  --f-body: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
+  --f-data: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
+  --accent: #4fc0cb; --accent-soft: #163a40;
+  --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
+  --accent: #4fc0cb; --accent-soft: #163a40;
+  --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px }
+.wrap { max-width: 1600px; margin: 0 auto; display: grid; gap: 28px; min-width: 0 }
+header { display: grid; gap: 8px }
+.eyebrow { font-family: var(--f-data); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent) }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.05; margin: 0; text-wrap: balance }
+.lede { color: var(--muted); max-width: 70ch; margin: 0 }
+.filters { display: grid; gap: 8px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--bg); padding-block: 10px; border-bottom: 1px solid var(--line) }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--bg) }
+.frow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.flbl { font: 600 12px var(--f-body); color: var(--ink); min-width: 2.5em }
+.filters .grp { font-family: var(--f-data); font-size: 11px; color: var(--muted); margin: 0 2px 0 8px }
+.fcount { font-family: var(--f-data); font-size: 11.5px; color: var(--muted) }
+.fcount button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0 0 0 8px; cursor: pointer; text-decoration: underline }
+.chip { font: 600 13px var(--f-body); border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  border-radius: 999px; padding: 4px 12px; cursor: pointer }
+.chip:hover { border-color: var(--accent) }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface) }
+.chip:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+/* teams sit side by side in a horizontal scroller, one column per team */
+.teams { display: flex; gap: 14px; overflow-x: auto; align-items: flex-start; padding-bottom: 12px;
+  scroll-snap-type: x proximity; scrollbar-color: var(--accent) var(--mid-soft); min-width: 0 }
+.teams-hint { font-family: var(--f-data); font-size: 11.5px; color: var(--muted); margin: -18px 0 0 }
+.team { flex: 0 0 min(480px, calc(100vw - 40px)); scroll-snap-align: start; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden }
+.team-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; padding: 12px 14px; border-bottom: 1px solid var(--line) }
+.team-h h2 { font-family: var(--f-display); font-size: 24px; margin: 0; line-height: 1 }
+.team-h .reg { font-family: var(--f-data); font-size: 11px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase }
+.team-h .tot { width: 100%; font-family: var(--f-data); font-size: 12px; color: var(--muted) }
+.row { display: grid; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--line); min-width: 0 }
+.row:first-of-type { border-top: 0 }
+.who { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px; align-items: start; min-width: 0 }
+.who-info { display: grid; gap: 2px; min-width: 0 }
+.acct summary { cursor: pointer; font-family: var(--f-body); list-style: none }
+.acct summary::-webkit-details-marker { display: none }
+.acct summary::before { content: "▸ "; }
+.acct[open] summary::before { content: "▾ "; }
+.role { font-family: var(--f-data); font-size: 11px; letter-spacing: .1em; color: var(--accent); text-transform: uppercase }
+.name { font-weight: 600; font-size: 16px }
+.rec { font-family: var(--f-data); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums }
+.last { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: 10px; font-family: var(--f-data);
+  font-size: 11.5px; line-height: 1.4; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap }
+.last .lbl { grid-column: 1 / -1; font-family: var(--f-body); color: var(--muted) }
+.acct { font-family: var(--f-data); font-size: 10.5px; color: var(--muted); overflow-wrap: anywhere }
+/* all champions, five per row; scrolls inside the card only past three rows */
+.champs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; align-content: start; min-width: 0;
+  max-height: 252px; overflow-y: auto; padding: 2px; scrollbar-color: var(--line) transparent }
+.champs > .empty { grid-column: 1 / -1; justify-self: start }
+.c { cursor: pointer }
+.c:hover { border-color: var(--accent) }
+.cmp-card.flash { animation: flash 1.2s ease-out }
+@keyframes flash { 0%, 40% { box-shadow: 0 0 0 3px var(--accent) } 100% { box-shadow: 0 0 0 0 transparent } }
+@media (prefers-reduced-motion: reduce) { .cmp-card.flash { animation: none; box-shadow: 0 0 0 3px var(--accent) } }
+.c:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+/* champion win-rate comparison */
+section.cmp h2 { font-family: var(--f-display); font-size: 28px; margin: 0 0 4px }
+section.cmp > p { margin: 0 0 14px; color: var(--muted) }
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px; align-items: start }
+.cmp-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0 }
+.cmp-h { display: flex; align-items: center; gap: 10px; margin-bottom: 8px }
+.cmp-h .nm { font-weight: 600; font-size: 15px }
+.cmp-h .sum { font-family: var(--f-data); font-size: 11.5px; color: var(--muted) }
+.cmp-h .x { margin-left: auto; font: 600 12px var(--f-body); color: var(--muted); background: none; border: 1px solid var(--line);
+  border-radius: 999px; padding: 2px 9px; cursor: pointer }
+.cmp-h .x:hover { color: var(--bad); border-color: var(--bad) }
+.cmp-card table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums }
+.cmp-card th { text-align: left; font: 600 10.5px var(--f-data); color: var(--muted); padding: 0 6px 6px 0; white-space: nowrap }
+.cmp-card td { padding: 4px 6px 4px 0; border-top: 1px solid var(--line); white-space: nowrap; vertical-align: middle }
+.cmp-card td.num { font-family: var(--f-data); font-size: 12px; text-align: right }
+.cmp-card .who-sm { display: flex; align-items: center; gap: 6px }
+.wrbar { display: inline-block; vertical-align: middle; width: 56px; height: 6px; border-radius: 3px; background: var(--mid-soft); margin-left: 6px; overflow: hidden }
+.wrbar > i { display: block; height: 100%; background: var(--accent) }
+.wrbar.hi > i { background: var(--good) }
+.wrbar.lo > i { background: var(--bad) }
+.av.sm { width: 26px; height: 26px }
+.av.sm.txt { font-size: 10px }
+.cmp-empty { color: var(--muted); font-size: 13px; padding: 14px; border: 1px dashed var(--line); border-radius: 10px }
+/* compact vertical champion card: icon, win rate, games */
+.c { display: grid; justify-items: center; gap: 3px; border: 1px solid var(--line); border-radius: 6px;
+  padding: 5px 2px 7px; position: relative; overflow: hidden; min-width: 0 }
+.ci { width: 32px; height: 32px; border-radius: 5px; display: block; background: var(--mid-soft) }
+/* names for icons and headshots appear in one floating box (#tipbox) so scroll areas can't clip them */
+.tip { display: inline-block; line-height: 0; cursor: default; border-radius: 6px }
+.tip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+/* changed since the previous update */
+.upd { background: var(--hl); color: var(--hl-ink); border-radius: 3px; padding: 0 3px; cursor: help }
+.c.upd { padding: 5px 2px 7px; border-color: var(--hl); cursor: pointer }
+.c.upd .gm { color: var(--hl-ink) }
+.cmp-card tr.upd td, .mt tr.upd td { background: var(--hl); color: var(--hl-ink) }
+.legend .upd { cursor: default }
+#tipbox { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--bg);
+  font: 600 12px/1.4 var(--f-body); padding: 3px 8px; border-radius: 4px; white-space: nowrap }
+.av { width: 52px; height: 52px; border-radius: 50%; display: block; object-fit: cover; object-position: center top;
+  background: var(--mid-soft); border: 1px solid var(--line) }
+.av.txt { display: grid; place-items: center; font: 700 15px/1 var(--f-display); color: var(--muted); line-height: 1 }
+.ci.txt { display: grid; place-items: center; font-size: 10px; font-weight: 600; text-align: center; line-height: 1.1; overflow: hidden }
+.c .wr { font-family: var(--f-data); font-size: 11.5px; font-weight: 600; padding: 0 5px; border-radius: 4px;
+  background: var(--mid-soft); font-variant-numeric: tabular-nums }
+.c .wr.hi { background: var(--good-soft); color: var(--good) }
+.c .wr.lo { background: var(--bad-soft); color: var(--bad) }
+.c .gm { font-family: var(--f-data); font-size: 10.5px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.mt .tip { vertical-align: middle; margin-right: 6px; cursor: pointer }
+.mt .ci { width: 24px; height: 24px; border-radius: 4px }
+.mt .ci.txt { display: inline-grid; font-size: 8px }
+.c .bar { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--accent) }
+.note { font-size: 12px; color: var(--muted); align-self: center }
+.empty { color: var(--muted); font-size: 13px; align-self: center }
+.offrole { font-size: 11px; color: var(--muted) }
+.flag { justify-self: start; font-size: 11px; font-weight: 600; color: var(--bad); background: var(--bad-soft); border-radius: 4px; padding: 0 6px }
+section.meta h2 { font-family: var(--f-display); font-size: 28px; margin: 0 0 4px }
+section.meta p { margin: 0 0 14px; color: var(--muted) }
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px }
+.mt { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0 }
+.mt h3 { margin: 0 0 8px; font-size: 13px; font-family: var(--f-data); letter-spacing: .1em; color: var(--accent) }
+.mt table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums }
+.mt td { padding: 3px 0; border-top: 1px solid var(--line) }
+.mt td.n { text-align: right; font-family: var(--f-data); font-size: 11.5px; color: var(--muted); padding-left: 6px }
+section.odds h2 { font-family: var(--f-display); font-size: 28px; margin: 0 0 4px }
+section.odds > p { margin: 0 0 14px; color: var(--muted) }
+.odds-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px; align-items: start }
+.odds-grid .side { display: grid; gap: 12px; min-width: 0 }
+.tbl { overflow-x: auto }
+.mt th { text-align: right; font: 600 10.5px var(--f-data); color: var(--muted); letter-spacing: .04em; padding: 0 0 6px 8px; white-space: nowrap; vertical-align: bottom }
+.mt th:first-child { text-align: left; padding-left: 0 }
+.mt td.v { text-align: right; font-family: var(--f-data); font-size: 12px; padding-left: 8px; white-space: nowrap }
+.mt td.v.fav { color: var(--accent); font-weight: 600 }
+.mt td.dim { color: var(--muted) }
+.pbar { display: inline-block; height: 6px; background: var(--accent); border-radius: 3px; vertical-align: middle; margin-right: 6px }
+.cap { margin: 8px 0 0; font-size: 11.5px; color: var(--muted) }
+.team-h .odd { font-family: var(--f-data); font-size: 12px; color: var(--accent) }
+@media (max-width: 820px) { .odds-grid { grid-template-columns: 1fr } }
+footer { color: var(--muted); font-size: 12px; display: grid; gap: 4px; max-width: 80ch }
+footer a { color: var(--accent) }
+/* page switch: soloq report vs Worlds results */
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap }
+.views { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface) }
+.vtab { font: 600 14px var(--f-body); color: var(--muted); background: none; border: 0; border-radius: 999px; padding: 6px 16px; cursor: pointer }
+.vtab[aria-selected="true"] { background: var(--accent); color: var(--surface) }
+.vtab:hover:not([aria-selected="true"]) { color: var(--ink) }
+.view { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; min-width: 0 }
+/* Worlds page */
+.wsec h2 { font-family: var(--f-display); font-size: 28px; margin: 0 0 4px }
+.wsec h2 small { font: 500 13px var(--f-data); color: var(--muted); margin-left: 8px }
+.wsec > p { margin: 0 0 12px; color: var(--muted) }
+.res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 560px), 1fr)); gap: 12px }
+.res { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; min-width: 0 }
+.res-team { display: grid; gap: 4px; min-width: 0 }
+.res-side { display: grid; grid-template-columns: 52px auto 1fr auto; align-items: center; gap: 8px; min-width: 0 }
+.sdw { display: inline-flex; gap: 4px; justify-self: start }
+.sd { font: 600 10.5px var(--f-data); border-radius: 3px; padding: 0 5px }
+.fp { font: 600 10.5px var(--f-data); border-radius: 3px; padding: 0 5px; background: var(--accent-soft); color: var(--accent) }
+.sd.blue { background: #dbe7ff; color: #1d4fb8 }
+.sd.red { background: #ffe0dc; color: #b3362b }
+:root[data-theme="dark"] .sd.blue { background: #1b2d52; color: #9dbbff } :root[data-theme="dark"] .sd.red { background: #4a1f1b; color: #ffa99e }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sd.blue { background: #1b2d52; color: #9dbbff }
+  :root:not([data-theme="light"]) .sd.red { background: #4a1f1b; color: #ffa99e } }
+.draft { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; min-width: 0 }
+.bans { display: inline-flex; gap: 2px; align-items: center }
+.bans .lbl { font: 600 10px var(--f-data); color: var(--muted); margin-right: 2px }
+.pks { display: inline-flex; gap: 4px; flex-wrap: wrap }
+.pk { display: grid; justify-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 6px; padding: 2px 3px 3px; min-width: 40px }
+.pk .pos { font: 600 10px var(--f-body); color: var(--accent); line-height: 1.2 }
+.pk .ci { width: 30px; height: 30px }
+.pk .pn { font: 500 9.5px var(--f-data); color: var(--muted); line-height: 1.1; white-space: nowrap }
+.draft { gap: 3px; align-items: stretch }
+.pk { min-width: 34px }
+.pk.bn .ci { width: 24px; height: 24px; margin: 3px 0 }
+.bp-gap { width: 1px; background: var(--line); margin: 2px 3px }
+.series { grid-column: 1 / -1; display: grid; gap: 6px; min-width: 0 }
+.series-h { font: 700 17px var(--f-display) } .series-h span { font: 500 12px var(--f-body); color: var(--muted) }
+.series-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity }
+.series-row > .res { flex: 0 0 min(600px, 88vw); scroll-snap-align: start }
+.mvp-line { display: flex; align-items: center; gap: 8px; font-size: 13px }
+.mvp-line > span:last-child { color: var(--muted); font-size: 12px }
+.mvp-tag { font: 700 10.5px var(--f-data); background: var(--medal1); color: #3a2a00; border-radius: 4px; padding: 1px 6px }
+.mvp-star { color: var(--medal1-ink); margin-right: 2px }
+.mvp-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 8px }
+.mvp-item { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px }
+.mvp-item .nm { display: grid } .mvp-item .nm span { font-size: 11.5px; color: var(--muted) }
+.mvp-item .cnt { font: 700 20px var(--f-display); color: var(--medal1-ink) }
+.bpc { overflow-x: auto; border-top: 1px solid var(--line); padding-top: 6px }
+.bpt { position: relative; margin: 0 auto }
+.bc { position: absolute; width: 25px; display: grid; justify-items: center; gap: 1px; z-index: 1 }
+.bc .ci { width: 22px; height: 22px; border-radius: 4px; box-shadow: 0 0 0 1.5px var(--surface) }
+.bc .bl { font: 600 9px var(--f-body); color: var(--accent); line-height: 11px; height: 11px }
+/* bans: full-colour icon, red outline and a thin red slash across it */
+.bc.ban .tip, .pk.bn .tip { position: relative }
+.bc.ban .ci, .pk.bn .ci { box-shadow: 0 0 0 1.5px var(--bad) }
+.bc.ban .tip::after, .pk.bn .tip::after { content: ""; position: absolute; inset: 0; border-radius: 4px; pointer-events: none;
+  background: linear-gradient(to top right, transparent calc(50% - .75px), var(--bad) calc(50% - .75px), var(--bad) calc(50% + .75px), transparent calc(50% + .75px)) }
+.bc.ban .bl, .pk.bn .pos { color: var(--bad) }
+.bpteam { position: absolute; left: 0; font: 700 13px var(--f-display); line-height: 18px; display: grid }
+.bpfp { position: absolute; left: 0; font: 600 8.5px var(--f-body); color: var(--accent); line-height: 10px }
+.bpp { position: absolute; bottom: 0; text-align: center; font: 600 9.5px var(--f-body); color: var(--muted); border-top: 1px solid var(--line); line-height: 13px }
+.dmg { display: grid; gap: 3px; border-top: 1px solid var(--line); padding-top: 8px }
+.dmg-h { display: flex; justify-content: space-between; font: 600 11.5px var(--f-data); color: var(--muted) }
+.dmg-h span:first-child, .dmg-h span:last-child { color: var(--ink) }
+.dsplit { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 4px }
+.dsplit i { display: block; height: 100% } .dsplit .a { background: var(--dmg-a) } .dsplit .b { background: var(--dmg-b) }
+.drow { display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; gap: 6px }
+.dl { font: 600 10.5px var(--f-body); color: var(--muted); text-align: center }
+.db { position: relative; height: 18px; display: flex; align-items: center; gap: 6px; font: 500 11px var(--f-data); min-width: 0 }
+.db i { position: absolute; top: 3px; bottom: 3px; border-radius: 3px; z-index: 0 }
+.db.l { justify-content: flex-start; flex-direction: row-reverse } .db.l i { right: 0; background: var(--dmg-a) }
+.db.r i { left: 0; background: var(--dmg-b) }
+.db span { position: relative; z-index: 1; padding: 0 4px; white-space: nowrap }
+.db .dn { color: var(--ink); font-family: var(--f-body); font-weight: 600 } .db .dv { color: var(--ink) }
+.db.l .dv { margin-right: auto } .db.r .dv { margin-left: auto }
+.rtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px }
+.rtab { font: 600 14px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 14px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center }
+.rtab[aria-selected="true"] { border-color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent) }
+.rst { font: 600 10.5px var(--f-data); border-radius: 3px; padding: 0 5px; background: var(--mid-soft); color: var(--muted) }
+.rst.done { background: var(--good-soft); color: var(--good) }
+.rst.live { background: var(--accent-soft); color: var(--accent) }
+.res-head { font: 700 13px var(--f-data); color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 6px }
+.rpanel .res-grid + p.rnote { margin-top: 16px }
+.rnote { margin: 0 0 10px; color: var(--muted); font-size: 12.5px }
+.sortbtn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; white-space: nowrap }
+.sortbtn:hover { color: var(--ink) }
+.sortbtn.on { color: var(--accent) }
+.sortbtn .arr { font-size: 10px; opacity: .55 }
+.sortbtn .pri { font-size: 11px; color: var(--accent) }
+.sortbar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-bottom: 8px; font-size: 12.5px }
+.sortbar .multi { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; cursor: pointer }
+.sortbar .multi input { accent-color: var(--accent); width: 16px; height: 16px }
+.sortbar .hint { color: var(--muted) }
+.sortbar .chain { color: var(--muted); font-family: var(--f-data); font-size: 12px; display: inline-flex; flex-wrap: wrap; gap: 4px; align-items: center }
+.sortbar .chain .link { color: var(--ink); background: var(--mid-soft); border-radius: 4px; padding: 0 6px }
+.sortbar .clr { font: 600 12px var(--f-body); color: var(--accent); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0 0 0 6px }
+.sortbtn.on .arr { opacity: 1 }
+.cn-cell { display: inline-flex; align-items: center; gap: 8px }
+.acc-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: grid; gap: 2px }
+.kpi b { font: 700 26px var(--f-display); font-variant-numeric: tabular-nums }
+.kpi span { font-size: 12px; color: var(--muted) }
+.picks2 { display: inline-flex; gap: 2px }
+.picks2 .ci { width: 24px; height: 24px; border-radius: 4px }
+.perf { font: 600 10px var(--f-body); color: var(--good) }
+.rolef { display: inline-flex; gap: 4px; flex-wrap: wrap; margin-right: 8px }
+.rolef .chip { font-size: 12px; padding: 2px 10px }
+.mu-pick { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; margin-right: 8px }
+.mu-pick select { font: 13px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 3px 6px; max-width: 220px }
+.mu-games { font-size: 11.5px; white-space: normal !important; min-width: 220px }
+.mu-games span { display: block; color: var(--muted) } .mu-games span.w { color: var(--good) }
+#player-table td, #player-table th { padding: 6px 8px }
+.cn-cell .ci { width: 24px; height: 24px }
+.wtable .wr { font: 600 11.5px var(--f-data); padding: 0 5px; border-radius: 4px; background: var(--mid-soft) }
+.wtable .wr.hi { background: var(--good-soft); color: var(--good) } .wtable .wr.lo { background: var(--bad-soft); color: var(--bad) }
+.res-side .tm { font: 700 17px var(--f-display); letter-spacing: .02em }
+.res-side.lose .tm, .res-side.lose .k { color: var(--muted) }
+.res-side .k { font: 600 15px var(--f-data); text-align: right; font-variant-numeric: tabular-nums }
+.wl { font: 700 11px var(--f-data); border-radius: 4px; padding: 1px 6px; justify-self: start }
+.wl.w { background: var(--good-soft); color: var(--good) }
+.wl.l { background: var(--bad-soft); color: var(--bad) }
+.picks { display: flex; gap: 3px; justify-content: flex-end; min-width: 0 }
+.picks .ci { width: 24px; height: 24px; border-radius: 4px }
+.res-meta { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 6px }
+.stand { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px }
+.pool { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px }
+.pool h3 { margin: 0 0 8px; font: 700 20px var(--f-display) }
+.pool h3.up { color: var(--good) }
+.pool h3.down { color: var(--bad) }
+.pool ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px }
+.pool li { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; border-top: 1px solid var(--line); padding-top: 4px }
+.pool li b { font-family: var(--f-display); font-size: 15px }
+.pool li span { font-family: var(--f-data); font-size: 12px; color: var(--muted) }
+.wtable { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; background: var(--surface) }
+.wtable th { text-align: right; font: 600 11px var(--f-data); color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap }
+.wtable th:first-child, .wtable td:first-child { text-align: left }
+.wtable td { padding: 7px 10px; border-top: 1px solid var(--line); text-align: right; white-space: nowrap }
+.wtable td.l { text-align: left }
+.wtable .tm { font: 700 15px var(--f-display) }
+.wbox { border: 1px solid var(--line); border-radius: 10px; overflow-x: auto }
+.rec-chip { font: 700 11px var(--f-data); border-radius: 4px; padding: 1px 6px; background: var(--mid-soft) }
+.rec-chip.up { background: var(--good-soft); color: var(--good) }
+.rec-chip.down { background: var(--bad-soft); color: var(--bad) }
+.split { display: flex; height: 8px; border-radius: 4px; overflow: hidden; min-width: 140px; background: var(--mid-soft) }
+.split i { display: block; height: 100% }
+.split i.a { background: var(--accent) }
+.split i.b { background: var(--muted); opacity: .45 }
+.mu { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center }
+.mu .sa { text-align: right } .mu .sb { text-align: left }
+.mu .fav { font-weight: 700 }
+.mu .pc { font: 500 11px var(--f-data); color: var(--muted); display: block }
+.pbar2 { display: inline-block; height: 8px; border-radius: 4px; background: var(--accent); vertical-align: middle; margin-right: 8px }
+.dlt { font: 600 12px var(--f-data) }
+.dlt.up { color: var(--good) } .dlt.down { color: var(--bad) } .dlt.flat { color: var(--muted) }
+.wv-foot { color: var(--muted); font-size: 12px; display: grid; gap: 6px; max-width: 90ch }
+.wv-foot a { color: var(--accent) }
+.team-h .wrec { margin-left: 0 }
+/* 水晶球 cards: one per Pick'Em question, current top 3 with gold / silver / bronze rank badges */
+.cb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px }
+.cb { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; align-content: start }
+.cb-h { display: flex; align-items: center; gap: 8px }
+.cb-h h3 { margin: 0; font: 700 21px var(--f-display); flex: 1 }
+.cb-st { font: 600 11px var(--f-body); border-radius: 999px; padding: 2px 10px; background: var(--mid-soft); color: var(--muted); white-space: nowrap }
+.cb-st.yes { background: var(--good-soft); color: var(--good) } .cb-st.no { background: var(--bad-soft); color: var(--bad) }
+.cb-q { margin: 0 0 6px; font-size: 13px; color: var(--muted) }
+.cb ol { list-style: none; margin: 0; padding: 0 }
+.cb li { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; padding: 7px 0; border-top: 1px solid var(--line) }
+.cb li:first-child { border-top: 0 }
+.cb li.r1 { border-bottom: 1px solid var(--medal1) }
+.cb .who2 { position: relative; width: 44px; height: 44px }
+.cb .who2 .av, .cb .who2 .ci { width: 44px; height: 44px }
+.cb .who2 .ci { border-radius: 50% }
+.cb .who2 .tmb { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--mid-soft); font: 700 13px var(--f-display) }
+.cb .rk { position: absolute; left: 50%; bottom: -5px; transform: translateX(-50%); font: 700 10px var(--f-data); border-radius: 999px; padding: 0 5px;
+  background: var(--mid-soft); color: var(--ink); border: 1.5px solid var(--surface); line-height: 14px }
+.cb .rk.r1 { background: var(--medal1); color: #3a2a00 } .cb .rk.r2 { background: var(--medal2); color: #1d232b } .cb .rk.r3 { background: var(--medal3); color: #3a1a00 }
+.cb .nm { display: grid; min-width: 0 } .cb .nm b { font-size: 15px } .cb .nm span { font-size: 11.5px; color: var(--muted) }
+.cb .val { font: 700 14px var(--f-data); font-variant-numeric: tabular-nums; background: var(--mid-soft); border-radius: 999px; padding: 4px 12px }
+.cb li.r1 .val { color: var(--medal1-ink) }
+.cb .cb-empty { font-size: 13px; color: var(--muted); padding: 6px 0 }
+.cb .prog { height: 8px; border-radius: 4px; background: var(--mid-soft); overflow: hidden; margin: 4px 0 }
+.cb .prog i { display: block; height: 100%; background: var(--accent) }
+.cb .lowg { font: 500 10px var(--f-body); color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; margin-left: 4px }
+@media (max-width: 640px) { .row { grid-template-columns: 1fr; gap: 8px } .team-h .tot { margin-left: 0; width: 100% } }
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="eyebrow" id="stamp">Worlds 2026 · Swiss Stage</div>
+    <div class="views" role="tablist" aria-label="切換頁面">
+      <button class="vtab" role="tab" id="tab-soloq" data-view="soloq" aria-selected="false" aria-controls="view-soloq">選手單排</button>
+      <button class="vtab" role="tab" id="tab-worlds" data-view="worlds" aria-selected="true" aria-controls="view-worlds">世界賽戰況</button>
+      <button class="vtab" role="tab" id="tab-predict" data-view="predict" aria-selected="false" aria-controls="view-predict">水晶球預測</button>
+      <button class="vtab" role="tab" id="tab-matchup" data-view="matchup" aria-selected="false" aria-controls="view-matchup">英雄對位</button>
+    </div>
+  </div>
+  <div class="view" id="view-worlds" role="tabpanel" aria-labelledby="tab-worlds">
+    <header>
+      <h1>世界賽戰況：<span id="wv-stage">Swiss Stage</span></h1>
+      <p class="lede" id="wv-sub"></p>
+    </header>
+    <div class="view" id="wv-body"></div>
+    <footer class="wv-foot" id="wv-foot"></footer>
+  </div>
+  <div class="view" id="view-matchup" role="tabpanel" aria-labelledby="tab-matchup" hidden>
+    <header>
+      <h1>英雄對位勝率</h1>
+      <p class="lede" id="mu-sub"></p>
+    </header>
+    <div class="view" id="mu-body"></div>
+  </div>
+  <div class="view" id="view-predict" role="tabpanel" aria-labelledby="tab-predict" hidden>
+    <header>
+      <h1>水晶球預測</h1>
+      <p class="lede" id="pv-sub"></p>
+    </header>
+    <div class="view" id="pv-body"></div>
+    <footer class="wv-foot" id="pv-foot"></footer>
+  </div>
+  <div class="view" id="view-soloq" role="tabpanel" aria-labelledby="tab-soloq" hidden>
+  <header>
+    <h1>16 強單排 <span id="win-h">10/11–</span>：各位置英雄使用率與勝率</h1>
+    <p class="lede legend" id="legend" hidden></p>
+    <p class="lede">只計 <span id="win-l">2026/10/11 起</span>（韓國時間）期間的單雙排（Solo/Duo）場次。每位先發選手合併韓服（KR）與美服（NA）所有帳號，先排除補位（非本職位置）場次，再取最新 20 場。選手與英雄以頭像／圖示顯示（滑鼠移上或點一下可看名稱），卡片數字為「場數 · 使用率」，色塊為該英雄勝率；底線長度代表使用率。</p>
+  </header>
+  <nav class="filters" id="filters" aria-label="篩選隊伍與位置">
+    <div class="frow" id="f-teams" role="group" aria-label="隊伍（可多選）"></div>
+    <div class="frow" id="f-roles" role="group" aria-label="位置（可多選）"></div>
+    <div class="fcount" id="f-count" aria-live="polite"></div>
+  </nav>
+  <div id="teams" class="teams" tabindex="0" aria-label="隊伍列表，可左右捲動"></div>
+  <p class="teams-hint">← 左右捲動查看更多隊伍 →</p>
+  <section class="cmp" id="cmp">
+    <h2>英雄勝率比對</h2>
+    <p id="cmp-sub"></p>
+    <div class="cmp-grid" id="cmp-body"></div>
+  </section>
+  <section class="meta">
+    <h2>各位置熱門英雄（16 隊合計）</h2>
+    <p>括號內為使用過的選手人數；點圖示可跳到該英雄的勝率比對。</p>
+    <div class="meta-grid" id="meta"></div>
+  </section>
+  <footer id="foot"></footer>
+  </div>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const ROLE = { top: "TOP · 上路", jungle: "JUNGLE · 打野", mid: "MID · 中路", bot: "BOT · 下路", support: "SUPPORT · 輔助" };
+const POS = { top: "TOP", jungle: "JUNGLE", mid: "MID", bot: "ADC", support: "SUPPORT" };
+const POS_ZH = { TOP: "上", JUNGLE: "野", MID: "中", ADC: "下", SUPPORT: "輔" };
+const ROLE_ZH = { top: "上路", jungle: "打野", mid: "中路", bot: "下路", support: "輔助" };
+const prevWhen = () => (DATA.prev_fetched || "").slice(5, 16).replace("-", "/");
+const winTxt = () => (DATA.window || []).map(d => d.slice(5).replace("-", "/")).join("–");
+
+// one fixed-position tooltip for every .tip (hover, keyboard focus, tap), placed above the element or below if no room
+function setupTips() {
+  const box = document.createElement("div");
+  box.id = "tipbox"; box.hidden = true; box.setAttribute("role", "tooltip");
+  document.body.append(box);
+  const show = el => {
+    box.textContent = el.dataset.tip; box.hidden = false;
+    const r = el.getBoundingClientRect(), w = box.offsetWidth, h = box.offsetHeight;
+    box.style.left = `${Math.min(Math.max(4, r.left + r.width / 2 - w / 2), innerWidth - w - 4)}px`;
+    box.style.top = `${r.top - h - 6 >= 4 ? r.top - h - 6 : r.bottom + 6}px`;
+  };
+  const hide = () => { box.hidden = true; };
+  const target = e => e.target.closest?.(".tip[data-tip], .upd[data-tip]");
+  document.addEventListener("mouseover", e => { const t = target(e); t ? show(t) : hide(); });
+  document.addEventListener("focusin", e => { const t = target(e); t ? show(t) : hide(); });
+  document.addEventListener("focusout", hide);
+  document.addEventListener("scroll", hide, true);
+}
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const wrCls = w => (w >= 60 ? "hi" : w <= 40 ? "lo" : "");
+const day = t => (t ? t.slice(5, 10).replace("-", "/") : "");
+// elapsed time from a game to the data pull, as X天X小時X分前
+const ago = t => {
+  if (!t) return "—";
+  const mins = Math.max(0, Math.floor((new Date(DATA.fetched_iso) - new Date(t)) / 60000));
+  const d = Math.floor(mins / 1440), h = Math.floor((mins % 1440) / 60), m = mins % 60;
+  return (d ? `${d}天` : "") + (d || h ? `${h}小時` : "") + `${m}分前`;
+};
+// champion icon with hover/tap name tooltip; falls back to a text tile if Data Dragon has no match
+// champion display name: English (Taiwan-server zh_TW name), e.g. "Ahri (阿璃)"
+const cname = name => (DATA.zh?.[name] ? `${name} (${DATA.zh[name]})` : name);
+const icon = name => `<span class="tip" tabindex="0" data-champ="${esc(name)}" data-tip="${esc(cname(name))}">` + (DATA.icons?.[name]
+  ? `<img class="ci" src="${DATA.icons[name]}" alt="${esc(cname(name))}" width="36" height="36">`
+  : `<span class="ci txt">${esc(name)}</span>`) + `</span>`;
+// player headshot (LoL Esports) with the same tooltip; initials when there is no photo
+const avatar = (team, name, small) => {
+  const src = DATA.avatars?.[`${team}/${name}`], cls = small ? "av sm" : "av", px = small ? 26 : 52;
+  const img = src
+    ? `<img class="${cls}" src="${src}" alt="${esc(name)}" width="${px}" height="${px}">`
+    : `<span class="${cls} txt" aria-label="${esc(name)}">${esc(name.slice(0, 2).toUpperCase())}</span>`;
+  return small ? img : `<span class="tip" tabindex="0" data-tip="${esc(name)}">${img}</span>`;
+};
+
+// wrap text in a yellow "changed" mark, with the previous value as its tooltip
+const mark = (on, html, prev) => (on ? `<span class="upd" tabindex="0"${prev ? ` data-tip="${esc(prev)}"` : ""}>${html}</span>` : html);
+
+function playerRow(p, team) {
+  const s = p.summary, ch = p.changed || {};
+  const newAcct = new Set(ch.new_accounts || []);
+  const accts = p.accounts.map(a => mark(newAcct.has(`${a.region}:${a.game_name}#${a.tagline}`),
+    `${a.region} ${esc(a.game_name)}#${esc(a.tagline)}`, `新帳號：上次（${prevWhen()}）還沒有`)).join("<br>");
+  const off = Object.entries(p.positions || {}).filter(([k]) => k !== POS[p.role]);
+  const offTxt = off.length ? `已排除補位：${off.map(([k, v]) => POS_ZH[k] + v).join(" ")}` : "";
+  const champs = s.games
+    ? s.champions.map(c => { const prev = ch.champs?.[c.champion];
+      return `<div class="c${prev ? " upd" : ""}" role="button" tabindex="0" data-champ="${esc(c.champion)}"${prev ? ` data-tip="${esc(cname(c.champion))}：${esc(prev)}"` : ""}
+        aria-label="${esc(cname(c.champion))} ${c.games} 場 勝率 ${Math.round(c.win_rate)}%${prev ? `（${esc(prev)}）` : ""}，跳到英雄比對">
+        ${icon(c.champion)}<span class="wr ${wrCls(c.win_rate)}">${Math.round(c.win_rate)}%</span>
+        <span class="gm">${c.games}場·${Math.round(c.pick_rate)}%</span><span class="bar" style="width:${c.pick_rate}%"></span></div>`; }).join("")
+    : `<span class="empty">${p.accounts.length ? `${winTxt()} 無本位單排紀錄` : "查無韓服／美服帳號"}</span>`;
+  return `<div class="row" data-role="${p.role}">
+    <div class="who">${avatar(team, p.player)}<div class="who-info"><span class="role">${ROLE[p.role]}</span>
+      <span class="rec">${mark(ch.record, s.games ? `${s.games} 場 ${s.wins}W ${s.games - s.wins}L · ${Math.round(s.win_rate)}%` : "—", `上次（${prevWhen()}）${ch.prev_record} → 現在 ${s.games ? `${s.games}場 ${s.wins}勝 ${Math.round(s.win_rate)}%` : "沒有本位單排資料"}`)}${s.games ? ` · ${day(s.first)}–${day(s.last)}` : ""}</span>
+      <span class="last"><span class="lbl">最後上線：</span>${["KR", "NA"].map(r => `<span>${mark(ch.last?.[r], `[${r}] ${ago(p.last_played?.[r])}`, `上次（${prevWhen()}）之後在${r === "KR" ? "韓服" : "美服"}有新對局`)}</span>`).join("")}</span>
+      ${offTxt ? `<span class="offrole">${offTxt}</span>` : ""}
+      ${p.team_mismatch && s.games ? `<span class="flag" title="帳號來源登記隊伍：${esc(p.ttp_team)}">帳號歸屬待確認</span>` : ""}
+      ${(t => t && (p.positions[POS[p.role]] || 0) * 2 < t)(Object.values(p.positions || {}).reduce((a, b) => a + b, 0)) ?`<span class="flag" title="過半場次不在本職位置，可能是共用或錯配帳號">主位置不符</span>` : ""}
+      ${p.accounts.length ? `<details class="acct"><summary>${mark(newAcct.size, `帳號（${p.accounts.length}）`, `比上次（${prevWhen()}）多了 ${newAcct.size} 個帳號，點開查看`)}</summary>${accts}</details>` : ""}</div></div>
+    <div class="champs">${champs}</div></div>`;
+}
+
+function teamBlock(t) {
+  const g = t.players.reduce((a, p) => a + p.summary.games, 0), w = t.players.reduce((a, p) => a + p.summary.wins, 0);
+  const hasPrev = t.players.some(p => p.changed && "prev_games" in p.changed);
+  const pg = t.players.reduce((a, p) => a + (p.changed?.prev_games ?? p.summary.games), 0);
+  const pw = t.players.reduce((a, p) => a + (p.changed?.prev_wins ?? p.summary.wins), 0);
+  const totChanged = hasPrev && (pg !== g || pw !== w);
+  // Worlds status in the header: Swiss record, next opponent with win %, title chance
+  const W = DATA.worlds, rec = W ? swissRecord(W, t.team) : "";
+  if (W && !W.next) W.next = nextRound(W) || { name: "下一輪", matches: [] };
+  const nx = W?.next.matches.find(m => m.a === t.team || m.b === t.team);
+  const nxPct = i => (nx.pct ? ` ${Math.round(nx.pct[i])}%` : "");
+  const nxTxt = nx ? (nx.a === t.team ? `${W.next.name} vs ${nx.b}${nxPct(0)}` : `${W.next.name} vs ${nx.a}${nxPct(1)}`) : "";
+  const out = W?.outright.rows.find(r => r.team === t.team);
+  return `<article class="team" id="t-${esc(t.team)}" data-team="${esc(t.team)}">
+    <div class="team-h"><h2>${esc(t.full)}</h2><span class="reg">${esc(t.region)}</span>
+      ${rec ? `<span class="rec-chip ${recCls(rec)}">Swiss ${rec}</span>` : ""}
+      ${nxTxt ? `<span class="odd">${esc(nxTxt)}</span>` : ""}${out ? `<span class="odd">奪冠 ${out.poly}%</span>` : ""}
+      <span class="tot">${mark(totChanged, `全隊單排 ${g} 場 · 勝率 ${g ? Math.round(w / g * 100) : "—"}%`,
+        `上次（${prevWhen()}）${pg}場 ${pw}勝 ${pg ? Math.round(pw / pg * 100) : "—"}% → 現在 ${g}場 ${w}勝 ${g ? Math.round(w / g * 100) : "—"}%`)}</span></div>
+    ${t.players.map(p => playerRow(p, t.team)).join("")}</article>`;
+}
+
+// ---- Worlds page ----
+const swissRecord = (W, team) => Object.keys(W.standings).find(k => W.standings[k].includes(team)) || "";
+const recCls = r => { const [w, l] = r.split("-").map(Number); return w > l ? "up" : l > w ? "down" : ""; };
+const fullName = team => DATA.teams.find(t => t.team === team)?.full || team;
+const pct1 = v => (v == null ? "—" : `${v < 1 ? v : Math.round(v * 10) / 10}%`);
+
+// rounds are "done", "live" (some matches finished) or "upcoming"; a match is finished once it has a winner
+const played = r => r.status !== "upcoming";
+// the round still in progress, keeping only its unplayed matches
+const nextRound = W => { const r = W.rounds.find(x => x.status !== "done"); return r && { ...r, matches: r.matches.filter(m => !m.winner) }; };
+// a Bo3 match keeps its games in m.games; a Bo1 match is its own single game
+const gamesOf = m => m.games || (m.winner ? [m] : []);
+// every finished game in the first `upto` played rounds, tagged with its match teams and round
+const doneGames = (W, upto) => W.rounds.filter(played).slice(0, upto).flatMap(r => r.matches.filter(m => m.winner).flatMap(m =>
+  gamesOf(m).map((g, gi) => ({ ...g, a: m.a, b: m.b, rname: r.name, gi, nG: gamesOf(m).length }))));
+const ROLE_SHORT = { top: "上路", jungle: "打野", mid: "中路", bot: "下路", support: "輔助" };
+
+// one team's draft: bans (greyed) then its picks in draft order, each boxed with its lane on top
+// standard tournament draft, with the first-pick team in the usual "blue" slot:
+// bans 1-6 alternate (first-pick team first), picks 7-12, bans 13-16 (other team first), picks 17-20
+const BAN_STEP = { fp: [1, 3, 5, 14, 16], other: [2, 4, 6, 13, 15] };
+const PICK_STEP = n => (n <= 6 ? n + 6 : n + 10);
+function draftSide(m, team) {
+  const d = m.draft; if (!d) return "";
+  const fp = m.first_pick === team ? "fp" : "other";
+  const slots = [
+    ...(d.bans?.[team] || []).map((c, i) => ({ step: BAN_STEP[fp][i], ban: c })),
+    ...d.picks.filter(p => p.team === team).map(p => ({ step: d.order_known ? PICK_STEP(p.n) : 99, pick: p })),
+  ].sort((x, y) => x.step - y.step);
+  const phase = s => (s <= 6 ? 0 : s <= 12 ? 1 : s <= 16 ? 2 : 3);
+  return `<div class="draft" aria-label="${esc(team)} BP 順序">${slots.map((s, i) =>
+    `${i && phase(s.step) !== phase(slots[i - 1].step) ? `<span class="bp-gap" aria-hidden="true"></span>` : ""}${s.ban
+      ? `<span class="pk bn" title="禁用"><span class="pos">禁</span>${icon(s.ban)}<span class="pn">#${s.step}</span></span>`
+      : `<span class="pk" title="${esc(s.pick.player || "")}"><span class="pos">${ROLE_SHORT[s.pick.role] || "?"}</span>${icon(s.pick.champion)}
+        <span class="pn">${s.step < 99 ? `#${s.step}` : esc(s.pick.player || "")}</span></span>`}`).join("")}</div>`;
+}
+
+// whole draft as a two-row dot-line chart: top row = first-pick team, bottom = the other team, steps 1-20 left to right;
+// the dashed line follows the draft, so double picks (#8-9, #10-11, ...) run flat along one row
+function bpChart(m) {
+  const d = m.draft; if (!d?.order_known || !m.first_pick) return "";
+  const fp = m.first_pick, other = fp === m.a ? m.b : m.a;
+  const slots = [
+    ...[fp, other].flatMap(t => (d.bans?.[t] || []).map((c, i) => ({ step: BAN_STEP[t === fp ? "fp" : "other"][i], team: t, champ: c, ban: true }))),
+    ...d.picks.map(p => ({ step: PICK_STEP(p.n), team: p.team, champ: p.champion, role: p.role, player: p.player })),
+  ].sort((x, y) => x.step - y.step);
+  const phase = s => (s <= 6 ? 0 : s <= 12 ? 1 : s <= 16 ? 2 : 3);
+  // top row: lane label above the icon; bottom row: icon then label, so the two icon rows sit close together
+  const CW = 25, LW = 46, GAP = 10, H = 74, Y = { top: 23, bot: 49 };
+  const x = s => LW + (s - 1) * CW + phase(s) * GAP + CW / 2;
+  const W = x(20) + CW / 2;
+  const phases = [["禁用", 1, 6], ["選用", 7, 12], ["禁用", 13, 16], ["選用", 17, 20]].map(([t, a, b]) =>
+    `<span class="bpp" style="left:${x(a) - CW / 2}px;width:${x(b) - x(a) + CW}px">${t}</span>`).join("");
+  const cell = sl => { const top = sl.team === fp;
+    const lbl = `<span class="bl">${sl.ban ? "禁" : ROLE_SHORT[sl.role] || ""}</span>`;
+    return `<span class="bc${sl.ban ? " ban" : ""}" style="left:${x(sl.step) - CW / 2}px;top:${top ? 0 : Y.bot - 11}px"
+      ${sl.player ? `title="${esc(sl.player)}"` : ""}>${top ? lbl + icon(sl.champ) : icon(sl.champ) + lbl}</span>`; };
+  return `<div class="bpc" role="img" aria-label="BP 順序：上排 ${esc(fp)}（先選），下排 ${esc(other)}">
+    <div class="bpt" style="width:${W}px;height:${H + 14}px">${phases}
+      <small class="bpfp" style="top:${Y.top - 20}px">先選</small>
+      <span class="bpteam" style="top:${Y.top - 9}px">${esc(fp)}</span><span class="bpteam" style="top:${Y.bot - 9}px">${esc(other)}</span>
+      ${slots.map(cell).join("")}</div></div>`;
+}
+
+// per-game damage to champions, lane by lane, as a butterfly chart (left team grows left, right team grows right)
+let PG_BY_GAME;
+function dmgBars(m, ri, label) {
+  PG_BY_GAME ||= (DATA.worlds.player_games || []).reduce((acc, g) => ((acc[`${g.round}|${g.match}`] ||= []).push(g), acc), {});
+  const gs = PG_BY_GAME[`${ri}|${label}`]; if (!gs || gs.some(g => g.dmg == null)) return "";
+  const of = (team, role) => gs.find(g => g.team === team && g.role === role);
+  const max = Math.max(...gs.map(g => g.dmg));
+  const tot = t => gs.filter(g => g.team === t).reduce((a, g) => a + g.dmg, 0), ta = tot(m.a), tb = tot(m.b);
+  const k = v => `${(v / 1000).toFixed(1)}k`;
+  const bar = (g, side) => g ? `<span class="db ${side}"><span class="dn">${g.player === m.mvp ? `<span class="mvp-star" title="MVP">★</span>` : ""}${esc(g.player)}</span><span class="dv">${k(g.dmg)}</span>
+    <i style="width:${g.dmg / max * 100}%"></i></span>` : `<span class="db ${side}"></span>`;
+  return `<div class="dmg" aria-label="輸出傷害">
+    <div class="dmg-h"><span>${esc(m.a)} ${k(ta)}</span><span>對英雄傷害</span><span>${k(tb)} ${esc(m.b)}</span></div>
+    <span class="dsplit" aria-hidden="true"><i class="a" style="width:${ta / (ta + tb) * 100}%"></i><i class="b" style="width:${tb / (ta + tb) * 100}%"></i></span>
+    ${Object.keys(ROLE_SHORT).map(r => `<div class="drow">${bar(of(m.a, r), "l")}<span class="dl">${ROLE_SHORT[r]}</span>${bar(of(m.b, r), "r")}</div>`).join("")}</div>`;
+}
+
+// a Bo3 shows one card per game, headed with the series score
+// ri = round index, used to find each game's player stats (labelled "A vs B", or "A vs B G2" inside a Bo3)
+function matchCard(m, ri) {
+  const label = `${m.a} vs ${m.b}`;
+  if (!m.games) return gameCard(m, "", ri, label);
+  // a series takes a full row; its games sit side by side and scroll right when they don't fit
+  return `<div class="series"><div class="series-h">${esc(m.a)} ${m.score?.[0] ?? ""}-${m.score?.[1] ?? ""} ${esc(m.b)}
+      <span>（${esc(m.winner)} 勝 · ${m.games.length} 局${m.games.length > 1 ? " · 往右捲動看下一局" : ""}）</span></div>
+    <div class="series-row" tabindex="0" aria-label="${esc(label)} 各局">${m.games.map((g, i) =>
+      gameCard({ ...g, a: m.a, b: m.b }, `第 ${i + 1} 局 · ${g.winner} 勝`, ri, `${label} G${i + 1}`)).join("")}</div></div>`;
+}
+
+function gameCard(m, head, ri, label) {
+  const side = (team, k) => { const win = m.winner === team;
+    return `<div class="res-team"><div class="res-side ${win ? "win" : "lose"}"><span class="tm" title="${esc(fullName(team))}">${esc(team)}</span>
+      <span class="sdw"><span class="sd ${m.blue === team ? "blue" : m.red === team ? "red" : ""}">${m.blue === team ? "藍方" : m.red === team ? "紅方" : ""}</span>${m.first_pick === team ? `<span class="fp">先選</span>` : ""}</span>
+      <span class="k">${k ?? ""}</span><span class="wl ${win ? "w" : "l"}">${win ? "勝" : "敗"}</span></div>${chart ? "" : draftSide(m, team)}</div>`; };
+  const chart = bpChart(m);
+  const ord = m.draft ? (chart ? "BP 圖：上排為先選方、下排為後選方，由左到右依 BP 順序；紅框斜線為禁用"
+    : m.draft.order_known ? "禁用與選用依 BP 順序排列，#為全場第幾步（1–20）；紅框斜線為禁用" : "選用順序未知，依路線排列") : "";
+  const mvpTeam = m.mvp && m.draft?.picks.find(p => p.player === m.mvp)?.team;
+  const mvpPick = m.mvp && m.draft?.picks.find(p => p.player === m.mvp);
+  const mvp = m.mvp ? `<div class="mvp-line"><span class="mvp-tag">MVP</span>${avatar(mvpTeam || "", m.mvp, true)}<b>${esc(m.mvp)}</b>
+    <span>${esc(mvpTeam || "")}${mvpPick ? ` · ${esc(cname(mvpPick.champion))}` : ""}</span></div>` : "";
+  return `<div class="res">${head ? `<div class="res-head">${esc(head)}</div>` : ""}${side(m.a, m.kills?.[0])}${side(m.b, m.kills?.[1])}${mvp}${chart}
+    ${ri != null ? dmgBars(m, ri, label) : ""}
+    <div class="res-meta">時長 ${esc(m.length || "—")}${m.note ? ` · ${esc(m.note)}` : ""}${ord ? `<br>${ord}` : ""}</div></div>`;
+}
+
+function upcomingTable(r) {
+  return `<p class="rnote">勝率為 Polymarket 價格；賠率為十進位（Polymarket / Kalshi）。時間為台灣時間，括號內為美國中部時間。</p>
+    <div class="wbox"><table class="wtable"><tr><th>時間</th><th>組別</th><th style="text-align:center">對戰與勝率</th><th>Polymarket</th><th>Kalshi</th></tr>${
+    r.matches.filter(m => !m.winner).map(m => { const p = m.pct || [50, 50], fa = m.pct && p[0] >= p[1], fb = m.pct && p[1] > p[0];
+      const odds = o => (o ? o.map(x => x.toFixed(2)).join(" / ") : "—");
+      return `<tr><td class="l">${esc(m.time_tw)}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
+        <td><span class="rec-chip ${recCls(m.pool)}">${esc(m.pool)}</span>${m.format ? `<br><span class="n">${esc(m.format)}</span>` : ""}</td>
+        <td><div class="mu"><span class="sa ${fa ? "fav" : ""}"><span class="tm">${esc(m.a)}</span><span class="pc">${m.pct ? `${p[0]}%` : "—"}</span></span>
+          <span class="split" aria-hidden="true">${m.pct ? `<i class="a" style="width:${p[0]}%"></i><i class="b" style="width:${p[1]}%"></i>` : ""}</span>
+          <span class="sb ${fb ? "fav" : ""}"><span class="tm">${esc(m.b)}</span><span class="pc">${m.pct ? `${p[1]}%` : "—"}</span></span></div></td>
+        <td>${odds(m.poly)}</td><td>${odds(m.kalshi)}</td></tr>`; }).join("")
+  }</table></div>`;
+}
+
+// champion pick/ban totals per game over played rounds; `upto` limits to the first N played rounds
+function champStats(W, upto) {
+  const gs = doneGames(W, upto).filter(g => g.draft);
+  const st = new Map();
+  const get = c => { if (!st.has(c)) st.set(c, { champion: c, picks: 0, bans: 0, wins: 0, roles: new Set() }); return st.get(c); };
+  gs.forEach(g => {
+    Object.values(g.draft.bans || {}).flat().forEach(c => get(c).bans++);
+    g.draft.picks.forEach(p => { const s = get(p.champion); s.picks++; s.roles.add(p.role); if (p.team === g.winner) s.wins++; });
+  });
+  return { games: gs.length, rows: [...st.values()] };
+}
+
+function champChanges(W) {
+  const nDone = W.rounds.filter(played).length;
+  const cur = champStats(W, nDone), prev = nDone > 1 ? champStats(W, nDone - 1) : null;
+  const prevMap = new Map((prev?.rows || []).map(r => [r.champion, r]));
+  const rows = cur.rows.map(r => ({ ...r, presence: (r.picks + r.bans) / cur.games * 100, p: prevMap.get(r.champion) }))
+    .sort((a, b) => b.presence - a.presence || b.picks - a.picks || a.champion.localeCompare(b.champion));
+  const lastName = W.rounds.filter(played).at(-1)?.name || "";
+  const chg = r => {
+    if (!prev) return `<span class="dlt flat">${esc(lastName)}首次統計</span>`;
+    if (!r.p) return `<span class="dlt up">新出現</span>`;
+    const dp = r.picks - r.p.picks, db = r.bans - r.p.bans;
+    return [dp && `選 +${dp}`, db && `禁 +${db}`].filter(Boolean).map(t => `<span class="dlt up">${t}</span>`).join(" ") || `<span class="dlt flat">—</span>`;
+  };
+  // sortable columns: [label, sort key (null = not sortable), text column?, cell renderer]
+  const cols = [
+    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}<span>${esc(cname(r.champion))}</span></span></td>`],
+    ["路線", r => [...r.roles].map(x => ROLE_SHORT[x]).join("、"), true, r => `<td>${[...r.roles].map(x => ROLE_SHORT[x]).join("、") || "—"}</td>`],
+    ["選用", r => r.picks, false, r => `<td>${r.picks}</td>`],
+    ["禁用", r => r.bans, false, r => `<td>${r.bans}</td>`],
+    ["出場率", r => r.presence, false, r => `<td><span class="pbar2" style="width:${r.presence * 0.6}px"></span>${Math.round(r.presence)}%</td>`],
+    ["戰績", r => (r.picks ? r.wins : null), false, r => `<td>${r.picks ? `${r.wins}-${r.picks - r.wins}` : "—"}</td>`],
+    ["勝率", r => (r.picks ? r.wins / r.picks : null), false,
+      r => `<td>${r.picks ? `<span class="wr ${wrCls(r.wins / r.picks * 100)}">${Math.round(r.wins / r.picks * 100)}%</span>` : "—"}</td>`],
+    [prev ? "比上一輪" : "變化", r => (r.p ? (r.picks - r.p.picks) + (r.bans - r.p.bans) : prev ? Infinity : null), false, r => `<td>${chg(r)}</td>`],
+  ];
+  sortTable("champ-table", cols, rows, [{ col: 4, desc: true }],   // presence, high to low
+    (a, b) => b.presence - a.presence || a.champion.localeCompare(b.champion));
+  return sortTableHTML("champ-table");
+}
+
+// market accuracy on finished rounds: did the pre-game favourite win? plus Brier score per round
+function accuracy(W, sec) {
+  const done = W.rounds.filter(r => played(r) && r.matches.some(m => m.pre_pct && m.winner));
+  if (!done.length) return "";
+  return done.map(r => {
+    const ms = r.matches.filter(m => m.pre_pct && m.winner);
+    let hits = 0, brier = 0;
+    const rows = ms.map(m => {
+      const pa = m.pre_pct[0] / (m.pre_pct[0] + m.pre_pct[1]);   // normalise the two prices to sum to 1
+      const fav = pa >= 0.5 ? m.a : m.b, pFav = Math.max(pa, 1 - pa), hit = m.winner === fav;
+      const pWin = m.winner === m.a ? pa : 1 - pa;
+      hits += hit; brier += (1 - pWin) ** 2;
+      return { m, fav, pFav, hit, pWin };
+    }).sort((x, y) => x.pWin - y.pWin);   // biggest upsets first
+    brier /= ms.length;
+    const summary = `<div class="acc-sum">
+      <div class="kpi"><b>${hits}/${ms.length}</b><span>看好方勝出</span></div>
+      <div class="kpi"><b>${Math.round(hits / ms.length * 100)}%</b><span>命中率</span></div>
+      <div class="kpi"><b>${brier.toFixed(3)}</b><span>Brier 分數（0 最準，0.25 = 亂猜）</span></div>
+      <div class="kpi"><b>${ms.length - hits}</b><span>爆冷場次</span></div></div>`;
+    const table = `<div class="wbox"><table class="wtable"><tr><th>對戰</th><th>賽前看好</th><th>勝方</th><th>勝方賽前機率</th><th>結果</th></tr>${
+      rows.map(({ m, fav, pFav, hit, pWin }) => `<tr><td class="l"><span class="tm">${esc(m.a)}</span> vs <span class="tm">${esc(m.b)}</span></td>
+        <td>${esc(fav)} ${Math.round(pFav * 100)}%</td><td><b>${esc(m.winner)}</b></td>
+        <td><span class="pbar2" style="width:${pWin * 80}px"></span>${Math.round(pWin * 100)}%</td>
+        <td>${hit ? `<span class="wl w">猜中</span>` : `<span class="wl l">爆冷</span>`}</td></tr>`).join("")}</table></div>`;
+    return sec(`${esc(r.name)}預測準確度`, `以${esc(r.pre_label || "賽前市場價格")}判斷看好方（兩邊價格換算成合計 100%），依爆冷程度排序。`, summary + table);
+  }).join("");
+}
+
+// ---- 水晶球 (Pick'Em) questions: current top 3 per question, from finished drafts and W.player_games ----
+const secs = len => { const [m, s] = String(len || "").split(":").map(Number); return m * 60 + (s || 0); };
+function crystalBall(W) {
+  const pg = W.player_games || [];
+  const done = doneGames(W);
+  const fmt1 = v => (Math.round(v * 10) / 10).toLocaleString();
+  const top3 = (rows, key) => [...rows].sort((a, b) => key(b) - key(a)).slice(0, 3);
+  // who: player headshot, champion icon or team badge, with the rank badge under it
+  const who = (e, i, rank) => `<span class="who2">${e.player ? avatar(e.team, e.player) : e.champ ? icon(e.champ)
+    : `<span class="tmb"${e.team ? ` title="${esc(fullName(e.team))}"` : ""}>${esc(e.badge ?? e.team)}</span>`}${rank ? `<span class="rk r${i + 1}">#${i + 1}</span>` : ""}</span>`;
+  const list = rows => rows.length ? `<ol>${rows.map((r, i) => `<li class="${rows.length > 1 ? `r${i + 1}` : ""}">${who(r, i, rows.length > 1)}
+    <span class="nm"><b>${esc(r.name)}${r.low ? `<span class="lowg">未滿 5 場</span>` : ""}</b>${r.sub ? `<span>${r.sub}</span>` : ""}</span>
+    <span class="val">${r.val}</span></li>`).join("")}</ol>` : "";
+  const ST = { lead: ["目前領先", ""], yes: ["已達成", "yes"], no: ["尚未達成", "no"], wait: ["待定", ""] };
+  const card = (title, q, body, st = "lead", extra = "") =>
+    `<article class="cb"><div class="cb-h"><h3>${title}</h3><span class="cb-st ${ST[st][1]}">${ST[st][0]}</span></div>
+      <p class="cb-q">${q}</p>${extra}${body || `<div class="cb-empty">尚無資料</div>`}</article>`;
+
+  // per-player and per-champion aggregates over finished games
+  const players = new Map(), champs = new Map();
+  pg.forEach(g => {
+    const k = `${g.team}/${g.player}`;
+    if (!players.has(k)) players.set(k, { team: g.team, player: g.player, role: g.role, gs: [] });
+    players.get(k).gs.push(g);
+    if (g.champion) { if (!champs.has(g.champion)) champs.set(g.champion, []); champs.get(g.champion).push(g); }
+  });
+  const avgOf = (gs, f) => { const v = gs.map(g => g[f]).filter(x => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : 0; };
+  const sumOf = (gs, f) => gs.reduce((a, g) => a + (g[f] || 0), 0);
+  const P = [...players.values()].map(p => { const k = sumOf(p.gs, "k"), d = sumOf(p.gs, "d"), a = sumOf(p.gs, "a");
+    return { ...p, n: p.gs.length, k, d, a, kda: (k + a) / Math.max(1, d), dmg: avgOf(p.gs, "dmg"), kp: avgOf(p.gs, "kp") }; });
+  const pRow = (p, val) => ({ team: p.team, player: p.player, name: p.player, sub: `${esc(p.team)} · ${ROLE_SHORT[p.role]} · ${p.n} 場`, val });
+  // champion questions need ≥5 games; until enough champions qualify, fill with the best of the rest and tag them
+  const qualified = (rows, key) => { const q = top3(rows.filter(r => r.n >= 5), key);
+    return q.concat(top3(rows.filter(r => r.n < 5), key).slice(0, 3 - q.length).map(r => ({ ...r, low: true }))); };
+  const CS = champStats(W), nGames = CS.games;
+
+  const cards = [];
+  cards.push(card("出場之王", "出現率（在對戰中被選或被禁用的百分比）最高的會是哪位英雄？",
+    list(top3(CS.rows, r => r.picks + r.bans + r.picks / 100).map(r => ({ champ: r.champion, name: cname(r.champion),
+      sub: `選 ${r.picks} · 禁 ${r.bans} / ${nGames} 場`, val: `${Math.round((r.picks + r.bans) / nGames * 100)}%` })))));
+  const wr = CS.rows.filter(r => r.picks).map(r => ({ ...r, n: r.picks, w: r.wins / r.picks }));
+  cards.push(card("勝率之王", "勝率最高的會是哪位英雄？（最少進行 5 場對戰）",
+    list(qualified(wr, r => r.w + r.n / 1000).map(r => ({ champ: r.champion, name: cname(r.champion), low: r.low,
+      sub: `${r.wins} 勝 ${r.n - r.wins} 敗`, val: `${Math.round(r.w * 100)}%` })))));
+  const deaths = [...champs].map(([c, gs]) => ({ champion: c, n: gs.length, dpg: avgOf(gs, "d") }));
+  cards.push(card("陣亡之王", "每場對戰平均死亡數最高的會是哪位英雄？（最少進行 5 場對戰）",
+    list(qualified(deaths, r => r.dpg + r.n / 1000).map(r => ({ champ: r.champion, name: cname(r.champion), low: r.low,
+      sub: `${r.n} 場`, val: fmt1(r.dpg) })))));
+  cards.push(card("KDA之王", "拿下最高平均 KDA 的會是哪位職業選手？",
+    list(top3(P, p => p.kda + p.k / 1000).map(p => pRow(p, fmt1(p.kda))))));
+  cards.push(card("重型巨砲", "拿下最高每場對戰平均傷害的會是哪位職業選手？",
+    list(top3(P, p => p.dmg).map(p => pRow(p, fmt1(p.dmg))))));
+  cards.push(card("參團之王", "拿下最高平均擊殺參與率（（擊殺 + 助攻）／戰隊擊殺數）的會是哪位職業選手？",
+    list(top3(P, p => p.kp + p.n / 1000).map(p => pRow(p, `${fmt1(p.kp)}%`)))));
+
+  const duel = ["Peyz", "Gumayusi"].map(n => P.find(p => p.player === n) || { player: n, team: n === "Peyz" ? "T1" : "HLE", role: "bot", n: 0, k: 0 });
+  cards.push(card("下路對決", "Peyz vs Gumayusi：誰的擊殺數會比較多？",
+    list([...duel].sort((a, b) => b.k - a.k).map(p => pRow(p, `${p.k} 殺`))), duel[0].k === duel[1].k ? "wait" : "lead"));
+
+  const fk = P.find(p => p.player === "Faker"), fakerNow = 616 + (fk?.k || 0);
+  cards.push(card("700 殺", "Faker 能在今年達成世界大賽生涯中 700 次擊殺嗎？（本屆開始前：616 擊殺）",
+    list([{ team: "T1", player: "Faker", name: "Faker", sub: `本屆 ${fk?.n || 0} 場 ${fk?.k || 0} 殺 · 還差 ${Math.max(0, 700 - fakerNow)} 殺`, val: `${fakerNow} / 700` }]),
+    fakerNow >= 700 ? "yes" : "no", `<div class="prog" aria-hidden="true"><i style="width:${Math.min(100, fakerNow / 7)}%"></i></div>`));
+
+  const teemo = CS.rows.find(r => r.champion === "Teemo");
+  cards.push(card("提摩出場", "提摩會至少被選一次嗎？",
+    list([{ champ: "Teemo", name: cname("Teemo"), sub: teemo ? `禁 ${teemo.bans} 次` : `${nGames} 場都沒有選用或禁用`, val: `選 ${teemo?.picks || 0} 次` }]),
+    teemo?.picks ? "yes" : "no"));
+
+  const pickedN = CS.rows.filter(r => r.picks).length, bannedOnly = CS.rows.filter(r => !r.picks).length;
+  cards.push(card("英雄池", "總共會有多少位不同的英雄被選用？",
+    list([{ badge: nGames, name: `${nGames} 場對戰`, sub: `另有 ${bannedOnly} 隻只被禁用、從未選用`, val: `${pickedN} 隻` }])));
+
+  const short = done.filter(m => m.length && secs(m.length) <= 32 * 60).length, long = done.filter(m => m.length && secs(m.length) > 32 * 60).length;
+  cards.push(card("32 分鐘", "在 32 分鐘內或超過 32 分鐘結束的對戰會比較多？",
+    list([["32 分鐘內", short], ["超過 32 分鐘", long]].sort((a, b) => b[1] - a[1]).map(([n, v]) => ({ badge: n.startsWith("32") ? "≤32" : ">32", name: n,
+      sub: `佔 ${done.length ? Math.round(v / done.length * 100) : 0}%`, val: `${v} 場` }))), short === long ? "wait" : "lead"));
+
+  // single-game records: best performances, each with champion and match
+  const single = (f, goal, title, q, unit) => { const rows = top3(pg.filter(g => g[f] != null), g => g[f] + (g.k || 0) / 1000);
+    cards.push(card(title, q, list(rows.map(g => ({ team: g.team, player: g.player, name: g.player,
+      sub: `${esc(g.team)} · ${esc(cname(g.champion || ""))} · ${esc(g.match)}`, val: `${g[f]} ${unit}` }))), rows[0]?.[f] >= goal ? "yes" : "no")); };
+  single("k", 15, "單場 15 殺", "會有職業選手在單場對戰中取得 15 次以上擊殺嗎？", "殺");
+  single("cs", 450, "單場 450 刀", "會有職業選手在單場對戰中取得 450 以上尾兵數嗎？", "刀");
+
+  cards.push(card("決賽 MVP", "決賽 MVP 得主會擔任哪條路線？", `<div class="cb-empty">決賽結束後揭曉。</div>`, "wait"));
+
+  // regions: teams not yet at 3 losses per region (knockout = 8 teams that reach 3 wins)
+  const rec = t => swissRecord(W, t).split("-").map(Number);
+  const regions = new Map();
+  DATA.teams.forEach(t => { const [, l] = rec(t.team); if (l >= 3) return;
+    if (!regions.has(t.region)) regions.set(t.region, []); regions.get(t.region).push(t.team); });
+  cards.push(card("淘汰賽地區", "淘汰賽會有幾個不同參賽地區？8 支隊伍將晉級淘汰賽",
+    `<ol>${[...regions].sort((a, b) => b[1].length - a[1].length).map(([r, ts], i) =>
+      `<li>${who({ badge: r }, i, false)}<span class="nm"><b>${esc(r)}</b><span>${ts.map(t => `${esc(t)} ${swissRecord(W, t)}`).join("、")}</span></span>
+      <span class="val">${ts.length} 隊</span></li>`).join("")}</ol>`, "wait",
+    `<p class="cb-q">目前仍有機會晉級的地區：<b>${regions.size}</b> 個</p>`));
+
+  const adv = t => W.advance?.rows.find(r => r.team === t);
+  const lcs = DATA.teams.filter(t => t.region === "LCS").map(t => t.team);
+  const lcsIn = lcs.some(t => rec(t)[0] >= 3);
+  cards.push(card("LCS 晉級", "會有 LCS 戰隊闖進淘汰賽嗎？",
+    list(lcs.map(t => ({ team: t, name: fullName(t), sub: `Swiss ${swissRecord(W, t)} · 市場晉級機率`, val: pct1(adv(t)?.ko) }))
+      .sort((a, b) => (adv(b.team)?.ko || 0) - (adv(a.team)?.ko || 0))), lcsIn ? "yes" : lcs.every(t => rec(t)[1] >= 3) ? "no" : "wait"));
+
+  const odds = t => W.outright.rows.find(r => r.team === t)?.poly || 0;
+  const ht = ["HLE", "T1"].map(t => ({ team: t, r: rec(t) })).sort((a, b) => (b.r[0] - b.r[1]) - (a.r[0] - a.r[1]) || odds(b.team) - odds(a.team));
+  cards.push(card("HLE vs T1", "哪支戰隊會排名更高：HLE 還是 T1？",
+    list(ht.map(x => ({ team: x.team, name: fullName(x.team), sub: `奪冠機率 ${pct1(odds(x.team))}`, val: `Swiss ${swissRecord(W, x.team)}` }))),
+    ht[0].r.join() === ht[1].r.join() ? "wait" : "lead"));
+
+  cards.push(card("速勝", "哪支戰隊會以最短時間贏得對戰勝利？",
+    list([...done].filter(m => m.length).sort((a, b) => secs(a.length) - secs(b.length)).slice(0, 3).map(m => ({ team: m.winner, name: fullName(m.winner),
+      sub: `勝 ${esc(m.winner === m.a ? m.b : m.a)} · ${esc(m.rname)}${m.nG > 1 ? ` 第 ${m.gi + 1} 局` : ""}`, val: m.length })))));
+  return `<div class="cb-grid">${cards.join("")}</div>`;
+}
+
+// ---- generic sortable table (single or multi-column sort) ----
+// cols: [label, sort key (null = not sortable), text column?, cell renderer]; sort: ordered [{col, desc}], first = primary
+const TABLES = {};
+function sortTable(id, cols, rows, defaultSort, tiebreak) {
+  TABLES[id] = { id, cols, rows, defaultSort, tiebreak, sort: defaultSort.map(s => ({ ...s })), filter: null };
+  return TABLES[id];
+}
+function sortTableHTML(id, extra = "") {
+  return `<div class="sortbar">${extra}<label class="multi"><input type="checkbox" id="${id}-multi"> 複合排序</label>
+      <span class="hint">（開啟後點欄位會加入下一層排序；也可按住 Shift 點欄位）</span>
+      <span class="chain" id="${id}-chain" aria-live="polite"></span></div>
+    <div class="wbox"><table class="wtable" id="${id}"><thead></thead><tbody></tbody></table></div>`;
+}
+const defaultDesc = (T, i) => !T.cols[i][2];   // numbers start high→low, names start A→Z
+
+// single mode: sort by this column only (same column again flips it);
+// multi mode: append the column, then flip it, then drop it from the chain
+function clickSort(T, i, multi) {
+  const at = T.sort.findIndex(s => s.col === i);
+  if (!multi) {
+    T.sort = at === 0 && T.sort.length === 1 ? [{ col: i, desc: !T.sort[0].desc }] : [{ col: i, desc: defaultDesc(T, i) }];
+  } else if (at < 0) {
+    T.sort.push({ col: i, desc: defaultDesc(T, i) });
+  } else if (T.sort[at].desc === defaultDesc(T, i)) {
+    T.sort[at].desc = !T.sort[at].desc;
+  } else {
+    T.sort.splice(at, 1);
+    if (!T.sort.length) T.sort = T.defaultSort.map(s => ({ ...s }));
+  }
+}
+
+function drawTable(T) {
+  const tbl = document.getElementById(T.id); if (!tbl) return;
+  const { cols, sort } = T, multi = sort.length > 1;
+  const rows = T.filter ? T.rows.filter(T.filter) : T.rows;
+  const cmp = (a, b) => {
+    for (const s of sort) {
+      const [, key, isText] = cols[s.col], x = key(a), y = key(b);
+      if (x == null || y == null) { if (x == null && y == null) continue; return x == null ? 1 : -1; }  // no value always last
+      const c = isText ? String(x).localeCompare(String(y)) : x - y;
+      if (c) return s.desc ? -c : c;
+    }
+    return T.tiebreak ? T.tiebreak(a, b) : 0;
+  };
+  const sorted = [...rows].sort(cmp);
+  const circled = n => "①②③④⑤⑥⑦⑧"[n] || `${n + 1}.`;
+  tbl.querySelector("thead").innerHTML = `<tr>${cols.map(([label, key, text], i) => {
+    if (!key) return `<th>${esc(label)}</th>`;
+    const at = sort.findIndex(s => s.col === i), s = sort[at];
+    const dir = at === 0 ? (s.desc ? "descending" : "ascending") : "none";
+    return `<th aria-sort="${dir}"><button class="sortbtn${at >= 0 ? " on" : ""}" type="button" data-col="${i}"
+      title="${text ? "依名稱排序" : "點一下由高至低，再點一下由低至高"}；複合排序時再點第三次移除">${multi && at >= 0 ? `<span class="pri">${circled(at)}</span>` : ""}${esc(label)}<span class="arr">${at >= 0 ? (s.desc ? "▼" : "▲") : "↕"}</span></button></th>`;
+  }).join("")}</tr>`;
+  tbl.querySelector("tbody").innerHTML = sorted.map(r => `<tr>${cols.map(c => c[3](r)).join("")}</tr>`).join("")
+    || `<tr><td class="l" colspan="${cols.length}">沒有符合的資料</td></tr>`;
+  const chain = document.getElementById(`${T.id}-chain`);
+  if (chain) chain.innerHTML = `排序：${sort.map((s, n) => `<span class="link">${multi ? circled(n) + " " : ""}${esc(cols[s.col][0])} ${s.desc ? "▼" : "▲"}</span>`).join(" → ")}
+    <button type="button" class="clr" data-clear="${T.id}">清除排序</button>`;
+}
+
+// header click sorts; Shift+click or the 複合排序 switch builds a multi-column chain
+function wireTable(T) {
+  drawTable(T);
+  document.getElementById(T.id)?.addEventListener("click", e => {
+    const b = e.target.closest(".sortbtn"); if (!b) return;
+    const i = Number(b.dataset.col);
+    clickSort(T, i, e.shiftKey || document.getElementById(`${T.id}-multi`)?.checked);
+    drawTable(T);
+    document.querySelector(`#${T.id} .sortbtn[data-col="${i}"]`)?.focus();
+  });
+  document.getElementById(`${T.id}-chain`)?.addEventListener("click", e => {
+    if (!e.target.closest("[data-clear]")) return;
+    T.sort = T.defaultSort.map(s => ({ ...s }));
+    drawTable(T);
+  });
+}
+
+// MVP tally over finished games: counts keyed "TEAM/player", plus how many games have an MVP on record
+function mvpCounts(W) {
+  const counts = new Map(), gs = doneGames(W), known = gs.filter(g => g.mvp);
+  known.forEach(g => { const t = g.draft?.picks.find(p => p.player === g.mvp)?.team || "";
+    counts.set(`${t}/${g.mvp}`, (counts.get(`${t}/${g.mvp}`) || 0) + 1); });
+  return { counts, known: known.length, total: gs.length };
+}
+
+function mvpBoard(W) {
+  const { counts, known, total } = mvpCounts(W);
+  if (!known) return "";
+  const rows = [...counts].map(([k, n]) => { const [team, player] = k.split("/");
+    return { team, player, n, role: (W.player_games || []).find(g => g.team === team && g.player === player)?.role }; })
+    .sort((a, b) => b.n - a.n || a.player.localeCompare(b.player));
+  return `<div class="mvp-list">${rows.map(r => `<div class="mvp-item">${avatar(r.team, r.player)}
+    <span class="nm"><b>${esc(r.player)}</b><span>${esc(r.team)}${r.role ? ` · ${ROLE_SHORT[r.role]}` : ""}</span></span>
+    <span class="cnt">${r.n}<small> 次</small></span></div>`).join("")}</div>
+    ${known < total ? `<p class="rnote">已有 MVP 紀錄 ${known} / ${total} 局，其餘局數來源未標示 MVP。</p>` : ""}`;
+}
+
+// ---- 英雄對位 page: same-lane champion pairs from every finished game in W.player_games ----
+// one directional row per (lane, champion, opponent champion); the mirror row holds the other side
+function matchupRows(W) {
+  const byGame = {};
+  (W.player_games || []).forEach(g => (byGame[`${g.round}|${g.match}`] ||= []).push(g));
+  const rows = new Map(), avgOf = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
+  Object.values(byGame).forEach(gs => gs.forEach(me => {
+    const op = gs.find(o => o.role === me.role && o.team !== me.team);
+    if (!op || !me.champion || !op.champion) return;
+    const k = `${me.role}|${me.champion}|${op.champion}`;
+    if (!rows.has(k)) rows.set(k, { role: me.role, champ: me.champion, opp: op.champion, games: [] });
+    rows.get(k).games.push({ me, op, rname: W.rounds[me.round]?.name || "" });
+  }));
+  return [...rows.values()].map(r => { const g = r.games, n = g.length, wins = g.filter(x => x.me.win).length;
+    return { ...r, n, wins, wr: wins / n,
+      gd15: avgOf(g.map(x => x.me.gd15).filter(v => v != null)), csd15: avgOf(g.map(x => x.me.csd15).filter(v => v != null)),
+      dmgd: avgOf(g.filter(x => x.me.dmg != null && x.op.dmg != null).map(x => x.me.dmg - x.op.dmg)) }; });
+}
+
+function renderMatchups(W, sec) {
+  const rows = matchupRows(W);
+  const body = document.getElementById("mu-body"); if (!body) return;
+  const nGames = doneGames(W).length;
+  document.getElementById("mu-sub").textContent =
+    `以世界賽已結束 ${nGames} 局、同一路線兩隊選手所用英雄配成對位（共 ${rows.length / 2} 組），統計勝負與對線數據；樣本少，單一對位多為 1–2 場，請當作參考。數據取自 gol.gg。`;
+  const sgn = v => (v == null ? "—" : `<span class="dlt ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}</span>`);
+
+  // per lane: champions with the best lane record over all their opponents (at least 2 games)
+  const byChamp = new Map();
+  rows.forEach(r => { const k = `${r.role}|${r.champ}`;
+    if (!byChamp.has(k)) byChamp.set(k, { role: r.role, champ: r.champ, n: 0, wins: 0, gd: [] });
+    const c = byChamp.get(k); c.n += r.n; c.wins += r.wins; r.games.forEach(x => x.me.gd15 != null && c.gd.push(x.me.gd15)); });
+  const lanes = Object.entries(ROLE_SHORT).map(([role, name]) => {
+    const top = [...byChamp.values()].filter(c => c.role === role && c.n >= 2)
+      .sort((a, b) => b.wins / b.n - a.wins / a.n || b.n - a.n).slice(0, 3);
+    return `<article class="cb"><div class="cb-h"><h3>${name}</h3></div><p class="cb-q">對位勝率最高（至少 2 場）</p>${top.length
+      ? `<ol>${top.map((c, i) => { const gd = c.gd.length ? c.gd.reduce((a, b) => a + b, 0) / c.gd.length : null;
+        return `<li class="r${i + 1}"><span class="who2">${icon(c.champ)}<span class="rk r${i + 1}">#${i + 1}</span></span>
+          <span class="nm"><b>${esc(cname(c.champ))}</b><span>${c.wins} 勝 ${c.n - c.wins} 敗 · 15 分經濟差 ${gd == null ? "—" : `${gd > 0 ? "+" : ""}${Math.round(gd)}`}</span></span>
+          <span class="val">${Math.round(c.wins / c.n * 100)}%</span></li>`; }).join("")}</ol>` : `<div class="cb-empty">尚無 2 場以上的英雄</div>`}</article>`;
+  }).join("");
+
+  const cols = [
+    ["路線", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
+    ["英雄", r => cname(r.champ), true, r => `<td class="l"><span class="cn-cell">${icon(r.champ)}<span>${esc(cname(r.champ))}</span></span></td>`],
+    ["對位英雄", r => cname(r.opp), true, r => `<td class="l"><span class="cn-cell">${icon(r.opp)}<span>${esc(cname(r.opp))}</span></span></td>`],
+    ["場數", r => r.n, false, r => `<td>${r.n}</td>`],
+    ["戰績", r => r.wins - (r.n - r.wins), false, r => `<td>${r.wins}-${r.n - r.wins}</td>`],
+    ["勝率", r => r.wr, false, r => `<td><span class="wr ${wrCls(r.wr * 100)}">${Math.round(r.wr * 100)}%</span></td>`],
+    ["15分經濟差", r => r.gd15, false, r => `<td>${sgn(r.gd15)}</td>`],
+    ["15分補兵差", r => r.csd15, false, r => `<td>${sgn(r.csd15)}</td>`],
+    ["傷害差", r => r.dmgd, false, r => `<td>${sgn(r.dmgd)}</td>`],
+    ["對局", null, false, r => `<td class="l mu-games">${r.games.map(x =>
+      `<span class="${x.me.win ? "w" : "l"}">${esc(x.rname)} ${esc(x.me.player)} ${x.me.win ? "勝" : "敗"} ${esc(x.op.player)}</span>`).join("")}</td>`],
+  ];
+  const T = sortTable("mu-table", cols, rows, [{ col: 3, desc: true }, { col: 5, desc: true }],
+    (a, b) => a.role.localeCompare(b.role) || a.champ.localeCompare(b.champ));
+  const st = { role: "", champ: "" };
+  // with no champion chosen, show each pair once, from the side with the better record
+  const once = r => r.wins * 2 > r.n || (r.wins * 2 === r.n && r.champ <= r.opp);
+  T.filter = r => (!st.role || r.role === st.role) && (st.champ ? r.champ === st.champ : once(r));
+  const champs = [...new Set(rows.map(r => r.champ))].sort((a, b) => cname(a).localeCompare(cname(b)));
+  const controls = `<span class="rolef muf" role="group" aria-label="路線篩選">${[["", "全部"], ...Object.entries(ROLE_SHORT)].map(([v, l]) =>
+      `<button type="button" class="chip" data-role="${v}" aria-pressed="${v === ""}">${l}</button>`).join("")}</span>
+    <label class="mu-pick">英雄 <select id="mu-champ"><option value="">全部（每組對位只列一次）</option>${champs.map(c =>
+      `<option value="${esc(c)}">${esc(cname(c))}</option>`).join("")}</select></label>`;
+  T.wireExtra = () => {
+    document.querySelector(".muf")?.addEventListener("click", e => {
+      const b = e.target.closest("[data-role]"); if (!b) return;
+      st.role = b.dataset.role;
+      document.querySelectorAll(".muf .chip").forEach(c => c.setAttribute("aria-pressed", String(c === b)));
+      drawTable(T);
+    });
+    document.getElementById("mu-champ")?.addEventListener("change", e => { st.champ = e.target.value; drawTable(T); });
+  };
+  body.innerHTML = sec("各路線對位表現", "每條路線中，面對所有對手合計勝率最高的英雄。", `<div class="cb-grid">${lanes}</div>`)
+    + sec("對位明細", "點欄位排序；可依路線、英雄篩選。選定英雄時列出它的所有對位。經濟差／補兵差／傷害差皆為「英雄方 − 對位方」的平均。",
+      sortTableHTML("mu-table", controls));
+}
+
+// Worlds player stats: per-player totals/averages over every finished game in W.player_games
+function playerStats(W) {
+  const pg = W.player_games || [];
+  if (!pg.length) return `<div class="cmp-empty">尚無選手比賽數據。</div>`;
+  const by = new Map();
+  pg.forEach(g => {
+    const k = `${g.team}/${g.player}`;
+    if (!by.has(k)) by.set(k, { team: g.team, player: g.player, role: g.role, games: [] });
+    by.get(k).games.push(g);
+  });
+  const avg = (gs, f) => { const v = gs.map(g => g[f]).filter(x => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+  const sum = (gs, f) => gs.reduce((a, g) => a + (g[f] || 0), 0);
+  const MV = mvpCounts(W).counts;
+  const rows = [...by.values()].map(p => {
+    const gs = p.games, k = sum(gs, "k"), d = sum(gs, "d"), a = sum(gs, "a");
+    return { ...p, n: gs.length, wins: gs.filter(g => g.win).length, k, d, a, kda: (k + a) / Math.max(1, d), perfect: d === 0,
+      kp: avg(gs, "kp"), csm: avg(gs, "csm"), gpm: avg(gs, "gpm"), dpm: avg(gs, "dpm"), dmg_pct: avg(gs, "dmg_pct"),
+      vspm: avg(gs, "vspm"), gd15: avg(gs, "gd15"), csd15: avg(gs, "csd15"), solo: sum(gs, "solo"), steals: sum(gs, "steals"),
+      stolenAg: gs.some(g => g.stolen_against != null) ? sum(gs, "stolen_against") : null,
+      champs: gs.map(g => g.champion).filter(Boolean), mvp: MV.get(`${p.team}/${p.player}`) || 0 };
+  });
+  const f1 = v => (v == null ? "—" : (Math.round(v * 10) / 10).toString());
+  const f0 = v => (v == null ? "—" : Math.round(v).toLocaleString());
+  const sgn = v => (v == null ? "—" : `<span class="dlt ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}</span>`);
+  const cols = [
+    ["選手", r => r.player, true, r => `<td class="l"><span class="who-sm">${avatar(r.team, r.player, true)}<b>${esc(r.player)}</b></span></td>`],
+    ["隊伍", r => r.team, true, r => `<td><span class="tm" title="${esc(fullName(r.team))}">${esc(r.team)}</span></td>`],
+    ["位置", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
+    ["英雄", null, false, r => `<td class="l"><span class="picks2">${r.champs.map(icon).join("")}</span></td>`],
+    ["場數", r => r.n, false, r => `<td>${r.n}</td>`],
+    ["戰績", r => r.wins / r.n, false, r => `<td><span class="wr ${wrCls(r.wins / r.n * 100)}">${r.wins}-${r.n - r.wins}</span></td>`],
+    ["K / D / A", r => r.k, false, r => `<td>${r.k} / ${r.d} / ${r.a}</td>`],
+    ["KDA", r => r.kda, false, r => `<td><b>${r.perfect ? `${f1(r.kda)}<span class="perf"> 無死</span>` : f1(r.kda)}</b></td>`],
+    ["參團率", r => r.kp, false, r => `<td>${r.kp == null ? "—" : `${Math.round(r.kp)}%`}</td>`],
+    ["每分補兵", r => r.csm, false, r => `<td>${f1(r.csm)}</td>`],
+    ["每分金錢", r => r.gpm, false, r => `<td>${f0(r.gpm)}</td>`],
+    ["每分傷害", r => r.dpm, false, r => `<td>${f0(r.dpm)}</td>`],
+    ["傷害佔比", r => r.dmg_pct, false, r => `<td>${r.dmg_pct == null ? "—" : `${f1(r.dmg_pct)}%`}</td>`],
+    ["每分視野", r => r.vspm, false, r => `<td>${r.vspm == null ? "—" : r.vspm.toFixed(2)}</td>`],
+    ["15分經濟差", r => r.gd15, false, r => `<td>${sgn(r.gd15)}</td>`],
+    ["15分補兵差", r => r.csd15, false, r => `<td>${sgn(r.csd15)}</td>`],
+    ["單殺", r => r.solo, false, r => `<td>${r.solo}</td>`],
+    ["搶到重擊", r => r.steals, false, r => `<td>${r.steals}</td>`],
+    ["被搶重擊", r => r.stolenAg, false, r => `<td>${r.stolenAg ?? "—"}</td>`],
+  ];
+  // MVP column only once some game has an MVP on record
+  if (MV.size) cols.splice(6, 0, ["MVP", r => r.mvp, false, r => `<td>${r.mvp ? `<span class="mvp-star">★</span>${r.mvp}` : "0"}</td>`]);
+  const T = sortTable("player-table", cols, rows, [{ col: cols.findIndex(c => c[0] === "KDA"), desc: true }],   // KDA, high to low
+    (a, b) => b.k - a.k || a.player.localeCompare(b.player));
+  const chips = `<span class="rolef" role="group" aria-label="位置篩選">${[["", "全部"], ...Object.entries(ROLE_SHORT)].map(([v, l]) =>
+    `<button type="button" class="chip" data-role="${v}" aria-pressed="${v === ""}">${l}</button>`).join("")}</span>`;
+  T.wireExtra = () => document.querySelector(".rolef")?.addEventListener("click", e => {
+    const b = e.target.closest("[data-role]"); if (!b) return;
+    const v = b.dataset.role;
+    T.filter = v ? (r => r.role === v) : null;
+    document.querySelectorAll(".rolef .chip").forEach(c => c.setAttribute("aria-pressed", String(c === b)));
+    drawTable(T);
+  });
+  return sortTableHTML("player-table", chips);
+}
+
+function renderWorlds(W) {
+  if (!W) { document.getElementById("tab-worlds").hidden = true; return; }
+  W.next = nextRound(W) || { name: "下一輪", matches: [] };
+  document.getElementById("wv-stage").textContent = W.stage;
+  document.getElementById("wv-sub").textContent = `${W.status} 資料整理於 ${W.collected}。`;
+  const sec = (title, sub, body, id) => `<section class="wsec"${id ? ` id="${id}"` : ""}><h2>${title}</h2>${sub ? `<p>${sub}</p>` : ""}${body}</section>`;
+
+  // round tabs: finished rounds show results + drafts, upcoming rounds show schedule + odds
+  const sel = Math.max(0, W.rounds.map(played).lastIndexOf(true));   // open on the latest round with results
+  const tabs = `<div class="rtabs" role="tablist" aria-label="切換輪次">${W.rounds.map((r, i) =>
+    `<button class="rtab" role="tab" id="rtab-${i}" aria-controls="rpanel-${i}" aria-selected="${i === sel}" tabindex="${i === sel ? 0 : -1}" data-i="${i}">
+      ${esc(r.name)}<span class="rst ${r.status}">${{ done: "已結束", live: "進行中" }[r.status] || "未開打"}</span></button>`).join("")}</div>`;
+  const panels = W.rounds.map((r, i) => `<div class="rpanel" role="tabpanel" id="rpanel-${i}" aria-labelledby="rtab-${i}"${i === sel ? "" : " hidden"}>
+    <p class="rnote">${esc(r.format)} · ${esc(r.date)}${r.note ? ` · ${esc(r.note)}` : ""}</p>
+    ${r.matches.some(m => m.winner) ? `<div class="res-grid">${r.matches.filter(m => m.winner).map(m => matchCard(m, i)).join("")}</div>` : ""}
+    ${r.matches.some(m => !m.winner) ? upcomingTable(r) : ""}</div>`).join("");
+  const results = sec("賽事", "", tabs + panels, "wv-rounds");
+
+  // pools after the latest round, each team with its next opponent
+  const nextOf = team => { const m = W.next.matches.find(x => x.a === team || x.b === team); return m ? (m.a === team ? m.b : m.a) : ""; };
+  const standings = sec("目前戰績", `每組下一輪對手（${esc(W.next.name)}）。`,
+    `<div class="stand">${Object.entries(W.standings).map(([rec, teams]) =>
+      `<div class="pool"><h3 class="${recCls(rec)}">${esc(rec)}（${teams.length} 隊）</h3><ul>${teams.map(t =>
+        `<li><b title="${esc(fullName(t))}">${esc(t)}</b><span>${nextOf(t) ? `vs ${esc(nextOf(t))}` : ""}</span></li>`).join("")}</ul></div>`).join("")}</div>`);
+
+  const nGames = (W.player_games || []).length / 10;
+  const players = sec("選手數據統計", `世界賽正式比賽（已結束 ${nGames} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。數據取自 gol.gg。`,
+    playerStats(W));
+  const champs = sec("英雄資訊變化", "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。",
+    champChanges(W));
+
+  // title odds: now vs before round 1, as probability and as decimal odds
+  const O = W.outright, maxP = Math.max(...O.rows.map(r => r.poly));
+  const delta = r => { const d = Math.round((r.poly - r.pre_poly) * 10) / 10;
+    return `<span class="dlt ${d > 0 ? "up" : d < 0 ? "down" : "flat"}">${d > 0 ? "▲ +" : d < 0 ? "▼ " : "– "}${d === 0 ? "0" : d}</span>`; };
+  const preOdds = r => r.pre_odds ?? (r.pre_poly ? Math.round(10000 / r.pre_poly) / 100 : null);
+  const oddsMove = r => { const p = preOdds(r); if (p == null) return "—";
+    const cls = r.poly_odds < p ? "up" : r.poly_odds > p ? "down" : "flat";
+    return `${p} → <b>${r.poly_odds}</b> <span class="dlt ${cls}">${cls === "up" ? "▼ 變熱門" : cls === "down" ? "▲ 變冷門" : "持平"}</span>`; };
+  const outright = sec("冠軍賠率", `Polymarket 奪冠機率與十進位賠率：第一輪前（${esc(O.pre_label)}）→ 現在（${esc(O.now_label)}）。最右欄為賽前莊家賠率。`,
+    `<div class="wbox"><table class="wtable"><tr><th>隊伍</th><th>Swiss</th><th>Polymarket 奪冠 %</th><th>機率變化</th><th>賠率變化（賽前 → 現在）</th><th>Kalshi %</th><th>賽前 Stake（10/12）</th></tr>${
+      O.rows.map(r => { const rec = swissRecord(W, r.team);
+        return `<tr><td class="l"><span class="tm" title="${esc(fullName(r.team))}">${esc(r.team)}</span></td>
+          <td>${rec ? `<span class="rec-chip ${recCls(rec)}">${esc(rec)}</span>` : "—"}</td>
+          <td><span class="pbar2" style="width:${Math.max(2, r.poly / maxP * 90)}px"></span>${pct1(r.poly)}</td>
+          <td>${delta(r)}</td><td>${oddsMove(r)}</td><td>${pct1(r.kalshi)}</td><td>${r.pre_stake ?? "—"}</td></tr>`; }).join("")
+    }</table></div>`);
+
+  // advance markets
+  const A = W.advance;
+  const advance = sec("晉級機率", A.cols.map(c => `${esc(c.label)}：${esc(c.note)}`).join("；") + "。",
+    `<div class="wbox"><table class="wtable"><tr><th>隊伍</th><th>Swiss</th>${A.cols.map(c => `<th>${esc(c.label)}</th>`).join("")}</tr>${
+      A.rows.map(r => { const rec = swissRecord(W, r.team);
+        return `<tr><td class="l"><span class="tm">${esc(r.team)}</span></td><td>${rec ? `<span class="rec-chip ${recCls(rec)}">${esc(rec)}</span>` : "—"}</td>
+          ${A.cols.map((c, i) => `<td>${i === 0 && r[c.key] != null ? `<span class="pbar2" style="width:${r[c.key] * 0.9}px"></span>` : ""}${r[c.key] == null ? "—" : pct1(r[c.key])}</td>`).join("")}</tr>`; }).join("")
+    }</table></div>`);
+
+  const mb = mvpBoard(W);
+  const mvps = mb ? sec("MVP 統計", "每局 MVP（Player of the Game）次數。", mb, "wv-mvp") : "";
+  document.getElementById("wv-body").innerHTML = results + standings + mvps + players + champs;
+  // 水晶球預測 page: how markets called finished rounds, then forecasts for what's next
+  const nextSec = sec(`${esc(W.next.name)}預測<small>${esc(W.next.format || "")}</small>`, "", W.next.matches.length ? upcomingTable(W.next) : "目前沒有未開打的場次。");
+  const nDone = doneGames(W).length;
+  const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg，KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。`,
+    crystalBall(W), "pv-cb");
+  document.getElementById("pv-body").innerHTML = cb + accuracy(W, sec) + nextSec + outright + advance;
+  document.getElementById("pv-sub").textContent =
+    `整理預測市場（Polymarket、Kalshi）與模型（Outdrafted）對世界賽的預測，並檢驗已結束場次的準確度。資料整理於 ${W.collected}。賠率會變動，僅供參考。`;
+  renderMatchups(W, sec);
+  Object.values(TABLES).forEach(T => { wireTable(T); T.wireExtra?.(); });
+  const rt = document.querySelector(".rtabs");
+  if (rt) {
+    const tabsEl = [...rt.querySelectorAll(".rtab")];
+    const pick = b => tabsEl.forEach(t => { const on = t === b;
+      t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on; });
+    rt.addEventListener("click", e => { const b = e.target.closest(".rtab"); if (b) pick(b); });
+    rt.addEventListener("keydown", e => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      const i = tabsEl.indexOf(document.activeElement); if (i < 0) return;
+      const n = tabsEl[(i + (e.key === "ArrowRight" ? 1 : tabsEl.length - 1)) % tabsEl.length]; n.focus(); pick(n);
+    });
+  }
+  const foot = W.notes.map(n => `<p>${esc(n)}</p>`).join("") +
+    `<p>來源：${W.sources.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join("、")}</p>`;
+  document.getElementById("wv-foot").innerHTML = foot;
+  document.getElementById("pv-foot").innerHTML = foot;
+}
+
+function render() {
+  setupViews();
+  renderWorlds(DATA.worlds);
+  document.getElementById("teams").innerHTML = DATA.teams.map(teamBlock).join("");
+  setupFilters();
+  const teamsEl = document.getElementById("teams");
+  setupTips();
+  teamsEl.addEventListener("click", e => {
+    // a champion card jumps to that champion's comparison card
+    const c = e.target.closest(".c[data-champ]");
+    if (c) goChamp(c.dataset.champ);
+  });
+  teamsEl.addEventListener("keydown", e => {
+    const c = e.target.closest(".c[data-champ]");
+    if (c && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); goChamp(c.dataset.champ); }
+  });
+  document.getElementById("meta").addEventListener("click", e => {
+    const t = e.target.closest(".tip[data-champ]"); if (t) goChamp(t.dataset.champ);
+  });
+  document.getElementById("meta").innerHTML = Object.keys(ROLE).map(r => `<div class="mt" data-role="${r}"><h3>${ROLE[r]}</h3><table>
+    ${(DATA.meta[r] || []).map(c => { const prev = DATA.meta_changed?.[r]?.[c.champion];
+      return `<tr${prev ? ` class="upd" tabindex="0" data-tip="${esc(cname(c.champion))}：${esc(prev)}"` : ""}><td>${icon(c.champion)}<span class="n">(${c.players})</span></td>
+      <td class="n">${c.games} 場</td><td class="n">${Math.round(c.win_rate)}%</td></tr>`; }).join("")}</table></div>`).join("");
+  document.getElementById("stamp").textContent = `Worlds 2026 · Swiss Stage · ${DATA.worlds ? `世界賽資料更新 ${DATA.worlds.collected} · ` : ""}單排資料擷取 ${DATA.fetched || ""}（最後上線以此時間計算）`;
+  const [ws, we] = (DATA.window || []).map(d => d.slice(5).replace("-", "/"));
+  if (ws) {
+    document.getElementById("win-h").textContent = `${ws}–${we}`;
+    document.getElementById("win-l").textContent = `2026/${ws}–${we}`;
+  }
+  if (DATA.prev_fetched) {
+    const lg = document.getElementById("legend");
+    lg.innerHTML = `<span class="upd">黃色底色</span> = 跟上次更新（${esc(DATA.prev_fetched)}）比起來有變動。滑鼠移上或點一下會顯示「上次 → 現在」的對照，例如「上次 3場 1勝 33% → 現在 4場 2勝 50%」，或「新英雄：上次還沒用過」。`;
+    lg.hidden = false;
+  }
+  document.getElementById("foot").innerHTML = DATA.footer || "";
+}
+
+// two pages in one artifact: Worlds results (default) and the soloq report; #soloq deep-links to the second
+function setupViews() {
+  const tabs = [...document.querySelectorAll(".vtab")];
+  const show = v => {
+    tabs.forEach(t => {
+      const on = t.dataset.view === v;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(`view-${t.dataset.view}`).hidden = !on;
+    });
+  };
+  tabs.forEach(t => t.addEventListener("click", () => { show(t.dataset.view); scrollTo(0, 0); }));
+  document.querySelector(".views").addEventListener("keydown", e => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const i = tabs.indexOf(document.activeElement); if (i < 0) return;
+    const n = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+    n.focus(); show(n.dataset.view);
+  });
+  const worldsOk = !!DATA.worlds;
+  if (!worldsOk) ["worlds", "predict", "matchup"].forEach(v => { document.getElementById(`tab-${v}`).hidden = true; });
+  const want = location.hash.slice(1);
+  show(!worldsOk || want === "soloq" ? "soloq" : ["predict", "matchup"].includes(want) ? want : "worlds");
+}
+
+// multi-select team + role filters; an empty selection means "all"
+const sel = { team: new Set(), role: new Set() };
+const okTeam = t => !sel.team.size || sel.team.has(t), okRole = r => !sel.role.size || sel.role.has(r);
+const champId = name => "cmp-" + name.replace(/[^A-Za-z0-9]/g, "");
+
+// jump from a player's champion card to that champion's comparison card
+function goChamp(name) {
+  const el = document.getElementById(champId(name)); if (!el) return;
+  el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+}
+
+// every champion played within the current filter, most games first; each lists the players who used it
+function renderCompare() {
+  const byChamp = new Map();
+  DATA.teams.filter(t => okTeam(t.team)).forEach(t => t.players.filter(p => okRole(p.role)).forEach(p =>
+    p.summary.champions.forEach(c => {
+      if (!byChamp.has(c.champion)) byChamp.set(c.champion, []);
+      byChamp.get(c.champion).push({ t, p, c });
+    })));
+  const champs = [...byChamp.entries()].map(([name, rows]) => ({ name, rows,
+    g: rows.reduce((a, r) => a + r.c.games, 0), w: rows.reduce((a, r) => a + r.c.wins, 0) }))
+    .sort((a, b) => b.g - a.g || b.w / b.g - a.w / a.g || a.name.localeCompare(b.name));
+  document.getElementById("cmp-sub").textContent =
+    `目前篩選範圍內共 ${champs.length} 隻英雄，依總場數排序；每張卡列出用過該英雄的選手與勝率。點上方選手的英雄卡片可跳到這裡。`;
+  const body = document.getElementById("cmp-body");
+  if (!champs.length) { body.innerHTML = `<div class="cmp-empty">目前篩選範圍內沒有本位單排紀錄。</div>`; return; }
+  body.innerHTML = champs.map(({ name, rows, g, w }) => {
+    rows.sort((a, b) => b.c.games - a.c.games || b.c.win_rate - a.c.win_rate);
+    return `<div class="cmp-card" id="${champId(name)}"><div class="cmp-h">${icon(name)}<div><div class="nm">${esc(cname(name))}</div>
+      <div class="sum">${rows.length} 位選手 · ${g} 場 · 合計勝率 ${Math.round(w / g * 100)}%</div></div></div>
+      <table><tr><th>選手</th><th>隊伍</th><th>位置</th><th class="num">場數</th><th class="num">戰績</th><th>勝率</th></tr>` +
+      rows.map(({ t, p, c }) => { const prev = p.changed?.champs?.[name];
+        return `<tr${prev ? ` class="upd" tabindex="0" data-tip="${esc(p.player)}：${esc(prev)}"` : ""}><td><span class="who-sm">${avatar(t.team, p.player, true)}${esc(p.player)}</span></td>
+        <td>${esc(t.team)}</td><td>${ROLE_ZH[p.role]}</td><td class="num">${c.games}</td><td class="num">${c.wins}-${c.games - c.wins}</td>
+        <td class="num">${Math.round(c.win_rate)}%<span class="wrbar ${wrCls(c.win_rate)}"><i style="width:${c.win_rate}%"></i></span></td></tr>`; }).join("") +
+      `</table></div>`;
+  }).join("");
+}
+function setupFilters() {
+  const chip = (kind, v, label) => `<button class="chip" type="button" data-kind="${kind}" data-v="${esc(v)}" aria-pressed="false">${esc(label)}</button>`;
+  const regions = [...new Set(DATA.teams.map(t => t.region))];
+  document.getElementById("f-teams").innerHTML = `<span class="flbl">隊伍</span>` + chip("team", "", "全部") +
+    regions.map(r => `<span class="grp">${esc(r)}</span>` + DATA.teams.filter(t => t.region === r)
+      .map(t => chip("team", t.team, t.team)).join("")).join("");
+  document.getElementById("f-roles").innerHTML = `<span class="flbl">位置</span>` + chip("role", "", "全部") +
+    Object.keys(ROLE).map(r => chip("role", r, ROLE_ZH[r])).join("");
+  document.getElementById("filters").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.id === "f-reset") { sel.team.clear(); sel.role.clear(); return applyFilters(); }
+    const set = sel[b.dataset.kind], v = b.dataset.v;
+    if (!set) return;
+    if (!v) set.clear(); else if (set.has(v)) set.delete(v); else set.add(v);
+    applyFilters();
+  });
+  try {
+    const saved = JSON.parse(localStorage.getItem("filters") || "{}");
+    const teams = new Set(DATA.teams.map(t => t.team));
+    (saved.team || []).filter(t => teams.has(t)).forEach(t => sel.team.add(t));
+    (saved.role || []).filter(r => r in ROLE).forEach(r => sel.role.add(r));
+  } catch (_) {}
+  applyFilters();
+}
+function applyFilters() {
+  document.querySelectorAll("#filters .chip").forEach(c => {
+    const set = sel[c.dataset.kind];
+    c.setAttribute("aria-pressed", String(c.dataset.v ? set.has(c.dataset.v) : !set.size));
+  });
+  let teams = 0, players = 0;
+  document.querySelectorAll(".team").forEach(el => {
+    el.hidden = !okTeam(el.dataset.team);
+    if (el.hidden) return;
+    teams++;
+    el.querySelectorAll(".row").forEach(row => { row.hidden = !okRole(row.dataset.role); if (!row.hidden) players++; });
+  });
+  document.querySelectorAll(".meta .mt").forEach(el => { el.hidden = !okRole(el.dataset.role); });
+  document.getElementById("f-count").innerHTML = `顯示 ${teams} 隊 · ${players} 位選手` +
+    (sel.team.size || sel.role.size ? `<button type="button" id="f-reset">清除篩選</button>` : "");
+  try { localStorage.setItem("filters", JSON.stringify({ team: [...sel.team], role: [...sel.role] })); } catch (_) {}
+  renderCompare();
+}
+render();
+</script>

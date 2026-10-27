@@ -1,0 +1,59 @@
+{
+ "collected": "2026-10-19",
+ "outright_cols": [
+  {"key": "bcgame", "label": "BC.Game", "note": "10/15，經 tips.gg"},
+  {"key": "bet365", "label": "bet365", "note": "10/15–17"},
+  {"key": "poly", "label": "Polymarket %", "note": "前 8 隊 10/18，其餘 10/11"},
+  {"key": "kalshi", "label": "Kalshi %", "note": "10/15，經 Strafe"},
+  {"key": "norm", "label": "BC.Game 去水機率 %", "note": "16 隊歸一化"}
+ ],
+ "outright": [
+  {"team": "GEN", "bcgame": 3.25, "bet365": 3.00, "poly": 31, "kalshi": 32, "norm": 22.2},
+  {"team": "HLE", "bcgame": 4.5, "bet365": 4.5, "poly": 21, "kalshi": 17, "norm": 16.1},
+  {"team": "T1", "bcgame": 4.5, "bet365": 4.5, "poly": 16, "kalshi": 19, "norm": 16.1},
+  {"team": "BLG", "bcgame": 5.0, "bet365": 5.0, "poly": 18, "kalshi": 16, "norm": 14.5},
+  {"team": "AL", "bcgame": 10.0, "bet365": 10.0, "poly": 6, "kalshi": 7, "norm": 7.2},
+  {"team": "DK", "bcgame": 13.0, "bet365": 13.0, "poly": 5, "kalshi": null, "norm": 5.6},
+  {"team": "G2", "bcgame": 17.0, "bet365": 15.0, "poly": 4, "kalshi": null, "norm": 4.3},
+  {"team": "IG", "bcgame": 19.0, "bet365": 19.0, "poly": 3, "kalshi": null, "norm": 3.8},
+  {"team": "TES", "bcgame": 34.0, "bet365": "15?", "poly": 1, "kalshi": null, "norm": 2.1},
+  {"team": "LYON", "bcgame": 41.0, "bet365": "34?", "poly": 0, "kalshi": null, "norm": 1.8},
+  {"team": "TLAW", "bcgame": 41.0, "bet365": null, "poly": 1, "kalshi": null, "norm": 1.8},
+  {"team": "MKOI", "bcgame": 51.0, "bet365": null, "poly": 0, "kalshi": null, "norm": 1.4},
+  {"team": "TSW", "bcgame": 67.0, "bet365": null, "poly": 0, "kalshi": null, "norm": 1.1},
+  {"team": "CFO", "bcgame": 81.0, "bet365": null, "poly": 0, "kalshi": null, "norm": 0.9},
+  {"team": "LOS", "bcgame": 101.0, "bet365": null, "poly": 0, "kalshi": null, "norm": 0.7},
+  {"team": "KC", "bcgame": 126.0, "bet365": null, "poly": 1, "kalshi": null, "norm": 0.6}
+ ],
+ "round1": [
+  {"a": "GEN", "b": "IG", "pa": 1.25, "pb": 4.55, "cents": "80¢ / 22¢", "vol": ""},
+  {"a": "TLAW", "b": "CFO", "pa": 1.43, "pb": 3.13, "cents": "70¢ / 32¢", "vol": "約 $21，極少"},
+  {"a": "AL", "b": "KC", "pa": 1.54, "pb": 2.78, "cents": "65¢ / 36¢", "vol": "約 $960"},
+  {"a": "G2", "b": "DK", "pa": 2.17, "pb": 1.82, "cents": "46¢ / 55¢", "vol": "約 $4.2K"},
+  {"a": "HLE", "b": "TES", "pa": 1.25, "pb": 4.35, "cents": "80¢ / 23¢", "vol": "幾乎無成交"},
+  {"a": "LOS", "b": "T1", "pa": 7.14, "pb": 1.15, "cents": "14¢ / 87¢", "vol": "約 $7.7K"},
+  {"a": "TSW", "b": "LYON", "pa": 2.33, "pb": 1.69, "cents": "43¢ / 59¢", "vol": "約 $313"},
+  {"a": "BLG", "b": "MKOI", "pa": 1.22, "pb": 5.26, "cents": "82¢ / 19¢", "vol": "約 $11，極少"}
+ ],
+ "quarters": {
+  "note": "晉級八強機率 %（Strafe 10/13 整理）",
+  "rows": [
+   {"team": "GEN", "kalshi": 90, "poly": 91},
+   {"team": "BLG", "kalshi": 80, "poly": 82},
+   {"team": "T1", "kalshi": 80, "poly": 88},
+   {"team": "HLE", "kalshi": 78, "poly": 88},
+   {"team": "AL", "kalshi": 64, "poly": 62},
+   {"team": "G2", "kalshi": 59, "poly": 67},
+   {"team": "DK", "kalshi": 58, "poly": 61},
+   {"team": "IG", "kalshi": 52, "poly": 42}
+  ]
+ },
+ "sources": [
+  ["tips.gg：Worlds 2026 冠軍賠率（BC.Game）", "https://tips.gg/article/lol-worlds-2026-winner-odds/"],
+  ["bet365 News：Worlds 2026 guide & odds", "https://news.bet365.com/en-us/article/lol-worlds-2026-guide-schedule-teams-and-betting-odds/2026101515261441496"],
+  ["Polymarket：LoL Worlds", "https://polymarket.com/esports/league-of-legends/worlds"],
+  ["lines.com：Worlds 2026 winner", "https://www.lines.com/prediction-markets/sports/lol/worlds-2026-winner"],
+  ["Strafe：Worlds winner predictions", "https://www.strafe.com/esports-betting/news/lol-worlds-2026-predictions-worlds-winner/"],
+  ["Strafe：Quarter-finalists predictions", "https://www.strafe.com/esports-betting/news/lol-worlds-2026-predictions-quarter-finalists/"]
+ ]
+}

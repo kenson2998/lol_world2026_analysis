@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+# build outputs that are not the shared page: artifact-host version and dated snapshots
+data/worlds2026_soloq.html
+data/worlds2026_soloq_standalone.html
+data/worlds2026_[0-9][0-9][0-9][0-9].html
