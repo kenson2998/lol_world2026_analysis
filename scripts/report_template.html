@@ -11,6 +11,7 @@
   --hl: #fff176; --hl-ink: #3a3000;
   --medal1: #e9c46a; --medal1-ink: #8a6500; --medal2: #c3cad3; --medal3: #e39b62;
   --dmg-a: #a9dce1; --dmg-b: #f4c7b1;
+  --rd-me: #0089a0; --rd-avg: #c96a14;   /* radar: player vs lane average (validated pair) */
   --f-display: "Saira Condensed", "Noto Sans TC", "Arial Narrow", sans-serif;
   --f-body: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
   --f-data: "JetBrains Mono", ui-monospace, Menlo, monospace;
@@ -19,12 +20,12 @@
   --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
   --accent: #4fc0cb; --accent-soft: #163a40;
   --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
-  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; color-scheme: dark } }
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
   --accent: #4fc0cb; --accent-soft: #163a40;
   --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
-  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; color-scheme: dark }
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; color-scheme: dark }
 * { box-sizing: border-box }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.5;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px }
@@ -300,7 +301,23 @@ footer a { color: var(--accent) }
 .pv-head p { margin: 2px 0 0; color: var(--muted) }
 .pv-head .wr { font: 600 12px var(--f-data); padding: 1px 6px; border-radius: 4px; background: var(--mid-soft) }
 .pv-head .wr.hi { background: var(--good-soft); color: var(--good) } .pv-head .wr.lo { background: var(--bad-soft); color: var(--bad) }
-.pv-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px }
+.pv-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; align-content: start }
+.pv-top { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start }
+@media (max-width: 760px) { .pv-top { grid-template-columns: minmax(0, 1fr) } }
+.pv-radar { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px }
+.pv-radar svg { display: block; width: 100%; height: auto; overflow: visible }
+.pv-radar text { font: 600 11px var(--f-body); fill: var(--muted) }
+.rd-ring { fill: none; stroke: var(--line); stroke-width: 1 }
+.rd-spoke { stroke: var(--line); stroke-width: 1 }
+.rd-avg { fill: none; stroke: var(--rd-avg); stroke-width: 2; stroke-dasharray: 5 4; stroke-linejoin: round }
+.rd-me { fill: var(--rd-me); fill-opacity: .18; stroke: var(--rd-me); stroke-width: 2; stroke-linejoin: round }
+.rd-dot { fill: var(--rd-me); stroke: var(--surface); stroke-width: 2 }
+.pv-radar g.tip { display: inline; line-height: normal; cursor: default }
+.pv-radar figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-size: 12px; color: var(--ink); margin-top: 4px }
+.rd-key { display: inline-block; width: 16px; height: 0; border-top: 2px solid var(--rd-me); margin-left: 6px }
+.rd-key:first-child { margin-left: 0 }
+.rd-key.avg { border-top: 2px dashed var(--rd-avg) }
+.rd-note { flex-basis: 100%; color: var(--muted); font-size: 11px }
 .pv-rank { font: 500 11px var(--f-data) !important; color: var(--accent) !important }
 .pv-h3 { font: 700 20px var(--f-display); margin: 22px 0 8px }
 .pv-opps { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 12px }
@@ -1041,6 +1058,32 @@ function renderPlayerVs(W, sec) {
     const lane = rows.filter(x => x.role === r.role && key(x) != null);
     return `${ROLE_SHORT[r.role]}第 ${lane.filter(x => key(x) > v).length + 1} 名 / ${lane.length}`; };
 
+  // radar: the player against the lane average; each axis runs from the lane's lowest (inner) to highest (outer) value
+  const AXES = [["KDA", r => r.kda, f1], ["參團率", r => r.kp, v => `${Math.round(v)}%`], ["每分補兵", r => r.csm, f1], ["每分金錢", r => r.gpm, f0],
+    ["每分傷害", r => r.dpm, f0], ["承受傷害", r => r.taken, f0], ["視野分數", r => r.vs, f1], ["15分經濟差", r => r.gd15, sg]];
+  const radar = r => {
+    const lane = rows.filter(x => x.role === r.role), C = 150, R = 100;
+    const ax = AXES.map(([label, key, fmt], i) => {
+      const vals = lane.map(key).filter(v => v != null), lo = Math.min(...vals), hi = Math.max(...vals);
+      const avg = vals.reduce((s, v) => s + v, 0) / vals.length, me = key(r);
+      const norm = v => (v == null ? 0 : hi === lo ? 0.6 : 0.12 + 0.88 * (v - lo) / (hi - lo));   // keep a small core so shapes never collapse
+      return { label, fmt, me, avg, nMe: norm(me), nAvg: norm(avg), ang: -Math.PI / 2 + i * 2 * Math.PI / AXES.length };
+    });
+    const at = (a, n) => [C + Math.cos(a.ang) * R * n, C + Math.sin(a.ang) * R * n].map(v => v.toFixed(1));
+    const poly = k => ax.map(a => at(a, a[k]).join(",")).join(" ");
+    const rings = [0.25, 0.5, 0.75, 1].map(n => `<polygon class="rd-ring" points="${ax.map(a => at(a, n).join(",")).join(" ")}"/>`).join("");
+    const spokes = ax.map(a => { const [x, y] = at(a, 1); return `<line class="rd-spoke" x1="${C}" y1="${C}" x2="${x}" y2="${y}"/>`; }).join("");
+    const labels = ax.map(a => { const [x, y] = at(a, 1.2), c = Math.cos(a.ang);
+      return `<text x="${x}" y="${y}" text-anchor="${Math.abs(c) < 0.2 ? "middle" : c > 0 ? "start" : "end"}" dominant-baseline="middle">${a.label}</text>`; }).join("");
+    const dots = ax.map(a => { const [x, y] = at(a, a.nMe); return `<circle class="rd-dot" cx="${x}" cy="${y}" r="4"/>`; }).join("");
+    // generous invisible hit targets on the player's points: actual value vs lane average
+    const hits = ax.map(a => { const [x, y] = at(a, a.nMe);
+      return `<g class="tip" data-tip="${esc(`${a.label}：${a.me == null ? "—" : a.fmt(a.me)}（${ROLE_SHORT[r.role]}平均 ${a.fmt(a.avg)}）`)}"><circle cx="${x}" cy="${y}" r="13" fill="transparent"/></g>`; }).join("");
+    return `<figure class="pv-radar" aria-label="${esc(r.player)} 與${ROLE_SHORT[r.role]}平均的雷達圖">
+      <svg viewBox="-34 0 368 300" role="img">${rings}${spokes}<polygon class="rd-avg" points="${poly("nAvg")}"/><polygon class="rd-me" points="${poly("nMe")}"/>${dots}${labels}${hits}</svg>
+      <figcaption><span class="rd-key me"></span>${esc(r.player)}<span class="rd-key avg"></span>${ROLE_SHORT[r.role]}平均<span class="rd-note">外圈為同路線最高、內圈最低</span></figcaption></figure>`;
+  };
+
   const panel = r => {
     const gs = r.games;
     // champion pool
@@ -1067,7 +1110,8 @@ function renderPlayerVs(W, sec) {
     return `<section class="pv" id="${esc(pid(r))}">
       <div class="pv-head">${avatar(r.team, r.player)}<div><h2>${esc(r.player)}${anc(pid(r))}</h2>
         <p>${esc(fullName(r.team))} · ${ROLE_SHORT[r.role]} · ${r.n} 場 <span class="wr ${wrCls(r.wins / r.n * 100)}">${wrTxt(r.wins, r.n)}</span></p></div></div>
-      <div class="pv-stats">${STATS.map(([label, key, fmt]) => `<div class="kpi"><b>${fmt(r)}</b><span>${label}</span><span class="pv-rank">${rankOf(r, key)}</span></div>`).join("")}</div>
+      <div class="pv-top">${radar(r)}
+        <div class="pv-stats">${STATS.map(([label, key, fmt]) => `<div class="kpi"><b>${fmt(r)}</b><span>${label}</span><span class="pv-rank">${rankOf(r, key)}</span></div>`).join("")}</div></div>
       <h3 class="pv-h3">英雄池</h3>
       <div class="wbox"><table class="wtable"><tr><th>英雄</th><th>場數</th><th>戰績</th><th>勝率</th><th>KDA</th></tr>${poolRows.map(c =>
         `<tr><td class="l"><span class="cn-cell">${icon(c.champ)}<span>${esc(cname(c.champ))}</span></span></td><td>${c.n}</td><td>${c.w}-${c.n - c.w}</td>
@@ -1271,7 +1315,7 @@ function render() {
 }
 
 // cards (not tables or lists) fade in as they scroll into view, and their single-number values count up from 0
-const REVEAL = ".cb, .res, .kpi, .pool, .mvp-item, .pv-opp";
+const REVEAL = ".cb, .res, .kpi, .pool, .mvp-item, .pv-opp, .pv-radar";
 const COUNT = ".val, .kpi b, .res-side .k, .dmg-h span, .db .dv, .cnt";
 function countUp(el) {
   const text = el.textContent, nums = text.match(/[\d,]+(?:\.\d+)?/g);
