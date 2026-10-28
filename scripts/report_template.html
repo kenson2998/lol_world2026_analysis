@@ -287,8 +287,13 @@ footer a { color: var(--accent) }
 /* 選手對位 */
 .pl-link { color: inherit; text-decoration: none } .pl-link:hover b, a.pl-link:hover { color: var(--accent); text-decoration: underline }
 .pl-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px }
-.pv-pick label { display: inline-flex; align-items: center; gap: 8px; font-weight: 600 }
-.pv-pick select { font: 14px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; min-width: 240px }
+.pv-tr { cursor: pointer }
+.pv-tr:hover td { background: var(--mid-soft) }
+.pv-tr.open td { background: var(--accent-soft) }
+.pv-tr .who-sm::after { content: "▸"; color: var(--muted); font-size: 11px; margin-left: 2px }
+.pv-tr.open .who-sm::after { content: "▾"; color: var(--accent) }
+#player-table .pv-row > td { padding: 0; text-align: left; white-space: normal; background: var(--bg) }
+.pv-inner { position: sticky; left: 0; padding: 14px 16px 18px; box-sizing: border-box }
 .pv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px }
 .pv-head .av { width: 64px; height: 64px }
 .pv-head h2 { margin: 0 }
@@ -861,7 +866,8 @@ function drawTable(T) {
     return `<th aria-sort="${dir}"><button class="sortbtn${at >= 0 ? " on" : ""}" type="button" data-col="${i}"
       title="${text ? "依名稱排序" : "點一下由高至低，再點一下由低至高"}；複合排序時再點第三次移除">${multi && at >= 0 ? `<span class="pri">${circled(at)}</span>` : ""}${esc(label)}<span class="arr">${at >= 0 ? (s.desc ? "▼" : "▲") : "↕"}</span></button></th>`;
   }).join("")}</tr>`;
-  tbl.querySelector("tbody").innerHTML = sorted.map(r => `<tr>${cols.map(c => c[3](r)).join("")}</tr>`).join("")
+  // optional hooks: T.rowAttr(r) adds attributes to a row, T.after(r) inserts extra rows after it (e.g. an expanded detail)
+  tbl.querySelector("tbody").innerHTML = sorted.map(r => `<tr${T.rowAttr ? T.rowAttr(r) : ""}>${cols.map(c => c[3](r)).join("")}</tr>${T.after ? T.after(r) : ""}`).join("")
     || `<tr><td class="l" colspan="${cols.length}">沒有符合的資料</td></tr>`;
   const chain = document.getElementById(`${T.id}-chain`);
   if (chain) chain.innerHTML = `排序：${sort.map((s, n) => `<span class="link">${multi ? circled(n) + " " : ""}${esc(cols[s.col][0])} ${s.desc ? "▼" : "▲"}</span>`).join(" → ")}
@@ -1009,14 +1015,14 @@ function playerRows(W) {
 }
 
 // ---- 選手對位 page: one player's numbers (with lane rank), champion pool and every lane opponent ----
-let PL_SHOW = () => false;   // select a player by its "pl-TEAM-player" id (deep links); true when found
-function renderPlayerVs(W) {
+let PL_SHOW = () => false;   // open a player by its "pl-TEAM-player" id (deep links); true when found
+function renderPlayerVs(W, sec) {
   const body = document.getElementById("pl-body"); if (!body) return;
   const teams = DATA.teams.map(t => t.team), roles = Object.keys(ROLE_SHORT);
   const rows = playerRows(W).sort((a, b) => teams.indexOf(a.team) - teams.indexOf(b.team) || roles.indexOf(a.role) - roles.indexOf(b.role));
   if (!rows.length) { body.innerHTML = `<div class="cmp-empty">尚無選手比賽數據。</div>`; return; }
   document.getElementById("pl-sub").textContent =
-    `選一位選手，看他在世界賽 ${doneGames(W).length} 局中的各項數據（含同路線排名）、英雄池，以及每位對線選手與雙方英雄的勝率。數據取自 gol.gg。`;
+    `全部選手的世界賽數據；點任一位選手展開他的各項數據（含同路線排名）、英雄池，以及每位對線選手與雙方英雄的勝率。`;
   const pid = r => `pl-${r.team}-${r.player}`;
   const byGame = {};
   (W.player_games || []).forEach(g => (byGame[`${g.round}|${g.match}`] ||= []).push(g));
@@ -1058,7 +1064,7 @@ function renderPlayerVs(W) {
             <td><span class="wl ${x.me.win ? "w" : "l"}">${x.me.win ? "勝" : "敗"}</span></td><td>${x.me.k}/${x.me.d}/${x.me.a}</td><td>${x.op.k}/${x.op.d}/${x.op.a}</td>
             <td><span class="dlt ${x.me.gd15 > 0 ? "up" : x.me.gd15 < 0 ? "down" : "flat"}">${sg(x.me.gd15)}</span></td></tr>`; }).join("")}</table></article>`;
     }).join("");
-    return `<section class="wsec pv" id="${esc(pid(r))}">
+    return `<section class="pv" id="${esc(pid(r))}">
       <div class="pv-head">${avatar(r.team, r.player)}<div><h2>${esc(r.player)}${anc(pid(r))}</h2>
         <p>${esc(fullName(r.team))} · ${ROLE_SHORT[r.role]} · ${r.n} 場 <span class="wr ${wrCls(r.wins / r.n * 100)}">${wrTxt(r.wins, r.n)}</span></p></div></div>
       <div class="pv-stats">${STATS.map(([label, key, fmt]) => `<div class="kpi"><b>${fmt(r)}</b><span>${label}</span><span class="pv-rank">${rankOf(r, key)}</span></div>`).join("")}</div>
@@ -1071,16 +1077,44 @@ function renderPlayerVs(W) {
       <div class="pv-opps">${oppCards || `<div class="cb-empty">尚無對線資料</div>`}</div></section>`;
   };
 
-  const opts = teams.map(t => { const ps = rows.filter(r => r.team === t); return ps.length
-    ? `<optgroup label="${esc(t)} · ${esc(fullName(t))}">${ps.map(r => `<option value="${esc(pid(r))}">${esc(r.player)}（${ROLE_SHORT[r.role]}）</option>`).join("")}</optgroup>` : ""; }).join("");
-  body.innerHTML = `<div class="pv-pick"><label>選手 <select id="pl-select">${opts}</select></label></div><div id="pl-panel"></div>`;
-  const sel = document.getElementById("pl-select"), out = document.getElementById("pl-panel");
-  const show = id => { const r = rows.find(x => pid(x) === id); if (!r) return false;
-    sel.value = id; out.innerHTML = panel(r); observeReveal(out); return true; };
-  sel.addEventListener("change", () => { show(sel.value);
-    try { history.replaceState(null, "", `#${encodeURIComponent(sel.value)}`); } catch (_) {} });
-  PL_SHOW = show;
-  show(pid(rows[0]));
+  // the stats table lives on this page; clicking a player row toggles that player's panel open in a row right below it
+  body.innerHTML = sec("選手數據統計", `世界賽正式比賽（已結束 ${doneGames(W).length} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。<b>點選手那一列可展開／收合他的對位資訊。</b>數據取自 gol.gg。`,
+    playerStats(W), "pl-stats");
+  const T = TABLES["player-table"]; if (!T) return;
+  const byId = new Map(rows.map(r => [pid(r), r]));
+  T.open = null;
+  T.rowAttr = r => ` class="pv-tr${T.open === pid(r) ? " open" : ""}" data-pid="${esc(pid(r))}" aria-expanded="${T.open === pid(r)}"`;
+  T.after = r => (T.open === pid(r) ? `<tr class="pv-row"><td colspan="${T.cols.length}"><div class="pv-inner">${panel(byId.get(pid(r)))}</div></td></tr>` : "");
+  const tbl = () => document.getElementById("player-table");
+  // keep the panel as wide as the visible table area, pinned left while the wide table scrolls sideways
+  const fit = () => { const box = tbl()?.parentElement; if (!box?.clientWidth) return;   // 0 while the tab is hidden
+    box.querySelectorAll(".pv-inner").forEach(el => { el.style.width = `${box.clientWidth - 2}px`; }); };
+  const redraw = () => { drawTable(T); fit(); const row = tbl()?.querySelector(".pv-row"); if (row) observeReveal(row); };
+  const show = (id, toggle) => {
+    if (!byId.has(id)) return false;
+    T.open = toggle && T.open === id ? null : id;
+    redraw();
+    try { history.replaceState(null, "", T.open ? `#${encodeURIComponent(T.open)}` : location.pathname + location.search); } catch (_) {}
+    return true;
+  };
+  const prev = T.wireExtra;
+  T.wireExtra = () => {
+    prev?.();
+    tbl()?.querySelector("tbody").addEventListener("click", e => {
+      const tr = e.target.closest("tr.pv-tr"); if (!tr) return;
+      e.preventDefault();   // the name is also a link; a click here toggles in place
+      show(tr.dataset.pid, true);
+      tbl().querySelector(`tr.pv-tr[data-pid="${CSS.escape(tr.dataset.pid)}"]`)?.scrollIntoView({ block: "nearest" });
+    });
+    // re-fit when the table box changes size: window resize, or the tab becoming visible
+    if (typeof ResizeObserver !== "undefined" && tbl()) new ResizeObserver(fit).observe(tbl().parentElement);
+    else addEventListener("resize", fit);
+    // drawTable runs again on sort / filter: keep the open panel sized and animated
+    const sortClick = () => setTimeout(() => { fit(); const row = tbl()?.querySelector(".pv-row"); if (row) observeReveal(row); });
+    tbl()?.querySelector("thead").addEventListener("click", sortClick);
+    document.querySelector("#pl-stats .rolef")?.addEventListener("click", sortClick);
+  };
+  PL_SHOW = id => show(id, false);
 }
 
 // Worlds player stats table
@@ -1128,13 +1162,13 @@ function playerStats(W) {
   });
   const T = sortTable("player-table", cols, rows, [{ col: cols.findIndex(c => c[0] === "KDA"), desc: true }],   // KDA, high to low
     (a, b) => b.k - a.k || a.player.localeCompare(b.player));
-  const chips = `<span class="rolef" role="group" aria-label="位置篩選">${[["", "全部"], ...Object.entries(ROLE_SHORT)].map(([v, l]) =>
+  const chips = `<span class="rolef" id="pl-rolef" role="group" aria-label="位置篩選">${[["", "全部"], ...Object.entries(ROLE_SHORT)].map(([v, l]) =>
     `<button type="button" class="chip" data-role="${v}" aria-pressed="${v === ""}">${l}</button>`).join("")}</span>`;
-  T.wireExtra = () => document.querySelector(".rolef")?.addEventListener("click", e => {
+  T.wireExtra = () => document.getElementById("pl-rolef")?.addEventListener("click", e => {
     const b = e.target.closest("[data-role]"); if (!b) return;
     const v = b.dataset.role;
     T.filter = v ? (r => r.role === v) : null;
-    document.querySelectorAll(".rolef .chip").forEach(c => c.setAttribute("aria-pressed", String(c === b)));
+    document.querySelectorAll("#pl-rolef .chip").forEach(c => c.setAttribute("aria-pressed", String(c === b)));
     drawTable(T);
   });
   return sortTableHTML("player-table", chips);
@@ -1165,9 +1199,6 @@ function renderWorlds(W) {
       `<div class="pool"><h3 class="${recCls(rec)}">${esc(rec)}（${teams.length} 隊）</h3><ul>${teams.map(t =>
         `<li><b title="${esc(fullName(t))}">${esc(t)}</b><span>${nextOf(t) ? `vs ${esc(nextOf(t))}` : ""}</span></li>`).join("")}</ul></div>`).join("")}</div>`);
 
-  const nGames = (W.player_games || []).length / 10;
-  const players = sec("選手數據統計", `世界賽正式比賽（已結束 ${nGames} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。數據取自 gol.gg。`,
-    playerStats(W));
   const champs = sec("英雄資訊變化", "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。",
     champChanges(W));
 
@@ -1199,7 +1230,7 @@ function renderWorlds(W) {
 
   const mb = mvpBoard(W);
   const mvps = mb ? sec("MVP 統計", "每局 MVP（Player of the Game）次數。", mb, "wv-mvp") : "";
-  document.getElementById("wv-body").innerHTML = results + standings + mvps + players + champs;
+  document.getElementById("wv-body").innerHTML = results + standings + mvps + champs;
   // 水晶球預測 page: how markets called finished rounds, then forecasts for what's next
   const nextSec = sec(`${esc(W.next.name)}預測<small>${esc(W.next.format || "")}</small>`, "", W.next.matches.length ? upcomingTable(W.next) : "目前沒有未開打的場次。", "pv-next");
   const nDone = doneGames(W).length;
@@ -1209,7 +1240,7 @@ function renderWorlds(W) {
   document.getElementById("pv-sub").textContent =
     `整理預測市場（Polymarket、Kalshi）與模型（Outdrafted）對世界賽的預測，並檢驗已結束場次的準確度。資料整理於 ${W.collected}。賠率會變動，僅供參考。`;
   renderMatchups(W, sec);
-  renderPlayerVs(W);
+  renderPlayerVs(W, sec);
   Object.values(TABLES).forEach(T => { wireTable(T); T.wireExtra?.(); });
   const rt = document.querySelector(".rtabs");
   if (rt) {
@@ -1292,7 +1323,8 @@ function setupAnchors() {
   const go = () => {
     const id = decodeURIComponent(location.hash.slice(1));
     if (VIEWS.includes(id)) { SHOW_VIEW(id); return; }   // #predict etc. (also Back/Forward between tabs)
-    if (id.startsWith("pl-") && !document.getElementById(id)) PL_SHOW(id);   // a player's page is rendered on demand
+    // a player's panel is rendered on demand; show its tab first so the panel is measured at the right width
+    if (id.startsWith("pl-") && !document.getElementById(id)) { SHOW_VIEW("player"); PL_SHOW(id); }
     const el = id && !VIEWS.includes(id) && document.getElementById(id); if (!el) return;
     const view = el.closest('.view[role="tabpanel"]'); if (view) SHOW_VIEW(view.id.replace("view-", ""));
     const rp = el.closest(".rpanel"); if (rp?.hidden) document.getElementById(rp.getAttribute("aria-labelledby"))?.click();

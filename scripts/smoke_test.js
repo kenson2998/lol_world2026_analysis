@@ -26,7 +26,7 @@ global.innerWidth = 1200;
 global.CSS = { escape: s => s };
 const api = new Function(src + "\n;return typeof TABLES === 'undefined' ? {} : { TABLES, drawTable, clickSort };")();
 // sortable tables, driven through the same clickSort() the header buttons use
-const rowsOf = (id, n) => (els[`${id} tbody`].innerHTML.split("<tr>").slice(1, n + 1)).map(r =>
+const rowsOf = (id, n) => (els[`${id} tbody`].innerHTML.split(/<tr[ >]/).slice(1, n + 1)).map(r =>
   [...r.matchAll(/<td[^>]*>(.*?)<\/td>/g)].map(m => m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()));
 const C = api.TABLES?.["champ-table"];
 if (C) {
