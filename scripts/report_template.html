@@ -775,7 +775,7 @@ function bpxHead(id) {
 }
 function bpxBody(id) {
   const T = BPX[id];
-  const val = (r, k) => (k === "name" ? r.c : k === "lane" ? r.lane : r[k.split(".")[0]][k.split(".")[1]]);
+  const val = (r, k) => (k === "name" ? cname(r.c) : k === "lane" ? r.lane : r[k.split(".")[0]][k.split(".")[1]]);
   const rows = [...T.rows].sort(T.sort
     ? (x, y) => { const vx = val(x, T.sort.k), vy = val(y, T.sort.k);
         if (vx == null || vy == null) return vx == null && vy == null ? 0 : vx == null ? 1 : -1;   // empty win rates last
@@ -785,7 +785,7 @@ function bpxBody(id) {
   const cnt = v => `<td class="bp-n${v ? "" : " z"}">${v || "—"}</td>`;
   const wr = r => (r ? `<td><span class="wr ${wrCls(r.w / r.n * 100)}">${Math.round(r.w / r.n * 100)}%</span><span class="bp-rec">${r.w}-${r.n - r.w}</span></td>` : `<td class="bp-n z">—</td>`);
   const cells = s => cnt(s.p) + wr(s.pr) + cnt(s.o) + wr(s.or) + cnt(s.b) + cnt(s.x);
-  return rows.map(r => `<tr>${cells(r.A)}<td class="mid"><span class="cn-cell">${icon(r.c)}<a class="pl-link" href="${heroHref(r.c)}" title="看 ${esc(r.c)} 的英雄對位明細">${esc(r.c)}</a>${r.both ? `<b class="bpx-both" title="兩隊都遇過這隻英雄">共</b>` : ""}</span></td>
+  return rows.map(r => `<tr>${cells(r.A)}<td class="mid"><span class="cn-cell">${icon(r.c)}<a class="pl-link" href="${heroHref(r.c)}" title="看 ${esc(cname(r.c))} 的英雄對位明細">${esc(cname(r.c))}</a>${r.both ? `<b class="bpx-both" title="兩隊都遇過這隻英雄">共</b>` : ""}</span></td>
     <td class="lane">${r.lanes.length ? r.lanes.map(x => `<span class="ln">${ROLE_SHORT[x]}</span>`).join("") : `<span class="bp-n z">—</span>`}</td>${cells(r.B)}</tr>`).join("");
 }
 document.addEventListener("click", e => {
