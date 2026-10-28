@@ -2,7 +2,7 @@
 
 usage: python3 -I build_report.py out_dir rosters.json
 """
-import csv, json, os, sys
+import base64, csv, json, os, sys
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
@@ -258,6 +258,9 @@ def main(out_dir, roster_path):
             "footer": FOOTER}
     tpl = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "report_template.html")).read()
     page = tpl.replace("/*DATA*/null", json.dumps(data, ensure_ascii=False))
+    # favicon is inlined so the standalone page carries it too
+    icon = f"{out_dir}/favicon.png"
+    page = page.replace("/*FAVICON*/", "data:image/png;base64," + base64.b64encode(open(icon, "rb").read()).decode() if os.path.exists(icon) else "")
     # this build becomes the baseline the next update is compared against (copy it to report_state_prev.json first)
     json.dump({"fetched": data["fetched"], "meta": meta,
                "players": {f'{p["team"]}/{p["role"]}': {"summary": p["summary"], "last_played": p["last_played"],
