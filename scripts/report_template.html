@@ -12,6 +12,7 @@
   --medal1: #e9c46a; --medal1-ink: #8a6500; --medal2: #c3cad3; --medal3: #e39b62;
   --dmg-a: #a9dce1; --dmg-b: #f4c7b1;
   --rd-me: #0089a0; --rd-avg: #c96a14;   /* radar: player vs lane average (validated pair) */
+  --zebra: #f4f6f9; --expand-bg: #eaf4f5;   /* alternate table rows; expanded player panel */
   --f-display: "Saira Condensed", "Noto Sans TC", "Arial Narrow", sans-serif;
   --f-body: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
   --f-data: "JetBrains Mono", ui-monospace, Menlo, monospace;
@@ -20,12 +21,12 @@
   --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
   --accent: #4fc0cb; --accent-soft: #163a40;
   --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
-  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; color-scheme: dark } }
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; --zebra: #1c242d; --expand-bg: #132a30; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
   --accent: #4fc0cb; --accent-soft: #163a40;
   --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
-  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; color-scheme: dark }
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; --zebra: #1c242d; --expand-bg: #132a30; color-scheme: dark }
 * { box-sizing: border-box }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.5;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px }
@@ -289,11 +290,14 @@ footer a { color: var(--accent) }
 .pl-link { color: inherit; text-decoration: none } .pl-link:hover b, a.pl-link:hover { color: var(--accent); text-decoration: underline }
 .pl-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px }
 .pv-tr { cursor: pointer }
-.pv-tr:hover td { background: var(--mid-soft) }
-.pv-tr.open td { background: var(--accent-soft) }
+/* alternating rows: sortable tables mark them (.zb), static tables use position */
+.wtable tr.zb > td, table.wtable:not([id]) tr:nth-child(even) > td, .pv-games tr:nth-child(even) > td { background: var(--zebra) }
+#player-table .pv-tr:hover > td { background: var(--mid-soft) }
+#player-table .pv-tr.open > td { background: var(--accent-soft) }
 .pv-tr .who-sm::after { content: "▸"; color: var(--muted); font-size: 11px; margin-left: 2px }
 .pv-tr.open .who-sm::after { content: "▾"; color: var(--accent) }
-#player-table .pv-row > td { padding: 0; text-align: left; white-space: normal; background: var(--bg) }
+#player-table .pv-row > td { padding: 0; text-align: left; white-space: normal; background: var(--expand-bg);
+  box-shadow: inset 3px 0 0 var(--accent), inset 0 -1px 0 var(--line) }
 .pv-inner { position: sticky; left: 0; padding: 14px 16px 18px; box-sizing: border-box }
 .pv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px }
 .pv-head .av { width: 64px; height: 64px }
@@ -883,8 +887,9 @@ function drawTable(T) {
     return `<th aria-sort="${dir}"><button class="sortbtn${at >= 0 ? " on" : ""}" type="button" data-col="${i}"
       title="${text ? "依名稱排序" : "點一下由高至低，再點一下由低至高"}；複合排序時再點第三次移除">${multi && at >= 0 ? `<span class="pri">${circled(at)}</span>` : ""}${esc(label)}<span class="arr">${at >= 0 ? (s.desc ? "▼" : "▲") : "↕"}</span></button></th>`;
   }).join("")}</tr>`;
-  // optional hooks: T.rowAttr(r) adds attributes to a row, T.after(r) inserts extra rows after it (e.g. an expanded detail)
-  tbl.querySelector("tbody").innerHTML = sorted.map(r => `<tr${T.rowAttr ? T.rowAttr(r) : ""}>${cols.map(c => c[3](r)).join("")}</tr>${T.after ? T.after(r) : ""}`).join("")
+  // optional hooks: T.rowAttr(r, zebra) adds attributes to a row, T.after(r) inserts extra rows after it (e.g. an expanded detail);
+  // every other data row gets class "zb", counted over data rows only so inserted rows don't break the stripes
+  tbl.querySelector("tbody").innerHTML = sorted.map((r, i) => `<tr${T.rowAttr ? T.rowAttr(r, i % 2 === 1) : i % 2 ? ' class="zb"' : ""}>${cols.map(c => c[3](r)).join("")}</tr>${T.after ? T.after(r) : ""}`).join("")
     || `<tr><td class="l" colspan="${cols.length}">沒有符合的資料</td></tr>`;
   const chain = document.getElementById(`${T.id}-chain`);
   if (chain) chain.innerHTML = `排序：${sort.map((s, n) => `<span class="link">${multi ? circled(n) + " " : ""}${esc(cols[s.col][0])} ${s.desc ? "▼" : "▲"}</span>`).join(" → ")}
@@ -1127,7 +1132,7 @@ function renderPlayerVs(W, sec) {
   const T = TABLES["player-table"]; if (!T) return;
   const byId = new Map(rows.map(r => [pid(r), r]));
   T.open = null;
-  T.rowAttr = r => ` class="pv-tr${T.open === pid(r) ? " open" : ""}" data-pid="${esc(pid(r))}" aria-expanded="${T.open === pid(r)}"`;
+  T.rowAttr = (r, zebra) => ` class="pv-tr${zebra ? " zb" : ""}${T.open === pid(r) ? " open" : ""}" data-pid="${esc(pid(r))}" aria-expanded="${T.open === pid(r)}"`;
   T.after = r => (T.open === pid(r) ? `<tr class="pv-row"><td colspan="${T.cols.length}"><div class="pv-inner">${panel(byId.get(pid(r)))}</div></td></tr>` : "");
   const tbl = () => document.getElementById("player-table");
   // keep the panel as wide as the visible table area, pinned left while the wide table scrolls sideways
