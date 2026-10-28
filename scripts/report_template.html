@@ -951,7 +951,7 @@ function playerStats(W) {
     const gs = p.games, k = sum(gs, "k"), d = sum(gs, "d"), a = sum(gs, "a");
     return { ...p, n: gs.length, wins: gs.filter(g => g.win).length, k, d, a, kda: (k + a) / Math.max(1, d), perfect: d === 0,
       kp: avg(gs, "kp"), csm: avg(gs, "csm"), gpm: avg(gs, "gpm"), dpm: avg(gs, "dpm"), dmg_pct: avg(gs, "dmg_pct"),
-      vspm: avg(gs, "vspm"), gd15: avg(gs, "gd15"), csd15: avg(gs, "csd15"), solo: sum(gs, "solo"), steals: sum(gs, "steals"),
+      vspm: avg(gs, "vspm"), vs: avg(gs, "vs"), taken: avg(gs, "dmg_taken"), gd15: avg(gs, "gd15"), csd15: avg(gs, "csd15"), solo: sum(gs, "solo"), steals: sum(gs, "steals"),
       stolenAg: gs.some(g => g.stolen_against != null) ? sum(gs, "stolen_against") : null,
       champs: gs.map(g => g.champion).filter(Boolean), mvp: MV.get(`${p.team}/${p.player}`) || 0 };
   });
@@ -972,6 +972,8 @@ function playerStats(W) {
     ["每分金錢", r => r.gpm, false, r => `<td>${f0(r.gpm)}</td>`],
     ["每分傷害", r => r.dpm, false, r => `<td>${f0(r.dpm)}</td>`],
     ["傷害佔比", r => r.dmg_pct, false, r => `<td>${r.dmg_pct == null ? "—" : `${f1(r.dmg_pct)}%`}</td>`],
+    ["承受傷害", r => r.taken, false, r => `<td>${f0(r.taken)}</td>`],
+    ["視野分數", r => r.vs, false, r => `<td>${f1(r.vs)}</td>`],
     ["每分視野", r => r.vspm, false, r => `<td>${r.vspm == null ? "—" : r.vspm.toFixed(2)}</td>`],
     ["15分經濟差", r => r.gd15, false, r => `<td>${sgn(r.gd15)}</td>`],
     ["15分補兵差", r => r.csd15, false, r => `<td>${sgn(r.csd15)}</td>`],
@@ -1021,7 +1023,7 @@ function renderWorlds(W) {
         `<li><b title="${esc(fullName(t))}">${esc(t)}</b><span>${nextOf(t) ? `vs ${esc(nextOf(t))}` : ""}</span></li>`).join("")}</ul></div>`).join("")}</div>`);
 
   const nGames = (W.player_games || []).length / 10;
-  const players = sec("選手數據統計", `世界賽正式比賽（已結束 ${nGames} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。數據取自 gol.gg。`,
+  const players = sec("選手數據統計", `世界賽正式比賽（已結束 ${nGames} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。數據取自 gol.gg。`,
     playerStats(W));
   const champs = sec("英雄資訊變化", "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。",
     champChanges(W));

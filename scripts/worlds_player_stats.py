@@ -10,7 +10,7 @@ ROLES = {"TOP": "top", "JUNGLE": "jungle", "MID": "mid", "ADC": "bot", "SUPPORT"
 # gol.gg row label -> our key
 METRICS = {"Kills": "k", "Deaths": "d", "Assists": "a", "CS": "cs", "CSM": "csm", "Golds": "gold", "GPM": "gpm",
            "GOLD%": "gold_pct", "Vision Score": "vs", "VSPM": "vspm", "Wards placed": "wards", "Total damage to Champion": "dmg",
-           "DPM": "dpm", "DMG%": "dmg_pct", "KP%": "kp", "Solo kills": "solo", "Objectives Stolen": "steals", "GD@15": "gd15", "CSD@15": "csd15", "XPD@15": "xpd15"}
+           "DPM": "dpm", "DMG%": "dmg_pct", "KP%": "kp", "Solo kills": "solo", "Objectives Stolen": "steals", "Total damage taken": "dmg_taken", "GD@15": "gd15", "CSD@15": "csd15", "XPD@15": "xpd15"}
 
 
 def fetch(game_id, cache):
