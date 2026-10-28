@@ -754,7 +754,7 @@ function bpCompare(a, b) {
   BPX[id] = { a, b, rows, sort: null };
   return `<section class="bpx" id="${esc(id)}">
     <p class="bp-note">兩隊 BP 統計（${esc(a)} ${A.games} 局、${esc(b)} ${B.games} 局）。勝率皆為該隊在那些局的戰績；「應對」= 對手選了這隻英雄。
-      標 <b class="bpx-both">共</b> 的是兩隊都遇過的英雄，預設排在最前面。點欄位可排序（再點一次反向）。</p>
+      標 <b class="bpx-both">共</b> 的是兩隊都遇過的英雄，預設排在最前面。點欄位可排序（再點一次反向，第三次恢復預設）。</p>
     <div class="bp-scroll"><table class="bp-table bpx-table"><thead>${bpxHead(id)}</thead><tbody>${bpxBody(id)}</tbody></table></div></section>`;
 }
 function bpxHead(id) {
@@ -780,7 +780,9 @@ function bpxBody(id) {
 document.addEventListener("click", e => {
   const btn = e.target.closest(".bpx-sort"); if (!btn) return;
   const id = btn.closest(".bpx").id, T = BPX[id], k = btn.dataset.k;
-  T.sort = T.sort?.k === k ? { k, desc: !T.sort.desc } : { k, desc: k !== "name" };   // numbers start high→low, names A→Z
+  // numbers start high→low, names A→Z; the second click reverses, the third goes back to the default order
+  const first = k !== "name";
+  T.sort = T.sort?.k !== k ? { k, desc: first } : T.sort.desc === first ? { k, desc: !first } : null;
   const tbl = btn.closest("table");
   tbl.tHead.innerHTML = bpxHead(id); tbl.tBodies[0].innerHTML = bpxBody(id);
   tbl.querySelector(`.bpx-sort[data-k="${CSS.escape(k)}"]`)?.focus();
@@ -1034,12 +1036,15 @@ function sortTableHTML(id, extra = "") {
 }
 const defaultDesc = (T, i) => !T.cols[i][2];   // numbers start high→low, names start A→Z
 
-// single mode: sort by this column only (same column again flips it);
+// single mode: sort by this column only; the same column again flips it, a third time restores the default order;
 // multi mode: append the column, then flip it, then drop it from the chain
 function clickSort(T, i, multi) {
   const at = T.sort.findIndex(s => s.col === i);
   if (!multi) {
-    T.sort = at === 0 && T.sort.length === 1 ? [{ col: i, desc: !T.sort[0].desc }] : [{ col: i, desc: defaultDesc(T, i) }];
+    const only = at === 0 && T.sort.length === 1;
+    T.sort = !only ? [{ col: i, desc: defaultDesc(T, i) }]
+      : T.sort[0].desc === defaultDesc(T, i) ? [{ col: i, desc: !T.sort[0].desc }]
+      : T.defaultSort.map(s => ({ ...s }));
   } else if (at < 0) {
     T.sort.push({ col: i, desc: defaultDesc(T, i) });
   } else if (T.sort[at].desc === defaultDesc(T, i)) {
@@ -1070,7 +1075,7 @@ function drawTable(T) {
     const at = sort.findIndex(s => s.col === i), s = sort[at];
     const dir = at === 0 ? (s.desc ? "descending" : "ascending") : "none";
     return `<th aria-sort="${dir}"><button class="sortbtn${at >= 0 ? " on" : ""}" type="button" data-col="${i}"
-      title="${text ? "依名稱排序" : "點一下由高至低，再點一下由低至高"}；複合排序時再點第三次移除">${multi && at >= 0 ? `<span class="pri">${circled(at)}</span>` : ""}${esc(label)}<span class="arr">${at >= 0 ? (s.desc ? "▼" : "▲") : "↕"}</span></button></th>`;
+      title="${text ? "點一下依名稱排序，再點一下反向" : "點一下由高至低，再點一下由低至高"}，第三次恢復預設排序">${multi && at >= 0 ? `<span class="pri">${circled(at)}</span>` : ""}${esc(label)}<span class="arr">${at >= 0 ? (s.desc ? "▼" : "▲") : "↕"}</span></button></th>`;
   }).join("")}</tr>`;
   // optional hooks: T.rowAttr(r, zebra) adds attributes to a row, T.after(r) inserts extra rows after it (e.g. an expanded detail);
   // every other data row gets class "zb", counted over data rows only so inserted rows don't break the stripes
