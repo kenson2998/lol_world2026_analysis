@@ -395,7 +395,10 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .bp-note { margin: 2px 0 0; font-size: 11px; color: var(--muted) }
 .mx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px }
 .mx-card .cb-h h3 { flex: 0 0 auto }
-.mx-vs { font: 600 13px var(--f-body); margin-left: auto; white-space: nowrap }
+.mx-vs { font: 600 13px var(--f-body); margin-left: auto; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px }
+.mx-p { display: inline-flex; align-items: center; gap: 5px }
+.mx-p .av { width: 28px; height: 28px; box-shadow: 0 0 0 2px var(--rd-me) } .mx-p.b .av { box-shadow: 0 0 0 2px var(--rd-b) }
+.mx-vs-x { font: 600 11px var(--f-data); color: var(--muted) }
 .mx-card .pv-radar { border: 0; padding: 0; background: none }
 .mx-chs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-top: 1px solid var(--line); padding-top: 8px }
 .mx-ch { display: grid; gap: 4px; align-content: start; min-width: 0 }
@@ -717,7 +720,8 @@ function matchPreview(a, b) {
     const h2h = pa.games.filter(g => byGame[`${g.round}|${g.match}`]?.some(o => o.team === pb.team && o.player === pb.player && o.role === role));
     const hw = h2h.filter(g => g.win).length;
     return `<article class="cb mx-card"><div class="cb-h"><h3>${name}</h3>
-        <span class="mx-vs"><a class="pl-link" href="${plHref(pa.team, pa.player)}">${esc(pa.player)}</a> vs <a class="pl-link" href="${plHref(pb.team, pb.player)}">${esc(pb.player)}</a></span></div>
+        <span class="mx-vs"><a class="pl-link mx-p a" href="${plHref(pa.team, pa.player)}">${avatar(pa.team, pa.player, true)}<b>${esc(pa.player)}</b></a>
+          <span class="mx-vs-x">vs</span><a class="pl-link mx-p b" href="${plHref(pb.team, pb.player)}">${avatar(pb.team, pb.player, true)}<b>${esc(pb.player)}</b></a></span></div>
       ${h2h.length ? `<p class="cb-q">本屆交手：${esc(pa.player)} ${hw}W-${h2h.length - hw}L</p>` : ""}
       ${radarFig(rows.filter(r => r.role === role), [{ row: pa, cls: "a" }, { row: pb, cls: "b" }], role)}
       <div class="mx-chs">${champs(pa)}${champs(pb)}</div></article>`;
@@ -763,7 +767,7 @@ function bpCompare(a, b) {
   BPX[id] = { a, b, rows, sort: null };
   return `<section class="bpx" id="${esc(id)}">
     <p class="bp-note">兩隊 BP 統計（${esc(a)} ${A.games} 局、${esc(b)} ${B.games} 局）。勝率皆為該隊在那些局的戰績；「應對」= 對手選了這隻英雄。
-      標 <b class="bpx-both">共</b> 的是兩隊都遇過的英雄，預設排在最前面。點欄位可排序（再點一次反向，第三次恢復預設）。</p>
+      標 <b class="bpx-both">共</b> 的是兩隊都遇過的英雄。預設依路線排序（上→野→中→下→輔，只被禁用的排最後）；點欄位可排序（再點一次反向，第三次恢復預設）。</p>
     <div class="bp-scroll"><table class="bp-table bpx-table"><thead>${bpxHead(id)}</thead><tbody>${bpxBody(id)}</tbody></table></div></section>`;
 }
 function bpxHead(id) {
@@ -781,7 +785,8 @@ function bpxBody(id) {
         if (vx == null || vy == null) return vx == null && vy == null ? 0 : vx == null ? 1 : -1;   // empty win rates last
         const c = T.sort.k === "name" ? String(vx).localeCompare(String(vy)) : vx - vy;
         return (T.sort.desc ? -c : c) || y.total - x.total; }
-    : (x, y) => y.both - x.both || y.total - x.total || x.c.localeCompare(y.c));
+    // default: by lane top→support (a champion's first lane), most involved first within a lane, ban-only champions last
+    : (x, y) => (x.lane ?? 9) - (y.lane ?? 9) || y.total - x.total || x.c.localeCompare(y.c));
   const cnt = v => `<td class="bp-n${v ? "" : " z"}">${v || "—"}</td>`;
   const wr = r => (r ? `<td><span class="wr ${wrCls(r.w / r.n * 100)}">${Math.round(r.w / r.n * 100)}%</span><span class="bp-rec">${r.w}-${r.n - r.w}</span></td>` : `<td class="bp-n z">—</td>`);
   const cells = s => cnt(s.p) + wr(s.pr) + cnt(s.o) + wr(s.or) + cnt(s.b) + cnt(s.x);
