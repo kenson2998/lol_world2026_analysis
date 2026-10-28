@@ -279,12 +279,14 @@ footer a { color: var(--accent) }
 .share-pop b { font: 600 13px var(--f-body) }
 .share-pop .url { font: 500 11.5px var(--f-data); opacity: .85; overflow-wrap: anywhere; user-select: all }
 .wsec, .cb, .res, .series { scroll-margin-top: 16px }
-.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease-out, transform .55s ease-out }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 1.55s ease-out, transform 1.55s ease-out }
 .reveal.in { opacity: 1; transform: none }
 .flash { animation: flash 1.6s ease-out }
 @keyframes flash { 0%, 30% { box-shadow: 0 0 0 3px var(--accent) } 100% { box-shadow: 0 0 0 3px transparent } }
 @media (prefers-reduced-motion: reduce) { .flash { animation: none; box-shadow: 0 0 0 3px var(--accent) } }
 /* 選手對位 */
+.pl-link { color: inherit; text-decoration: none } .pl-link:hover b, a.pl-link:hover { color: var(--accent); text-decoration: underline }
+.pl-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px }
 .pv-pick label { display: inline-flex; align-items: center; gap: 8px; font-weight: 600 }
 .pv-pick select { font: 14px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; min-width: 240px }
 .pv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px }
@@ -465,7 +467,9 @@ const wrCls = w => (w >= 60 ? "hi" : w <= 40 ? "lo" : "");
 const slug = s => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, "");
 const SHARE_ICON = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"
   stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 10H5v11h14V10h-3.5"/><path d="M12 15V3"/><path d="M7.5 7.5 12 3l4.5 4.5"/></svg>`;
-const anc = id => `<a class="anc" href="#${encodeURIComponent(id)}" data-anc="${esc(id)}" aria-label="複製此區塊的分享連結">${SHARE_ICON}</a>`;
+// link to a player's 選手對位 page (the hash handler switches tab and picks the player)
+const plHref = (team, player) => `#${encodeURIComponent(`pl-${team}-${player}`)}`;
+const anc = id =>`<a class="anc" href="#${encodeURIComponent(id)}" data-anc="${esc(id)}" aria-label="複製此區塊的分享連結">${SHARE_ICON}</a>`;
 // champion icon with hover/tap name tooltip; falls back to a text tile if Data Dragon has no match
 // champion display name: English (Taiwan-server zh_TW name), e.g. "Ahri (阿璃)"
 const cname = name => (DATA.zh?.[name] ? `${name} (${DATA.zh[name]})` : name);
@@ -1045,7 +1049,7 @@ function renderPlayerVs(W) {
       const n = o.games.length, w = o.games.filter(x => x.me.win).length;
       const pairs = {}; o.games.forEach(x => { const k = `${x.me.champion}|${x.op.champion}`;
         const p = (pairs[k] ||= { mine: x.me.champion, theirs: x.op.champion, n: 0, w: 0 }); p.n++; p.w += x.me.win; });
-      return `<article class="pv-opp"><div class="pv-oh">${avatar(o.team, o.player)}<span class="nm"><b>vs ${esc(o.player)}</b><span>${esc(o.team)} · ${ROLE_SHORT[r.role]}</span></span>
+      return `<article class="pv-opp"><div class="pv-oh">${avatar(o.team, o.player)}<span class="nm"><b>vs <a class="pl-link" href="${plHref(o.team, o.player)}">${esc(o.player)}</a></b><span>${esc(o.team)} · ${ROLE_SHORT[r.role]}</span></span>
           <span class="val">${Math.round(w / n * 100)}%</span><span class="pv-wl">${w}W-${n - w}L</span></div>
         <div class="pv-pairs">${Object.values(pairs).map(p => `<span class="mo ${p.w * 2 > p.n ? "w" : p.w * 2 < p.n ? "l" : ""}">${icon(p.mine)}<span class="pv-vs">vs</span>${icon(p.theirs)}<b>${wrTxt(p.w, p.n)}</b></span>`).join("")}</div>
         <table class="pv-games"><tr><th>輪次</th><th>英雄</th><th>結果</th><th>K/D/A</th><th>對手 K/D/A</th><th>15分經濟差</th></tr>${o.games.map(x => {
@@ -1088,7 +1092,7 @@ function playerStats(W) {
   const f0 = v => (v == null ? "—" : Math.round(v).toLocaleString());
   const sgn = v => (v == null ? "—" : `<span class="dlt ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}</span>`);
   const cols = [
-    ["選手", r => r.player, true, r => `<td class="l"><span class="who-sm">${avatar(r.team, r.player, true)}<b>${esc(r.player)}</b></span></td>`],
+    ["選手", r => r.player, true, r => `<td class="l"><a class="who-sm pl-link" href="${plHref(r.team, r.player)}" title="看 ${esc(r.player)} 的選手對位">${avatar(r.team, r.player, true)}<b>${esc(r.player)}</b></a></td>`],
     ["隊伍", r => r.team, true, r => `<td><span class="tm" title="${esc(fullName(r.team))}">${esc(r.team)}</span></td>`],
     ["位置", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
     ["英雄", null, false, r => `<td class="l"><span class="picks2">${r.champs.map(icon).join("")}</span></td>`],
@@ -1244,7 +1248,7 @@ function countUp(el) {
   const tok = nums[0], target = parseFloat(tok.replace(/,/g, "")), dec = (tok.split(".")[1] || "").length, comma = tok.includes(",");
   const at = text.indexOf(tok), pre = text.slice(0, at), post = text.slice(at + tok.length);
   const fmt = v => { const s = v.toFixed(dec); return comma ? Number(s).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) : s; };
-  const t0 = performance.now(), dur = 900;
+  const t0 = performance.now(), dur = 1900;
   const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - (1 - k) ** 3;
     el.textContent = pre + fmt(target * e) + post;
     if (k < 1) requestAnimationFrame(step); else el.textContent = text; };
@@ -1287,6 +1291,7 @@ function setupAnchors() {
   addEventListener("scroll", () => { pop.hidden = true; }, true);
   const go = () => {
     const id = decodeURIComponent(location.hash.slice(1));
+    if (VIEWS.includes(id)) { SHOW_VIEW(id); return; }   // #predict etc. (also Back/Forward between tabs)
     if (id.startsWith("pl-") && !document.getElementById(id)) PL_SHOW(id);   // a player's page is rendered on demand
     const el = id && !VIEWS.includes(id) && document.getElementById(id); if (!el) return;
     const view = el.closest('.view[role="tabpanel"]'); if (view) SHOW_VIEW(view.id.replace("view-", ""));
