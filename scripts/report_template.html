@@ -361,16 +361,24 @@ footer a { color: var(--accent) }
 .mx-row > td { padding: 0 !important; text-align: left !important; white-space: normal !important; background: var(--expand-bg) !important;
   box-shadow: inset 3px 0 0 var(--accent) }
 .mx-inner { padding: 12px 14px 16px; position: sticky; left: 0; max-width: calc(100vw - 40px) }
-.bp-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 12px; margin-bottom: 12px }
-.bp-team { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--rd-me); border-radius: 10px; padding: 10px 12px; display: grid; gap: 6px }
-.bp-team.b { border-left-color: var(--rd-b) }
-.bp-team h4 { margin: 0; font: 700 18px var(--f-display) } .bp-team.a h4 { color: var(--rd-me) } .bp-team.b h4 { color: var(--rd-b) }
-.bp-team h4 small { font: 500 12px var(--f-body); color: var(--muted); margin-left: 6px }
-.bp-team { min-width: 0 }
-.bp-scroll { overflow-x: auto }
+/* both teams' BP in one table: A columns | champion | B columns */
+.bpx { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; min-width: 0 }
+.bpx > .bp-note { margin: 0 0 8px }
+.bpx-both { font: 700 10px var(--f-body); color: var(--surface); background: linear-gradient(90deg, var(--rd-me), var(--rd-b)); border-radius: 4px; padding: 1px 5px; margin-left: 2px }
+.bp-scroll { overflow: auto; max-height: min(70vh, 640px) }
 .bp-table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums }
-.bp-table th { font: 600 11px var(--f-data); color: var(--muted); text-align: right; padding: 5px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; cursor: help }
-.bp-table th:first-child { text-align: left; cursor: default }
+.bpx-table thead th { position: sticky; z-index: 2; background: var(--surface) }
+.bpx-table thead tr:first-child th { top: 0; height: 26px } .bpx-table thead tr:nth-child(2) th { top: 26px; box-shadow: inset 0 -1px 0 var(--line) }
+.bp-table th { font: 600 11px var(--f-data); color: var(--muted); text-align: right; padding: 4px 6px; white-space: nowrap }
+.bpx-team { font: 700 16px var(--f-display) !important; text-align: center !important; border-bottom: 2px solid var(--rd-me) }
+.bpx-team.a { color: var(--rd-me) } .bpx-team.b { color: var(--rd-b); border-bottom-color: var(--rd-b) }
+/* the champion column stays in view while the wide table scrolls sideways (phones), pinned at whichever edge it would leave */
+.bp-table th.mid, .bp-table td.mid { text-align: left; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: var(--surface);
+  position: sticky; left: 0; right: 0; z-index: 1 }
+.bp-table tr:nth-child(even) > td.mid { background: var(--zebra) }
+.bpx-table thead th.mid { z-index: 3 }
+.bpx-sort { font: inherit; color: inherit; background: none; border: 0; padding: 2px 0; cursor: pointer; white-space: nowrap }
+.bpx-sort:hover, .bpx-sort:focus-visible { color: var(--accent) }
 .bp-table td { text-align: right; padding: 4px 6px; border-top: 1px solid var(--line); white-space: nowrap }
 .bp-table tr:nth-child(even) > td { background: var(--zebra) }
 .bp-table .cn-cell .ci { width: 22px; height: 22px }
@@ -649,8 +657,14 @@ function dmgBars(m, ri, label) {
 // a Bo3 shows one card per game, headed with the series score
 // ri = round index, used to find each game's player stats (labelled "A vs B", or "A vs B G2" inside a Bo3)
 // ids: r3-HLE-IG for a match, r3-GEN-LYON-g2 for a game inside a series
-function matchCard(m, ri) {
-  const label = `${m.a} vs ${m.b}`, id = `r${ri + 1}-${m.a}-${m.b}`;
+// share ids: "r3-m4" = round 3, 4th match of the round ("-g2" for a game inside a Bo3); the older team-based ids
+// ("r3-HLE-IG") keep working through ANCHOR_ALIAS
+const ANCHOR_ALIAS = {};
+const matchId = (ri, k) => `r${ri + 1}-m${k + 1}`;
+function matchCard(m, ri, k) {
+  const label = `${m.a} vs ${m.b}`, id = matchId(ri, k);
+  ANCHOR_ALIAS[`r${ri + 1}-${m.a}-${m.b}`] = id;
+  (m.games || []).forEach((_, i) => { ANCHOR_ALIAS[`r${ri + 1}-${m.a}-${m.b}-g${i + 1}`] = `${id}-g${i + 1}`; });
   if (!m.games) return gameCard(m, "", ri, label, id);
   // a series takes a full row; its games sit side by side and scroll right when they don't fit
   return `<div class="series" id="${esc(id)}"><div class="series-h">${esc(m.a)} ${m.score?.[0] ?? ""}-${m.score?.[1] ?? ""} ${esc(m.b)}
@@ -702,40 +716,79 @@ function matchPreview(a, b) {
       ${radarFig(rows.filter(r => r.role === role), [{ row: pa, cls: "a" }, { row: pb, cls: "b" }], role)}
       <div class="mx-chs">${champs(pa)}${champs(pb)}</div></article>`;
   }).join("");
-  return `<div class="mx-inner"><div class="bp-pair">${teamBP(a, "a")}${teamBP(b, "b")}</div>
+  return `<div class="mx-inner">${bpCompare(a, b)}
     <p class="rnote">各路線兩隊選手的世界賽數據（雷達圖含該路線平均）與常用英雄。</p><div class="mx-grid">${cards}</div></div>`;
 }
 
-// a team's draft habits over its finished games, one table row per champion: times it picked the champion and its
-// win rate then, times opponents picked it (應對) and this team's win rate against it, times it banned it, times it got banned
-function teamBP(team, cls) {
+// a team's draft habits over its finished games, per champion: picks (and its record then), opponent picks against it
+// (應對, and its record then), its bans, bans against it
+function teamDraft(team) {
   const games = doneGames(DATA.worlds).filter(g => g.draft && (g.a === team || g.b === team));
-  const pick = {}, ban = {}, against = {}, oppPick = {};
-  const add = (o, c, win) => { const x = (o[c] ||= { champ: c, n: 0, w: 0 }); x.n++; x.w += win; };
+  const s = { games: games.length, pick: {}, oppPick: {}, ban: {}, against: {} };
+  const add = (o, c, win) => { const x = (o[c] ||= { n: 0, w: 0 }); x.n++; x.w += win; };
   games.forEach(g => {
     const opp = g.a === team ? g.b : g.a, win = g.winner === team;
-    g.draft.picks.forEach(p => add(p.team === team ? pick : oppPick, p.champion, win));
-    (g.draft.bans?.[team] || []).forEach(c => add(ban, c, win));
-    (g.draft.bans?.[opp] || []).forEach(c => add(against, c, win));
+    g.draft.picks.forEach(p => add(p.team === team ? s.pick : s.oppPick, p.champion, win));
+    (g.draft.bans?.[team] || []).forEach(c => add(s.ban, c, win));
+    (g.draft.bans?.[opp] || []).forEach(c => add(s.against, c, win));
   });
-  // one row per champion that showed up in this team's drafts, most involved first
-  const names = [...new Set([pick, oppPick, ban, against].flatMap(Object.keys))];
-  const n = (o, c) => o[c]?.n || 0;
-  const rows = names.map(c => ({ c, total: n(pick, c) + n(oppPick, c) + n(ban, c) + n(against, c) }))
-    .sort((x, y) => y.total - x.total || n(pick, y.c) - n(pick, x.c) || x.c.localeCompare(y.c)).slice(0, 12);
-  const cnt = (o, c) => `<td class="bp-n${n(o, c) ? "" : " z"}">${n(o, c) || "—"}</td>`;
-  const wr = (o, c) => { const x = o[c]; if (!x) return `<td class="bp-n z">—</td>`;
-    return `<td><span class="wr ${wrCls(x.w / x.n * 100)}">${Math.round(x.w / x.n * 100)}%</span><span class="bp-rec">${x.w}-${x.n - x.w}</span></td>`; };
-  return `<section class="bp-team ${cls}"><h4>${esc(team)} <small>${esc(fullName(team))} · ${games.length} 局</small></h4>
-    <div class="bp-scroll"><table class="bp-table"><tr><th>英雄</th><th title="${esc(team)} 選這隻英雄的次數">選用</th><th title="${esc(team)} 選這隻英雄時的勝率">選用勝率</th>
-      <th title="對手選這隻英雄來打 ${esc(team)} 的次數">應對</th><th title="對手選這隻英雄時，${esc(team)} 的勝率">應對勝率</th>
-      <th title="${esc(team)} 禁這隻英雄的次數">禁用</th><th title="對手禁掉這隻英雄的次數">被禁</th></tr>${rows.map(({ c }) =>
-      `<tr><td class="l"><span class="cn-cell">${icon(c)}<span>${esc(cname(c))}</span></span></td>${cnt(pick, c)}${wr(pick, c)}${cnt(oppPick, c)}${wr(oppPick, c)}${cnt(ban, c)}${cnt(against, c)}</tr>`).join("")}
-    </table></div><p class="bp-note">勝率皆為 ${esc(team)} 在那些局的戰績；「應對」= 對手選了這隻英雄。依出現次數排序，顯示前 12 隻。</p></section>`;
+  return s;
 }
+
+// both teams in one table: team A's columns | champion | team B's columns, so a champion both teams met sits on one row.
+// Clicking a header sorts (again = reverse); the table state lives in BPX by table id
+const BPX = {};
+const BP_COLS = [["p", "選用", "選這隻英雄的次數"], ["pw", "選用勝率", "選這隻英雄時的勝率"], ["o", "應對", "對手選這隻英雄的次數"],
+  ["ow", "應對勝率", "對手選這隻英雄時的勝率"], ["b", "禁用", "禁這隻英雄的次數"], ["x", "被禁", "被對手禁掉的次數"]];
+function bpCompare(a, b) {
+  const A = teamDraft(a), B = teamDraft(b);
+  const side = s => c => { const pk = s.pick[c], op = s.oppPick[c];
+    return { p: pk?.n || 0, pw: pk ? pk.w / pk.n : null, pr: pk, o: op?.n || 0, ow: op ? op.w / op.n : null, or: op,
+      b: s.ban[c]?.n || 0, x: s.against[c]?.n || 0 }; };
+  const sa = side(A), sb = side(B);
+  const inTeam = (s, c) => [s.pick, s.oppPick, s.ban, s.against].some(o => o[c]);
+  const names = [...new Set([A, B].flatMap(s => [s.pick, s.oppPick, s.ban, s.against].flatMap(Object.keys)))];
+  const rows = names.map(c => { const ra = sa(c), rb = sb(c);
+    return { c, A: ra, B: rb, both: inTeam(A, c) && inTeam(B, c), total: ra.p + ra.o + ra.b + ra.x + rb.p + rb.o + rb.b + rb.x }; });
+  const id = `bpx-${a}-${b}`;
+  BPX[id] = { a, b, rows, sort: null };
+  return `<section class="bpx" id="${esc(id)}">
+    <p class="bp-note">兩隊 BP 統計（${esc(a)} ${A.games} 局、${esc(b)} ${B.games} 局）。勝率皆為該隊在那些局的戰績；「應對」= 對手選了這隻英雄。
+      標 <b class="bpx-both">共</b> 的是兩隊都遇過的英雄，預設排在最前面。點欄位可排序（再點一次反向）。</p>
+    <div class="bp-scroll"><table class="bp-table bpx-table"><thead>${bpxHead(id)}</thead><tbody>${bpxBody(id)}</tbody></table></div></section>`;
+}
+function bpxHead(id) {
+  const T = BPX[id], arrow = k => (T.sort?.k === k ? (T.sort.desc ? " ▼" : " ▲") : "");
+  const th = (side, [k, label, hint], team) => `<th class="${side}"><button type="button" class="bpx-sort" data-k="${side}.${k}" title="${esc(team)} ${hint}">${label}${arrow(`${side}.${k}`)}</button></th>`;
+  return `<tr><th colspan="6" class="bpx-team a">${esc(T.a)}</th><th></th><th colspan="6" class="bpx-team b">${esc(T.b)}</th></tr>
+    <tr>${BP_COLS.map(c => th("A", c, T.a)).join("")}<th class="mid"><button type="button" class="bpx-sort" data-k="name">英雄${arrow("name")}</button></th>${BP_COLS.map(c => th("B", c, T.b)).join("")}</tr>`;
+}
+function bpxBody(id) {
+  const T = BPX[id];
+  const val = (r, k) => (k === "name" ? r.c : r[k.split(".")[0]][k.split(".")[1]]);
+  const rows = [...T.rows].sort(T.sort
+    ? (x, y) => { const vx = val(x, T.sort.k), vy = val(y, T.sort.k);
+        if (vx == null || vy == null) return vx == null && vy == null ? 0 : vx == null ? 1 : -1;   // empty win rates last
+        const c = T.sort.k === "name" ? String(vx).localeCompare(String(vy)) : vx - vy;
+        return (T.sort.desc ? -c : c) || y.total - x.total; }
+    : (x, y) => y.both - x.both || y.total - x.total || x.c.localeCompare(y.c));
+  const cnt = v => `<td class="bp-n${v ? "" : " z"}">${v || "—"}</td>`;
+  const wr = r => (r ? `<td><span class="wr ${wrCls(r.w / r.n * 100)}">${Math.round(r.w / r.n * 100)}%</span><span class="bp-rec">${r.w}-${r.n - r.w}</span></td>` : `<td class="bp-n z">—</td>`);
+  const cells = s => cnt(s.p) + wr(s.pr) + cnt(s.o) + wr(s.or) + cnt(s.b) + cnt(s.x);
+  return rows.map(r => `<tr>${cells(r.A)}<td class="mid"><span class="cn-cell">${icon(r.c)}<span>${esc(r.c)}</span>${r.both ? `<b class="bpx-both" title="兩隊都遇過這隻英雄">共</b>` : ""}</span></td>${cells(r.B)}</tr>`).join("");
+}
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".bpx-sort"); if (!btn) return;
+  const id = btn.closest(".bpx").id, T = BPX[id], k = btn.dataset.k;
+  T.sort = T.sort?.k === k ? { k, desc: !T.sort.desc } : { k, desc: k !== "name" };   // numbers start high→low, names A→Z
+  const tbl = btn.closest("table");
+  tbl.tHead.innerHTML = bpxHead(id); tbl.tBodies[0].innerHTML = bpxBody(id);
+  tbl.querySelector(`.bpx-sort[data-k="${CSS.escape(k)}"]`)?.focus();
+});
 // clicking an upcoming-match row (in any round table) toggles its preview row right below it
+let MX_TOGGLE = () => {};
 function setupMatchPreviews() {
-  const toggle = tr => {
+  const toggle = MX_TOGGLE = tr => {
     const open = tr.nextElementSibling?.classList.contains("mx-row");
     if (open) tr.nextElementSibling.remove();
     else {
@@ -748,7 +801,7 @@ function setupMatchPreviews() {
     tr.setAttribute("aria-expanded", String(!open));
   };
   document.addEventListener("click", e => {
-    const tr = e.target.closest("tr.mx-tr"); if (!tr || e.target.closest("a")) return;
+    const tr = e.target.closest("tr.mx-tr"); if (!tr || e.target.closest("a, .mx-row")) return;
     toggle(tr);
   });
   document.addEventListener("keydown", e => {
@@ -757,8 +810,10 @@ function setupMatchPreviews() {
   });
 }
 
-function upcomingTable(r) {
+// ri: round index when this is the round's own table (rows then carry share ids like "r4-m2"); omitted for copies
+function upcomingTable(r, ri) {
   const ms = r.matches.filter(m => !m.winner), anyBooks = ms.some(m => m.books?.length);
+  const rowId = m => (ri == null ? "" : matchId(ri, r.matches.indexOf(m)));
   const fromBooks = ms.some(m => !m.pct && m.books?.length);
   return `<p class="rnote">${fromBooks ? "勝率優先用 Polymarket 價格；沒有 Polymarket 時改用莊家賠率換算（去除抽水後取平均，標「莊」）。" : "勝率為 Polymarket 價格。"}賠率為十進位。時間為台灣時間，括號內為美國中部時間。</p>
     <div class="wbox"><table class="wtable"><tr><th>時間</th><th>組別</th><th style="text-align:center">對戰與勝率</th><th>Polymarket</th><th>Kalshi</th>${anyBooks ? "<th>莊家賠率</th>" : ""}</tr>${
@@ -766,7 +821,8 @@ function upcomingTable(r) {
       const odds = o => (o ? o.map(x => x.toFixed(2)).join(" / ") : "—");
       const tag = !m.pct && pct ? `<span class="bk-tag" title="莊家賠率換算">莊</span>` : "";
       const books = (m.books || []).map(b => `<span class="bk" title="${esc(`${b.book}，${b.as_of}`)}"><b>${esc(b.book)}</b> ${odds(b.odds)}</span>`).join("") || "—";
-      return `<tr class="mx-tr" tabindex="0" data-a="${esc(m.a)}" data-b="${esc(m.b)}" aria-expanded="false" title="點一下展開各路線對位"><td class="l"><span class="mx-chev" aria-hidden="true">▸</span>${esc(m.time_tw)}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
+      const id = rowId(m);
+      return `<tr class="mx-tr"${id ? ` id="${id}"` : ""} tabindex="0" data-a="${esc(m.a)}" data-b="${esc(m.b)}" aria-expanded="false" title="點一下展開各路線對位"><td class="l"><span class="mx-chev" aria-hidden="true">▸</span>${esc(m.time_tw)}${id ? anc(id) : ""}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
         <td><span class="rec-chip ${recCls(m.pool)}">${esc(m.pool)}</span>${m.format ? `<br><span class="n">${esc(m.format)}</span>` : ""}</td>
         <td><div class="mu"><span class="sa ${fa ? "fav" : ""}"><span class="tm">${esc(m.a)}</span><span class="pc">${pct ? `${p[0]}%` : "—"}${tag}</span></span>
           <span class="split" aria-hidden="true">${pct ? `<i class="a" style="width:${p[0]}%"></i><i class="b" style="width:${p[1]}%"></i>` : ""}</span>
@@ -1382,8 +1438,8 @@ function renderWorlds(W) {
       ${esc(r.name)}<span class="rst ${r.status}">${{ done: "已結束", live: "進行中" }[r.status] || "未開打"}</span></button>`).join("")}</div>`;
   const panels = W.rounds.map((r, i) => `<div class="rpanel" role="tabpanel" id="rpanel-${i}" aria-labelledby="rtab-${i}"${i === sel ? "" : " hidden"}>
     <p class="rnote">${esc(r.format)} · ${esc(r.date)}${r.note ? ` · ${esc(r.note)}` : ""}</p>
-    ${r.matches.some(m => m.winner) ? `<div class="res-grid">${r.matches.filter(m => m.winner).map(m => matchCard(m, i)).join("")}</div>` : ""}
-    ${r.matches.some(m => !m.winner) ? upcomingTable(r) : ""}</div>`).join("");
+    ${r.matches.some(m => m.winner) ? `<div class="res-grid">${r.matches.map((m, k) => (m.winner ? matchCard(m, i, k) : "")).join("")}</div>` : ""}
+    ${r.matches.some(m => !m.winner) ? upcomingTable(r, i) : ""}</div>`).join("");
   const results = sec("賽事", "", tabs + panels, "wv-rounds");
 
   // pools after the latest round, each team with its next opponent
@@ -1516,13 +1572,16 @@ function setupAnchors() {
   };
   addEventListener("scroll", () => { pop.hidden = true; }, true);
   const go = () => {
-    const id = decodeURIComponent(location.hash.slice(1));
+    let id = decodeURIComponent(location.hash.slice(1));
     if (VIEWS.includes(id)) { SHOW_VIEW(id); return; }   // #predict etc. (also Back/Forward between tabs)
+    id = ANCHOR_ALIAS[id] || id;   // older team-based match links
     // a player's panel is rendered on demand; show its tab first so the panel is measured at the right width
     if (id.startsWith("pl-") && !document.getElementById(id)) { SHOW_VIEW("player"); PL_SHOW(id); }
     const el = id && !VIEWS.includes(id) && document.getElementById(id); if (!el) return;
     const view = el.closest('.view[role="tabpanel"]'); if (view) SHOW_VIEW(view.id.replace("view-", ""));
     const rp = el.closest(".rpanel"); if (rp?.hidden) document.getElementById(rp.getAttribute("aria-labelledby"))?.click();
+    // a link to an unplayed match opens its preview
+    if (el.matches("tr.mx-tr") && el.getAttribute("aria-expanded") !== "true") MX_TOGGLE(el);
     requestAnimationFrame(() => {
       el.scrollIntoView({ block: "start", inline: "nearest" });
       el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
