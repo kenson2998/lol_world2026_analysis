@@ -279,6 +279,8 @@ footer a { color: var(--accent) }
 .share-pop b { font: 600 13px var(--f-body) }
 .share-pop .url { font: 500 11.5px var(--f-data); opacity: .85; overflow-wrap: anywhere; user-select: all }
 .wsec, .cb, .res, .series { scroll-margin-top: 16px }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease-out, transform .55s ease-out }
+.reveal.in { opacity: 1; transform: none }
 .flash { animation: flash 1.6s ease-out }
 @keyframes flash { 0%, 30% { box-shadow: 0 0 0 3px var(--accent) } 100% { box-shadow: 0 0 0 3px transparent } }
 @media (prefers-reduced-motion: reduce) { .flash { animation: none; box-shadow: 0 0 0 3px var(--accent) } }
@@ -1112,8 +1114,36 @@ function render() {
   setupViews();
   renderWorlds(DATA.worlds);
   setupTips();
+  setupReveal();
   setupAnchors();
   document.getElementById("stamp").textContent = `Worlds 2026 · Swiss Stage${DATA.worlds ? ` · 資料更新 ${DATA.worlds.collected}` : ""}`;
+}
+
+// cards (not tables or lists) fade in as they scroll into view, and their single-number values count up from 0
+const REVEAL = ".cb, .res, .kpi, .pool, .mvp-item";
+const COUNT = ".val, .kpi b, .res-side .k, .dmg-h span, .db .dv, .cnt";
+function countUp(el) {
+  const text = el.textContent, nums = text.match(/[\d,]+(?:\.\d+)?/g);
+  if (!nums || nums.length !== 1) return;   // records like 1-0, times like 23:51 and pairs like 623 / 700 stay as they are
+  const tok = nums[0], target = parseFloat(tok.replace(/,/g, "")), dec = (tok.split(".")[1] || "").length, comma = tok.includes(",");
+  const at = text.indexOf(tok), pre = text.slice(0, at), post = text.slice(at + tok.length);
+  const fmt = v => { const s = v.toFixed(dec); return comma ? Number(s).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) : s; };
+  const t0 = performance.now(), dur = 900;
+  const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - (1 - k) ** 3;
+    el.textContent = pre + fmt(target * e) + post;
+    if (k < 1) requestAnimationFrame(step); else el.textContent = text; };
+  el.textContent = pre + fmt(0) + post;
+  requestAnimationFrame(step);
+}
+function setupReveal() {
+  if (typeof IntersectionObserver === "undefined" || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    io.unobserve(en.target);
+    en.target.classList.add("in");
+    en.target.querySelectorAll(COUNT).forEach(countUp);
+  }), { threshold: 0.15 });
+  document.querySelectorAll(REVEAL).forEach(el => { el.classList.add("reveal"); io.observe(el); });
 }
 
 // "#" links copy a URL ending in that block's id; opening such a URL switches to its tab (and round tab),
