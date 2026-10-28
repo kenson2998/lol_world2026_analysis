@@ -289,6 +289,10 @@ footer a { color: var(--accent) }
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity 1.55s ease-out, transform 1.55s ease-out }
 .reveal.in { opacity: 1; transform: none }
 .flash { animation: flash 1.6s ease-out }
+/* table rows reached through a link: tint the cells, then fade back */
+tr.hl > td { animation: rowhl 2.6s ease-out }
+@keyframes rowhl { 0%, 40% { background: var(--accent-soft); box-shadow: inset 0 2px 0 var(--accent), inset 0 -2px 0 var(--accent) } 100% { box-shadow: none } }
+@media (prefers-reduced-motion: reduce) { tr.hl > td { animation: none; background: var(--accent-soft) } }
 @keyframes flash { 0%, 30% { box-shadow: 0 0 0 3px var(--accent) } 100% { box-shadow: 0 0 0 3px transparent } }
 @media (prefers-reduced-motion: reduce) { .flash { animation: none; box-shadow: 0 0 0 3px var(--accent) } }
 /* 選手對位 */
@@ -377,6 +381,8 @@ footer a { color: var(--accent) }
   position: sticky; left: 0; right: 0; z-index: 1 }
 .bp-table tr:nth-child(even) > td.mid { background: var(--zebra) }
 .bpx-table thead th.mid { z-index: 3 }
+.bp-table th.lane, .bp-table td.lane { text-align: left; border-right: 1px solid var(--line) }
+.bp-table td.lane .ln { display: inline-block; font: 600 11px var(--f-body); background: var(--mid-soft); border-radius: 4px; padding: 1px 5px; margin-right: 3px }
 .bpx-sort { font: inherit; color: inherit; background: none; border: 0; padding: 2px 0; cursor: pointer; white-space: nowrap }
 .bpx-sort:hover, .bpx-sort:focus-visible { color: var(--accent) }
 .bp-table td { text-align: right; padding: 4px 6px; border-top: 1px solid var(--line); white-space: nowrap }
@@ -724,11 +730,11 @@ function matchPreview(a, b) {
 // (應對, and its record then), its bans, bans against it
 function teamDraft(team) {
   const games = doneGames(DATA.worlds).filter(g => g.draft && (g.a === team || g.b === team));
-  const s = { games: games.length, pick: {}, oppPick: {}, ban: {}, against: {} };
+  const s = { games: games.length, pick: {}, oppPick: {}, ban: {}, against: {}, roles: {} };
   const add = (o, c, win) => { const x = (o[c] ||= { n: 0, w: 0 }); x.n++; x.w += win; };
   games.forEach(g => {
     const opp = g.a === team ? g.b : g.a, win = g.winner === team;
-    g.draft.picks.forEach(p => add(p.team === team ? s.pick : s.oppPick, p.champion, win));
+    g.draft.picks.forEach(p => { add(p.team === team ? s.pick : s.oppPick, p.champion, win); (s.roles[p.champion] ||= new Set()).add(p.role); });
     (g.draft.bans?.[team] || []).forEach(c => add(s.ban, c, win));
     (g.draft.bans?.[opp] || []).forEach(c => add(s.against, c, win));
   });
@@ -749,7 +755,10 @@ function bpCompare(a, b) {
   const inTeam = (s, c) => [s.pick, s.oppPick, s.ban, s.against].some(o => o[c]);
   const names = [...new Set([A, B].flatMap(s => [s.pick, s.oppPick, s.ban, s.against].flatMap(Object.keys)))];
   const rows = names.map(c => { const ra = sa(c), rb = sb(c);
-    return { c, A: ra, B: rb, both: inTeam(A, c) && inTeam(B, c), total: ra.p + ra.o + ra.b + ra.x + rb.p + rb.o + rb.b + rb.x }; });
+    // lanes the champion was picked in, in either team's games, in lane order
+    const lanes = Object.keys(ROLE_SHORT).filter(r => A.roles[c]?.has(r) || B.roles[c]?.has(r));
+    return { c, A: ra, B: rb, lanes, lane: lanes.length ? Object.keys(ROLE_SHORT).indexOf(lanes[0]) : null,
+      both: inTeam(A, c) && inTeam(B, c), total: ra.p + ra.o + ra.b + ra.x + rb.p + rb.o + rb.b + rb.x }; });
   const id = `bpx-${a}-${b}`;
   BPX[id] = { a, b, rows, sort: null };
   return `<section class="bpx" id="${esc(id)}">
@@ -760,12 +769,13 @@ function bpCompare(a, b) {
 function bpxHead(id) {
   const T = BPX[id], arrow = k => (T.sort?.k === k ? (T.sort.desc ? " ▼" : " ▲") : "");
   const th = (side, [k, label, hint], team) => `<th class="${side}"><button type="button" class="bpx-sort" data-k="${side}.${k}" title="${esc(team)} ${hint}">${label}${arrow(`${side}.${k}`)}</button></th>`;
-  return `<tr><th colspan="6" class="bpx-team a">${esc(T.a)}</th><th></th><th colspan="6" class="bpx-team b">${esc(T.b)}</th></tr>
-    <tr>${BP_COLS.map(c => th("A", c, T.a)).join("")}<th class="mid"><button type="button" class="bpx-sort" data-k="name">英雄${arrow("name")}</button></th>${BP_COLS.map(c => th("B", c, T.b)).join("")}</tr>`;
+  return `<tr><th colspan="6" class="bpx-team a">${esc(T.a)}</th><th></th><th></th><th colspan="6" class="bpx-team b">${esc(T.b)}</th></tr>
+    <tr>${BP_COLS.map(c => th("A", c, T.a)).join("")}<th class="mid"><button type="button" class="bpx-sort" data-k="name">英雄${arrow("name")}</button></th>
+      <th class="lane"><button type="button" class="bpx-sort" data-k="lane" title="被選用時的路線">路線${arrow("lane")}</button></th>${BP_COLS.map(c => th("B", c, T.b)).join("")}</tr>`;
 }
 function bpxBody(id) {
   const T = BPX[id];
-  const val = (r, k) => (k === "name" ? r.c : r[k.split(".")[0]][k.split(".")[1]]);
+  const val = (r, k) => (k === "name" ? r.c : k === "lane" ? r.lane : r[k.split(".")[0]][k.split(".")[1]]);
   const rows = [...T.rows].sort(T.sort
     ? (x, y) => { const vx = val(x, T.sort.k), vy = val(y, T.sort.k);
         if (vx == null || vy == null) return vx == null && vy == null ? 0 : vx == null ? 1 : -1;   // empty win rates last
@@ -775,13 +785,14 @@ function bpxBody(id) {
   const cnt = v => `<td class="bp-n${v ? "" : " z"}">${v || "—"}</td>`;
   const wr = r => (r ? `<td><span class="wr ${wrCls(r.w / r.n * 100)}">${Math.round(r.w / r.n * 100)}%</span><span class="bp-rec">${r.w}-${r.n - r.w}</span></td>` : `<td class="bp-n z">—</td>`);
   const cells = s => cnt(s.p) + wr(s.pr) + cnt(s.o) + wr(s.or) + cnt(s.b) + cnt(s.x);
-  return rows.map(r => `<tr>${cells(r.A)}<td class="mid"><span class="cn-cell">${icon(r.c)}<span>${esc(r.c)}</span>${r.both ? `<b class="bpx-both" title="兩隊都遇過這隻英雄">共</b>` : ""}</span></td>${cells(r.B)}</tr>`).join("");
+  return rows.map(r => `<tr>${cells(r.A)}<td class="mid"><span class="cn-cell">${icon(r.c)}<a class="pl-link" href="${heroHref(r.c)}" title="看 ${esc(r.c)} 的英雄對位明細">${esc(r.c)}</a>${r.both ? `<b class="bpx-both" title="兩隊都遇過這隻英雄">共</b>` : ""}</span></td>
+    <td class="lane">${r.lanes.length ? r.lanes.map(x => `<span class="ln">${ROLE_SHORT[x]}</span>`).join("") : `<span class="bp-n z">—</span>`}</td>${cells(r.B)}</tr>`).join("");
 }
 document.addEventListener("click", e => {
   const btn = e.target.closest(".bpx-sort"); if (!btn) return;
   const id = btn.closest(".bpx").id, T = BPX[id], k = btn.dataset.k;
   // numbers start high→low, names A→Z; the second click reverses, the third goes back to the default order
-  const first = k !== "name";
+  const first = k !== "name" && k !== "lane";   // lanes start top→support like names start A→Z
   T.sort = T.sort?.k !== k ? { k, desc: first } : T.sort.desc === first ? { k, desc: !first } : null;
   const tbl = btn.closest("table");
   tbl.tHead.innerHTML = bpxHead(id); tbl.tBodies[0].innerHTML = bpxBody(id);
@@ -1124,6 +1135,8 @@ function mvpBoard(W) {
 }
 
 // ---- 英雄對位 page: same-lane champion pairs from every finished game in W.player_games ----
+let MU_SHOW = () => false;   // jump to a champion's rows in 對位明細 (used by "#hero-<champion>" links)
+const heroHref = champ => `#${encodeURIComponent(`hero-${champ}`)}`;
 // one directional row per (lane, champion, opponent champion); the mirror row holds the other side
 function matchupRows(W) {
   const byGame = {};
@@ -1199,6 +1212,20 @@ function renderMatchups(W, sec) {
       drawTable(T);
     });
     document.getElementById("mu-champ")?.addEventListener("change", e => { st.champ = e.target.value; drawTable(T); });
+  };
+  // rows carry their champion so a "#hero-<champion>" link can find and highlight them
+  T.rowAttr = (r, zebra) => ` class="${zebra ? "zb" : ""}" data-champ="${esc(r.champ)}"`;
+  MU_SHOW = champ => {
+    if (!champs.some(r => r.champ === champ)) return false;
+    st.role = ""; st.champ = "";   // clear filters so the rows are there
+    document.querySelectorAll(".muf .chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.role === "")));
+    const sel = document.getElementById("mu-champ"); if (sel) sel.value = "";
+    drawTable(T);
+    const tbl = document.getElementById("mu-table"), rows = [...tbl.tBodies[0].rows].filter(tr => tr.dataset.champ === champ);
+    document.getElementById("mu-detail").scrollIntoView({ block: "start" });
+    tbl.parentElement.scrollTop = rows[0].offsetTop - tbl.tHead.offsetHeight;   // first row just under the frozen header
+    rows.forEach(tr => { tr.classList.remove("hl"); void tr.offsetWidth; tr.classList.add("hl"); });
+    return true;
   };
   body.innerHTML = sec("各路線對位表現", "每條路線中，面對所有對手合計勝率最高的前五名英雄。", `<div class="cb-grid">${lanes}</div>`, "mu-lanes")
     + sec("對位明細", "同一路線的同一隻英雄整合成一列，依該英雄的對位勝率排序（同勝率再依場數）；右欄列出它遇過的每個對位英雄與戰績，滑鼠移到戰績上可看每場對局。15 分經濟差為「英雄方 − 對位方」的平均。",
@@ -1580,6 +1607,7 @@ function setupAnchors() {
     let id = decodeURIComponent(location.hash.slice(1));
     if (VIEWS.includes(id)) { SHOW_VIEW(id); return; }   // #predict etc. (also Back/Forward between tabs)
     id = ANCHOR_ALIAS[id] || id;   // older team-based match links
+    if (id.startsWith("hero-")) { SHOW_VIEW("matchup"); requestAnimationFrame(() => MU_SHOW(id.slice(5))); return; }
     // a player's panel is rendered on demand; show its tab first so the panel is measured at the right width
     if (id.startsWith("pl-") && !document.getElementById(id)) { SHOW_VIEW("player"); PL_SHOW(id); }
     const el = id && !VIEWS.includes(id) && document.getElementById(id); if (!el) return;
