@@ -413,7 +413,7 @@ function setupTips() {
     box.style.top = `${r.top - h - 6 >= 4 ? r.top - h - 6 : r.bottom + 6}px`;
   };
   const hide = () => { box.hidden = true; };
-  const target = e => e.target.closest?.(".tip[data-tip], .upd[data-tip]");
+  const target = e => e.target.closest?.(".tip[data-tip], .upd[data-tip], td[data-tip]");
   document.addEventListener("mouseover", e => { const t = target(e); t ? show(t) : hide(); });
   document.addEventListener("focusin", e => { const t = target(e); t ? show(t) : hide(); });
   document.addEventListener("focusout", hide);
@@ -983,6 +983,16 @@ function playerStats(W) {
   ];
   // MVP column only once some game has an MVP on record
   if (MV.size) cols.splice(6, 0, ["MVP", r => r.mvp, false, r => `<td>${r.mvp ? `<span class="mvp-star">★</span>${r.mvp}` : "0"}</td>`]);
+  // hovering a number shows the player's rank in that column among players of the same lane (higher value = 1st, ties share)
+  cols.forEach((c, i) => {
+    const [label, key, isText, cell] = c;
+    if (!key || isText || label === "場數") return;
+    const byRole = {};
+    rows.forEach(r => { const v = key(r); if (v != null) (byRole[r.role] ||= []).push(v); });
+    c[3] = r => { const v = key(r), vs = byRole[r.role]; if (v == null || !vs) return cell(r);
+      const rank = vs.filter(x => x > v).length + 1;
+      return cell(r).replace(/^<td/, `<td data-tip="${ROLE_SHORT[r.role]}第 ${rank} 名（共 ${vs.length} 人）"`); };
+  });
   const T = sortTable("player-table", cols, rows, [{ col: cols.findIndex(c => c[0] === "KDA"), desc: true }],   // KDA, high to low
     (a, b) => b.k - a.k || a.player.localeCompare(b.player));
   const chips = `<span class="rolef" role="group" aria-label="位置篩選">${[["", "全部"], ...Object.entries(ROLE_SHORT)].map(([v, l]) =>
@@ -1023,7 +1033,7 @@ function renderWorlds(W) {
         `<li><b title="${esc(fullName(t))}">${esc(t)}</b><span>${nextOf(t) ? `vs ${esc(nextOf(t))}` : ""}</span></li>`).join("")}</ul></div>`).join("")}</div>`);
 
   const nGames = (W.player_games || []).length / 10;
-  const players = sec("選手數據統計", `世界賽正式比賽（已結束 ${nGames} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。數據取自 gol.gg。`,
+  const players = sec("選手數據統計", `世界賽正式比賽（已結束 ${nGames} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。數據取自 gol.gg。`,
     playerStats(W));
   const champs = sec("英雄資訊變化", "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。",
     champChanges(W));
