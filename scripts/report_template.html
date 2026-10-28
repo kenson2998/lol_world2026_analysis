@@ -303,7 +303,8 @@ footer a { color: var(--accent) }
 .pv-tr.open .who-sm::after { content: "▾"; color: var(--accent) }
 #player-table .pv-row > td { padding: 0; text-align: left; white-space: normal; background: var(--expand-bg);
   box-shadow: inset 3px 0 0 var(--accent), inset 0 -1px 0 var(--line) }
-.pv-inner { position: sticky; left: 0; padding: 14px 16px 18px; box-sizing: border-box }
+/* the expanded panel sits above the frozen header row, so the header never covers it */
+.pv-inner { position: sticky; left: 0; z-index: 3; background: var(--expand-bg); padding: 14px 16px 18px; box-sizing: border-box }
 .pv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px }
 .pv-head .av { width: 64px; height: 64px }
 .pv-head h2 { margin: 0 }
@@ -383,6 +384,9 @@ footer a { color: var(--accent) }
 .wtable td.l { text-align: left }
 .wtable .tm { font: 700 15px var(--f-display) }
 .wbox { border: 1px solid var(--line); border-radius: 10px; overflow-x: auto }
+/* long sortable tables scroll in their own pane with the header row frozen at the top (like a spreadsheet) */
+.wbox.scrollbox { max-height: min(78vh, 900px); overflow: auto; overscroll-behavior: contain }
+.scrollbox > table > thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); box-shadow: inset 0 -1px 0 var(--line) }
 .rec-chip { font: 700 11px var(--f-data); border-radius: 4px; padding: 1px 6px; background: var(--mid-soft) }
 .rec-chip.up { background: var(--good-soft); color: var(--good) }
 .rec-chip.down { background: var(--bad-soft); color: var(--bad) }
@@ -850,7 +854,7 @@ function sortTableHTML(id, extra = "") {
   return `<div class="sortbar">${extra}<label class="multi"><input type="checkbox" id="${id}-multi"> 複合排序</label>
       <span class="hint">（開啟後點欄位會加入下一層排序；也可按住 Shift 點欄位）</span>
       <span class="chain" id="${id}-chain" aria-live="polite"></span></div>
-    <div class="wbox"><table class="wtable" id="${id}"><thead></thead><tbody></tbody></table></div>`;
+    <div class="wbox scrollbox"><table class="wtable" id="${id}"><thead></thead><tbody></tbody></table></div>`;
 }
 const defaultDesc = (T, i) => !T.cols[i][2];   // numbers start high→low, names start A→Z
 
@@ -1158,7 +1162,9 @@ function renderPlayerVs(W, sec) {
       const tr = e.target.closest("tr.pv-tr"); if (!tr) return;
       e.preventDefault();   // the name is also a link; a click here toggles in place
       show(tr.dataset.pid, true);
-      tbl().querySelector(`tr.pv-tr[data-pid="${CSS.escape(tr.dataset.pid)}"]`)?.scrollIntoView({ block: "nearest" });
+      // bring the opened row to the top of the scroll pane, just under the frozen header
+      const row = tbl().querySelector(`tr.pv-tr[data-pid="${CSS.escape(tr.dataset.pid)}"]`), box = tbl().parentElement;
+      if (row && T.open) box.scrollTo({ top: row.offsetTop - tbl().tHead.offsetHeight, behavior: "smooth" });
     });
     // re-fit when the table box changes size: window resize, or the tab becoming visible
     if (typeof ResizeObserver !== "undefined" && tbl()) new ResizeObserver(fit).observe(tbl().parentElement);
