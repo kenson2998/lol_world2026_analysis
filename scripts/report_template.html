@@ -361,17 +361,24 @@ footer a { color: var(--accent) }
 .mx-row > td { padding: 0 !important; text-align: left !important; white-space: normal !important; background: var(--expand-bg) !important;
   box-shadow: inset 3px 0 0 var(--accent) }
 .mx-inner { padding: 12px 14px 16px; position: sticky; left: 0; max-width: calc(100vw - 40px) }
-.mx-inner > .bp-team { margin-bottom: 10px }
+.bp-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 12px; margin-bottom: 12px }
 .bp-team { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--rd-me); border-radius: 10px; padding: 10px 12px; display: grid; gap: 6px }
 .bp-team.b { border-left-color: var(--rd-b) }
 .bp-team h4 { margin: 0; font: 700 18px var(--f-display) } .bp-team.a h4 { color: var(--rd-me) } .bp-team.b h4 { color: var(--rd-b) }
 .bp-team h4 small { font: 500 12px var(--f-body); color: var(--muted); margin-left: 6px }
-.bp-line { display: grid; grid-template-columns: 40px 1fr; gap: 8px; align-items: center }
-.bp-l { font: 600 12px var(--f-body); color: var(--muted) }
-.bp-cs { display: flex; flex-wrap: wrap; gap: 4px }
-.bp-c { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px 2px 2px; font: 600 11px var(--f-data) }
-.bp-c .ci { width: 24px; height: 24px; border-radius: 4px }
-.bp-c .w { color: var(--good) } .bp-c .l { color: var(--bad) }
+.bp-team { min-width: 0 }
+.bp-scroll { overflow-x: auto }
+.bp-table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums }
+.bp-table th { font: 600 11px var(--f-data); color: var(--muted); text-align: right; padding: 5px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; cursor: help }
+.bp-table th:first-child { text-align: left; cursor: default }
+.bp-table td { text-align: right; padding: 4px 6px; border-top: 1px solid var(--line); white-space: nowrap }
+.bp-table tr:nth-child(even) > td { background: var(--zebra) }
+.bp-table .cn-cell .ci { width: 22px; height: 22px }
+.bp-table .wr { font: 600 11.5px var(--f-data); padding: 0 5px; border-radius: 4px; background: var(--mid-soft) }
+.bp-table .wr.hi { background: var(--good-soft); color: var(--good) } .bp-table .wr.lo { background: var(--bad-soft); color: var(--bad) }
+.bp-rec { font: 500 10.5px var(--f-data); color: var(--muted); margin-left: 4px }
+.bp-n { font: 600 12.5px var(--f-data) } .bp-n.z { color: var(--muted); font-weight: 400 }
+.bp-note { margin: 2px 0 0; font-size: 11px; color: var(--muted) }
 .mx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px }
 .mx-card .cb-h h3 { flex: 0 0 auto }
 .mx-vs { font: 600 13px var(--f-body); margin-left: auto; white-space: nowrap }
@@ -695,12 +702,12 @@ function matchPreview(a, b) {
       ${radarFig(rows.filter(r => r.role === role), [{ row: pa, cls: "a" }, { row: pb, cls: "b" }], role)}
       <div class="mx-chs">${champs(pa)}${champs(pb)}</div></article>`;
   }).join("");
-  return `<div class="mx-inner">${teamBP(a, "a")}${teamBP(b, "b")}
+  return `<div class="mx-inner"><div class="bp-pair">${teamBP(a, "a")}${teamBP(b, "b")}</div>
     <p class="rnote">各路線兩隊選手的世界賽數據（雷達圖含該路線平均）與常用英雄。</p><div class="mx-grid">${cards}</div></div>`;
 }
 
-// a team's draft habits over its finished games; every count carries this team's record in those games:
-// 選用 = it picked, 禁用 = it banned, 被禁 = opponents banned against it, 被選 = opponents picked against it
+// a team's draft habits over its finished games, one table row per champion: times it picked the champion and its
+// win rate then, times opponents picked it (應對) and this team's win rate against it, times it banned it, times it got banned
 function teamBP(team, cls) {
   const games = doneGames(DATA.worlds).filter(g => g.draft && (g.a === team || g.b === team));
   const pick = {}, ban = {}, against = {}, oppPick = {};
@@ -711,12 +718,20 @@ function teamBP(team, cls) {
     (g.draft.bans?.[team] || []).forEach(c => add(ban, c, win));
     (g.draft.bans?.[opp] || []).forEach(c => add(against, c, win));
   });
-  const top = (o, k) => Object.values(o).sort((x, y) => y.n - x.n || y.w - x.w || x.champ.localeCompare(y.champ)).slice(0, k);
-  const chip = c => `<span class="bp-c">${icon(c.champ)}<b>×${c.n}</b><span class="${c.w * 2 >= c.n ? "w" : "l"}">${Math.round(c.w / c.n * 100)}%(${c.w}W-${c.n - c.w}L)</span></span>`;
-  const line = (label, hint, list) => `<div class="bp-line"><span class="bp-l" title="${hint}">${label}</span><span class="bp-cs">${list.length ? list.map(chip).join("") : "—"}</span></div>`;
-  return `<section class="bp-team ${cls}"><h4>${esc(team)} <small>${esc(fullName(team))} · ${games.length} 局 BP 統計（勝率皆為 ${esc(team)} 在那些局的戰績）</small></h4>
-    ${line("選用", `${team} 選的英雄`, top(pick, 8))}${line("禁用", `${team} 禁的英雄`, top(ban, 8))}
-    ${line("被禁", `對手禁掉 ${team} 的英雄`, top(against, 6))}${line("被選", `對手選來打 ${team} 的英雄`, top(oppPick, 6))}</section>`;
+  // one row per champion that showed up in this team's drafts, most involved first
+  const names = [...new Set([pick, oppPick, ban, against].flatMap(Object.keys))];
+  const n = (o, c) => o[c]?.n || 0;
+  const rows = names.map(c => ({ c, total: n(pick, c) + n(oppPick, c) + n(ban, c) + n(against, c) }))
+    .sort((x, y) => y.total - x.total || n(pick, y.c) - n(pick, x.c) || x.c.localeCompare(y.c)).slice(0, 12);
+  const cnt = (o, c) => `<td class="bp-n${n(o, c) ? "" : " z"}">${n(o, c) || "—"}</td>`;
+  const wr = (o, c) => { const x = o[c]; if (!x) return `<td class="bp-n z">—</td>`;
+    return `<td><span class="wr ${wrCls(x.w / x.n * 100)}">${Math.round(x.w / x.n * 100)}%</span><span class="bp-rec">${x.w}-${x.n - x.w}</span></td>`; };
+  return `<section class="bp-team ${cls}"><h4>${esc(team)} <small>${esc(fullName(team))} · ${games.length} 局</small></h4>
+    <div class="bp-scroll"><table class="bp-table"><tr><th>英雄</th><th title="${esc(team)} 選這隻英雄的次數">選用</th><th title="${esc(team)} 選這隻英雄時的勝率">選用勝率</th>
+      <th title="對手選這隻英雄來打 ${esc(team)} 的次數">應對</th><th title="對手選這隻英雄時，${esc(team)} 的勝率">應對勝率</th>
+      <th title="${esc(team)} 禁這隻英雄的次數">禁用</th><th title="對手禁掉這隻英雄的次數">被禁</th></tr>${rows.map(({ c }) =>
+      `<tr><td class="l"><span class="cn-cell">${icon(c)}<span>${esc(cname(c))}</span></span></td>${cnt(pick, c)}${wr(pick, c)}${cnt(oppPick, c)}${wr(oppPick, c)}${cnt(ban, c)}${cnt(against, c)}</tr>`).join("")}
+    </table></div><p class="bp-note">勝率皆為 ${esc(team)} 在那些局的戰績；「應對」= 對手選了這隻英雄。依出現次數排序，顯示前 12 隻。</p></section>`;
 }
 // clicking an upcoming-match row (in any round table) toggles its preview row right below it
 function setupMatchPreviews() {
