@@ -266,8 +266,12 @@ footer a { color: var(--accent) }
 .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: grid; gap: 2px }
 .kpi b { font: 700 26px var(--f-display); font-variant-numeric: tabular-nums }
 .kpi span { font-size: 12px; color: var(--muted) }
-.picks2 { display: inline-flex; gap: 2px }
-.picks2 .ci { width: 24px; height: 24px; border-radius: 4px }
+.picks2 { display: inline-flex; flex-wrap: nowrap; gap: 2px }
+/* icons never shrink inside narrow table cells (phones squashed them into slivers) */
+.picks2 > .tip { flex: 0 0 auto }
+.picks2 .ci { width: 24px; height: 24px; min-width: 24px; border-radius: 4px; object-fit: cover }
+.champ-cell { display: inline-flex; align-items: center; gap: 6px }
+.nchamp { font: 600 12px var(--f-data); min-width: 1.6em; text-align: center; background: var(--mid-soft); border-radius: 999px; padding: 1px 6px }
 .perf { font: 600 10px var(--f-body); color: var(--good) }
 .rolef { display: inline-flex; gap: 4px; flex-wrap: wrap; margin-right: 8px }
 .rolef .chip { font-size: 12px; padding: 2px 10px }
@@ -1179,7 +1183,9 @@ function playerStats(W) {
     ["選手", r => r.player, true, r => `<td class="l"><a class="who-sm pl-link" href="${plHref(r.team, r.player)}" title="看 ${esc(r.player)} 的選手對位">${avatar(r.team, r.player, true)}<b>${esc(r.player)}</b></a></td>`],
     ["隊伍", r => r.team, true, r => `<td><span class="tm" title="${esc(fullName(r.team))}">${esc(r.team)}</span></td>`],
     ["位置", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
-    ["英雄", null, false, r => `<td class="l"><span class="picks2">${r.champs.map(icon).join("")}</span></td>`],
+    // distinct champions played: count first, then each champion once
+    ["英雄", r => new Set(r.champs).size, false, r => { const cs = [...new Set(r.champs)];
+      return `<td class="l"><span class="champ-cell"><b class="nchamp" title="使用 ${cs.length} 隻英雄">${cs.length}</b><span class="picks2">${cs.map(icon).join("")}</span></span></td>`; }],
     ["場數", r => r.n, false, r => `<td>${r.n}</td>`],
     ["戰績", r => r.wins / r.n, false, r => `<td><span class="wr ${wrCls(r.wins / r.n * 100)}">${r.wins}-${r.n - r.wins}</span></td>`],
     ["K / D / A", r => r.k, false, r => `<td>${r.k} / ${r.d} / ${r.a}</td>`],
