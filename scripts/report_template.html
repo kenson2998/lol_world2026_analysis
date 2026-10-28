@@ -282,6 +282,9 @@ footer a { color: var(--accent) }
 .flash { animation: flash 1.6s ease-out }
 @keyframes flash { 0%, 30% { box-shadow: 0 0 0 3px var(--accent) } 100% { box-shadow: 0 0 0 3px transparent } }
 @media (prefers-reduced-motion: reduce) { .flash { animation: none; box-shadow: 0 0 0 3px var(--accent) } }
+.bks { white-space: normal !important; min-width: 180px }
+.bk { display: block; font: 500 12px var(--f-data) } .bk b { font: 600 11.5px var(--f-body); color: var(--muted); margin-right: 4px }
+.bk-tag { font: 600 9.5px var(--f-body); color: var(--accent); border: 1px solid var(--accent); border-radius: 3px; padding: 0 3px; margin-left: 4px }
 .mo-list { display: flex; flex-wrap: wrap; gap: 4px; min-width: 260px; white-space: normal }
 .mo { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px 2px 2px; cursor: default }
 .mo .ci { width: 22px; height: 22px; border-radius: 4px }
@@ -553,17 +556,26 @@ function gameCard(m, head, ri, label, id) {
     <div class="res-meta">時長 ${esc(m.length || "—")}${m.note ? ` · ${esc(m.note)}` : ""}${id ? anc(id) : ""}${ord ? `<br>${ord}` : ""}</div></div>`;
 }
 
+// bookmaker implied win chance: each book's 1/odds normalised to remove its margin, averaged over books
+const bookPct = books => { if (!books?.length) return null;
+  const pa = books.reduce((s, b) => s + (1 / b.odds[0]) / (1 / b.odds[0] + 1 / b.odds[1]), 0) / books.length;
+  return [Math.round(pa * 1000) / 10, Math.round((1 - pa) * 1000) / 10]; };
+
 function upcomingTable(r) {
-  return `<p class="rnote">勝率為 Polymarket 價格；賠率為十進位（Polymarket / Kalshi）。時間為台灣時間，括號內為美國中部時間。</p>
-    <div class="wbox"><table class="wtable"><tr><th>時間</th><th>組別</th><th style="text-align:center">對戰與勝率</th><th>Polymarket</th><th>Kalshi</th></tr>${
-    r.matches.filter(m => !m.winner).map(m => { const p = m.pct || [50, 50], fa = m.pct && p[0] >= p[1], fb = m.pct && p[1] > p[0];
+  const ms = r.matches.filter(m => !m.winner), anyBooks = ms.some(m => m.books?.length);
+  const fromBooks = ms.some(m => !m.pct && m.books?.length);
+  return `<p class="rnote">${fromBooks ? "勝率優先用 Polymarket 價格；沒有 Polymarket 時改用莊家賠率換算（去除抽水後取平均，標「莊」）。" : "勝率為 Polymarket 價格。"}賠率為十進位。時間為台灣時間，括號內為美國中部時間。</p>
+    <div class="wbox"><table class="wtable"><tr><th>時間</th><th>組別</th><th style="text-align:center">對戰與勝率</th><th>Polymarket</th><th>Kalshi</th>${anyBooks ? "<th>莊家賠率</th>" : ""}</tr>${
+    ms.map(m => { const pct = m.pct || bookPct(m.books), p = pct || [50, 50], fa = pct && p[0] >= p[1], fb = pct && p[1] > p[0];
       const odds = o => (o ? o.map(x => x.toFixed(2)).join(" / ") : "—");
+      const tag = !m.pct && pct ? `<span class="bk-tag" title="莊家賠率換算">莊</span>` : "";
+      const books = (m.books || []).map(b => `<span class="bk" title="${esc(`${b.book}，${b.as_of}`)}"><b>${esc(b.book)}</b> ${odds(b.odds)}</span>`).join("") || "—";
       return `<tr><td class="l">${esc(m.time_tw)}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
         <td><span class="rec-chip ${recCls(m.pool)}">${esc(m.pool)}</span>${m.format ? `<br><span class="n">${esc(m.format)}</span>` : ""}</td>
-        <td><div class="mu"><span class="sa ${fa ? "fav" : ""}"><span class="tm">${esc(m.a)}</span><span class="pc">${m.pct ? `${p[0]}%` : "—"}</span></span>
-          <span class="split" aria-hidden="true">${m.pct ? `<i class="a" style="width:${p[0]}%"></i><i class="b" style="width:${p[1]}%"></i>` : ""}</span>
-          <span class="sb ${fb ? "fav" : ""}"><span class="tm">${esc(m.b)}</span><span class="pc">${m.pct ? `${p[1]}%` : "—"}</span></span></div></td>
-        <td>${odds(m.poly)}</td><td>${odds(m.kalshi)}</td></tr>`; }).join("")
+        <td><div class="mu"><span class="sa ${fa ? "fav" : ""}"><span class="tm">${esc(m.a)}</span><span class="pc">${pct ? `${p[0]}%` : "—"}${tag}</span></span>
+          <span class="split" aria-hidden="true">${pct ? `<i class="a" style="width:${p[0]}%"></i><i class="b" style="width:${p[1]}%"></i>` : ""}</span>
+          <span class="sb ${fb ? "fav" : ""}"><span class="tm">${esc(m.b)}</span><span class="pc">${pct ? `${p[1]}%` : "—"}${tag}</span></span></div></td>
+        <td>${odds(m.poly)}</td><td>${odds(m.kalshi)}</td>${anyBooks ? `<td class="l bks">${books}</td>` : ""}</tr>`; }).join("")
   }</table></div>`;
 }
 

@@ -3260,7 +3260,7 @@
    "status": "upcoming",
    "format": "Bo3",
    "date": "10/28–10/30 CDT · 10/29 04:00 – 10/31 約 10:00 台灣時間",
-   "note": "先選權（Right of First Selection，第一局）：MKOI（高種子，vs T1）、LYON（高種子，vs IG）、BLG（高種子，vs TES）、CFO（高種子，vs KC）、TLAW（同種子抽籤先抽，vs LOS）、G2（高種子，vs HLE）。各隊選先選或選邊尚未公布。第四輪全部 Bo3（Fearless）；尚未取得賠率",
+   "note": "先選權（Right of First Selection，第一局）：MKOI（高種子，vs T1）、LYON（高種子，vs IG）、BLG（高種子，vs TES）、CFO（高種子，vs KC）、TLAW（同種子抽籤先抽，vs LOS）、G2（高種子，vs HLE）。各隊選先選或選邊尚未公布。第四輪全部 Bo3（Fearless）；Polymarket／Kalshi 無法連線，改列莊家賠率（SpinBetter 10/28、GG.BET 10/27）",
    "matches": [
     {
      "pool": "2-1",
@@ -3271,7 +3271,27 @@
      "time_ct": "10/28 15:00",
      "pct": null,
      "poly": null,
-     "kalshi": null
+     "kalshi": null,
+     "books": [
+      {
+       "book": "SpinBetter",
+       "odds": [
+        6.2,
+        1.12
+       ],
+       "as_of": "2026-10-28",
+       "src": "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
+      },
+      {
+       "book": "GG.BET",
+       "odds": [
+        4.19,
+        1.2
+       ],
+       "as_of": "2026-10-27",
+       "src": "https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/"
+      }
+     ]
     },
     {
      "pool": "2-1",
@@ -3282,7 +3302,18 @@
      "time_ct": "10/28 18:00",
      "pct": null,
      "poly": null,
-     "kalshi": null
+     "kalshi": null,
+     "books": [
+      {
+       "book": "SpinBetter",
+       "odds": [
+        1.5,
+        2.58
+       ],
+       "as_of": "2026-10-28",
+       "src": "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
+      }
+     ]
     },
     {
      "pool": "1-2",
@@ -3293,7 +3324,18 @@
      "time_ct": "10/29 15:00",
      "pct": null,
      "poly": null,
-     "kalshi": null
+     "kalshi": null,
+     "books": [
+      {
+       "book": "SpinBetter",
+       "odds": [
+        1.26,
+        3.84
+       ],
+       "as_of": "2026-10-28",
+       "src": "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
+      }
+     ]
     },
     {
      "pool": "2-1",
@@ -3304,7 +3346,18 @@
      "time_ct": "10/29 18:00",
      "pct": null,
      "poly": null,
-     "kalshi": null
+     "kalshi": null,
+     "books": [
+      {
+       "book": "SpinBetter",
+       "odds": [
+        3.42,
+        1.31
+       ],
+       "as_of": "2026-10-28",
+       "src": "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
+      }
+     ]
     },
     {
      "pool": "1-2",
@@ -3315,7 +3368,18 @@
      "time_ct": "10/30 15:00",
      "pct": null,
      "poly": null,
-     "kalshi": null
+     "kalshi": null,
+     "books": [
+      {
+       "book": "SpinBetter",
+       "odds": [
+        1.23,
+        4.18
+       ],
+       "as_of": "2026-10-28",
+       "src": "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
+      }
+     ]
     },
     {
      "pool": "1-2",
@@ -3326,7 +3390,18 @@
      "time_ct": "10/30 18:00",
      "pct": null,
      "poly": null,
-     "kalshi": null
+     "kalshi": null,
+     "books": [
+      {
+       "book": "SpinBetter",
+       "odds": [
+        1.21,
+        4.44
+       ],
+       "as_of": "2026-10-28",
+       "src": "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
+      }
+     ]
     }
    ]
   }
@@ -3717,7 +3792,8 @@
   "水晶球題目依已結束場次即時計算，僅反映目前領先者；Faker 本屆開始前世界賽生涯 616 擊殺（題目提供），本屆擊殺只計 Swiss Stage。Polymarket GEN 3-0（92%）略高於 GEN vs LYON 單場勝率（89.5%），屬市場價差，照實記錄。",
   "Bo3 以每一局分開統計 BP、英雄與選手數據（水晶球、英雄資訊、選手數據都以「局」計算）；預測準確度以系列賽勝負計。部分 Polymarket 晉級／0-3 市場成交量很小、買賣價差大（如 AL、TLAW 0-3），請保守看待。",
   "10/27 更新時 Polymarket、Kalshi 無法連線，第四輪賠率尚未取得；冠軍機率、晉級機率仍為 10/26 14:46（台灣時間）的價格，晉級模型（Outdrafted）已更新到第三輪結束後。",
-  "LOS vs TSW 第 2 局、TLAW vs AL 第 1 局的藍紅方，Liquipedia 文字說明與其頁面顏色標示不一致，採用顏色標示與 gol.gg。"
+  "LOS vs TSW 第 2 局、TLAW vs AL 第 1 局的藍紅方，Liquipedia 文字說明與其頁面顏色標示不一致，採用顏色標示與 gol.gg。",
+  "第四輪賠率：Polymarket、Kalshi 無法從資料整理環境連線，改用莊家十進位賠率——SpinBetter（經 tips.gg，10/28 文章）與 GG.BET（經 win.gg，10/27）。表中勝率為莊家賠率去除抽水後的換算值（標「莊」），與預測市場價格不同。"
  ],
  "sources": [
   [
@@ -3763,6 +3839,14 @@
   [
    "Polymarket 價格歷史（CLOB）",
    "https://clob.polymarket.com/prices-history"
+  ],
+  [
+   "GG.BET 賠率（win.gg）",
+   "https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/"
+  ],
+  [
+   "SpinBetter 賠率（tips.gg）",
+   "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
   ]
  ],
  "player_games": [
