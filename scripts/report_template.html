@@ -361,6 +361,17 @@ footer a { color: var(--accent) }
 .mx-row > td { padding: 0 !important; text-align: left !important; white-space: normal !important; background: var(--expand-bg) !important;
   box-shadow: inset 3px 0 0 var(--accent) }
 .mx-inner { padding: 12px 14px 16px; position: sticky; left: 0; max-width: calc(100vw - 40px) }
+.mx-inner > .bp-team { margin-bottom: 10px }
+.bp-team { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--rd-me); border-radius: 10px; padding: 10px 12px; display: grid; gap: 6px }
+.bp-team.b { border-left-color: var(--rd-b) }
+.bp-team h4 { margin: 0; font: 700 18px var(--f-display) } .bp-team.a h4 { color: var(--rd-me) } .bp-team.b h4 { color: var(--rd-b) }
+.bp-team h4 small { font: 500 12px var(--f-body); color: var(--muted); margin-left: 6px }
+.bp-line { display: grid; grid-template-columns: 40px 1fr; gap: 8px; align-items: center }
+.bp-l { font: 600 12px var(--f-body); color: var(--muted) }
+.bp-cs { display: flex; flex-wrap: wrap; gap: 4px }
+.bp-c { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px 2px 2px; font: 600 11px var(--f-data) }
+.bp-c .ci { width: 24px; height: 24px; border-radius: 4px }
+.bp-c .w { color: var(--good) } .bp-c .l { color: var(--bad) }
 .mx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px }
 .mx-card .cb-h h3 { flex: 0 0 auto }
 .mx-vs { font: 600 13px var(--f-body); margin-left: auto; white-space: nowrap }
@@ -684,7 +695,28 @@ function matchPreview(a, b) {
       ${radarFig(rows.filter(r => r.role === role), [{ row: pa, cls: "a" }, { row: pb, cls: "b" }], role)}
       <div class="mx-chs">${champs(pa)}${champs(pb)}</div></article>`;
   }).join("");
-  return `<div class="mx-inner"><p class="rnote">各路線兩隊選手的世界賽數據（雷達圖含該路線平均）與常用英雄。</p><div class="mx-grid">${cards}</div></div>`;
+  return `<div class="mx-inner">${teamBP(a, "a")}${teamBP(b, "b")}
+    <p class="rnote">各路線兩隊選手的世界賽數據（雷達圖含該路線平均）與常用英雄。</p><div class="mx-grid">${cards}</div></div>`;
+}
+
+// a team's draft habits over its finished games; every count carries this team's record in those games:
+// 選用 = it picked, 禁用 = it banned, 被禁 = opponents banned against it, 被選 = opponents picked against it
+function teamBP(team, cls) {
+  const games = doneGames(DATA.worlds).filter(g => g.draft && (g.a === team || g.b === team));
+  const pick = {}, ban = {}, against = {}, oppPick = {};
+  const add = (o, c, win) => { const x = (o[c] ||= { champ: c, n: 0, w: 0 }); x.n++; x.w += win; };
+  games.forEach(g => {
+    const opp = g.a === team ? g.b : g.a, win = g.winner === team;
+    g.draft.picks.forEach(p => add(p.team === team ? pick : oppPick, p.champion, win));
+    (g.draft.bans?.[team] || []).forEach(c => add(ban, c, win));
+    (g.draft.bans?.[opp] || []).forEach(c => add(against, c, win));
+  });
+  const top = (o, k) => Object.values(o).sort((x, y) => y.n - x.n || y.w - x.w || x.champ.localeCompare(y.champ)).slice(0, k);
+  const chip = c => `<span class="bp-c">${icon(c.champ)}<b>×${c.n}</b><span class="${c.w * 2 >= c.n ? "w" : "l"}">${Math.round(c.w / c.n * 100)}%(${c.w}W-${c.n - c.w}L)</span></span>`;
+  const line = (label, hint, list) => `<div class="bp-line"><span class="bp-l" title="${hint}">${label}</span><span class="bp-cs">${list.length ? list.map(chip).join("") : "—"}</span></div>`;
+  return `<section class="bp-team ${cls}"><h4>${esc(team)} <small>${esc(fullName(team))} · ${games.length} 局 BP 統計（勝率皆為 ${esc(team)} 在那些局的戰績）</small></h4>
+    ${line("選用", `${team} 選的英雄`, top(pick, 8))}${line("禁用", `${team} 禁的英雄`, top(ban, 8))}
+    ${line("被禁", `對手禁掉 ${team} 的英雄`, top(against, 6))}${line("被選", `對手選來打 ${team} 的英雄`, top(oppPick, 6))}</section>`;
 }
 // clicking an upcoming-match row (in any round table) toggles its preview row right below it
 function setupMatchPreviews() {
