@@ -13,7 +13,7 @@ const mk = id => ({
 });
 global.document = {
   getElementById: id => (els[id] ||= mk(id)),
-  querySelectorAll: sel => (sel === ".vtab" ? ["worlds", "predict", "matchup"].map(v => Object.assign(document.getElementById("tab-" + v), { dataset: { view: v } })) : []),
+  querySelectorAll: sel => (sel === ".vtab" ? ["worlds", "predict", "matchup", "player"].map(v => Object.assign(document.getElementById("tab-" + v), { dataset: { view: v } })) : []),
   querySelector: () => mk("q"), createElement: () => mk("new"), addEventListener() {}, body: { append() {} },
 };
 global.localStorage = { getItem: () => null, setItem() {} };

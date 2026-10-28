@@ -284,6 +284,33 @@ footer a { color: var(--accent) }
 .flash { animation: flash 1.6s ease-out }
 @keyframes flash { 0%, 30% { box-shadow: 0 0 0 3px var(--accent) } 100% { box-shadow: 0 0 0 3px transparent } }
 @media (prefers-reduced-motion: reduce) { .flash { animation: none; box-shadow: 0 0 0 3px var(--accent) } }
+/* 選手對位 */
+.pv-pick label { display: inline-flex; align-items: center; gap: 8px; font-weight: 600 }
+.pv-pick select { font: 14px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; min-width: 240px }
+.pv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px }
+.pv-head .av { width: 64px; height: 64px }
+.pv-head h2 { margin: 0 }
+.pv-head p { margin: 2px 0 0; color: var(--muted) }
+.pv-head .wr { font: 600 12px var(--f-data); padding: 1px 6px; border-radius: 4px; background: var(--mid-soft) }
+.pv-head .wr.hi { background: var(--good-soft); color: var(--good) } .pv-head .wr.lo { background: var(--bad-soft); color: var(--bad) }
+.pv-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px }
+.pv-rank { font: 500 11px var(--f-data) !important; color: var(--accent) !important }
+.pv-h3 { font: 700 20px var(--f-display); margin: 22px 0 8px }
+.pv-opps { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 12px }
+.pv-opp { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 10px; min-width: 0; align-content: start }
+.pv-oh { display: grid; grid-template-columns: 52px 1fr auto auto; gap: 10px; align-items: center }
+.pv-oh .nm { display: grid } .pv-oh .nm b { font-size: 16px } .pv-oh .nm span { font-size: 12px; color: var(--muted) }
+.pv-oh .val { font: 700 16px var(--f-data); background: var(--mid-soft); border-radius: 999px; padding: 3px 10px }
+.pv-wl { font: 600 12px var(--f-data); color: var(--muted) }
+.pv-pairs { display: flex; flex-wrap: wrap; gap: 4px }
+.pv-pairs .mo .ci, .pv-ch .ci { width: 24px; height: 24px; border-radius: 4px }
+.pv-vs { font: 600 10px var(--f-data); color: var(--muted); margin: 0 3px }
+.pv-ch { display: inline-flex; align-items: center }
+.pv-games { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums }
+.pv-games th { font: 600 11px var(--f-data); color: var(--muted); text-align: right; padding: 4px 6px; border-bottom: 1px solid var(--line) }
+.pv-games td { text-align: right; padding: 4px 6px; border-top: 1px solid var(--line); white-space: nowrap }
+.pv-games th:first-child, .pv-games th:nth-child(2), .pv-games td.l { text-align: left }
+.pv-opp { overflow-x: auto }
 .bks { white-space: normal !important; min-width: 180px }
 .bk { display: block; font: 500 12px var(--f-data) } .bk b { font: 600 11.5px var(--f-body); color: var(--muted); margin-right: 4px }
 .bk-tag { font: 600 9.5px var(--f-body); color: var(--accent); border: 1px solid var(--accent); border-radius: 3px; padding: 0 3px; margin-left: 4px }
@@ -376,6 +403,7 @@ footer a { color: var(--accent) }
       <button class="vtab" role="tab" id="tab-worlds" data-view="worlds" aria-selected="true" aria-controls="view-worlds">世界賽戰況</button>
       <button class="vtab" role="tab" id="tab-predict" data-view="predict" aria-selected="false" aria-controls="view-predict">水晶球預測</button>
       <button class="vtab" role="tab" id="tab-matchup" data-view="matchup" aria-selected="false" aria-controls="view-matchup">英雄對位</button>
+      <button class="vtab" role="tab" id="tab-player" data-view="player" aria-selected="false" aria-controls="view-player">選手對位</button>
     </div>
   </div>
   <div class="view" id="view-worlds" role="tabpanel" aria-labelledby="tab-worlds">
@@ -392,6 +420,13 @@ footer a { color: var(--accent) }
       <p class="lede" id="mu-sub"></p>
     </header>
     <div class="view" id="mu-body"></div>
+  </div>
+  <div class="view" id="view-player" role="tabpanel" aria-labelledby="tab-player" hidden>
+    <header>
+      <h1>選手對位</h1>
+      <p class="lede" id="pl-sub"></p>
+    </header>
+    <div class="view" id="pl-body"></div>
   </div>
   <div class="view" id="view-predict" role="tabpanel" aria-labelledby="tab-predict" hidden>
     <header>
@@ -948,20 +983,18 @@ function renderMatchups(W, sec) {
       sortTableHTML("mu-table", controls), "mu-detail");
 }
 
-// Worlds player stats: per-player totals/averages over every finished game in W.player_games
-function playerStats(W) {
-  const pg = W.player_games || [];
-  if (!pg.length) return `<div class="cmp-empty">尚無選手比賽數據。</div>`;
+// per-player totals/averages over every finished game in W.player_games (shared by the stats table and 選手對位)
+const avgOf = (gs, f) => { const v = gs.map(g => g[f]).filter(x => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+const sumOf = (gs, f) => gs.reduce((a, g) => a + (g[f] || 0), 0);
+function playerRows(W) {
   const by = new Map();
-  pg.forEach(g => {
+  (W.player_games || []).forEach(g => {
     const k = `${g.team}/${g.player}`;
     if (!by.has(k)) by.set(k, { team: g.team, player: g.player, role: g.role, games: [] });
     by.get(k).games.push(g);
   });
-  const avg = (gs, f) => { const v = gs.map(g => g[f]).filter(x => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
-  const sum = (gs, f) => gs.reduce((a, g) => a + (g[f] || 0), 0);
-  const MV = mvpCounts(W).counts;
-  const rows = [...by.values()].map(p => {
+  const MV = mvpCounts(W).counts, avg = avgOf, sum = sumOf;
+  return [...by.values()].map(p => {
     const gs = p.games, k = sum(gs, "k"), d = sum(gs, "d"), a = sum(gs, "a");
     return { ...p, n: gs.length, wins: gs.filter(g => g.win).length, k, d, a, kda: (k + a) / Math.max(1, d), perfect: d === 0,
       kp: avg(gs, "kp"), csm: avg(gs, "csm"), gpm: avg(gs, "gpm"), dpm: avg(gs, "dpm"), dmg_pct: avg(gs, "dmg_pct"),
@@ -969,6 +1002,88 @@ function playerStats(W) {
       stolenAg: gs.some(g => g.stolen_against != null) ? sum(gs, "stolen_against") : null,
       champs: gs.map(g => g.champion).filter(Boolean), mvp: MV.get(`${p.team}/${p.player}`) || 0 };
   });
+}
+
+// ---- 選手對位 page: one player's numbers (with lane rank), champion pool and every lane opponent ----
+let PL_SHOW = () => false;   // select a player by its "pl-TEAM-player" id (deep links); true when found
+function renderPlayerVs(W) {
+  const body = document.getElementById("pl-body"); if (!body) return;
+  const teams = DATA.teams.map(t => t.team), roles = Object.keys(ROLE_SHORT);
+  const rows = playerRows(W).sort((a, b) => teams.indexOf(a.team) - teams.indexOf(b.team) || roles.indexOf(a.role) - roles.indexOf(b.role));
+  if (!rows.length) { body.innerHTML = `<div class="cmp-empty">尚無選手比賽數據。</div>`; return; }
+  document.getElementById("pl-sub").textContent =
+    `選一位選手，看他在世界賽 ${doneGames(W).length} 局中的各項數據（含同路線排名）、英雄池，以及每位對線選手與雙方英雄的勝率。數據取自 gol.gg。`;
+  const pid = r => `pl-${r.team}-${r.player}`;
+  const byGame = {};
+  (W.player_games || []).forEach(g => (byGame[`${g.round}|${g.match}`] ||= []).push(g));
+  const laneOpp = g => byGame[`${g.round}|${g.match}`]?.find(o => o.role === g.role && o.team !== g.team);
+  const f1 = v => (v == null ? "—" : (Math.round(v * 10) / 10).toLocaleString());
+  const f0 = v => (v == null ? "—" : Math.round(v).toLocaleString());
+  const sg = v => (v == null ? "—" : `${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}`);
+  const wrTxt = (w, n) => `${Math.round(w / n * 100)}%(${w}W-${n - w}L)`;
+  // [label, value, formatted]; rank compares players of the same lane, higher value first
+  const STATS = [["KDA", r => r.kda, r => f1(r.kda)], ["擊殺", r => r.k, r => r.k], ["死亡", r => -r.d, r => r.d], ["助攻", r => r.a, r => r.a],
+    ["參團率", r => r.kp, r => (r.kp == null ? "—" : `${Math.round(r.kp)}%`)], ["每分補兵", r => r.csm, r => f1(r.csm)],
+    ["每分金錢", r => r.gpm, r => f0(r.gpm)], ["每分傷害", r => r.dpm, r => f0(r.dpm)], ["傷害佔比", r => r.dmg_pct, r => (r.dmg_pct == null ? "—" : `${f1(r.dmg_pct)}%`)],
+    ["承受傷害", r => r.taken, r => f0(r.taken)], ["視野分數", r => r.vs, r => f1(r.vs)], ["15分經濟差", r => r.gd15, r => sg(r.gd15)],
+    ["15分補兵差", r => r.csd15, r => sg(r.csd15)], ["單殺", r => r.solo, r => r.solo]];
+  const rankOf = (r, key) => { const v = key(r); if (v == null) return "";
+    const lane = rows.filter(x => x.role === r.role && key(x) != null);
+    return `${ROLE_SHORT[r.role]}第 ${lane.filter(x => key(x) > v).length + 1} 名 / ${lane.length}`; };
+
+  const panel = r => {
+    const gs = r.games;
+    // champion pool
+    const pool = {}; gs.forEach(g => { const c = (pool[g.champion] ||= { champ: g.champion, n: 0, w: 0, k: 0, d: 0, a: 0 });
+      c.n++; c.w += g.win; c.k += g.k || 0; c.d += g.d || 0; c.a += g.a || 0; });
+    const poolRows = Object.values(pool).sort((a, b) => b.n - a.n || b.w / b.n - a.w / a.n);
+    // lane opponents, each with every champion pairing and every game
+    const opps = {};
+    gs.forEach(g => { const o = laneOpp(g); if (!o) return;
+      const x = (opps[`${o.team}/${o.player}`] ||= { team: o.team, player: o.player, games: [] }); x.games.push({ me: g, op: o }); });
+    const oppCards = Object.values(opps).sort((a, b) => b.games.length - a.games.length).map(o => {
+      const n = o.games.length, w = o.games.filter(x => x.me.win).length;
+      const pairs = {}; o.games.forEach(x => { const k = `${x.me.champion}|${x.op.champion}`;
+        const p = (pairs[k] ||= { mine: x.me.champion, theirs: x.op.champion, n: 0, w: 0 }); p.n++; p.w += x.me.win; });
+      return `<article class="pv-opp"><div class="pv-oh">${avatar(o.team, o.player)}<span class="nm"><b>vs ${esc(o.player)}</b><span>${esc(o.team)} · ${ROLE_SHORT[r.role]}</span></span>
+          <span class="val">${Math.round(w / n * 100)}%</span><span class="pv-wl">${w}W-${n - w}L</span></div>
+        <div class="pv-pairs">${Object.values(pairs).map(p => `<span class="mo ${p.w * 2 > p.n ? "w" : p.w * 2 < p.n ? "l" : ""}">${icon(p.mine)}<span class="pv-vs">vs</span>${icon(p.theirs)}<b>${wrTxt(p.w, p.n)}</b></span>`).join("")}</div>
+        <table class="pv-games"><tr><th>輪次</th><th>英雄</th><th>結果</th><th>K/D/A</th><th>對手 K/D/A</th><th>15分經濟差</th></tr>${o.games.map(x => {
+          const rn = W.rounds[x.me.round]?.name || "", gi = x.me.match.match(/ G(\d)$/);
+          return `<tr><td class="l">${esc(rn)}${gi ? ` 第${gi[1]}局` : ""}</td><td class="l"><span class="pv-ch">${icon(x.me.champion)}<span class="pv-vs">vs</span>${icon(x.op.champion)}</span></td>
+            <td><span class="wl ${x.me.win ? "w" : "l"}">${x.me.win ? "勝" : "敗"}</span></td><td>${x.me.k}/${x.me.d}/${x.me.a}</td><td>${x.op.k}/${x.op.d}/${x.op.a}</td>
+            <td><span class="dlt ${x.me.gd15 > 0 ? "up" : x.me.gd15 < 0 ? "down" : "flat"}">${sg(x.me.gd15)}</span></td></tr>`; }).join("")}</table></article>`;
+    }).join("");
+    return `<section class="wsec pv" id="${esc(pid(r))}">
+      <div class="pv-head">${avatar(r.team, r.player)}<div><h2>${esc(r.player)}${anc(pid(r))}</h2>
+        <p>${esc(fullName(r.team))} · ${ROLE_SHORT[r.role]} · ${r.n} 場 <span class="wr ${wrCls(r.wins / r.n * 100)}">${wrTxt(r.wins, r.n)}</span></p></div></div>
+      <div class="pv-stats">${STATS.map(([label, key, fmt]) => `<div class="kpi"><b>${fmt(r)}</b><span>${label}</span><span class="pv-rank">${rankOf(r, key)}</span></div>`).join("")}</div>
+      <h3 class="pv-h3">英雄池</h3>
+      <div class="wbox"><table class="wtable"><tr><th>英雄</th><th>場數</th><th>戰績</th><th>勝率</th><th>KDA</th></tr>${poolRows.map(c =>
+        `<tr><td class="l"><span class="cn-cell">${icon(c.champ)}<span>${esc(cname(c.champ))}</span></span></td><td>${c.n}</td><td>${c.w}-${c.n - c.w}</td>
+          <td><span class="wr ${wrCls(c.w / c.n * 100)}">${Math.round(c.w / c.n * 100)}%</span></td><td>${f1((c.k + c.a) / Math.max(1, c.d))}</td></tr>`).join("")}</table></div>
+      <h3 class="pv-h3">對線選手</h3>
+      <p class="rnote">每位對線選手的總戰績，以及雙方英雄組合的勝率與每場明細（勝負與經濟差皆以 ${esc(r.player)} 為準）。</p>
+      <div class="pv-opps">${oppCards || `<div class="cb-empty">尚無對線資料</div>`}</div></section>`;
+  };
+
+  const opts = teams.map(t => { const ps = rows.filter(r => r.team === t); return ps.length
+    ? `<optgroup label="${esc(t)} · ${esc(fullName(t))}">${ps.map(r => `<option value="${esc(pid(r))}">${esc(r.player)}（${ROLE_SHORT[r.role]}）</option>`).join("")}</optgroup>` : ""; }).join("");
+  body.innerHTML = `<div class="pv-pick"><label>選手 <select id="pl-select">${opts}</select></label></div><div id="pl-panel"></div>`;
+  const sel = document.getElementById("pl-select"), out = document.getElementById("pl-panel");
+  const show = id => { const r = rows.find(x => pid(x) === id); if (!r) return false;
+    sel.value = id; out.innerHTML = panel(r); observeReveal(out); return true; };
+  sel.addEventListener("change", () => { show(sel.value);
+    try { history.replaceState(null, "", `#${encodeURIComponent(sel.value)}`); } catch (_) {} });
+  PL_SHOW = show;
+  show(pid(rows[0]));
+}
+
+// Worlds player stats table
+function playerStats(W) {
+  if (!(W.player_games || []).length) return `<div class="cmp-empty">尚無選手比賽數據。</div>`;
+  const MV = mvpCounts(W).counts;
+  const rows = playerRows(W);
   const f1 = v => (v == null ? "—" : (Math.round(v * 10) / 10).toString());
   const f0 = v => (v == null ? "—" : Math.round(v).toLocaleString());
   const sgn = v => (v == null ? "—" : `<span class="dlt ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}</span>`);
@@ -1090,6 +1205,7 @@ function renderWorlds(W) {
   document.getElementById("pv-sub").textContent =
     `整理預測市場（Polymarket、Kalshi）與模型（Outdrafted）對世界賽的預測，並檢驗已結束場次的準確度。資料整理於 ${W.collected}。賠率會變動，僅供參考。`;
   renderMatchups(W, sec);
+  renderPlayerVs(W);
   Object.values(TABLES).forEach(T => { wireTable(T); T.wireExtra?.(); });
   const rt = document.querySelector(".rtabs");
   if (rt) {
@@ -1120,7 +1236,7 @@ function render() {
 }
 
 // cards (not tables or lists) fade in as they scroll into view, and their single-number values count up from 0
-const REVEAL = ".cb, .res, .kpi, .pool, .mvp-item";
+const REVEAL = ".cb, .res, .kpi, .pool, .mvp-item, .pv-opp";
 const COUNT = ".val, .kpi b, .res-side .k, .dmg-h span, .db .dv, .cnt";
 function countUp(el) {
   const text = el.textContent, nums = text.match(/[\d,]+(?:\.\d+)?/g);
@@ -1135,15 +1251,20 @@ function countUp(el) {
   el.textContent = pre + fmt(0) + post;
   requestAnimationFrame(step);
 }
+let REVEAL_IO = null;
+// start watching the cards under `root` (content rendered later, e.g. a newly picked player, calls this too)
+function observeReveal(root) {
+  if (REVEAL_IO) root.querySelectorAll(REVEAL).forEach(el => { el.classList.add("reveal"); REVEAL_IO.observe(el); });
+}
 function setupReveal() {
   if (typeof IntersectionObserver === "undefined" || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const io = new IntersectionObserver(entries => entries.forEach(en => {
+  REVEAL_IO = new IntersectionObserver(entries => entries.forEach(en => {
     if (!en.isIntersecting) return;
-    io.unobserve(en.target);
+    REVEAL_IO.unobserve(en.target);
     en.target.classList.add("in");
     en.target.querySelectorAll(COUNT).forEach(countUp);
   }), { threshold: 0.15 });
-  document.querySelectorAll(REVEAL).forEach(el => { el.classList.add("reveal"); io.observe(el); });
+  observeReveal(document);
 }
 
 // "#" links copy a URL ending in that block's id; opening such a URL switches to its tab (and round tab),
@@ -1166,6 +1287,7 @@ function setupAnchors() {
   addEventListener("scroll", () => { pop.hidden = true; }, true);
   const go = () => {
     const id = decodeURIComponent(location.hash.slice(1));
+    if (id.startsWith("pl-") && !document.getElementById(id)) PL_SHOW(id);   // a player's page is rendered on demand
     const el = id && !VIEWS.includes(id) && document.getElementById(id); if (!el) return;
     const view = el.closest('.view[role="tabpanel"]'); if (view) SHOW_VIEW(view.id.replace("view-", ""));
     const rp = el.closest(".rpanel"); if (rp?.hidden) document.getElementById(rp.getAttribute("aria-labelledby"))?.click();
@@ -1186,8 +1308,8 @@ function setupAnchors() {
   go();
 }
 
-// three pages in one artifact: Worlds results (default), #predict and #matchup
-const VIEWS = ["worlds", "predict", "matchup"];
+// four pages in one artifact: Worlds results (default), #predict, #matchup and #player
+const VIEWS = ["worlds", "predict", "matchup", "player"];
 let SHOW_VIEW = () => {};
 function setupViews() {
   const tabs = [...document.querySelectorAll(".vtab")];
