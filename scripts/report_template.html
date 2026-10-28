@@ -12,7 +12,7 @@
   --hl: #fff176; --hl-ink: #3a3000;
   --medal1: #e9c46a; --medal1-ink: #8a6500; --medal2: #c3cad3; --medal3: #e39b62;
   --dmg-a: #a9dce1; --dmg-b: #f4c7b1;
-  --rd-me: #0089a0; --rd-avg: #c96a14;   /* radar: player vs lane average (validated pair) */
+  --rd-me: #0089a0; --rd-avg: #c96a14; --rd-b: #7a5cc8;   /* radar: player(s) vs lane average (validated set) */
   --zebra: #f4f6f9; --expand-bg: #eaf4f5;   /* alternate table rows; expanded player panel */
   --f-display: "Saira Condensed", "Noto Sans TC", "Arial Narrow", sans-serif;
   --f-body: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
@@ -22,12 +22,12 @@
   --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
   --accent: #4fc0cb; --accent-soft: #163a40;
   --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
-  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; --zebra: #1c242d; --expand-bg: #132a30; color-scheme: dark } }
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; --rd-b: #9a80e6; --zebra: #1c242d; --expand-bg: #132a30; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0f1419; --surface: #171e26; --line: #2a333e; --ink: #e6ebf0; --muted: #94a0ae;
   --accent: #4fc0cb; --accent-soft: #163a40;
   --good: #6fd08f; --good-soft: #17331f; --bad: #f08a7e; --bad-soft: #3d1d1a; --mid-soft: #222b35;
-  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; --zebra: #1c242d; --expand-bg: #132a30; color-scheme: dark }
+  --hl: #6b5a00; --hl-ink: #fff6c2; --medal1-ink: #f3d68a; --dmg-a: #1f5960; --dmg-b: #6b3a26; --rd-me: #1f9fac; --rd-avg: #d27a2a; --rd-b: #9a80e6; --zebra: #1c242d; --expand-bg: #132a30; color-scheme: dark }
 * { box-sizing: border-box }
 body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.5;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px }
@@ -320,13 +320,20 @@ footer a { color: var(--accent) }
 .rd-ring { fill: none; stroke: var(--line); stroke-width: 1 }
 .rd-spoke { stroke: var(--line); stroke-width: 1 }
 .rd-avg { fill: none; stroke: var(--rd-avg); stroke-width: 2; stroke-dasharray: 5 4; stroke-linejoin: round }
-.rd-me { fill: var(--rd-me); fill-opacity: .18; stroke: var(--rd-me); stroke-width: 2; stroke-linejoin: round }
-.rd-dot { fill: var(--rd-me); stroke: var(--surface); stroke-width: 2 }
+/* player shapes: "me" (one player) and "a" use the teal series, "b" the violet one */
+.rd-p { fill-opacity: .16; stroke-width: 2; stroke-linejoin: round }
+.rd-p.me, .rd-p.a { fill: var(--rd-me); stroke: var(--rd-me) } .rd-p.b { fill: var(--rd-b); stroke: var(--rd-b) }
+.rd-dot { stroke: var(--surface); stroke-width: 2 }
+.rd-dot.me, .rd-dot.a { fill: var(--rd-me) } .rd-dot.b { fill: var(--rd-b) }
 .pv-radar g.tip { display: inline; line-height: normal; cursor: default }
 .pv-radar figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-size: 12px; color: var(--ink); margin-top: 4px }
 .rd-key { display: inline-block; width: 16px; height: 0; border-top: 2px solid var(--rd-me); margin-left: 6px }
 .rd-key:first-child { margin-left: 0 }
 .rd-key.avg { border-top: 2px dashed var(--rd-avg) }
+.rd-key.b { border-top-color: var(--rd-b) }
+.rd-item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; margin-right: 8px }
+.rd-item .rd-key { margin-left: 0 }
+.pv-radar figcaption small { color: var(--muted) }
 .rd-note { flex-basis: 100%; color: var(--muted); font-size: 11px }
 .pv-rank { font: 500 11px var(--f-data) !important; color: var(--accent) !important }
 .pv-h3 { font: 700 20px var(--f-display); margin: 22px 0 8px }
@@ -345,6 +352,25 @@ footer a { color: var(--accent) }
 .pv-games td { text-align: right; padding: 4px 6px; border-top: 1px solid var(--line); white-space: nowrap }
 .pv-games th:first-child, .pv-games th:nth-child(2), .pv-games td.l { text-align: left }
 .pv-opp { overflow-x: auto }
+/* upcoming-match preview */
+.mx-tr { cursor: pointer }
+.mx-tr:hover > td { background: var(--mid-soft) }
+.mx-tr[aria-expanded="true"] > td { background: var(--accent-soft) }
+.mx-chev { display: inline-block; color: var(--muted); margin-right: 6px; transition: transform .2s }
+.mx-tr[aria-expanded="true"] .mx-chev { transform: rotate(90deg); color: var(--accent) }
+.mx-row > td { padding: 0 !important; text-align: left !important; white-space: normal !important; background: var(--expand-bg) !important;
+  box-shadow: inset 3px 0 0 var(--accent) }
+.mx-inner { padding: 12px 14px 16px; position: sticky; left: 0; max-width: calc(100vw - 40px) }
+.mx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px }
+.mx-card .cb-h h3 { flex: 0 0 auto }
+.mx-vs { font: 600 13px var(--f-body); margin-left: auto; white-space: nowrap }
+.mx-card .pv-radar { border: 0; padding: 0; background: none }
+.mx-chs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-top: 1px solid var(--line); padding-top: 8px }
+.mx-ch { display: grid; gap: 4px; align-content: start; min-width: 0 }
+.mx-ch > b { font-size: 13px }
+.mx-ch:first-child > b { color: var(--rd-me) } .mx-ch:last-child > b { color: var(--rd-b) }
+.mx-c { display: flex; align-items: center; gap: 6px; font: 500 11.5px var(--f-data); color: var(--muted) }
+.mx-c .ci { width: 22px; height: 22px; border-radius: 4px }
 .bks { white-space: normal !important; min-width: 180px }
 .bk { display: block; font: 500 12px var(--f-data) } .bk b { font: 600 11.5px var(--f-body); color: var(--muted); margin-right: 4px }
 .bk-tag { font: 600 9.5px var(--f-body); color: var(--accent); border: 1px solid var(--accent); border-radius: 3px; padding: 0 3px; margin-left: 4px }
@@ -637,6 +663,53 @@ const bookPct = books => { if (!books?.length) return null;
   const pa = books.reduce((s, b) => s + (1 / b.odds[0]) / (1 / b.odds[0] + 1 / b.odds[1]), 0) / books.length;
   return [Math.round(pa * 1000) / 10, Math.round((1 - pa) * 1000) / 10]; };
 
+// preview of an unplayed match: per lane, both players on one radar with the lane average, plus their most used champions
+function matchPreview(a, b) {
+  const W = DATA.worlds, rows = playerRows(W), pg = W.player_games || [];
+  const byGame = {}; pg.forEach(g => (byGame[`${g.round}|${g.match}`] ||= []).push(g));
+  // the team's player in that lane: the one with the most games there
+  const pick = (team, role) => rows.filter(r => r.team === team && r.role === role).sort((x, y) => y.n - x.n)[0];
+  const top = r => { const c = {}; r.games.forEach(g => { const x = (c[g.champion] ||= { champ: g.champion, n: 0, w: 0 }); x.n++; x.w += g.win; });
+    return Object.values(c).sort((x, y) => y.n - x.n || y.w - x.w).slice(0, 3); };
+  const champs = r => `<div class="mx-ch"><b>${esc(r.player)}</b>${top(r).map(c => `<span class="mx-c">${icon(c.champ)}<span>${c.n}場 ${c.w}W-${c.n - c.w}L</span></span>`).join("")}</div>`;
+  const cards = Object.entries(ROLE_SHORT).map(([role, name]) => {
+    const pa = pick(a, role), pb = pick(b, role);
+    if (!pa || !pb) return `<article class="cb mx-card"><div class="cb-h"><h3>${name}</h3></div><div class="cb-empty">缺少選手數據</div></article>`;
+    // head-to-head this tournament: games where these two were lane opponents
+    const h2h = pa.games.filter(g => byGame[`${g.round}|${g.match}`]?.some(o => o.team === pb.team && o.player === pb.player && o.role === role));
+    const hw = h2h.filter(g => g.win).length;
+    return `<article class="cb mx-card"><div class="cb-h"><h3>${name}</h3>
+        <span class="mx-vs"><a class="pl-link" href="${plHref(pa.team, pa.player)}">${esc(pa.player)}</a> vs <a class="pl-link" href="${plHref(pb.team, pb.player)}">${esc(pb.player)}</a></span></div>
+      ${h2h.length ? `<p class="cb-q">本屆交手：${esc(pa.player)} ${hw}W-${h2h.length - hw}L</p>` : ""}
+      ${radarFig(rows.filter(r => r.role === role), [{ row: pa, cls: "a" }, { row: pb, cls: "b" }], role)}
+      <div class="mx-chs">${champs(pa)}${champs(pb)}</div></article>`;
+  }).join("");
+  return `<div class="mx-inner"><p class="rnote">各路線兩隊選手的世界賽數據（雷達圖含該路線平均）與常用英雄。</p><div class="mx-grid">${cards}</div></div>`;
+}
+// clicking an upcoming-match row (in any round table) toggles its preview row right below it
+function setupMatchPreviews() {
+  const toggle = tr => {
+    const open = tr.nextElementSibling?.classList.contains("mx-row");
+    if (open) tr.nextElementSibling.remove();
+    else {
+      const row = document.createElement("tr");
+      row.className = "mx-row";
+      row.innerHTML = `<td colspan="${tr.cells.length}">${matchPreview(tr.dataset.a, tr.dataset.b)}</td>`;
+      tr.after(row);
+      observeReveal(row);
+    }
+    tr.setAttribute("aria-expanded", String(!open));
+  };
+  document.addEventListener("click", e => {
+    const tr = e.target.closest("tr.mx-tr"); if (!tr || e.target.closest("a")) return;
+    toggle(tr);
+  });
+  document.addEventListener("keydown", e => {
+    const tr = e.target.closest?.("tr.mx-tr"); if (!tr || (e.key !== "Enter" && e.key !== " ")) return;
+    e.preventDefault(); toggle(tr);
+  });
+}
+
 function upcomingTable(r) {
   const ms = r.matches.filter(m => !m.winner), anyBooks = ms.some(m => m.books?.length);
   const fromBooks = ms.some(m => !m.pct && m.books?.length);
@@ -646,7 +719,7 @@ function upcomingTable(r) {
       const odds = o => (o ? o.map(x => x.toFixed(2)).join(" / ") : "—");
       const tag = !m.pct && pct ? `<span class="bk-tag" title="莊家賠率換算">莊</span>` : "";
       const books = (m.books || []).map(b => `<span class="bk" title="${esc(`${b.book}，${b.as_of}`)}"><b>${esc(b.book)}</b> ${odds(b.odds)}</span>`).join("") || "—";
-      return `<tr><td class="l">${esc(m.time_tw)}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
+      return `<tr class="mx-tr" tabindex="0" data-a="${esc(m.a)}" data-b="${esc(m.b)}" aria-expanded="false" title="點一下展開各路線對位"><td class="l"><span class="mx-chev" aria-hidden="true">▸</span>${esc(m.time_tw)}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
         <td><span class="rec-chip ${recCls(m.pool)}">${esc(m.pool)}</span>${m.format ? `<br><span class="n">${esc(m.format)}</span>` : ""}</td>
         <td><div class="mu"><span class="sa ${fa ? "fav" : ""}"><span class="tm">${esc(m.a)}</span><span class="pc">${pct ? `${p[0]}%` : "—"}${tag}</span></span>
           <span class="split" aria-hidden="true">${pct ? `<i class="a" style="width:${p[0]}%"></i><i class="b" style="width:${p[1]}%"></i>` : ""}</span>
@@ -1045,6 +1118,42 @@ function playerRows(W) {
   });
 }
 
+// ---- radar (polygon) chart: players of one lane against the lane average ----
+// each axis runs from the lane's lowest (inner) to highest (outer) value; players: [{ row, cls: "me" | "a" | "b" }]
+const rf1 = v => (v == null ? "—" : (Math.round(v * 10) / 10).toLocaleString());
+const rf0 = v => (v == null ? "—" : Math.round(v).toLocaleString());
+const rsg = v => (v == null ? "—" : `${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}`);
+const RADAR_AXES = [["KDA", r => r.kda, rf1], ["參團率", r => r.kp, v => `${Math.round(v)}%`], ["每分補兵", r => r.csm, rf1], ["每分金錢", r => r.gpm, rf0],
+  ["每分傷害", r => r.dpm, rf0], ["承受傷害", r => r.taken, rf0], ["視野分數", r => r.vs, rf1], ["15分經濟差", r => r.gd15, rsg]];
+function radarFig(lane, players, role) {
+  const C = 150, R = 100, n = RADAR_AXES.length;
+  const ax = RADAR_AXES.map(([label, key, fmt], i) => {
+    const vals = lane.map(key).filter(v => v != null), lo = Math.min(...vals), hi = Math.max(...vals);
+    const norm = v => (v == null ? 0 : hi === lo ? 0.6 : 0.12 + 0.88 * (v - lo) / (hi - lo));   // keep a small core so shapes never collapse
+    const avg = vals.reduce((s, v) => s + v, 0) / vals.length;
+    return { label, fmt, avg, nAvg: norm(avg), vals: players.map(p => key(p.row)), ns: players.map(p => norm(key(p.row))),
+      ang: -Math.PI / 2 + i * 2 * Math.PI / n };
+  });
+  const at = (a, v) => [C + Math.cos(a.ang) * R * v, C + Math.sin(a.ang) * R * v].map(x => x.toFixed(1));
+  const ring = v => ax.map(a => at(a, v).join(",")).join(" ");
+  const rings = [0.25, 0.5, 0.75, 1].map(v => `<polygon class="rd-ring" points="${ring(v)}"/>`).join("");
+  const spokes = ax.map(a => { const [x, y] = at(a, 1); return `<line class="rd-spoke" x1="${C}" y1="${C}" x2="${x}" y2="${y}"/>`; }).join("");
+  const labels = ax.map(a => { const [x, y] = at(a, 1.2), c = Math.cos(a.ang);
+    return `<text x="${x}" y="${y}" text-anchor="${Math.abs(c) < 0.2 ? "middle" : c > 0 ? "start" : "end"}" dominant-baseline="middle">${a.label}</text>`; }).join("");
+  const avgPoly = `<polygon class="rd-avg" points="${ax.map(a => at(a, a.nAvg).join(",")).join(" ")}"/>`;
+  const polys = players.map((p, k) => `<polygon class="rd-p ${p.cls}" points="${ax.map(a => at(a, a.ns[k]).join(",")).join(" ")}"/>`).join("");
+  const dots = players.map((p, k) => ax.map(a => { const [x, y] = at(a, a.ns[k]); return `<circle class="rd-dot ${p.cls}" cx="${x}" cy="${y}" r="4"/>`; }).join("")).join("");
+  // generous invisible hit targets on every point: each player's actual value and the lane average for that axis
+  const hits = players.map((p, k) => ax.map(a => { const [x, y] = at(a, a.ns[k]);
+    const tip = [a.label, ...players.map((q, j) => `${q.row.player}：${a.vals[j] == null ? "—" : a.fmt(a.vals[j])}`), `${ROLE_SHORT[role]}平均：${a.fmt(a.avg)}`].join("\n");
+    return `<g class="tip" data-tip="${esc(tip)}"><circle cx="${x}" cy="${y}" r="13" fill="transparent"/></g>`; }).join("")).join("");
+  // each legend swatch stays on the same line as its label
+  const keys = players.map(p => `<span class="rd-item"><span class="rd-key ${p.cls}"></span>${esc(p.row.player)}${p.cls === "me" ? "" : `<small>（${esc(p.row.team)}）</small>`}</span>`).join("");
+  return `<figure class="pv-radar" aria-label="${esc(players.map(p => p.row.player).join(" vs "))} 與${ROLE_SHORT[role]}平均的雷達圖">
+    <svg viewBox="-34 0 368 300" role="img">${rings}${spokes}${avgPoly}${polys}${dots}${labels}${hits}</svg>
+    <figcaption>${keys}<span class="rd-item"><span class="rd-key avg"></span>${ROLE_SHORT[role]}平均</span><span class="rd-note">外圈為同路線最高、內圈最低</span></figcaption></figure>`;
+}
+
 // ---- 選手對位 page: one player's numbers (with lane rank), champion pool and every lane opponent ----
 let PL_SHOW = () => false;   // open a player by its "pl-TEAM-player" id (deep links); true when found
 function renderPlayerVs(W, sec) {
@@ -1072,31 +1181,7 @@ function renderPlayerVs(W, sec) {
     const lane = rows.filter(x => x.role === r.role && key(x) != null);
     return `${ROLE_SHORT[r.role]}第 ${lane.filter(x => key(x) > v).length + 1} 名 / ${lane.length}`; };
 
-  // radar: the player against the lane average; each axis runs from the lane's lowest (inner) to highest (outer) value
-  const AXES = [["KDA", r => r.kda, f1], ["參團率", r => r.kp, v => `${Math.round(v)}%`], ["每分補兵", r => r.csm, f1], ["每分金錢", r => r.gpm, f0],
-    ["每分傷害", r => r.dpm, f0], ["承受傷害", r => r.taken, f0], ["視野分數", r => r.vs, f1], ["15分經濟差", r => r.gd15, sg]];
-  const radar = r => {
-    const lane = rows.filter(x => x.role === r.role), C = 150, R = 100;
-    const ax = AXES.map(([label, key, fmt], i) => {
-      const vals = lane.map(key).filter(v => v != null), lo = Math.min(...vals), hi = Math.max(...vals);
-      const avg = vals.reduce((s, v) => s + v, 0) / vals.length, me = key(r);
-      const norm = v => (v == null ? 0 : hi === lo ? 0.6 : 0.12 + 0.88 * (v - lo) / (hi - lo));   // keep a small core so shapes never collapse
-      return { label, fmt, me, avg, nMe: norm(me), nAvg: norm(avg), ang: -Math.PI / 2 + i * 2 * Math.PI / AXES.length };
-    });
-    const at = (a, n) => [C + Math.cos(a.ang) * R * n, C + Math.sin(a.ang) * R * n].map(v => v.toFixed(1));
-    const poly = k => ax.map(a => at(a, a[k]).join(",")).join(" ");
-    const rings = [0.25, 0.5, 0.75, 1].map(n => `<polygon class="rd-ring" points="${ax.map(a => at(a, n).join(",")).join(" ")}"/>`).join("");
-    const spokes = ax.map(a => { const [x, y] = at(a, 1); return `<line class="rd-spoke" x1="${C}" y1="${C}" x2="${x}" y2="${y}"/>`; }).join("");
-    const labels = ax.map(a => { const [x, y] = at(a, 1.2), c = Math.cos(a.ang);
-      return `<text x="${x}" y="${y}" text-anchor="${Math.abs(c) < 0.2 ? "middle" : c > 0 ? "start" : "end"}" dominant-baseline="middle">${a.label}</text>`; }).join("");
-    const dots = ax.map(a => { const [x, y] = at(a, a.nMe); return `<circle class="rd-dot" cx="${x}" cy="${y}" r="4"/>`; }).join("");
-    // generous invisible hit targets on the player's points: actual value vs lane average
-    const hits = ax.map(a => { const [x, y] = at(a, a.nMe);
-      return `<g class="tip" data-tip="${esc(`${a.label}：${a.me == null ? "—" : a.fmt(a.me)}（${ROLE_SHORT[r.role]}平均 ${a.fmt(a.avg)}）`)}"><circle cx="${x}" cy="${y}" r="13" fill="transparent"/></g>`; }).join("");
-    return `<figure class="pv-radar" aria-label="${esc(r.player)} 與${ROLE_SHORT[r.role]}平均的雷達圖">
-      <svg viewBox="-34 0 368 300" role="img">${rings}${spokes}<polygon class="rd-avg" points="${poly("nAvg")}"/><polygon class="rd-me" points="${poly("nMe")}"/>${dots}${labels}${hits}</svg>
-      <figcaption><span class="rd-key me"></span>${esc(r.player)}<span class="rd-key avg"></span>${ROLE_SHORT[r.role]}平均<span class="rd-note">外圈為同路線最高、內圈最低</span></figcaption></figure>`;
-  };
+  const radar = r => radarFig(rows.filter(x => x.role === r.role), [{ row: r, cls: "me" }], r.role);
 
   const panel = r => {
     const gs = r.games;
@@ -1328,6 +1413,7 @@ function render() {
   renderWorlds(DATA.worlds);
   setupTips();
   setupReveal();
+  setupMatchPreviews();
   setupAnchors();
   document.getElementById("stamp").textContent = `Worlds 2026 · Swiss Stage${DATA.worlds ? ` · 資料更新 ${DATA.worlds.collected}` : ""}`;
 }
