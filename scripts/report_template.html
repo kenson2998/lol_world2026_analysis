@@ -365,6 +365,9 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .mx-row > td { padding: 0 !important; text-align: left !important; white-space: normal !important; background: var(--expand-bg) !important;
   box-shadow: inset 3px 0 0 var(--accent) }
 .mx-inner { padding: 12px 14px 16px; position: sticky; left: 0; max-width: calc(100vw - 40px) }
+.mx-an { display: inline-block; margin-bottom: 10px; font: 600 13px var(--f-body); color: var(--accent); background: var(--surface);
+  border: 1px solid var(--accent); border-radius: 999px; padding: 4px 14px; text-decoration: none }
+.mx-an:hover { background: var(--accent-soft) }
 /* both teams' BP in one table: A columns | champion | B columns */
 .bpx { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; min-width: 0 }
 .bpx > .bp-note { margin: 0 0 8px }
@@ -705,7 +708,7 @@ const bookPct = books => { if (!books?.length) return null;
   return [Math.round(pa * 1000) / 10, Math.round((1 - pa) * 1000) / 10]; };
 
 // preview of an unplayed match: per lane, both players on one radar with the lane average, plus their most used champions
-function matchPreview(a, b) {
+function matchPreview(a, b, mid) {
   const W = DATA.worlds, rows = playerRows(W), pg = W.player_games || [];
   const byGame = {}; pg.forEach(g => (byGame[`${g.round}|${g.match}`] ||= []).push(g));
   // the team's player in that lane: the one with the most games there
@@ -726,7 +729,10 @@ function matchPreview(a, b) {
       ${radarFig(rows.filter(r => r.role === role), [{ row: pa, cls: "a" }, { row: pb, cls: "b" }], role)}
       <div class="mx-chs">${champs(pa)}${champs(pb)}</div></article>`;
   }).join("");
-  return `<div class="mx-inner">${bpCompare(a, b)}
+  // link to the standalone pre-match analysis page (data/analysis/<stem>.html, next to this page's folder)
+  const page = DATA.analysis?.[mid];
+  const link = page ? `<a class="mx-an" href="analysis/${encodeURIComponent(page)}.html" target="_blank" rel="noopener">${esc(a)} vs ${esc(b)} 選角數據分析頁 ↗</a>` : "";
+  return `<div class="mx-inner">${link}${bpCompare(a, b)}
     <p class="rnote">各路線兩隊選手的世界賽數據（雷達圖含該路線平均）與常用英雄。</p><div class="mx-grid">${cards}</div></div>`;
 }
 
@@ -812,7 +818,7 @@ function setupMatchPreviews() {
     else {
       const row = document.createElement("tr");
       row.className = "mx-row";
-      row.innerHTML = `<td colspan="${tr.cells.length}">${matchPreview(tr.dataset.a, tr.dataset.b)}</td>`;
+      row.innerHTML = `<td colspan="${tr.cells.length}">${matchPreview(tr.dataset.a, tr.dataset.b, tr.dataset.mid)}</td>`;
       tr.after(row);
       observeReveal(row);
     }
@@ -832,6 +838,8 @@ function setupMatchPreviews() {
 function upcomingTable(r, ri) {
   const ms = r.matches.filter(m => !m.winner), anyBooks = ms.some(m => m.books?.length);
   const rowId = m => (ri == null ? "" : matchId(ri, r.matches.indexOf(m)));
+  // every row (copies too) knows its match id, so its preview can link the pre-match analysis page
+  const ri0 = ri ?? DATA.worlds.rounds.findIndex(x => x.name === r.name), mid = m => matchId(ri0, DATA.worlds.rounds[ri0].matches.findIndex(x => x.a === m.a && x.b === m.b));
   const fromBooks = ms.some(m => !m.pct && m.books?.length);
   return `<p class="rnote">${fromBooks ? "勝率優先用 Polymarket 價格；沒有 Polymarket 時改用莊家賠率換算（去除抽水後取平均，標「莊」）。" : "勝率為 Polymarket 價格。"}賠率為十進位。時間為台灣時間，括號內為美國中部時間。</p>
     <div class="wbox"><table class="wtable"><tr><th>時間</th><th>組別</th><th style="text-align:center">對戰與勝率</th><th>Polymarket</th><th>Kalshi</th>${anyBooks ? "<th>莊家賠率</th>" : ""}</tr>${
@@ -840,7 +848,7 @@ function upcomingTable(r, ri) {
       const tag = !m.pct && pct ? `<span class="bk-tag" title="莊家賠率換算">莊</span>` : "";
       const books = (m.books || []).map(b => `<span class="bk" title="${esc(`${b.book}，${b.as_of}`)}"><b>${esc(b.book)}</b> ${odds(b.odds)}</span>`).join("") || "—";
       const id = rowId(m);
-      return `<tr class="mx-tr"${id ? ` id="${id}"` : ""} tabindex="0" data-a="${esc(m.a)}" data-b="${esc(m.b)}" aria-expanded="false" title="點一下展開各路線對位"><td class="l"><span class="mx-chev" aria-hidden="true">▸</span>${esc(m.time_tw)}${id ? anc(id) : ""}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
+      return `<tr class="mx-tr"${id ? ` id="${id}"` : ""} tabindex="0" data-a="${esc(m.a)}" data-b="${esc(m.b)}" data-mid="${mid(m)}" aria-expanded="false" title="點一下展開各路線對位"><td class="l"><span class="mx-chev" aria-hidden="true">▸</span>${esc(m.time_tw)}${id ? anc(id) : ""}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
         <td><span class="rec-chip ${recCls(m.pool)}">${esc(m.pool)}</span>${m.format ? `<br><span class="n">${esc(m.format)}</span>` : ""}</td>
         <td><div class="mu"><span class="sa ${fa ? "fav" : ""}"><span class="tm">${esc(m.a)}</span><span class="pc">${pct ? `${p[0]}%` : "—"}${tag}</span></span>
           <span class="split" aria-hidden="true">${pct ? `<i class="a" style="width:${p[0]}%"></i><i class="b" style="width:${p[1]}%"></i>` : ""}</span>

@@ -19,6 +19,10 @@ python3 -I scripts/worlds_round_update.py data/worlds.json collected.json <round
 python3 -I scripts/worlds_player_stats.py data <gol.gg cache dir>
 python3 -I scripts/build_report.py data data/rosters.json   # 產生 data/worlds2026_analysis.html（設定 EXPORT_DIR 會另存一份 worlds2026_MMDD.html）
 node scripts/smoke_test.js data/worlds2026_soloq.html
+
+# 新一輪開打前：每場未開打比賽的選角數據分析（data/analysis/*.html，另存 .txt；PNG 需 playwright）
+python3 -I scripts/match_analysis.py data <另存資料夾>
+python3 scripts/analysis_png.py data <另存資料夾>
 ```
 
 ## 資料來源
