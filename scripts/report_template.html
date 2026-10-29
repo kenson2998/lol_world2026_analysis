@@ -1438,7 +1438,7 @@ function renderPlayerVs(W, sec) {
   };
 
   // the stats table lives on this page; clicking a player row toggles that player's panel open in a row right below it
-  body.innerHTML = sec("選手數據統計", `世界賽正式比賽（已結束 ${doneGames(W).length} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。<b>點選手那一列可展開／收合他的對位資訊。</b>數據取自 gol.gg；gol.gg 無法連線的場次改用 Leaguepedia 記分板（沒有 15 分經濟差／補兵差、承受傷害、單殺、搶重擊，這些欄位只以有數據的場次計算）。${PREV ? `數字旁的 ▲▼ 為與 ${PREV.label}相比的數值變化（只標該日有出賽的選手，累計欄位不標）；滑鼠移到標記上可看當時數值與同路線名次。` : ""}`,
+  body.innerHTML = sec("選手數據統計", `世界賽正式比賽（已結束 ${doneGames(W).length} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。<b>點選手那一列可展開／收合他的對位資訊。</b>數據取自 gol.gg；gol.gg 無法連線的場次改用 Leaguepedia 記分板（沒有 15 分經濟差／補兵差、承受傷害、單殺、搶重擊，這些欄位只以有數據的場次計算）。${PREV ? `數字旁的 ▲▼ 為與 ${PREV.label}相比的數值變化（只標該日有出賽的選手，累計欄位不標；戰績只標「更新」）；滑鼠移到標記上可看當時數值與同路線名次。` : ""}`,
     playerStats(W), "pl-stats");
   const T = TABLES["player-table"]; if (!T) return;
   const byId = new Map(rows.map(r => [pid(r), r]));
@@ -1517,7 +1517,7 @@ function playerStats(W) {
   // rise / fall against the same player before the latest match day, on the per-game averages and win rate
   // (cumulative columns only ever grow, so they get none); [higher is better: 1, neutral: 0, value format]
   const before = PREV ? playerRows(PREV.W) : [], was = new Map(before.map(r => [`${r.team}/${r.player}`, r]));
-  const MOVE = { "戰績": [1, v => `${Math.round(v * 100)}%`], "KDA": [1, f1], "參團率": [1, v => `${Math.round(v)}%`], "每分補兵": [1, f1], "每分金錢": [1, f0],
+  const MOVE = { "KDA": [1, f1], "參團率": [1, v => `${Math.round(v)}%`], "每分補兵": [1, f1], "每分金錢": [1, f0],
     "每分傷害": [1, f0], "傷害佔比": [1, v => `${f1(v)}%`], "承受傷害": [0, f0], "視野分數": [1, f1], "每分視野": [1, v => v.toFixed(2)],
     "15分經濟差": [1, f0], "15分補兵差": [1, f1] };
   // hovering a number shows the player's rank in that column among players of the same lane (higher value = 1st, ties share)
@@ -1530,7 +1530,10 @@ function playerStats(W) {
     c[3] = r => { const v = key(r), vs = byRole[r.role]; if (v == null || !vs) return cell(r);
       const rank = vs.filter(x => x > v).length + 1, p = was.get(`${r.team}/${r.player}`), pv = p && key(p);
       const prank = pv != null && byRolePrev[r.role] ? `（同路線第 ${byRolePrev[r.role].filter(x => x > pv).length + 1} 名）` : "";
-      const mv = MOVE[label] && p && p.n !== r.n ? valMove(v, pv, MOVE[label][1], MOVE[label][0], prank) : "";
+      // the record only says it changed (no up / down); the previous record is in the tooltip
+      const mv = !p || p.n === r.n ? ""
+        : label === "戰績" ? `<span class="mv flat tip" tabindex="0" data-tip="${esc(`${PREV.label}：${p.wins}-${p.n - p.wins}`)}">更新</span>`
+        : MOVE[label] ? valMove(v, pv, MOVE[label][1], MOVE[label][0], prank) : "";
       return cell(r).replace(/^<td/, `<td data-tip="${ROLE_SHORT[r.role]}第 ${rank} 名（共 ${vs.length} 人）"`).replace(/<\/td>$/, `${mv}</td>`); };
   });
   const T = sortTable("player-table", cols, rows, [{ col: cols.findIndex(c => c[0] === "KDA"), desc: true }],   // KDA, high to low
