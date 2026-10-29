@@ -8,8 +8,9 @@ where <id> is the site's share id, e.g. r4-m3 = round 4, 3rd match.
 
 usage: python3 -I match_analysis.py data_dir [export_dir]
 """
-import html, json, os, sys
+import base64, html, json, os, sys
 from collections import defaultdict
+from datetime import datetime, timedelta, timezone
 
 data_dir = sys.argv[1]
 export = sys.argv[2] if len(sys.argv) > 2 else None
@@ -19,6 +20,10 @@ ZH, ICONS = CH.get("zh_TW", {}), CH["icons"]
 ROLES = {"top": "上路", "jungle": "打野", "mid": "中路", "bot": "下路", "support": "輔助"}
 NUM = "一二三四五六七八九十"
 zh = lambda c: ZH.get(c, c)
+# site icon (inlined) and today's Taiwan date, which names the dated snapshot the exported copies link home to
+FAVICON = ("data:image/png;base64," + base64.b64encode(open(f"{data_dir}/favicon.png", "rb").read()).decode()
+           if os.path.exists(f"{data_dir}/favicon.png") else "")
+TODAY = datetime.now(timezone(timedelta(hours=8))).strftime("%m%d")
 
 # every finished game with a draft, tagged with its two teams
 games = [(m["a"], m["b"], g) for r in W["rounds"] for m in r["matches"] if m.get("winner")
@@ -149,7 +154,8 @@ def as_text(a, b, mid, A, B, best, lists, champs):
     return "\n".join(L) + "\n"
 
 
-def as_html(a, b, mid, rname, A, B, best, lists, champs):
+def as_html(a, b, mid, rname, A, B, best, lists, champs, home):
+    """home: link back to the site's main page, relative to this page's folder."""
     e = html.escape
     icon = lambda c: (f'<img src="{ICONS[c]}" alt="" width="28" height="28">' if c in ICONS else "") + f"<span>{e(zh(c))}</span>"
     chip = lambda c, n=None: f'<span class="ch" title="{e(c)}">{icon(c)}{f"<b>×{n}</b>" if n else ""}</span>'
@@ -162,7 +168,7 @@ def as_html(a, b, mid, rname, A, B, best, lists, champs):
     best_html = "".join(f'<li>{chip(c)}<span class="wr">{round(w / n * 100)}%</span><span class="rec">{w}勝{n - w}敗</span></li>' for c, n, w in best)
     return f"""<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(a)} vs {e(b)} 選角數據分析</title>
+<title>{e(a)} vs {e(b)} 選角數據分析</title>{f'<link rel="icon" type="image/png" href="{FAVICON}">' if FAVICON else ""}
 <style>
 :root {{ --bg:#f3f5f7; --surface:#fff; --line:#dde2e8; --ink:#141a22; --muted:#5d6877; --a:#0089a0; --b:#7a5cc8; --good:#1f7a3d; --accent-soft:#d8eef0 }}
 @media (prefers-color-scheme: dark) {{ :root {{ --bg:#0f1419; --surface:#171e26; --line:#2a333e; --ink:#e6ebf0; --muted:#94a0ae; --a:#1f9fac; --b:#9a80e6; --good:#6fd08f; --accent-soft:#163a40 }} }}
@@ -185,8 +191,13 @@ ol {{ margin:0; padding-left:20px }} li {{ margin:4px 0 }} .wr {{ font-weight:70
 .champ p {{ margin:3px 0; font-size:14px }} .champ p b {{ display:inline-block; min-width:52px }}
 .champ .lead {{ background:var(--accent-soft); border-radius:6px; padding:2px 8px; font-size:13px }}
 footer {{ color:var(--muted); font-size:12px; margin-top:8px }}
+.top {{ display:flex; justify-content:flex-end; margin-bottom:6px }}
+.home {{ display:inline-flex; align-items:center; gap:8px; color:var(--ink); text-decoration:none; font-weight:700; font-size:14px;
+  background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:4px 12px 4px 4px }}
+.home img {{ width:26px; height:26px; border-radius:6px }} .home:hover {{ border-color:var(--a); color:var(--a) }}
 </style></head><body><main>
-<div class="eyebrow">LoL2026世界賽分析 · {e(rname)} · {e(mid)}</div>
+<div class="top"><a class="home" href="{e(home)}" title="回到 LoL2026世界賽分析 首頁">{f'<img src="{FAVICON}" alt="">' if FAVICON else ""}LoL2026世界賽分析</a></div>
+<div class="eyebrow">{e(rname)} · {e(mid)}</div>
 <h1><span class="ta">{e(a)}</span> vs <span class="tb">{e(b)}</span></h1>
 <p class="sub">觀賽前的選角數據分析 · {e(a)} {A[0]} 局、{e(b)} {B[0]} 局的 BP 統計；勝率皆為該隊在那些局的戰績</p>
 <div class="card"><h2>當前賽事勝率最高前三 <small class="rec">（至少選用 3 次）</small></h2><ol>{best_html}</ol></div>
@@ -211,7 +222,11 @@ def main():
             mid, a, b = f"r{ri + 1}-m{k + 1}", m["a"], m["b"]
             res = analyse(a, b)
             stem = f"{mid}_{a}_vs_{b}"
-            open(f"{out_dir}/{stem}.html", "w").write(as_html(a, b, mid, rnd["name"], *res))
+            # the site copy links home to the main page; the exported copy to that day's dated snapshot
+            open(f"{out_dir}/{stem}.html", "w").write(as_html(a, b, mid, rnd["name"], *res, "../worlds2026_analysis.html"))
+            if export:
+                os.makedirs(f"{export}/analysis", exist_ok=True)
+                open(f"{export}/analysis/{stem}.html", "w").write(as_html(a, b, mid, rnd["name"], *res, f"../worlds2026_{TODAY}.html"))
             if export:
                 open(f"{export}/{stem}.txt", "w").write(as_text(a, b, mid, *res))
             made.append((mid, stem))
