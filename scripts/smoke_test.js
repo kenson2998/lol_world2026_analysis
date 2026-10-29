@@ -9,7 +9,7 @@ const mk = id => ({
   tabIndex: 0, attrs: {},
   setAttribute(k, v) { this.attrs[k] = v; }, getAttribute(k) { return this.attrs[k]; },
   addEventListener() {}, querySelectorAll() { return []; }, querySelector(sel) { return (els[`${id} ${sel}`] ||= mk(`${id} ${sel}`)); },
-  append() {}, focus() {}, scrollIntoView() {}, closest() { return null; }, offsetWidth: 0, offsetHeight: 0,
+  append() {}, focus() {}, scrollIntoView() {}, closest() { return null; }, matches() { return false; }, offsetWidth: 0, offsetHeight: 0,
 });
 global.document = {
   getElementById: id => (els[id] ||= mk(id)),

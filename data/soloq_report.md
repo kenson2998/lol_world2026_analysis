@@ -160,9 +160,9 @@
 | 下路 | Duduhh | 15 | 10-5 | 67% | [KR] —<br>[NA] 2小時34分前 | Aphelios (亞菲利歐) 2場 13% 100%、Jhin (燼) 2場 13% 50%、Akali (阿卡莉) 1場 7% 100%、Caitlyn (凱特琳) 1場 7% 100%、Irelia (伊瑞莉雅) 1場 7% 100%、Kalista (克黎思妲) 1場 7% 100% |
 | 輔助 | Ackerman | 14 | 12-2 | 86% | [KR] —<br>[NA] 2小時53分前 | Camille (卡蜜兒) 3場 21% 67%、Bard (巴德) 2場 14% 100%、Annie (安妮) 1場 7% 100%、Blitzcrank (布里茨) 1場 7% 100%、Karma (卡瑪) 1場 7% 100%、Pantheon (潘森) 1場 7% 100% |
 
-## 世界賽戰況（整理於 2026-10-27 10:17（台灣時間））
+## 世界賽戰況（整理於 2026-10-29 10:23（台灣時間））
 
-Swiss Stage 第三輪已打完：DK、GEN 3-0 晉級淘汰賽，AL、TSW 0-3 淘汰。第四輪 10/29–10/31（台灣時間）全部為 Bo3（Fearless），2-1 組勝者晉級、1-2 組敗者淘汰。
+Swiss Stage 第四輪進行中：DK、GEN 3-0，IG、T1 3-1 晉級淘汰賽；AL、TSW 0-3 淘汰。10/30–10/31（台灣時間）還有 4 場 Bo3。
 
 ### 第一輪結果（Bo1）
 
@@ -208,12 +208,20 @@ Swiss Stage 第三輪已打完：DK、GEN 3-0 晉級淘汰賽，AL、TSW 0-3 淘
 | TLAW vs AL 第1局 | TLAW | 16-5 | 33:13 | TLAW Lee Sin (李星)、AL Yunara (尤娜拉)、AL Lulu (露璐)、TLAW Lucian (路西恩)、TLAW Nami (娜米)、AL Orianna (奧莉安娜)、AL Ambessa (安比薩)、TLAW Camille (卡蜜兒)、TLAW Galio (加里歐)、AL Skarner (史加納) |  |
 | TLAW vs AL 第2局 | TLAW | 17-18 | 47:29 | AL Nocturne (夜曲)、TLAW Xayah (剎雅)、TLAW Rakan (銳空)、AL Olaf (歐拉夫)、AL Annie (安妮)、TLAW Kled (克雷德)、TLAW Pantheon (潘森)、AL Jinx (吉茵珂絲)、AL Tahm Kench (貪啃奇)、TLAW Akali (阿卡莉) |  |
 
+### 第四輪結果（Bo3）
+
+| 對戰 | 勝方 | 擊殺 | 時長 | 選用（BP 順序） | 備註 |
+|---|---|---|---|---|---|
+| MKOI vs T1 第1局 | T1 | 10-20 | 40:00 | MKOI Qiyana (姬亞娜)、T1 Nautilus (納帝魯斯)、T1 Lee Sin (李星)、MKOI Alistar (亞歷斯塔)、MKOI Kai'Sa (凱莎)、T1 Xayah (剎雅)、T1 Syndra (星朵拉)、MKOI Akali (阿卡莉)、MKOI Gnar (吶兒)、T1 Ambessa (安比薩) |  |
+| MKOI vs T1 第2局 | T1 | 9-22 | 25:43 | MKOI Ezreal (伊澤瑞爾)、T1 Karma (卡瑪)、T1 Jarvan IV (嘉文四世)、MKOI Seraphine (瑟菈紛)、MKOI Xin Zhao (趙信)、T1 Jhin (燼)、T1 Orianna (奧莉安娜)、MKOI Viktor (維克特)、MKOI Ornn (鄂爾)、T1 Gwen (關) |  |
+| IG vs LYON 第1局 | IG | 19-4 | 27:09 | IG Lulu (露璐)、LYON Ezreal (伊澤瑞爾)、LYON Nocturne (夜曲)、IG Vi (菲艾)、IG Yunara (尤娜拉)、LYON Karma (卡瑪)、LYON Rumble (藍寶)、IG Ornn (鄂爾)、IG Aurora (歐羅拉)、LYON Sylas (賽勒斯) |  |
+| IG vs LYON 第2局 | LYON | 8-18 | 38:04 | LYON Qiyana (姬亞娜)、IG Jhin (燼)、IG Lee Sin (李星)、LYON Alistar (亞歷斯塔)、LYON Corki (庫奇)、IG Nautilus (納帝魯斯)、IG Annie (安妮)、LYON Olaf (歐拉夫)、LYON Taliyah (塔莉雅)、IG Zaahen (薩亨) |  |
+| IG vs LYON 第3局 | IG | 7-5 | 23:59 | IG Orianna (奧莉安娜)、LYON Lucian (路西恩)、LYON Milio (米里歐)、IG Caitlyn (凱特琳)、IG Lux (拉克絲)、LYON LeBlanc (勒布朗)、LYON Xin Zhao (趙信)、IG Trundle (特朗德)、IG Jayce (杰西)、LYON K'Sante (卡桑帝) |  |
+
 ### 第四輪（Bo3，未開打）
 
 | 台灣時間 | 組別 | 對戰 | Polymarket 勝率 | 賠率 Polymarket | 賠率 Kalshi |
 |---|---|---|---|---|---|
-| 10/29 04:00 | 2-1 | MKOI vs T1 | — | — | — |
-| 10/29 07:00 | 2-1 | IG vs LYON | — | — | — |
 | 10/30 04:00 | 1-2 | KC vs CFO | — | — | — |
 | 10/30 07:00 | 2-1 | TES vs BLG | — | — | — |
 | 10/31 04:00 | 1-2 | TLAW vs LOS | — | — | — |
@@ -251,5 +259,6 @@ Swiss Stage 第三輪已打完：DK、GEN 3-0 晉級淘汰賽，AL、TSW 0-3 淘
 - 10/27 更新時 Polymarket、Kalshi 無法連線，第四輪賠率尚未取得；冠軍機率、晉級機率仍為 10/26 14:46（台灣時間）的價格，晉級模型（Outdrafted）已更新到第三輪結束後。
 - LOS vs TSW 第 2 局、TLAW vs AL 第 1 局的藍紅方，Liquipedia 文字說明與其頁面顏色標示不一致，採用顏色標示與 gol.gg。
 - 第四輪賠率：Polymarket、Kalshi 無法從資料整理環境連線，改用莊家十進位賠率——SpinBetter（經 tips.gg，10/28 文章）與 GG.BET（經 win.gg，10/27）。表中勝率為莊家賠率去除抽水後的換算值（標「莊」），與預測市場價格不同。
+- 第四輪 10/29 兩場（MKOI vs T1、IG vs LYON）的 BP、選邊與先選取自 Leaguepedia（gol.gg 當時無法連線），已與 Liquipedia 核對擊殺、時長、禁選；這 5 局暫無 gol.gg 選手個人數據（傷害、經濟差等），選手統計與雷達圖暫不含這 5 局。
 
 來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)

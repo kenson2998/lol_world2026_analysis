@@ -1,7 +1,7 @@
 {
- "collected": "2026-10-27 10:17（台灣時間）",
+ "collected": "2026-10-29 10:23（台灣時間）",
  "stage": "Swiss Stage",
- "status": "Swiss Stage 第三輪已打完：DK、GEN 3-0 晉級淘汰賽，AL、TSW 0-3 淘汰。第四輪 10/29–10/31（台灣時間）全部為 Bo3（Fearless），2-1 組勝者晉級、1-2 組敗者淘汰。",
+ "status": "Swiss Stage 第四輪進行中：DK、GEN 3-0，IG、T1 3-1 晉級淘汰賽；AL、TSW 0-3 淘汰。10/30–10/31（台灣時間）還有 4 場 Bo3。",
  "rounds": [
   {
    "name": "第一輪",
@@ -3257,7 +3257,7 @@
   },
   {
    "name": "第四輪",
-   "status": "upcoming",
+   "status": "live",
    "format": "Bo3",
    "date": "10/28–10/30 CDT · 10/29 04:00 – 10/31 約 10:00 台灣時間",
    "note": "先選權（Right of First Selection，第一局）：MKOI（高種子，vs T1）、LYON（高種子，vs IG）、BLG（高種子，vs TES）、CFO（高種子，vs KC）、TLAW（同種子抽籤先抽，vs LOS）、G2（高種子，vs HLE）。各隊選先選或選邊尚未公布。第四輪全部 Bo3（Fearless）；Polymarket／Kalshi 無法連線，改列莊家賠率（SpinBetter 10/28、GG.BET 10/27）",
@@ -3269,9 +3269,6 @@
      "format": "Bo3",
      "time_tw": "10/29 04:00",
      "time_ct": "10/28 15:00",
-     "pct": null,
-     "poly": null,
-     "kalshi": null,
      "books": [
       {
        "book": "SpinBetter",
@@ -3291,6 +3288,223 @@
        "as_of": "2026-10-27",
        "src": "https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/"
       }
+     ],
+     "pre_pct": [
+      18.8,
+      81.2
+     ],
+     "winner": "T1",
+     "score": [
+      0,
+      2
+     ],
+     "games": [
+      {
+       "winner": "T1",
+       "kills": [
+        10,
+        20
+       ],
+       "length": "40:00",
+       "blue": "T1",
+       "red": "MKOI",
+       "first_pick": "MKOI",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "MKOI": [
+          "Renata Glasc",
+          "Nocturne",
+          "Jayce",
+          "Orianna",
+          "Camille"
+         ],
+         "T1": [
+          "Cassiopeia",
+          "Vi",
+          "Ezreal",
+          "Locke",
+          "Taliyah"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "MKOI",
+          "champion": "Qiyana",
+          "player": "Elyoya",
+          "role": "jungle"
+         },
+         {
+          "n": 2,
+          "team": "T1",
+          "champion": "Nautilus",
+          "player": "Keria",
+          "role": "support"
+         },
+         {
+          "n": 3,
+          "team": "T1",
+          "champion": "Lee Sin",
+          "player": "Oner",
+          "role": "jungle"
+         },
+         {
+          "n": 4,
+          "team": "MKOI",
+          "champion": "Alistar",
+          "player": "Alvaro",
+          "role": "support"
+         },
+         {
+          "n": 5,
+          "team": "MKOI",
+          "champion": "Kai'Sa",
+          "player": "Supa",
+          "role": "bot"
+         },
+         {
+          "n": 6,
+          "team": "T1",
+          "champion": "Xayah",
+          "player": "Peyz",
+          "role": "bot"
+         },
+         {
+          "n": 7,
+          "team": "T1",
+          "champion": "Syndra",
+          "player": "Faker",
+          "role": "mid"
+         },
+         {
+          "n": 8,
+          "team": "MKOI",
+          "champion": "Akali",
+          "player": "Jojopyun",
+          "role": "mid"
+         },
+         {
+          "n": 9,
+          "team": "MKOI",
+          "champion": "Gnar",
+          "player": "Myrwn",
+          "role": "top"
+         },
+         {
+          "n": 10,
+          "team": "T1",
+          "champion": "Ambessa",
+          "player": "Doran",
+          "role": "top"
+         }
+        ]
+       }
+      },
+      {
+       "winner": "T1",
+       "kills": [
+        9,
+        22
+       ],
+       "length": "25:43",
+       "blue": "T1",
+       "red": "MKOI",
+       "first_pick": "MKOI",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "MKOI": [
+          "Renata Glasc",
+          "Jayce",
+          "Camille",
+          "Olaf",
+          "Sylas"
+         ],
+         "T1": [
+          "Cassiopeia",
+          "Vi",
+          "Nocturne",
+          "Locke",
+          "Rumble"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "MKOI",
+          "champion": "Ezreal",
+          "player": "Supa",
+          "role": "bot"
+         },
+         {
+          "n": 2,
+          "team": "T1",
+          "champion": "Karma",
+          "player": "Keria",
+          "role": "support"
+         },
+         {
+          "n": 3,
+          "team": "T1",
+          "champion": "Jarvan IV",
+          "player": "Oner",
+          "role": "jungle"
+         },
+         {
+          "n": 4,
+          "team": "MKOI",
+          "champion": "Seraphine",
+          "player": "Alvaro",
+          "role": "support"
+         },
+         {
+          "n": 5,
+          "team": "MKOI",
+          "champion": "Xin Zhao",
+          "player": "Elyoya",
+          "role": "jungle"
+         },
+         {
+          "n": 6,
+          "team": "T1",
+          "champion": "Jhin",
+          "player": "Peyz",
+          "role": "bot"
+         },
+         {
+          "n": 7,
+          "team": "T1",
+          "champion": "Orianna",
+          "player": "Faker",
+          "role": "mid"
+         },
+         {
+          "n": 8,
+          "team": "MKOI",
+          "champion": "Viktor",
+          "player": "Jojopyun",
+          "role": "mid"
+         },
+         {
+          "n": 9,
+          "team": "MKOI",
+          "champion": "Ornn",
+          "player": "Myrwn",
+          "role": "top"
+         },
+         {
+          "n": 10,
+          "team": "T1",
+          "champion": "Gwen",
+          "player": "Doran",
+          "role": "top"
+         }
+        ]
+       }
+      }
      ]
     },
     {
@@ -3300,9 +3514,6 @@
      "format": "Bo3",
      "time_tw": "10/29 07:00",
      "time_ct": "10/28 18:00",
-     "pct": null,
-     "poly": null,
-     "kalshi": null,
      "books": [
       {
        "book": "SpinBetter",
@@ -3312,6 +3523,326 @@
        ],
        "as_of": "2026-10-28",
        "src": "https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/"
+      }
+     ],
+     "pre_pct": [
+      63.2,
+      36.8
+     ],
+     "winner": "IG",
+     "score": [
+      2,
+      1
+     ],
+     "games": [
+      {
+       "winner": "IG",
+       "kills": [
+        19,
+        4
+       ],
+       "length": "27:09",
+       "blue": "LYON",
+       "red": "IG",
+       "first_pick": "IG",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "IG": [
+          "Wukong",
+          "Galio",
+          "Renata Glasc",
+          "Ahri",
+          "Annie"
+         ],
+         "LYON": [
+          "Syndra",
+          "Cassiopeia",
+          "Orianna",
+          "Ambessa",
+          "K'Sante"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "IG",
+          "champion": "Lulu",
+          "player": "Meiko",
+          "role": "support"
+         },
+         {
+          "n": 2,
+          "team": "LYON",
+          "champion": "Ezreal",
+          "player": "Berserker",
+          "role": "bot"
+         },
+         {
+          "n": 3,
+          "team": "LYON",
+          "champion": "Nocturne",
+          "player": "Inspired",
+          "role": "jungle"
+         },
+         {
+          "n": 4,
+          "team": "IG",
+          "champion": "Vi",
+          "player": "Wei",
+          "role": "jungle"
+         },
+         {
+          "n": 5,
+          "team": "IG",
+          "champion": "Yunara",
+          "player": "JiaQi",
+          "role": "bot"
+         },
+         {
+          "n": 6,
+          "team": "LYON",
+          "champion": "Karma",
+          "player": "Isles",
+          "role": "support"
+         },
+         {
+          "n": 7,
+          "team": "LYON",
+          "champion": "Rumble",
+          "player": "Dhokla",
+          "role": "top"
+         },
+         {
+          "n": 8,
+          "team": "IG",
+          "champion": "Ornn",
+          "player": "TheShy",
+          "role": "top"
+         },
+         {
+          "n": 9,
+          "team": "IG",
+          "champion": "Aurora",
+          "player": "Rookie",
+          "role": "mid"
+         },
+         {
+          "n": 10,
+          "team": "LYON",
+          "champion": "Sylas",
+          "player": "Saint",
+          "role": "mid"
+         }
+        ]
+       }
+      },
+      {
+       "winner": "LYON",
+       "kills": [
+        8,
+        18
+       ],
+       "length": "38:04",
+       "blue": "IG",
+       "red": "LYON",
+       "first_pick": "LYON",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "IG": [
+          "Renata Glasc",
+          "Cassiopeia",
+          "Wukong",
+          "Ahri",
+          "Viktor"
+         ],
+         "LYON": [
+          "Syndra",
+          "Orianna",
+          "Jayce",
+          "Ambessa",
+          "Twisted Fate"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "LYON",
+          "champion": "Qiyana",
+          "player": "Inspired",
+          "role": "jungle"
+         },
+         {
+          "n": 2,
+          "team": "IG",
+          "champion": "Jhin",
+          "player": "JiaQi",
+          "role": "bot"
+         },
+         {
+          "n": 3,
+          "team": "IG",
+          "champion": "Lee Sin",
+          "player": "Wei",
+          "role": "jungle"
+         },
+         {
+          "n": 4,
+          "team": "LYON",
+          "champion": "Alistar",
+          "player": "Isles",
+          "role": "support"
+         },
+         {
+          "n": 5,
+          "team": "LYON",
+          "champion": "Corki",
+          "player": "Berserker",
+          "role": "bot"
+         },
+         {
+          "n": 6,
+          "team": "IG",
+          "champion": "Nautilus",
+          "player": "Meiko",
+          "role": "support"
+         },
+         {
+          "n": 7,
+          "team": "IG",
+          "champion": "Annie",
+          "player": "Rookie",
+          "role": "mid"
+         },
+         {
+          "n": 8,
+          "team": "LYON",
+          "champion": "Olaf",
+          "player": "Dhokla",
+          "role": "top"
+         },
+         {
+          "n": 9,
+          "team": "LYON",
+          "champion": "Taliyah",
+          "player": "Saint",
+          "role": "mid"
+         },
+         {
+          "n": 10,
+          "team": "IG",
+          "champion": "Zaahen",
+          "player": "TheShy",
+          "role": "top"
+         }
+        ]
+       }
+      },
+      {
+       "winner": "IG",
+       "kills": [
+        7,
+        5
+       ],
+       "length": "23:59",
+       "blue": "LYON",
+       "red": "IG",
+       "first_pick": "IG",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "IG": [
+          "Akali",
+          "Locke",
+          "Ryze",
+          "Jarvan IV",
+          "Wukong"
+         ],
+         "LYON": [
+          "Syndra",
+          "Cassiopeia",
+          "Renata Glasc",
+          "Naafiri",
+          "Skarner"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "IG",
+          "champion": "Orianna",
+          "player": "Rookie",
+          "role": "mid"
+         },
+         {
+          "n": 2,
+          "team": "LYON",
+          "champion": "Lucian",
+          "player": "Berserker",
+          "role": "bot"
+         },
+         {
+          "n": 3,
+          "team": "LYON",
+          "champion": "Milio",
+          "player": "Isles",
+          "role": "support"
+         },
+         {
+          "n": 4,
+          "team": "IG",
+          "champion": "Caitlyn",
+          "player": "JiaQi",
+          "role": "bot"
+         },
+         {
+          "n": 5,
+          "team": "IG",
+          "champion": "Lux",
+          "player": "Meiko",
+          "role": "support"
+         },
+         {
+          "n": 6,
+          "team": "LYON",
+          "champion": "LeBlanc",
+          "player": "Saint",
+          "role": "mid"
+         },
+         {
+          "n": 7,
+          "team": "LYON",
+          "champion": "Xin Zhao",
+          "player": "Inspired",
+          "role": "jungle"
+         },
+         {
+          "n": 8,
+          "team": "IG",
+          "champion": "Trundle",
+          "player": "Wei",
+          "role": "jungle"
+         },
+         {
+          "n": 9,
+          "team": "IG",
+          "champion": "Jayce",
+          "player": "TheShy",
+          "role": "top"
+         },
+         {
+          "n": 10,
+          "team": "LYON",
+          "champion": "K'Sante",
+          "player": "Dhokla",
+          "role": "top"
+         }
+        ]
+       }
       }
      ]
     },
@@ -3403,7 +3934,8 @@
       }
      ]
     }
-   ]
+   ],
+   "pre_label": "莊家賠率換算的賽前勝率（SpinBetter 10/28、GG.BET 10/27；Polymarket／Kalshi 無法連線）"
   }
  ],
  "standings": {
@@ -3411,13 +3943,17 @@
    "DK",
    "GEN"
   ],
+  "3-1": [
+   "IG",
+   "T1"
+  ],
   "2-1": [
    "BLG",
-   "IG",
-   "LYON",
-   "MKOI",
-   "T1",
    "TES"
+  ],
+  "2-2": [
+   "LYON",
+   "MKOI"
   ],
   "1-2": [
    "CFO",
@@ -3793,7 +4329,8 @@
   "Bo3 以每一局分開統計 BP、英雄與選手數據（水晶球、英雄資訊、選手數據都以「局」計算）；預測準確度以系列賽勝負計。部分 Polymarket 晉級／0-3 市場成交量很小、買賣價差大（如 AL、TLAW 0-3），請保守看待。",
   "10/27 更新時 Polymarket、Kalshi 無法連線，第四輪賠率尚未取得；冠軍機率、晉級機率仍為 10/26 14:46（台灣時間）的價格，晉級模型（Outdrafted）已更新到第三輪結束後。",
   "LOS vs TSW 第 2 局、TLAW vs AL 第 1 局的藍紅方，Liquipedia 文字說明與其頁面顏色標示不一致，採用顏色標示與 gol.gg。",
-  "第四輪賠率：Polymarket、Kalshi 無法從資料整理環境連線，改用莊家十進位賠率——SpinBetter（經 tips.gg，10/28 文章）與 GG.BET（經 win.gg，10/27）。表中勝率為莊家賠率去除抽水後的換算值（標「莊」），與預測市場價格不同。"
+  "第四輪賠率：Polymarket、Kalshi 無法從資料整理環境連線，改用莊家十進位賠率——SpinBetter（經 tips.gg，10/28 文章）與 GG.BET（經 win.gg，10/27）。表中勝率為莊家賠率去除抽水後的換算值（標「莊」），與預測市場價格不同。",
+  "第四輪 10/29 兩場（MKOI vs T1、IG vs LYON）的 BP、選邊與先選取自 Leaguepedia（gol.gg 當時無法連線），已與 Liquipedia 核對擊殺、時長、禁選；這 5 局暫無 gol.gg 選手個人數據（傷害、經濟差等），選手統計與雷達圖暫不含這 5 局。"
  ],
  "sources": [
   [

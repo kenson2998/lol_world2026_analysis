@@ -19,6 +19,14 @@ rnd = w["rounds"][ri]
 by_pair = {frozenset((m["a"], m["b"])): m for m in rnd["matches"]}
 
 
+def book_pct(books):
+    """Bookmaker implied win chance for a/b: each book's 1/odds with its margin removed, averaged (same as the page)."""
+    if not books:
+        return None
+    pa = sum((1 / b["odds"][0]) / (1 / b["odds"][0] + 1 / b["odds"][1]) for b in books) / len(books)
+    return [round(pa * 100, 1), round((1 - pa) * 100, 1)]
+
+
 def game(g, flip):
     return {"winner": g["winner"], "kills": g["kills"][::-1] if flip else g["kills"], "length": g["length"], "blue": g["blue"],
             "red": g["red"], "first_pick": g["first_pick"], "draft_source": g["src"],
@@ -30,7 +38,7 @@ for r in d["finished"]:
     if m.get("winner"):
         continue
     flip = r["a"] != m["a"]   # keep our a/b order; kills and score follow it
-    m["pre_pct"] = m.pop("pct")
+    m["pre_pct"] = m.pop("pct", None) or book_pct(m.get("books"))
     for k in ("poly", "kalshi"):
         m.pop(k, None)
     games = [game(g, flip) for g in r["games"]]
@@ -47,6 +55,8 @@ for r in d.get("unfinished", []):
     for k in ("pct", "poly", "kalshi"):
         if r.get(k):
             m[k] = r[k][::-1] if flip else r[k]
+    if r.get("books"):   # fresher bookmaker lines replace the old ones
+        m["books"] = [b | {"odds": b["odds"][::-1] if flip else b["odds"]} for b in r["books"]]
 
 rnd["status"] = "done" if all(m.get("winner") for m in rnd["matches"]) else "live"
 when = rnd.get("note", "").split("Polymarket 價格為 ")[-1] if "Polymarket 價格為" in rnd.get("note", "") else ""
