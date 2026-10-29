@@ -465,6 +465,12 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .pbar2 { display: inline-block; height: 8px; border-radius: 4px; background: var(--accent); vertical-align: middle; margin-right: 8px }
 .dlt { font: 600 12px var(--f-data) }
 .dlt.up { color: var(--good) } .dlt.down { color: var(--bad) } .dlt.flat { color: var(--muted) }
+/* rise / fall since the latest match day */
+.mv { display: inline-block; font: 700 10.5px/15px var(--f-data); border-radius: 4px; padding: 0 4px; margin-left: 5px; vertical-align: middle; white-space: nowrap; cursor: default }
+.mv.up { color: var(--good); background: var(--good-soft) } .mv.down { color: var(--bad); background: var(--bad-soft) }
+.mv.flat { color: var(--muted); background: var(--mid-soft) } .mv.new { color: var(--accent); border: 1px solid currentColor; line-height: 13px }
+.wtable td .mv { margin-left: 4px; font-size: 10px; padding: 0 3px }
+.pv-rank .mv { margin-left: 4px }
 .wv-foot { color: var(--muted); font-size: 12px; display: grid; gap: 6px; max-width: 90ch }
 .wv-foot a { color: var(--accent) }
 .team-h .wrec { margin-left: 0 }
@@ -600,6 +606,38 @@ const gamesOf = m => m.games || (m.winner ? [m] : []);
 // every finished game in the first `upto` played rounds, tagged with its match teams and round
 const doneGames = (W, upto) => W.rounds.filter(played).slice(0, upto).flatMap(r => r.matches.filter(m => m.winner).flatMap(m =>
   gamesOf(m).map((g, gi) => ({ ...g, a: m.a, b: m.b, rname: r.name, gi, nG: gamesOf(m).length }))));
+
+// ---- rise / fall: the same numbers computed without the latest match day (Taiwan date of time_tw; round 1 has none) ----
+// PREV = { label, matches, games, W } where W is the worlds data as it stood before that day
+let PREV = null;
+function prevWorlds(W) {
+  const done = W.rounds.flatMap((r, ri) => r.matches.filter(m => m.winner).map(m => ({ ri, m, day: m.time_tw ? m.time_tw.split(" ")[0] : `r${ri}` })));
+  if (!done.length) return null;
+  const last = done.at(-1).day, drop = new Set(done.filter(x => x.day === last).map(x => `${x.ri}|${x.m.a} vs ${x.m.b}`));
+  if (drop.size === done.length) return null;   // nothing before it to compare with
+  const gone = (ri, m) => drop.has(`${ri}|${m.a} vs ${m.b}`);
+  return { label: last.startsWith("r") ? `${W.rounds[+last.slice(1)].name}前` : `${last} 比賽日前`, matches: drop.size,
+    games: done.filter(x => gone(x.ri, x.m)).reduce((s, x) => s + gamesOf(x.m).length, 0),
+    W: { ...W, rounds: W.rounds.map((r, ri) => ({ ...r, matches: r.matches.map(m => (gone(ri, m) ? { ...m, winner: undefined, games: undefined } : m)) })),
+      player_games: (W.player_games || []).filter(g => !drop.has(`${g.round}|${g.match.replace(/ G\d$/, "")}`)) } };
+}
+const prevNote = () => (PREV ? `▲▼ 為與 ${PREV.label}（不含該日 ${PREV.matches} 場 ${PREV.games} 局）相比。` : "");
+// rank movement badge: lower rank number = better; prev = { rank, val } before the latest day, or undefined when absent then
+const rankMove = (rank, prev, val) => {
+  if (!PREV) return "";
+  if (!prev) return `<span class="mv new tip" tabindex="0" data-tip="${esc(PREV.label)}尚無紀錄">新</span>`;
+  // on record then but not ranked (e.g. under the minimum games)
+  if (prev.rank == null) return `<span class="mv new tip" tabindex="0" data-tip="${esc(`${PREV.label}：未進榜${prev.val != null ? ` · ${prev.val}` : ""}`)}">新</span>`;
+  const d = prev.rank - rank, tip = `${PREV.label}：第 ${prev.rank} 名${prev.val != null ? ` · ${prev.val}` : ""}${val != null ? `\n現在：第 ${rank} 名 · ${val}` : ""}`;
+  return `<span class="mv ${d > 0 ? "up" : d < 0 ? "down" : "flat"} tip" tabindex="0" data-tip="${esc(tip)}">${d > 0 ? `▲${d}` : d < 0 ? `▼${-d}` : "–"}</span>`;
+};
+// value movement badge: arrow follows the value, colour follows whether higher is better (good: 1 better, -1 worse, 0 neutral)
+const valMove = (cur, prev, fmt, good = 1, tip = "") => {
+  if (!PREV || cur == null || prev == null) return "";
+  const d = cur - prev; if (Math.abs(d) < 1e-9) return "";
+  const cls = !good ? "flat" : d * good > 0 ? "up" : "down";
+  return `<span class="mv ${cls} tip" tabindex="0" data-tip="${esc(`${PREV.label}：${fmt(prev)}${tip}`)}">${d > 0 ? "▲" : "▼"}${fmt(Math.abs(d))}</span>`;
+};
 const ROLE_SHORT = { top: "上路", jungle: "打野", mid: "中路", bot: "下路", support: "輔助" };
 
 // one team's draft: bans (greyed) then its picks in draft order, each boxed with its lane on top
@@ -930,21 +968,35 @@ function accuracy(W, sec) {
 
 // ---- 水晶球 (Pick'Em) questions: current top 3 per question, from finished drafts and W.player_games ----
 const secs = len => { const [m, s] = String(len || "").split(":").map(Number); return m * 60 + (s || 0); };
-function crystalBall(W) {
+// collect = true: return each card's full ranking (title -> Map(id -> { rank, val })) instead of the HTML, for the rise / fall badges
+let CB_PREV = {};
+const cbId = r => r.id ?? (r.player ? `${r.team}/${r.player}` : r.champ ?? r.name);
+const cbNum = v => { const m = String(v).replace(/,/g, "").match(/-?\d+(\.\d+)?/); return m ? +m[0] : null; };   // "640 / 700" -> 640, "選 0 次" -> 0
+function crystalBall(W, collect) {
   const pg = W.player_games || [];
   const done = doneGames(W);
   const fmt1 = v => (Math.round(v * 10) / 10).toLocaleString();
-  const top3 = (rows, key) => [...rows].sort((a, b) => key(b) - key(a)).slice(0, 3);
+  const LIM = collect ? Infinity : 3, ranks = {};
+  const top3 = (rows, key) => [...rows].sort((a, b) => key(b) - key(a)).slice(0, LIM);
   // who: player headshot, champion icon or team badge, with the rank badge under it
   const who = (e, i, rank) => `<span class="who2">${e.player ? avatar(e.team, e.player) : e.champ ? icon(e.champ)
     : `<span class="tmb"${e.team ? ` title="${esc(fullName(e.team))}"` : ""}>${esc(e.badge ?? e.team)}</span>`}${rank ? `<span class="rk r${i + 1}">#${i + 1}</span>` : ""}</span>`;
-  const list = rows => rows.length ? `<ol>${rows.map((r, i) => `<li class="${rows.length > 1 ? `r${i + 1}` : ""}">${who(r, i, rows.length > 1)}
-    <span class="nm"><b>${esc(r.name)}${r.low ? `<span class="lowg">未滿 5 場</span>` : ""}</b>${r.sub ? `<span>${r.sub}</span>` : ""}</span>
+  // each list row leaves a slot for its rise / fall badge; card() fills it once the card title (the ranking key) is known
+  let last = null;
+  const list = rows => (last = rows).length ? `<ol>${rows.map((r, i) => `<li class="${rows.length > 1 ? `r${i + 1}` : ""}">${who(r, i, rows.length > 1)}
+    <span class="nm"><b>${esc(r.name)}${r.low ? `<span class="lowg">未滿 5 場</span>` : ""}<i data-mv="${i}"></i></b>${r.sub ? `<span>${r.sub}</span>` : ""}</span>
     <span class="val">${r.val}</span></li>`).join("")}</ol>` : "";
   const ST = { lead: ["目前領先", ""], yes: ["已達成", "yes"], no: ["尚未達成", "no"], wait: ["待定", ""] };
-  const card = (title, q, body, st = "lead", extra = "") =>
-    `<article class="cb" id="cb-${esc(slug(title))}"><div class="cb-h"><h3>${title}${anc(`cb-${slug(title)}`)}</h3><span class="cb-st ${ST[st][1]}">${ST[st][0]}</span></div>
-      <p class="cb-q">${q}</p>${extra}${body || `<div class="cb-empty">尚無資料</div>`}</article>`;
+  // a one-row card compares its value; a ranking compares places
+  const move = (title, rows, i) => { const r = rows[i], p = CB_PREV[title]?.get(cbId(r));
+    if (rows.length > 1) return rankMove(i + 1, p, r.val);
+    return p ? valMove(cbNum(r.val), cbNum(p.val), fmt1, 0, `\n現在：${r.val}`) : rankMove(1, p); };
+  const card = (title, q, body, st = "lead", extra = "") => {
+    const rows = last; last = null;
+    if (collect) { ranks[title] = new Map((rows || []).map((r, i) => [cbId(r), { rank: i + 1, val: r.val }])); return ""; }
+    if (rows) body = body.replace(/<i data-mv="(\d+)"><\/i>/g, (_, i) => move(title, rows, +i));
+    return `<article class="cb" id="cb-${esc(slug(title))}"><div class="cb-h"><h3>${title}${anc(`cb-${slug(title)}`)}</h3><span class="cb-st ${ST[st][1]}">${ST[st][0]}</span></div>
+      <p class="cb-q">${q}</p>${extra}${body || `<div class="cb-empty">尚無資料</div>`}</article>`; };
 
   // per-player and per-champion aggregates over finished games
   const players = new Map(), champs = new Map();
@@ -961,7 +1013,7 @@ function crystalBall(W) {
   const pRow = (p, val) => ({ team: p.team, player: p.player, name: p.player, sub: `${esc(p.team)} · ${ROLE_SHORT[p.role]} · ${p.n} 場`, val });
   // champion questions need ≥5 games; until enough champions qualify, fill with the best of the rest and tag them
   const qualified = (rows, key) => { const q = top3(rows.filter(r => r.n >= 5), key);
-    return q.concat(top3(rows.filter(r => r.n < 5), key).slice(0, 3 - q.length).map(r => ({ ...r, low: true }))); };
+    return q.concat(top3(rows.filter(r => r.n < 5), key).slice(0, LIM - q.length).map(r => ({ ...r, low: true }))); };
   const CS = champStats(W), nGames = CS.games;
 
   const cards = [];
@@ -1008,7 +1060,7 @@ function crystalBall(W) {
 
   // single-game records: best performances, each with champion and match
   const single = (f, goal, title, q, unit) => { const rows = top3(pg.filter(g => g[f] != null), g => g[f] + (g.k || 0) / 1000);
-    cards.push(card(title, q, list(rows.map(g => ({ team: g.team, player: g.player, name: g.player,
+    cards.push(card(title, q, list(rows.map(g => ({ id: `${g.team}/${g.player}|${g.match}`, team: g.team, player: g.player, name: g.player,
       sub: `${esc(g.team)} · ${esc(cname(g.champion || ""))} · ${esc(g.match)}`, val: `${g[f]} ${unit}` }))), rows[0]?.[f] >= goal ? "yes" : "no")); };
   single("k", 15, "單場 15 殺", "會有職業選手在單場對戰中取得 15 次以上擊殺嗎？", "殺");
   single("cs", 450, "單場 450 刀", "會有職業選手在單場對戰中取得 450 以上尾兵數嗎？", "刀");
@@ -1040,9 +1092,9 @@ function crystalBall(W) {
     ht[0].r.join() === ht[1].r.join() ? "wait" : "lead"));
 
   cards.push(card("速勝", "哪支戰隊會以最短時間贏得對戰勝利？",
-    list([...done].filter(m => m.length).sort((a, b) => secs(a.length) - secs(b.length)).slice(0, 3).map(m => ({ team: m.winner, name: fullName(m.winner),
+    list([...done].filter(m => m.length).sort((a, b) => secs(a.length) - secs(b.length)).slice(0, LIM).map(m => ({ id: `${m.a}|${m.b}|${m.gi}`, team: m.winner, name: fullName(m.winner),
       sub: `勝 ${esc(m.winner === m.a ? m.b : m.a)} · ${esc(m.rname)}${m.nG > 1 ? ` 第 ${m.gi + 1} 局` : ""}`, val: m.length })))));
-  return `<div class="cb-grid">${cards.join("")}</div>`;
+  return collect ? ranks : `<div class="cb-grid">${cards.join("")}</div>`;
 }
 
 // ---- generic sortable table (single or multi-column sort) ----
@@ -1166,30 +1218,41 @@ function matchupRows(W) {
     return { ...r, n, wins, wr: wins / n }; });
 }
 
+// one row per (lane, champion): totals over every opponent, with each opponent listed inside the row
+function muChamps(W) {
+  const byChamp = new Map();
+  matchupRows(W).forEach(r => { const k = `${r.role}|${r.champ}`;
+    if (!byChamp.has(k)) byChamp.set(k, { role: r.role, champ: r.champ, opps: [], games: [] });
+    const c = byChamp.get(k); c.opps.push(r); c.games.push(...r.games); });
+  const avgOf = xs => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
+  return [...byChamp.values()].map(c => { const g = c.games, n = g.length, wins = g.filter(x => x.me.win).length;
+    return { ...c, n, wins, wr: wins / n, opps: c.opps.sort((x, y) => y.n - x.n || y.wr - x.wr),
+      gd15: avgOf(g.map(x => x.me.gd15).filter(v => v != null)) }; });
+}
+// per lane: champions with at least 2 games, by lane win rate over all their opponents
+const muLaneRank = (champs, role) => champs.filter(c => c.role === role && c.n >= 2).sort((a, b) => b.wr - a.wr || b.n - a.n);
+
 function renderMatchups(W, sec) {
   const rows = matchupRows(W);
   const body = document.getElementById("mu-body"); if (!body) return;
   const nGames = doneGames(W).length;
   document.getElementById("mu-sub").textContent =
-    `以世界賽已結束 ${nGames} 局、同一路線兩隊選手所用英雄配成對位（共 ${rows.length / 2} 組），統計勝負與對線數據；樣本少，單一對位多為 1–2 場，請當作參考。數據取自 gol.gg。`;
+    `以世界賽已結束 ${nGames} 局、同一路線兩隊選手所用英雄配成對位（共 ${rows.length / 2} 組），統計勝負與對線數據；樣本少，單一對位多為 1–2 場，請當作參考。數據取自 gol.gg（無法連線的場次用 Leaguepedia，沒有 15 分經濟差）。${prevNote()}`;
   const sgn = v => (v == null ? "—" : `<span class="dlt ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}</span>`);
-
-  // one row per (lane, champion): totals over every opponent, with each opponent listed inside the row
-  const byChamp = new Map();
-  rows.forEach(r => { const k = `${r.role}|${r.champ}`;
-    if (!byChamp.has(k)) byChamp.set(k, { role: r.role, champ: r.champ, opps: [], games: [] });
-    const c = byChamp.get(k); c.opps.push(r); c.games.push(...r.games); });
-  const avgOf = xs => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
-  const champs = [...byChamp.values()].map(c => { const g = c.games, n = g.length, wins = g.filter(x => x.me.win).length;
-    return { ...c, n, wins, wr: wins / n, opps: c.opps.sort((x, y) => y.n - x.n || y.wr - x.wr),
-      gd15: avgOf(g.map(x => x.me.gd15).filter(v => v != null)) }; });
+  const champs = muChamps(W);
+  // the same rows before the latest match day, for the rise / fall badges
+  const before = PREV ? muChamps(PREV.W) : [], was = new Map(before.map(c => [`${c.role}|${c.champ}`, c]));
+  const pct = v => `${Math.round(v * 100)}%`, gdOf = c => (c?.gd15 == null ? null : Math.round(c.gd15));
 
   // per lane: top 5 champions by lane win rate over all their opponents (at least 2 games)
   const lanes = Object.entries(ROLE_SHORT).map(([role, name]) => {
-    const top = champs.filter(c => c.role === role && c.n >= 2).sort((a, b) => b.wr - a.wr || b.n - a.n).slice(0, 5);
+    const top = muLaneRank(champs, role).slice(0, 5), prevRank = muLaneRank(before, role);
+    const rec = c => `${pct(c.wr)}（${c.wins}-${c.n - c.wins}）`;
+    const move = (c, i) => { const at = prevRank.findIndex(x => x.champ === c.champ), p = was.get(`${role}|${c.champ}`);
+      return rankMove(i + 1, p && { rank: at < 0 ? null : at + 1, val: at < 0 ? `${p.n} 場，未滿 2 場` : rec(p) }, rec(c)); };
     return `<article class="cb" id="mu-${role}"><div class="cb-h"><h3>${name}${anc(`mu-${role}`)}</h3></div><p class="cb-q">對位勝率前五（至少 2 場）</p>${top.length
       ? `<ol>${top.map((c, i) => `<li class="r${i + 1}"><span class="who2">${icon(c.champ)}<span class="rk r${i + 1}">#${i + 1}</span></span>
-          <span class="nm"><b>${esc(cname(c.champ))}</b><span>${c.wins} 勝 ${c.n - c.wins} 敗 · 15 分經濟差 ${c.gd15 == null ? "—" : `${c.gd15 > 0 ? "+" : ""}${Math.round(c.gd15)}`}</span></span>
+          <span class="nm"><b>${esc(cname(c.champ))}${move(c, i)}</b><span>${c.wins} 勝 ${c.n - c.wins} 敗 · 15 分經濟差 ${c.gd15 == null ? "—" : `${c.gd15 > 0 ? "+" : ""}${Math.round(c.gd15)}`}</span></span>
           <span class="val">${Math.round(c.wr * 100)}%</span></li>`).join("")}</ol>` : `<div class="cb-empty">尚無 2 場以上的英雄</div>`}</article>`;
   }).join("");
 
@@ -1201,11 +1264,12 @@ function renderMatchups(W, sec) {
 
   const cols = [
     ["路線", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
-    ["英雄", r => cname(r.champ), true, r => `<td class="l"><span class="cn-cell">${icon(r.champ)}<span>${esc(cname(r.champ))}</span></span></td>`],
-    ["場數", r => r.n, false, r => `<td>${r.n}</td>`],
+    ["英雄", r => cname(r.champ), true, r => `<td class="l"><span class="cn-cell">${icon(r.champ)}<span>${esc(cname(r.champ))}</span>${PREV && !was.has(`${r.role}|${r.champ}`) ? rankMove(1) : ""}</span></td>`],
+    ["場數", r => r.n, false, r => `<td>${r.n}${valMove(r.n, was.get(`${r.role}|${r.champ}`)?.n, v => v, 0)}</td>`],
     ["戰績", r => r.wins - (r.n - r.wins), false, r => `<td>${r.wins}-${r.n - r.wins}</td>`],
-    ["勝率", r => r.wr, false, r => `<td><span class="wr ${wrCls(r.wr * 100)}">${Math.round(r.wr * 100)}%</span></td>`],
-    ["15分經濟差", r => r.gd15, false, r => `<td>${sgn(r.gd15)}</td>`],
+    ["勝率", r => r.wr, false, r => { const p = was.get(`${r.role}|${r.champ}`);
+      return `<td><span class="wr ${wrCls(r.wr * 100)}">${Math.round(r.wr * 100)}%</span>${p ? valMove(Math.round(r.wr * 100), Math.round(p.wr * 100), v => `${v}%`, 1, `（${p.wins}-${p.n - p.wins}）`) : ""}</td>`; }],
+    ["15分經濟差", r => r.gd15, false, r => `<td>${sgn(r.gd15)}${valMove(gdOf(r), gdOf(was.get(`${r.role}|${r.champ}`)), v => v.toLocaleString())}</td>`],
     ["對位英雄（戰績）", null, false, r => `<td class="l"><span class="mo-list">${r.opps.map(opp).join("")}</span></td>`],
   ];
   const T = sortTable("mu-table", cols, champs, [{ col: 4, desc: true }, { col: 2, desc: true }],   // win rate, then games
@@ -1240,8 +1304,8 @@ function renderMatchups(W, sec) {
     rows.forEach(tr => { tr.classList.remove("hl"); void tr.offsetWidth; tr.classList.add("hl"); });
     return true;
   };
-  body.innerHTML = sec("各路線對位表現", "每條路線中，面對所有對手合計勝率最高的前五名英雄。", `<div class="cb-grid">${lanes}</div>`, "mu-lanes")
-    + sec("對位明細", "同一路線的同一隻英雄整合成一列，依該英雄的對位勝率排序（同勝率再依場數）；右欄列出它遇過的每個對位英雄與戰績，滑鼠移到戰績上可看每場對局。15 分經濟差為「英雄方 − 對位方」的平均。",
+  body.innerHTML = sec("各路線對位表現", `每條路線中，面對所有對手合計勝率最高的前五名英雄。${PREV ? `名字旁為名次升降（${prevNote()}）` : ""}`, `<div class="cb-grid">${lanes}</div>`, "mu-lanes")
+    + sec("對位明細", `同一路線的同一隻英雄整合成一列，依該英雄的對位勝率排序（同勝率再依場數）；右欄列出它遇過的每個對位英雄與戰績，滑鼠移到戰績上可看每場對局。15 分經濟差為「英雄方 − 對位方」的平均。${PREV ? `數字旁的 ▲▼ 為數值變化、「新」為該日才出現的英雄；${prevNote()}` : ""}`,
       sortTableHTML("mu-table", controls), "mu-detail");
 }
 
@@ -1325,9 +1389,14 @@ function renderPlayerVs(W, sec) {
     ["每分金錢", r => r.gpm, r => f0(r.gpm)], ["每分傷害", r => r.dpm, r => f0(r.dpm)], ["傷害佔比", r => r.dmg_pct, r => (r.dmg_pct == null ? "—" : `${f1(r.dmg_pct)}%`)],
     ["承受傷害", r => r.taken, r => f0(r.taken)], ["視野分數", r => r.vs, r => f1(r.vs)], ["15分經濟差", r => r.gd15, r => sg(r.gd15)],
     ["15分補兵差", r => r.csd15, r => sg(r.csd15)], ["單殺", r => r.solo, r => r.solo]];
-  const rankOf = (r, key) => { const v = key(r); if (v == null) return "";
-    const lane = rows.filter(x => x.role === r.role && key(x) != null);
-    return `${ROLE_SHORT[r.role]}第 ${lane.filter(x => key(x) > v).length + 1} 名 / ${lane.length}`; };
+  // lane rank, with its movement since before the latest match day (only for players who played that day)
+  const before = PREV ? playerRows(PREV.W) : [];
+  const laneRank = (set, r, key) => { const v = key(r); if (v == null) return null;
+    const lane = set.filter(x => x.role === r.role && key(x) != null);
+    return { rank: lane.filter(x => key(x) > v).length + 1, of: lane.length }; };
+  const rankOf = (r, key, fmt) => { const now = laneRank(rows, r, key); if (!now) return "";
+    const p = before.find(x => x.team === r.team && x.player === r.player), was = p && p.n !== r.n ? laneRank(before, p, key) : null;
+    return `${ROLE_SHORT[r.role]}第 ${now.rank} 名 / ${now.of}${was ? rankMove(now.rank, { rank: was.rank, val: fmt(p) }, fmt(r)) : ""}`; };
 
   const radar = r => radarFig(rows.filter(x => x.role === r.role), [{ row: r, cls: "me" }], r.role);
 
@@ -1358,7 +1427,7 @@ function renderPlayerVs(W, sec) {
       <div class="pv-head">${avatar(r.team, r.player)}<div><h2>${esc(r.player)}${anc(pid(r))}</h2>
         <p>${esc(fullName(r.team))} · ${ROLE_SHORT[r.role]} · ${r.n} 場 <span class="wr ${wrCls(r.wins / r.n * 100)}">${wrTxt(r.wins, r.n)}</span></p></div></div>
       <div class="pv-top">${radar(r)}
-        <div class="pv-stats">${STATS.map(([label, key, fmt]) => `<div class="kpi"><b>${fmt(r)}</b><span>${label}</span><span class="pv-rank">${rankOf(r, key)}</span></div>`).join("")}</div></div>
+        <div class="pv-stats">${STATS.map(([label, key, fmt]) => `<div class="kpi"><b>${fmt(r)}</b><span>${label}</span><span class="pv-rank">${rankOf(r, key, fmt)}</span></div>`).join("")}</div></div>
       <h3 class="pv-h3">英雄池</h3>
       <div class="wbox"><table class="wtable"><tr><th>英雄</th><th>場數</th><th>戰績</th><th>勝率</th><th>KDA</th></tr>${poolRows.map(c =>
         `<tr><td class="l"><span class="cn-cell">${icon(c.champ)}<span>${esc(cname(c.champ))}</span></span></td><td>${c.n}</td><td>${c.w}-${c.n - c.w}</td>
@@ -1369,7 +1438,7 @@ function renderPlayerVs(W, sec) {
   };
 
   // the stats table lives on this page; clicking a player row toggles that player's panel open in a row right below it
-  body.innerHTML = sec("選手數據統計", `世界賽正式比賽（已結束 ${doneGames(W).length} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。<b>點選手那一列可展開／收合他的對位資訊。</b>數據取自 gol.gg。`,
+  body.innerHTML = sec("選手數據統計", `世界賽正式比賽（已結束 ${doneGames(W).length} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。<b>點選手那一列可展開／收合他的對位資訊。</b>數據取自 gol.gg；gol.gg 無法連線的場次改用 Leaguepedia 記分板（沒有 15 分經濟差／補兵差、承受傷害、單殺、搶重擊，這些欄位只以有數據的場次計算）。${PREV ? `數字旁的 ▲▼ 為與 ${PREV.label}相比的數值變化（只標該日有出賽的選手，累計欄位不標）；滑鼠移到標記上可看當時數值與同路線名次。` : ""}`,
     playerStats(W), "pl-stats");
   const T = TABLES["player-table"]; if (!T) return;
   const byId = new Map(rows.map(r => [pid(r), r]));
@@ -1445,15 +1514,24 @@ function playerStats(W) {
   ];
   // MVP column only once some game has an MVP on record
   if (MV.size) cols.splice(6, 0, ["MVP", r => r.mvp, false, r => `<td>${r.mvp ? `<span class="mvp-star">★</span>${r.mvp}` : "0"}</td>`]);
+  // rise / fall against the same player before the latest match day, on the per-game averages and win rate
+  // (cumulative columns only ever grow, so they get none); [higher is better: 1, neutral: 0, value format]
+  const before = PREV ? playerRows(PREV.W) : [], was = new Map(before.map(r => [`${r.team}/${r.player}`, r]));
+  const MOVE = { "戰績": [1, v => `${Math.round(v * 100)}%`], "KDA": [1, f1], "參團率": [1, v => `${Math.round(v)}%`], "每分補兵": [1, f1], "每分金錢": [1, f0],
+    "每分傷害": [1, f0], "傷害佔比": [1, v => `${f1(v)}%`], "承受傷害": [0, f0], "視野分數": [1, f1], "每分視野": [1, v => v.toFixed(2)],
+    "15分經濟差": [1, f0], "15分補兵差": [1, f1] };
   // hovering a number shows the player's rank in that column among players of the same lane (higher value = 1st, ties share)
   cols.forEach((c, i) => {
     const [label, key, isText, cell] = c;
     if (!key || isText || label === "場數") return;
-    const byRole = {};
+    const byRole = {}, byRolePrev = {};
     rows.forEach(r => { const v = key(r); if (v != null) (byRole[r.role] ||= []).push(v); });
+    before.forEach(r => { const v = key(r); if (v != null) (byRolePrev[r.role] ||= []).push(v); });
     c[3] = r => { const v = key(r), vs = byRole[r.role]; if (v == null || !vs) return cell(r);
-      const rank = vs.filter(x => x > v).length + 1;
-      return cell(r).replace(/^<td/, `<td data-tip="${ROLE_SHORT[r.role]}第 ${rank} 名（共 ${vs.length} 人）"`); };
+      const rank = vs.filter(x => x > v).length + 1, p = was.get(`${r.team}/${r.player}`), pv = p && key(p);
+      const prank = pv != null && byRolePrev[r.role] ? `（同路線第 ${byRolePrev[r.role].filter(x => x > pv).length + 1} 名）` : "";
+      const mv = MOVE[label] && p && p.n !== r.n ? valMove(v, pv, MOVE[label][1], MOVE[label][0], prank) : "";
+      return cell(r).replace(/^<td/, `<td data-tip="${ROLE_SHORT[r.role]}第 ${rank} 名（共 ${vs.length} 人）"`).replace(/<\/td>$/, `${mv}</td>`); };
   });
   const T = sortTable("player-table", cols, rows, [{ col: cols.findIndex(c => c[0] === "KDA"), desc: true }],   // KDA, high to low
     (a, b) => b.k - a.k || a.player.localeCompare(b.player));
@@ -1529,7 +1607,9 @@ function renderWorlds(W) {
   // 水晶球預測 page: how markets called finished rounds, then forecasts for what's next
   const nextSec = sec(`${esc(W.next.name)}預測<small>${esc(W.next.format || "")}</small>`, "", W.next.matches.length ? upcomingTable(W.next) : "目前沒有未開打的場次。", "pv-next");
   const nDone = doneGames(W).length;
-  const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg，KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。`,
+  PREV = prevWorlds(W);
+  CB_PREV = PREV ? crystalBall(PREV.W, true) : {};
+  const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg（無法連線的場次用 Leaguepedia），KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。${PREV ? `名字旁的 ${prevNote()}單一數值的題目顯示數值變化；滑鼠移到標記上可看當時名次與數值。` : ""}`,
     crystalBall(W), "pv-cb");
   document.getElementById("pv-body").innerHTML = cb + accuracy(W, sec) + nextSec + outright + advance;
   document.getElementById("pv-sub").textContent =

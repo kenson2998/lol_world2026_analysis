@@ -1,7 +1,9 @@
 """Pull per-player Worlds game stats from gol.gg full-stats pages into data/worlds.json (key "player_games").
 
 Each finished match needs `draft_source` (a gol.gg game URL), `blue`/`red` and a draft (for champions).
-usage: python3 -I worlds_player_stats.py data_dir cache_dir
+Games without a gol.gg id (gol.gg down) take their numbers from Leaguepedia scoreboard JSON files, if given:
+{"games": [{"match": "MKOI vs T1 G1", "length": "40:00", "players": [{team, role, player, champion, k, d, a, cs, gold, dmg, vs, ...}]}]}
+usage: python3 -I worlds_player_stats.py data_dir cache_dir [scoreboards.json ...]
 """
 import json, os, re, subprocess, sys
 
@@ -39,11 +41,39 @@ def parse(html):
     return rows
 
 
-def main(data_dir, cache):
+def from_scoreboard(sb, ri, label, g):
+    """Player rows for a game gol.gg doesn't have, from a Leaguepedia scoreboard JSON (see usage).
+
+    Leaguepedia gives K/D/A, CS, gold, damage to champions and vision score; per-minute and team-share numbers are
+    derived from those, everything else (GD@15, damage taken, solo kills, steals...) stays missing."""
+    mins = sum(x * f for x, f in zip(map(int, sb["length"].split(":")), (1, 1 / 60)))
+    team = {t: {k: sum(p.get(k) or 0 for p in sb["players"] if p["team"] == t) for k in ("k", "gold", "dmg")}
+            for t in {p["team"] for p in sb["players"]}}
+    out = []
+    for p in sb["players"]:
+        t = team[p["team"]]
+        rec = {"round": ri, "match": label, "team": p["team"], "role": p["role"], "player": p["player"], "gol_name": None,
+               "champion": p["champion"], "win": g["winner"] == p["team"], "length": g.get("length"), "src": "leaguepedia"}
+        rec |= {k: (float(p[k]) if p.get(k) is not None else None) for k in ("k", "d", "a", "cs", "gold", "vs", "wards", "dmg",
+                                                                          "dmg_taken", "gd15", "csd15", "xpd15", "solo", "steals")}
+        per_min = lambda v, n=1: round(v / mins, n) if v is not None else None
+        rec |= {"csm": per_min(rec["cs"]), "gpm": per_min(rec["gold"], 0), "dpm": per_min(rec["dmg"], 0), "vspm": per_min(rec["vs"], 2),
+                "kp": round((rec["k"] + rec["a"]) / t["k"] * 100, 1) if t["k"] else None,
+                "gold_pct": round(rec["gold"] / t["gold"] * 100, 1) if rec["gold"] is not None and t["gold"] else None,
+                "dmg_pct": round(rec["dmg"] / t["dmg"] * 100, 1) if rec["dmg"] is not None and t["dmg"] else None}
+        out.append(rec)
+    return out
+
+
+def main(data_dir, cache, scoreboards=None):
     os.makedirs(cache, exist_ok=True)
     wpath = f"{data_dir}/worlds.json"
     w = json.load(open(wpath))
     rosters = {t["team"]: t for t in json.load(open(f"{data_dir}/rosters.json"))}
+    # Leaguepedia scoreboards for games gol.gg can't serve, keyed by match label ("MKOI vs T1 G1")
+    sbs = {}
+    for path in scoreboards or []:
+        sbs |= {x["match"]: x for x in json.load(open(path))["games"]}
     out = []
     for ri, rnd in enumerate(w["rounds"]):
         if rnd["status"] == "upcoming":
@@ -55,7 +85,11 @@ def main(data_dir, cache):
                 label = f'{m["a"]} vs {m["b"]}' + (f" G{gi + 1}" if len(games) > 1 else "")
                 gid = re.search(r"/stats/(\d+)/", g.get("draft_source", ""))
                 if not gid:
-                    print(f"skip {label}: no gol.gg id", file=sys.stderr)
+                    if label in sbs:
+                        out += from_scoreboard(sbs[label], ri, label, g)
+                        print(f"{label}: Leaguepedia scoreboard", file=sys.stderr)
+                    else:
+                        print(f"skip {label}: no gol.gg id", file=sys.stderr)
                     continue
                 rows = parse(fetch(gid.group(1), cache))
                 champ = {(p["team"], p["role"]): p["champion"] for p in g["draft"]["picks"]}
@@ -81,4 +115,4 @@ def main(data_dir, cache):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3:])
