@@ -248,6 +248,30 @@ footer a { color: var(--accent) }
 .res-head { font: 700 13px var(--f-data); color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 6px }
 .rpanel .res-grid + p.rnote { margin-top: 16px }
 .rpanel .rsub { font: 700 16px var(--f-display); margin: 18px 0 8px }
+/* Swiss bracket tree */
+.sw-scroll { overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 6px }
+.sw { position: relative; display: grid; grid-template-columns: repeat(6, minmax(150px, 1fr)); gap: 30px; min-width: 1050px }
+.sw-col { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1 }
+.sw-ch { font: 600 11px var(--f-data); color: var(--muted); text-align: center; letter-spacing: .04em }
+.sw-boxes { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 14px }
+.sw-box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 6px 8px 8px; display: grid; gap: 4px }
+.sw-h { display: flex; justify-content: space-between; align-items: baseline; font: 700 14px var(--f-display); padding: 0 2px }
+.sw-h small { font: 500 10.5px var(--f-data); color: var(--muted) }
+.sw-out.win { border-color: var(--good); background: var(--good-soft) } .sw-out.win .sw-h { color: var(--good) }
+.sw-out.lose { border-color: var(--bad); background: var(--bad-soft) } .sw-out.lose .sw-h { color: var(--bad) }
+.sw-m { display: grid; gap: 1px; padding: 4px 6px; border-radius: 6px; background: var(--mid-soft); color: inherit; text-decoration: none }
+.sw-m:hover, .sw-m:focus-visible { outline: 1.5px solid var(--accent); outline-offset: 0 }
+.sw-m.up { background: transparent; border: 1px dashed var(--line) }
+.sw-t { display: flex; justify-content: space-between; gap: 6px; font-size: 12.5px; line-height: 18px }
+.sw-t b { font: 700 13px var(--f-display) } .sw-t i { font: 700 12px var(--f-data); font-style: normal; font-variant-numeric: tabular-nums }
+.sw-t.l { color: var(--muted) } .sw-t.l b { font-weight: 500 } .sw-t.w i { color: var(--good) }
+.sw-when { font: 500 10.5px var(--f-data); color: var(--muted) }
+.sw-cs { display: flex; flex-wrap: wrap; gap: 4px }
+.sw-c { font: 700 12px var(--f-display); border-radius: 5px; padding: 1px 6px; background: var(--surface); border: 1px solid var(--line) }
+.sw-c.tbd { font: 500 11px var(--f-body); color: var(--muted); border-style: dashed; background: transparent }
+.sw-empty { font-size: 11.5px; color: var(--muted); padding: 2px }
+.sw-lines { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; z-index: 0 }
+.sw-e { fill: none; stroke-width: 1.5 } .sw-e.w { stroke: var(--good); opacity: .55 } .sw-e.l { stroke: var(--bad); opacity: .45 }
 .rpanel .rnote + .rsub { margin-top: 10px }
 .rnote { margin: 0 0 10px; color: var(--muted); font-size: 12.5px }
 .sortbtn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; white-space: nowrap }
@@ -1558,6 +1582,69 @@ function playerStats(W) {
   return sortTableHTML("player-table", chips);
 }
 
+// ---- Swiss bracket tree: one column per round, a box per record pool, results boxes (3-x advance, x-3 out) in the
+// column after the round that decides them; winners move up a pool, losers down. Records come from the results.
+const SW_ROUNDS = 5;
+function swissTree(W) {
+  const key = (w, l) => `${w}-${l}`;
+  // the skeleton: pools of round r have w + l = r (both under 3); 3-l / w-3 results sit in column 3 + l / 3 + w
+  const cols = Array.from({ length: SW_ROUNDS + 1 }, (_, c) => ({ c, boxes: [] }));
+  const box = {};
+  for (let r = 0; r < SW_ROUNDS; r++)
+    for (let w = Math.min(2, r); w >= 0 && r - w <= 2; w--) cols[r].boxes.push(box[`p${key(w, r - w)}`] = { id: `p${key(w, r - w)}`, w, l: r - w, r, items: [], ents: [] });
+  for (let x = 0; x < 3; x++) {
+    cols[3 + x].boxes.unshift(box[`o${key(3, x)}`] = { id: `o${key(3, x)}`, w: 3, l: x, out: "win", ents: [] });
+    cols[3 + x].boxes.push(box[`o${key(x, 3)}`] = { id: `o${key(x, 3)}`, w: x, l: 3, out: "lose", ents: [] });
+  }
+  // walk the rounds: entities are teams with their record, or "A / B 勝方|敗方" slots while a match is unplayed
+  let ents = DATA.teams.map(t => ({ team: t.team, w: 0, l: 0 }));
+  const place = e => { if (e.w === 3 || e.l === 3) box[`o${key(e.w, e.l)}`].ents.push(e); };
+  for (let r = 0; r < SW_ROUNDS; r++) {
+    const R = W.rounds[r], live = ents.filter(e => e.w < 3 && e.l < 3);
+    if (!R?.matches.length || live.some(e => !e.team)) {   // not drawn yet (or waiting on results): list who is in each pool
+      live.forEach(e => box[`p${key(e.w, e.l)}`]?.ents.push(e));
+      break;
+    }
+    const next = ents.filter(e => e.w === 3 || e.l === 3);
+    R.matches.forEach((m, k) => {
+      const ea = ents.find(e => e.team === m.a), eb = ents.find(e => e.team === m.b); if (!ea || !eb) return;
+      box[`p${key(ea.w, ea.l)}`]?.items.push({ m, ri: r, k });
+      const up = m.winner ? { team: m.winner } : { label: `${m.a} / ${m.b} 勝方` }, down = m.winner ? { team: m.winner === m.a ? m.b : m.a } : { label: `${m.a} / ${m.b} 敗方` };
+      [{ ...up, w: ea.w + 1, l: ea.l }, { ...down, w: ea.w, l: ea.l + 1 }].forEach(e => { next.push(e); place(e); });
+    });
+    ents = next;
+  }
+  const score = (m, t) => (!m.winner ? "" : m.score ? m.score[t === m.a ? 0 : 1] : Number(m.winner === t));
+  const side = (m, t) => `<span class="sw-t${m.winner ? (m.winner === t ? " w" : " l") : ""}" title="${esc(fullName(t))}"><b>${esc(t)}</b><i>${score(m, t)}</i></span>`;
+  const chip = e => (e.team ? `<span class="sw-c" title="${esc(fullName(e.team))}">${esc(e.team)}</span>` : `<span class="sw-c tbd">${esc(e.label)}</span>`);
+  const body = b => b.out ? (b.ents.length ? `<div class="sw-cs">${b.ents.map(chip).join("")}</div>` : `<div class="sw-empty">待定</div>`)
+    : b.items.length ? b.items.map(({ m, ri, k }) => `<a class="sw-m${m.winner ? "" : " up"}" href="#${matchId(ri, k)}" title="看這場比賽">${side(m, m.a)}${side(m, m.b)}${m.winner ? "" : `<span class="sw-when">${esc(m.time_tw || "未開打")}</span>`}</a>`).join("")
+    : b.ents.length ? `<div class="sw-cs">${b.ents.map(chip).join("")}</div><div class="sw-empty">對陣待抽籤</div>` : `<div class="sw-empty">待定</div>`;
+  const head = b => b.out ? `${key(b.w, b.l)} ${b.out === "win" ? "晉級" : "淘汰"}` : key(b.w, b.l);
+  const count = b => (b.out ? b.ents.filter(e => e.team).length : b.items.length) || "";
+  const names = [...W.rounds.slice(0, SW_ROUNDS).map(r => r.name), ...["第一輪", "第二輪", "第三輪", "第四輪", "第五輪"].slice(W.rounds.length)].slice(0, SW_ROUNDS);
+  return `<div class="sw-scroll"><div class="sw" id="sw">${cols.map(col => `<div class="sw-col"><div class="sw-ch">${esc(names[col.c] || "結果")}</div>
+    <div class="sw-boxes">${col.boxes.map(b => `<div class="sw-box${b.out ? ` sw-out ${b.out}` : ""}" data-k="${b.id}">
+      <div class="sw-h">${head(b)}${count(b) ? `<small>${b.out ? `${count(b)} 隊` : `${count(b)} 場`}</small>` : ""}</div>${body(b)}</div>`).join("")}</div></div>`).join("")}
+    <svg class="sw-lines" aria-hidden="true"></svg></div></div>`;
+}
+// connector lines between pools, drawn from the laid-out boxes (again whenever the tree changes size, e.g. its tab opens)
+function drawSwissLines() {
+  const sw = document.getElementById("sw"), svg = sw?.querySelector(".sw-lines"); if (!svg || !sw.offsetWidth) return;
+  const o = sw.getBoundingClientRect(), at = k => sw.querySelector(`[data-k="${k}"]`)?.getBoundingClientRect();
+  svg.setAttribute("width", sw.scrollWidth); svg.setAttribute("height", sw.scrollHeight);
+  const paths = [];
+  sw.querySelectorAll('.sw-box:not(.sw-out)').forEach(el => {
+    const [w, l] = el.dataset.k.slice(1).split("-").map(Number), a = el.getBoundingClientRect();
+    [[w + 1, l, "w"], [w, l + 1, "l"]].forEach(([w2, l2, cls]) => {
+      const b = at(w2 === 3 || l2 === 3 ? `o${w2}-${l2}` : `p${w2}-${l2}`); if (!b) return;
+      const x1 = a.right - o.left, y1 = a.top - o.top + a.height / 2 + (cls === "w" ? -6 : 6), x2 = b.left - o.left, y2 = b.top - o.top + Math.min(b.height / 2, 22), mx = (x1 + x2) / 2;
+      paths.push(`<path class="sw-e ${cls}" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}"/>`);
+    });
+  });
+  svg.innerHTML = paths.join("");
+}
+
 function renderWorlds(W) {
   if (!W) { document.getElementById("tab-worlds").hidden = true; return; }
   W.next = nextRound(W) || { name: "下一輪", matches: [] };
@@ -1578,12 +1665,8 @@ function renderWorlds(W) {
     ${r.matches.some(m => m.winner) ? `${r.matches.some(m => !m.winner) ? `<h3 class="rsub">已結束</h3>` : ""}<div class="res-grid">${r.matches.map((m, k) => (m.winner ? matchCard(m, i, k) : "")).join("")}</div>` : ""}</div>`).join("");
   const results = sec("賽事", "", tabs + panels, "wv-rounds");
 
-  // pools after the latest round, each team with its next opponent
-  const nextOf = team => { const m = W.next.matches.find(x => x.a === team || x.b === team); return m ? (m.a === team ? m.b : m.a) : ""; };
-  const standings = sec("目前戰績", `每組下一輪對手（${esc(W.next.name)}）。`,
-    `<div class="stand">${Object.entries(W.standings).map(([rec, teams]) =>
-      `<div class="pool"><h3 class="${recCls(rec)}">${esc(rec)}（${teams.length} 隊）</h3><ul>${teams.map(t =>
-        `<li><b title="${esc(fullName(t))}">${esc(t)}</b><span>${nextOf(t) ? `vs ${esc(nextOf(t))}` : ""}</span></li>`).join("")}</ul></div>`).join("")}</div>`);
+  const tree = sec("賽程樹狀圖", "瑞士輪每一欄是一輪，依戰績分組；勝方往上一組（綠線）、敗方往下一組（紅線），3 勝晉級淘汰賽、3 敗淘汰。戰績由已結束的賽果推算；點比賽可跳到該場。手機可左右滑動。",
+    swissTree(W), "wv-tree");
 
   const champs = sec("英雄資訊變化", "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。",
     champChanges(W));
@@ -1616,7 +1699,10 @@ function renderWorlds(W) {
 
   const mb = mvpBoard(W);
   const mvps = mb ? sec("MVP 統計", "每局 MVP（Player of the Game）次數。", mb, "wv-mvp") : "";
-  document.getElementById("wv-body").innerHTML = results + standings + mvps + champs;
+  document.getElementById("wv-body").innerHTML = results + tree + mvps + champs;
+  const sw = document.getElementById("sw");
+  if (sw && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawSwissLines()).observe(sw);
+  else { drawSwissLines(); addEventListener("resize", drawSwissLines); }
   // 水晶球預測 page: how markets called finished rounds, then forecasts for what's next
   const nextSec = sec(`${esc(W.next.name)}預測<small>${esc(W.next.format || "")}</small>`, "", W.next.matches.length ? upcomingTable(W.next) : "目前沒有未開打的場次。", "pv-next");
   const nDone = doneGames(W).length;
