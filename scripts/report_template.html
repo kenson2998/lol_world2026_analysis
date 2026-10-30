@@ -247,6 +247,8 @@ footer a { color: var(--accent) }
 .rst.live { background: var(--accent-soft); color: var(--accent) }
 .res-head { font: 700 13px var(--f-data); color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 6px }
 .rpanel .res-grid + p.rnote { margin-top: 16px }
+.rpanel .rsub { font: 700 16px var(--f-display); margin: 18px 0 8px }
+.rpanel .rnote + .rsub { margin-top: 10px }
 .rnote { margin: 0 0 10px; color: var(--muted); font-size: 12.5px }
 .sortbtn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; white-space: nowrap }
 .sortbtn:hover { color: var(--ink) }
@@ -879,7 +881,8 @@ function setupMatchPreviews() {
 
 // ri: round index when this is the round's own table (rows then carry share ids like "r4-m2"); omitted for copies
 function upcomingTable(r, ri) {
-  const ms = r.matches.filter(m => !m.winner), anyBooks = ms.some(m => m.books?.length);
+  // soonest first (time_tw is "MM/DD HH:MM", so text order is time order within the event)
+  const ms = r.matches.filter(m => !m.winner).sort((x, y) => (x.time_tw || "").localeCompare(y.time_tw || "")), anyBooks = ms.some(m => m.books?.length);
   const rowId = m => (ri == null ? "" : matchId(ri, r.matches.indexOf(m)));
   // every row (copies too) knows its match id, so its preview can link the pre-match analysis page
   const ri0 = ri ?? DATA.worlds.rounds.findIndex(x => x.name === r.name), mid = m => matchId(ri0, DATA.worlds.rounds[ri0].matches.findIndex(x => x.a === m.a && x.b === m.b));
@@ -1563,14 +1566,16 @@ function renderWorlds(W) {
   const sec = (title, sub, body, id = `s-${slug(title)}`) => `<section class="wsec" id="${esc(id)}"><h2>${title}${anc(id)}</h2>${sub ? `<p>${sub}</p>` : ""}${body}</section>`;
 
   // round tabs: finished rounds show results + drafts, upcoming rounds show schedule + odds
-  const sel = Math.max(0, W.rounds.map(played).lastIndexOf(true));   // open on the latest round with results
+  // open on the round holding the next unplayed match; when everything is played, the latest round with results
+  const upNext = W.rounds.findIndex(r => r.matches.some(m => !m.winner));
+  const sel = upNext >= 0 ? upNext : Math.max(0, W.rounds.map(played).lastIndexOf(true));
   const tabs = `<div class="rtabs" role="tablist" aria-label="切換輪次">${W.rounds.map((r, i) =>
     `<button class="rtab" role="tab" id="rtab-${i}" aria-controls="rpanel-${i}" aria-selected="${i === sel}" tabindex="${i === sel ? 0 : -1}" data-i="${i}">
       ${esc(r.name)}<span class="rst ${r.status}">${{ done: "已結束", live: "進行中" }[r.status] || "未開打"}</span></button>`).join("")}</div>`;
   const panels = W.rounds.map((r, i) => `<div class="rpanel" role="tabpanel" id="rpanel-${i}" aria-labelledby="rtab-${i}"${i === sel ? "" : " hidden"}>
     <p class="rnote">${esc(r.format)} · ${esc(r.date)}${r.note ? ` · ${esc(r.note)}` : ""}</p>
-    ${r.matches.some(m => m.winner) ? `<div class="res-grid">${r.matches.map((m, k) => (m.winner ? matchCard(m, i, k) : "")).join("")}</div>` : ""}
-    ${r.matches.some(m => !m.winner) ? upcomingTable(r, i) : ""}</div>`).join("");
+    ${r.matches.some(m => !m.winner) ? `${r.matches.some(m => m.winner) ? `<h3 class="rsub">未開打（依時間，最近的在最上面）</h3>` : ""}${upcomingTable(r, i)}` : ""}
+    ${r.matches.some(m => m.winner) ? `${r.matches.some(m => !m.winner) ? `<h3 class="rsub">已結束</h3>` : ""}<div class="res-grid">${r.matches.map((m, k) => (m.winner ? matchCard(m, i, k) : "")).join("")}</div>` : ""}</div>`).join("");
   const results = sec("賽事", "", tabs + panels, "wv-rounds");
 
   // pools after the latest round, each team with its next opponent
