@@ -160,9 +160,9 @@
 | 下路 | Duduhh | 15 | 10-5 | 67% | [KR] —<br>[NA] 2小時34分前 | Aphelios (亞菲利歐) 2場 13% 100%、Jhin (燼) 2場 13% 50%、Akali (阿卡莉) 1場 7% 100%、Caitlyn (凱特琳) 1場 7% 100%、Irelia (伊瑞莉雅) 1場 7% 100%、Kalista (克黎思妲) 1場 7% 100% |
 | 輔助 | Ackerman | 14 | 12-2 | 86% | [KR] —<br>[NA] 2小時53分前 | Camille (卡蜜兒) 3場 21% 67%、Bard (巴德) 2場 14% 100%、Annie (安妮) 1場 7% 100%、Blitzcrank (布里茨) 1場 7% 100%、Karma (卡瑪) 1場 7% 100%、Pantheon (潘森) 1場 7% 100% |
 
-## 世界賽戰況（整理於 2026-10-29 10:23（台灣時間））
+## 世界賽戰況（整理於 2026-10-30 10:13（台灣時間））
 
-Swiss Stage 第四輪進行中：DK、GEN 3-0，IG、T1 3-1 晉級淘汰賽；AL、TSW 0-3 淘汰。10/30–10/31（台灣時間）還有 4 場 Bo3。
+Swiss Stage 第四輪進行中：DK、GEN 3-0，IG、T1、TES 3-1 晉級淘汰賽；AL、TSW 0-3、CFO 1-3 淘汰。BLG、KC、LYON、MKOI 2-2 進第五輪。10/31（台灣時間）還有 2 場 Bo3（TLAW vs LOS、HLE vs G2）；第五輪 3 場 Bo3 預計 11/1 01:00、04:00、07:00（台灣時間），對陣於第四輪結束後抽籤。
 
 ### 第一輪結果（Bo1）
 
@@ -217,13 +217,16 @@ Swiss Stage 第四輪進行中：DK、GEN 3-0，IG、T1 3-1 晉級淘汰賽；AL
 | IG vs LYON 第1局 | IG | 19-4 | 27:09 | IG Lulu (露璐)、LYON Ezreal (伊澤瑞爾)、LYON Nocturne (夜曲)、IG Vi (菲艾)、IG Yunara (尤娜拉)、LYON Karma (卡瑪)、LYON Rumble (藍寶)、IG Ornn (鄂爾)、IG Aurora (歐羅拉)、LYON Sylas (賽勒斯) |  |
 | IG vs LYON 第2局 | LYON | 8-18 | 38:04 | LYON Qiyana (姬亞娜)、IG Jhin (燼)、IG Lee Sin (李星)、LYON Alistar (亞歷斯塔)、LYON Corki (庫奇)、IG Nautilus (納帝魯斯)、IG Annie (安妮)、LYON Olaf (歐拉夫)、LYON Taliyah (塔莉雅)、IG Zaahen (薩亨) |  |
 | IG vs LYON 第3局 | IG | 7-5 | 23:59 | IG Orianna (奧莉安娜)、LYON Lucian (路西恩)、LYON Milio (米里歐)、IG Caitlyn (凱特琳)、IG Lux (拉克絲)、LYON LeBlanc (勒布朗)、LYON Xin Zhao (趙信)、IG Trundle (特朗德)、IG Jayce (杰西)、LYON K'Sante (卡桑帝) |  |
+| KC vs CFO 第1局 | KC | 19-3 | 27:35 | CFO Jarvan IV (嘉文四世)、KC Wukong (悟空)、KC Cassiopeia (卡莎碧雅)、CFO Syndra (星朵拉)、CFO Rumble (藍寶)、KC Galio (加里歐)、KC Nautilus (納帝魯斯)、CFO Alistar (亞歷斯塔)、CFO Kai'Sa (凱莎)、KC Tristana (崔絲塔娜) |  |
+| KC vs CFO 第2局 | KC | 20-12 | 36:54 | CFO Lee Sin (李星)、KC Lulu (露璐)、KC Yunara (尤娜拉)、CFO Caitlyn (凱特琳)、CFO Karma (卡瑪)、KC Pantheon (潘森)、KC Viktor (維克特)、CFO Ryze (雷茲)、CFO Ambessa (安比薩)、KC Camille (卡蜜兒) |  |
+| TES vs BLG 第1局 | BLG | 6-21 | 27:51 | BLG Vi (菲艾)、TES Jhin (燼)、TES Qiyana (姬亞娜)、BLG Nautilus (納帝魯斯)、BLG Orianna (奧莉安娜)、TES Alistar (亞歷斯塔)、TES Viktor (維克特)、BLG Ezreal (伊澤瑞爾)、BLG Gnar (吶兒)、TES Jayce (杰西) |  |
+| TES vs BLG 第2局 | TES | 13-10 | 37:36 | TES Jarvan IV (嘉文四世)、BLG Ashe (艾希)、BLG Seraphine (瑟菈紛)、TES Lucian (路西恩)、TES Milio (米里歐)、BLG Wukong (悟空)、BLG K'Sante (卡桑帝)、TES Locke (洛克)、TES Aatrox (厄薩斯)、BLG LeBlanc (勒布朗) |  |
+| TES vs BLG 第3局 | TES | 17-3 | 27:48 | BLG Renata Glasc (睿娜妲．格萊斯克)、TES Syndra (星朵拉)、TES Lulu (露璐)、BLG Ambessa (安比薩)、BLG Kalista (克黎思妲)、TES Renekton (雷尼克頓)、TES Pantheon (潘森)、BLG Yone (犽凝)、BLG Maokai (茂凱)、TES Tristana (崔絲塔娜) |  |
 
 ### 第四輪（Bo3，未開打）
 
 | 台灣時間 | 組別 | 對戰 | Polymarket 勝率 | 賠率 Polymarket | 賠率 Kalshi |
 |---|---|---|---|---|---|
-| 10/30 04:00 | 1-2 | KC vs CFO | — | — | — |
-| 10/30 07:00 | 2-1 | TES vs BLG | — | — | — |
 | 10/31 04:00 | 1-2 | TLAW vs LOS | — | — | — |
 | 10/31 07:00 | 1-2 | HLE vs G2 | — | — | — |
 
@@ -259,7 +262,10 @@ Swiss Stage 第四輪進行中：DK、GEN 3-0，IG、T1 3-1 晉級淘汰賽；AL
 - 10/27 更新時 Polymarket、Kalshi 無法連線，第四輪賠率尚未取得；冠軍機率、晉級機率仍為 10/26 14:46（台灣時間）的價格，晉級模型（Outdrafted）已更新到第三輪結束後。
 - LOS vs TSW 第 2 局、TLAW vs AL 第 1 局的藍紅方，Liquipedia 文字說明與其頁面顏色標示不一致，採用顏色標示與 gol.gg。
 - 第四輪賠率：Polymarket、Kalshi 無法從資料整理環境連線，改用莊家十進位賠率——SpinBetter（經 tips.gg，10/28 文章）與 GG.BET（經 win.gg，10/27）。表中勝率為莊家賠率去除抽水後的換算值（標「莊」），與預測市場價格不同。
-- 第四輪 10/29 兩場（MKOI vs T1、IG vs LYON）的 BP、選邊與先選取自 Leaguepedia（gol.gg 當時無法連線），已與 Liquipedia 核對擊殺、時長、禁選；這 5 局暫無 gol.gg 選手個人數據（傷害、經濟差等），選手統計與雷達圖暫不含這 5 局。
-- 第四輪第一天 5 局（MKOI-T1、IG-LYON）的選手數據：gol.gg 仍無法連線，改用 Leaguepedia 記分板（Scoreboards/Round 4 頁與 Cargo ScoreboardPlayers，兩者核對一致）：K/D/A、補兵、金錢、對英雄傷害、視野分數；每分補兵／金錢／傷害、參團率、傷害佔比由這些數字換算。15 分經濟差／補兵差、承受傷害、單殺、搶重擊沒有來源，這 5 局不計入。
+- 第四輪 10/29 兩場（MKOI vs T1、IG vs LYON）的 BP、選邊與先選取自 Leaguepedia（當時 gol.gg 無法連線），已與 Liquipedia 核對；gol.gg 10/30 恢復後，這 5 局的選手數據改用 gol.gg（83669、83670、83672–83674），並與 Leaguepedia 記分板核對 K/D/A、補兵、英雄一致。
+- 第四輪 10/30 兩場：KC 2-0 CFO（CFO 1-3 淘汰）、TES 2-1 BLG（TES 3-1 晉級、BLG 落入 2-2）。BP 取自 Leaguepedia，禁用與 Liquipedia、gol.gg 三方一致，選用與 gol.gg 一致；時長、勝方、擊殺三方一致。選手數據取自 gol.gg（83675、83676、83678–83680）。
+- gol.gg 的 KC vs CFO 第一局 Canna 承受傷害（12770）與其對英雄傷害完全相同，判斷為來源資料錯誤，該值不計入。
+- 剩餘 2 場（TLAW-LOS、HLE-G2）賠率仍為 10/28 SpinBetter（tips.gg）；本次 tips.gg 403、win.gg 404，未找到更新的莊家賠率。outdrafted 頁面內嵌的 Polymarket 價格（未直接取得）：TLAW 80% / LOS 21%、HLE 79% / G2 22%；其單場模型：TLAW 67 / LOS 33、HLE 72 / G2 28。
+- 冠軍賠率與晉級機率無法更新（Polymarket／Kalshi 無法連線、未找到新的莊家冠軍賠率、outdrafted 不再提供晉級機率表），沿用先前數據與其時間標示。
 
 來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)、[Leaguepedia Scoreboards Round 4](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Round_4)

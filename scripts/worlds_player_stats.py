@@ -15,6 +15,11 @@ METRICS = {"Kills": "k", "Deaths": "d", "Assists": "a", "CS": "cs", "CSM": "csm"
            "DPM": "dpm", "DMG%": "dmg_pct", "KP%": "kp", "Solo kills": "solo", "Objectives Stolen": "steals", "Total damage taken": "dmg_taken", "GD@15": "gd15", "CSD@15": "csd15", "XPD@15": "xpd15"}
 
 
+# gol.gg values that are evidently wrong, dropped: (match label, player) -> metric keys
+# KC vs CFO G1: Canna's damage taken equals his damage dealt (12770), a copy error on gol.gg
+BAD = {("KC vs CFO G1", "Canna"): ["dmg_taken"]}
+
+
 def fetch(game_id, cache):
     path = os.path.join(cache, f"{game_id}.html")
     if not os.path.exists(path) or os.path.getsize(path) < 10000:
@@ -102,6 +107,8 @@ def main(data_dir, cache, scoreboards=None):
                     for lbl, key in METRICS.items():
                         if lbl in rows and i < len(rows[lbl]):
                             rec[key] = num(rows[lbl][i])
+                    for key in BAD.get((label, rec["player"]), []):
+                        rec[key] = None
                     out.append(rec)
                 # objectives the other team stole this game count against the jungler (the one holding Smite)
                 recs = out[-10:]

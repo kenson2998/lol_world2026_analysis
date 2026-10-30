@@ -621,6 +621,8 @@ function prevWorlds(W) {
     W: { ...W, rounds: W.rounds.map((r, ri) => ({ ...r, matches: r.matches.map(m => (gone(ri, m) ? { ...m, winner: undefined, games: undefined } : m)) })),
       player_games: (W.player_games || []).filter(g => !drop.has(`${g.round}|${g.match.replace(/ G\d$/, "")}`)) } };
 }
+// some games' player numbers come from Leaguepedia scoreboards (gol.gg was down), which lack several columns
+const usesLP = W => (W.player_games || []).some(g => g.src === "leaguepedia");
 const prevNote = () => (PREV ? `▲▼ 為與 ${PREV.label}（不含該日 ${PREV.matches} 場 ${PREV.games} 局）相比。` : "");
 // rank movement badge: lower rank number = better; prev = { rank, val } before the latest day, or undefined when absent then
 const rankMove = (rank, prev, val) => {
@@ -1237,7 +1239,7 @@ function renderMatchups(W, sec) {
   const body = document.getElementById("mu-body"); if (!body) return;
   const nGames = doneGames(W).length;
   document.getElementById("mu-sub").textContent =
-    `以世界賽已結束 ${nGames} 局、同一路線兩隊選手所用英雄配成對位（共 ${rows.length / 2} 組），統計勝負與對線數據；樣本少，單一對位多為 1–2 場，請當作參考。數據取自 gol.gg（無法連線的場次用 Leaguepedia，沒有 15 分經濟差）。${prevNote()}`;
+    `以世界賽已結束 ${nGames} 局、同一路線兩隊選手所用英雄配成對位（共 ${rows.length / 2} 組），統計勝負與對線數據；樣本少，單一對位多為 1–2 場，請當作參考。數據取自 gol.gg${usesLP(W) ? "（無法連線的場次用 Leaguepedia，沒有 15 分經濟差）" : ""}。${prevNote()}`;
   const sgn = v => (v == null ? "—" : `<span class="dlt ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}</span>`);
   const champs = muChamps(W);
   // the same rows before the latest match day, for the rise / fall badges
@@ -1438,7 +1440,7 @@ function renderPlayerVs(W, sec) {
   };
 
   // the stats table lives on this page; clicking a player row toggles that player's panel open in a row right below it
-  body.innerHTML = sec("選手數據統計", `世界賽正式比賽（已結束 ${doneGames(W).length} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。<b>點選手那一列可展開／收合他的對位資訊。</b>數據取自 gol.gg；gol.gg 無法連線的場次改用 Leaguepedia 記分板（沒有 15 分經濟差／補兵差、承受傷害、單殺、搶重擊，這些欄位只以有數據的場次計算）。${PREV ? `數字旁的 ▲▼ 為與 ${PREV.label}相比的數值變化（只標該日有出賽的選手，累計欄位不標；戰績只標「更新」）；滑鼠移到標記上可看當時數值與同路線名次。` : ""}`,
+  body.innerHTML = sec("選手數據統計", `世界賽正式比賽（已結束 ${doneGames(W).length} 場）的選手個人數據：K/D/A 為累計，其餘為每場平均；KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。15 分經濟差／補兵差為與對位選手比較。承受傷害 = 每場承受的總傷害；視野分數 = 每場視野分數。滑鼠移到數字上可看該選手在同路線的排名（數值高者為第 1 名）。搶到重擊 = 搶下對手的小龍／巴龍／先鋒等中立目標（gol.gg Objectives Stolen）；被搶重擊 = 該局被對手搶走的目標數，記在打野（持有懲戒）身上。<b>點選手那一列可展開／收合他的對位資訊。</b>數據取自 gol.gg${usesLP(W) ? "；gol.gg 無法連線的場次改用 Leaguepedia 記分板（沒有 15 分經濟差／補兵差、承受傷害、單殺、搶重擊，這些欄位只以有數據的場次計算）" : ""}。${PREV ? `數字旁的 ▲▼ 為與 ${PREV.label}相比的數值變化（只標該日有出賽的選手，累計欄位不標；戰績只標「更新」）；滑鼠移到標記上可看當時數值與同路線名次。` : ""}`,
     playerStats(W), "pl-stats");
   const T = TABLES["player-table"]; if (!T) return;
   const byId = new Map(rows.map(r => [pid(r), r]));
@@ -1612,7 +1614,7 @@ function renderWorlds(W) {
   const nDone = doneGames(W).length;
   PREV = prevWorlds(W);
   CB_PREV = PREV ? crystalBall(PREV.W, true) : {};
-  const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg（無法連線的場次用 Leaguepedia），KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。${PREV ? `名字旁的 ${prevNote()}單一數值的題目顯示數值變化；滑鼠移到標記上可看當時名次與數值。` : ""}`,
+  const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg${usesLP(W) ? "（無法連線的場次用 Leaguepedia）" : ""}，KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。${PREV ? `名字旁的 ${prevNote()}單一數值的題目顯示數值變化；滑鼠移到標記上可看當時名次與數值。` : ""}`,
     crystalBall(W), "pv-cb");
   document.getElementById("pv-body").innerHTML = cb + accuracy(W, sec) + nextSec + outright + advance;
   document.getElementById("pv-sub").textContent =
