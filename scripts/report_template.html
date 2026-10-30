@@ -301,6 +301,7 @@ footer a { color: var(--accent) }
 .sortbar .clr { font: 600 12px var(--f-body); color: var(--accent); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0 0 0 6px }
 .sortbtn.on .arr { opacity: 1 }
 .cn-cell { display: inline-flex; align-items: center; gap: 8px }
+.cn-cell > .tip, .cn-cell > .mv { flex: none }   /* a long champion name must not squeeze the icon away */
 .acc-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px }
 .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: grid; gap: 2px }
 .kpi b { font: 700 26px var(--f-display); font-variant-numeric: tabular-nums }
@@ -960,30 +961,26 @@ function champStats(W, upto) {
   return { games: gs.length, rows: [...st.values()] };
 }
 
+// per-champion pick / ban totals with presence; each number carries its rise / fall since before the latest match day
 function champChanges(W) {
-  const nDone = W.rounds.filter(played).length;
-  const cur = champStats(W, nDone), prev = nDone > 1 ? champStats(W, nDone - 1) : null;
-  const prevMap = new Map((prev?.rows || []).map(r => [r.champion, r]));
-  const rows = cur.rows.map(r => ({ ...r, presence: (r.picks + r.bans) / cur.games * 100, p: prevMap.get(r.champion) }))
-    .sort((a, b) => b.presence - a.presence || b.picks - a.picks || a.champion.localeCompare(b.champion));
-  const lastName = W.rounds.filter(played).at(-1)?.name || "";
-  const chg = r => {
-    if (!prev) return `<span class="dlt flat">${esc(lastName)}首次統計</span>`;
-    if (!r.p) return `<span class="dlt up">新出現</span>`;
-    const dp = r.picks - r.p.picks, db = r.bans - r.p.bans;
-    return [dp && `選 +${dp}`, db && `禁 +${db}`].filter(Boolean).map(t => `<span class="dlt up">${t}</span>`).join(" ") || `<span class="dlt flat">—</span>`;
-  };
+  const withRates = S => S.rows.map(r => ({ ...r, presence: (r.picks + r.bans) / S.games * 100, wr: r.picks ? r.wins / r.picks * 100 : null }));
+  const rows = withRates(champStats(W)).sort((a, b) => b.presence - a.presence || b.picks - a.picks || a.champion.localeCompare(b.champion));
+  const was = new Map(PREV ? withRates(champStats(PREV.W)).map(r => [r.champion, r]) : []);
+  const pctF = v => `${Math.round(v)}%`;
+  // counts only grow, so they stay neutral; rates are green up / red down; the record only says it changed
+  const mv = (r, f, fmt, good) => { const p = was.get(r.champion); return p ? valMove(f(r) == null ? null : Math.round(f(r)), f(p) == null ? null : Math.round(f(p)), fmt, good) : ""; };
+  const recMove = r => { const p = was.get(r.champion);
+    return p && p.picks !== r.picks ? `<span class="mv flat tip" tabindex="0" data-tip="${esc(`${PREV.label}：${p.picks ? `${p.wins}-${p.picks - p.wins}` : "未選用"}`)}">更新</span>` : ""; };
   // sortable columns: [label, sort key (null = not sortable), text column?, cell renderer]
   const cols = [
-    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}<span>${esc(cname(r.champion))}</span></span></td>`],
+    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}<span>${esc(cname(r.champion))}</span>${PREV && !was.has(r.champion) ? rankMove(1) : ""}</span></td>`],
     ["路線", r => [...r.roles].map(x => ROLE_SHORT[x]).join("、"), true, r => `<td>${[...r.roles].map(x => ROLE_SHORT[x]).join("、") || "—"}</td>`],
-    ["選用", r => r.picks, false, r => `<td>${r.picks}</td>`],
-    ["禁用", r => r.bans, false, r => `<td>${r.bans}</td>`],
-    ["出場率", r => r.presence, false, r => `<td><span class="pbar2" style="width:${r.presence * 0.6}px"></span>${Math.round(r.presence)}%</td>`],
-    ["戰績", r => (r.picks ? r.wins : null), false, r => `<td>${r.picks ? `${r.wins}-${r.picks - r.wins}` : "—"}</td>`],
-    ["勝率", r => (r.picks ? r.wins / r.picks : null), false,
-      r => `<td>${r.picks ? `<span class="wr ${wrCls(r.wins / r.picks * 100)}">${Math.round(r.wins / r.picks * 100)}%</span>` : "—"}</td>`],
-    [prev ? "比上一輪" : "變化", r => (r.p ? (r.picks - r.p.picks) + (r.bans - r.p.bans) : prev ? Infinity : null), false, r => `<td>${chg(r)}</td>`],
+    ["選用", r => r.picks, false, r => `<td>${r.picks}${mv(r, x => x.picks, v => v, 0)}</td>`],
+    ["禁用", r => r.bans, false, r => `<td>${r.bans}${mv(r, x => x.bans, v => v, 0)}</td>`],
+    ["出場率", r => r.presence, false, r => `<td><span class="pbar2" style="width:${r.presence * 0.6}px"></span>${pctF(r.presence)}${mv(r, x => x.presence, pctF, 1)}</td>`],
+    ["戰績", r => (r.picks ? r.wins : null), false, r => `<td>${r.picks ? `${r.wins}-${r.picks - r.wins}` : "—"}${recMove(r)}</td>`],
+    ["勝率", r => r.wr, false,
+      r => `<td>${r.wr != null ? `<span class="wr ${wrCls(r.wr)}">${pctF(r.wr)}</span>` : "—"}${mv(r, x => x.wr, pctF, 1)}</td>`],
   ];
   sortTable("champ-table", cols, rows, [{ col: 4, desc: true }],   // presence, high to low
     (a, b) => b.presence - a.presence || a.champion.localeCompare(b.champion));
@@ -1668,6 +1665,7 @@ function drawSwissLines() {
 
 function renderWorlds(W) {
   if (!W) { document.getElementById("tab-worlds").hidden = true; return; }
+  PREV = prevWorlds(W);   // the "before the latest match day" baseline every rise / fall badge compares with
   W.next = nextRound(W) || { name: "下一輪", matches: [] };
   document.getElementById("wv-stage").textContent = W.stage;
   document.getElementById("wv-sub").textContent = `${W.status} 資料整理於 ${W.collected}。`;
@@ -1693,7 +1691,8 @@ function renderWorlds(W) {
     swissTree(W), "wv-tree", "closed");
 
   // 英雄資訊變化 has its own tab
-  document.getElementById("ch-sub").textContent = "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。";
+  document.getElementById("ch-sub").textContent = "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。" +
+    (PREV ? `數字旁的 ▲▼ 為變化：選用／禁用為增加次數，出場率／勝率為百分點；戰績只標「更新」，「新」為該日才出現的英雄。${prevNote()}滑鼠移到標記上可看當時數值。` : "");
   document.getElementById("ch-body").innerHTML = champChanges(W);
 
   // title odds: now vs before round 1, as probability and as decimal odds
@@ -1731,7 +1730,6 @@ function renderWorlds(W) {
   // 水晶球預測 page: how markets called finished rounds, then forecasts for what's next
   const nextSec = sec(`${esc(W.next.name)}預測<small>${esc(W.next.format || "")}</small>`, "", W.next.matches.length ? upcomingTable(W.next) : "目前沒有未開打的場次。", "pv-next");
   const nDone = doneGames(W).length;
-  PREV = prevWorlds(W);
   CB_PREV = PREV ? crystalBall(PREV.W, true) : {};
   const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg${usesLP(W) ? "（無法連線的場次用 Leaguepedia）" : ""}，KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。${PREV ? `名字旁的 ${prevNote()}單一數值的題目顯示數值變化；滑鼠移到標記上可看當時名次與數值。` : ""}`,
     crystalBall(W), "pv-cb");
