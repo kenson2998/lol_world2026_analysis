@@ -178,15 +178,29 @@ footer a { color: var(--accent) }
 /* Worlds page */
 .wsec h2 { font-family: var(--f-display); font-size: 28px; margin: 0 0 4px }
 .wsec h2 small { font: 500 13px var(--f-data); color: var(--muted); margin-left: 8px }
-.wsec > p, .wsec.fold details > p { margin: 0 0 12px; color: var(--muted) }
-/* collapsible sections: the heading row is the toggle, with a chevron and 展開／收合 */
-.wsec.fold summary { list-style: none; display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 4px; border-radius: 8px }
+.wsec > p, .wsec.fold .fold-body > p { margin: 0 0 12px; color: var(--muted) }
+/* collapsible sections: a full-width banner (title left, toggle switch right); the whole bar toggles.
+   "on" = expanded; while a close animation runs the details is still [open] but carries .closing */
+.wsec.fold summary { list-style: none; display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none;
+  padding: 10px 14px 10px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+  transition: border-color .2s, background-color .2s, box-shadow .2s }
 .wsec.fold summary::-webkit-details-marker { display: none }
+.wsec.fold summary:hover { border-color: var(--accent); box-shadow: 0 1px 0 var(--line) }
 .wsec.fold summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
-.wsec.fold summary h2 { margin: 0 }
-.fold-hint { font: 600 12px var(--f-body); color: var(--accent); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; white-space: nowrap }
-.fold-hint::before { content: "▸ 展開" } details[open] > summary .fold-hint::before { content: "▾ 收合" }
-.wsec.fold details:not([open]) > summary { margin-bottom: 0 }
+.wsec.fold summary h2 { margin: 0; flex: 1; min-width: 0 }
+.wsec.fold details[open]:not(.closing) > summary { border-color: var(--accent); background: var(--mid-soft) }
+.fold-tg { display: inline-flex; align-items: center; gap: 8px; flex: none }
+.fold-lb { font: 700 13px var(--f-body); color: var(--muted); min-width: 2.2em; text-align: right; transition: color .2s }
+.fold-lb::before { content: "展開" }
+.fold-sw { position: relative; width: 46px; height: 26px; border-radius: 999px; background: var(--line); transition: background-color .25s }
+.fold-sw i { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3); transition: transform .3s cubic-bezier(.3, 1.4, .5, 1) }
+details[open]:not(.closing) > summary .fold-lb { color: var(--accent) }
+details[open]:not(.closing) > summary .fold-lb::before { content: "收合" }
+details[open]:not(.closing) > summary .fold-sw { background: var(--accent) }
+details[open]:not(.closing) > summary .fold-sw i { transform: translateX(20px) }
+.fold-body { padding-top: 14px }
+@media (prefers-reduced-motion: reduce) { .fold-sw, .fold-sw i, .fold-lb, .wsec.fold summary { transition: none } }
 .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 560px), 1fr)); gap: 12px }
 .res { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; min-width: 0 }
 .res-team { display: grid; gap: 4px; min-width: 0 }
@@ -1671,7 +1685,9 @@ function renderWorlds(W) {
   document.getElementById("wv-sub").textContent = `${W.status} 資料整理於 ${W.collected}。`;
   // fold: "open" / "closed" makes the section collapsible (its heading toggles it), starting in that state
   const sec = (title, sub, body, id = `s-${slug(title)}`, fold) => fold
-    ? `<section class="wsec fold" id="${esc(id)}"><details${fold === "open" ? " open" : ""}><summary><h2>${title}${anc(id)}</h2><span class="fold-hint" aria-hidden="true"></span></summary>${sub ? `<p>${sub}</p>` : ""}${body}</details></section>`
+    ? `<section class="wsec fold" id="${esc(id)}"><details${fold === "open" ? " open" : ""}><summary><h2>${title}${anc(id)}</h2>
+        <span class="fold-tg" aria-hidden="true"><span class="fold-lb"></span><span class="fold-sw"><i></i></span></span></summary>
+        <div class="fold-body">${sub ? `<p>${sub}</p>` : ""}${body}</div></details></section>`
     : `<section class="wsec" id="${esc(id)}"><h2>${title}${anc(id)}</h2>${sub ? `<p>${sub}</p>` : ""}${body}</section>`;
 
   // round tabs: finished rounds show results + drafts, upcoming rounds show schedule + odds
@@ -1758,8 +1774,34 @@ function renderWorlds(W) {
   document.getElementById("pv-foot").innerHTML = foot;
 }
 
+// collapsible sections: clicking the banner slides the content open / shut (height + fade) instead of jumping
+function setupFolds() {
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.addEventListener("click", e => {
+    const s = e.target.closest(".wsec.fold summary"); if (!s || e.target.closest("[data-anc]")) return;
+    e.preventDefault();
+    const d = s.parentElement, body = d.querySelector(":scope > .fold-body");
+    if (!body || d.dataset.anim) return;   // ignore clicks while it is moving
+    const closing = d.open;
+    if (still) { d.open = !closing; return; }
+    d.dataset.anim = "1";
+    if (closing) d.classList.add("closing"); else d.open = true;   // the switch flips right away
+    const h = body.scrollHeight;
+    body.style.overflow = "hidden";
+    const run = body.animate(closing
+      ? [{ height: `${h}px`, opacity: 1 }, { height: "0px", opacity: 0 }]
+      : [{ height: "0px", opacity: 0 }, { height: `${h}px`, opacity: 1 }],
+      { duration: Math.min(650, 260 + h / 6), easing: "cubic-bezier(.2, .7, .2, 1)" });
+    run.onfinish = run.oncancel = () => {
+      if (closing) { d.open = false; d.classList.remove("closing"); }
+      body.style.overflow = ""; delete d.dataset.anim;
+    };
+  });
+}
+
 function render() {
   setupViews();
+  setupFolds();
   renderWorlds(DATA.worlds);
   setupTips();
   setupReveal();
