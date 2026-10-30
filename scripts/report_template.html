@@ -164,8 +164,13 @@ section.odds > p { margin: 0 0 14px; color: var(--muted) }
 footer { color: var(--muted); font-size: 12px; display: grid; gap: 4px; max-width: 80ch }
 footer a { color: var(--accent) }
 /* page switch: Worlds results, predictions, matchups */
-.topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap }
-.views { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface) }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; min-width: 0 }
+.views { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface);
+  min-width: 0; max-width: 100%; overflow-x: auto; scrollbar-width: none }
+.views::-webkit-scrollbar { display: none }
+.vtab { white-space: nowrap; flex: none }
+/* phones: one row of tabs that scrolls sideways instead of names breaking over several lines */
+@media (max-width: 640px) { .vtab { padding: 6px 12px; font-size: 13.5px } }
 .vtab { font: 600 14px var(--f-body); color: var(--muted); background: none; border: 0; border-radius: 999px; padding: 6px 16px; cursor: pointer }
 .vtab[aria-selected="true"] { background: var(--accent); color: var(--surface) }
 .vtab:hover:not([aria-selected="true"]) { color: var(--ink) }
@@ -173,7 +178,15 @@ footer a { color: var(--accent) }
 /* Worlds page */
 .wsec h2 { font-family: var(--f-display); font-size: 28px; margin: 0 0 4px }
 .wsec h2 small { font: 500 13px var(--f-data); color: var(--muted); margin-left: 8px }
-.wsec > p { margin: 0 0 12px; color: var(--muted) }
+.wsec > p, .wsec.fold details > p { margin: 0 0 12px; color: var(--muted) }
+/* collapsible sections: the heading row is the toggle, with a chevron and 展開／收合 */
+.wsec.fold summary { list-style: none; display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 4px; border-radius: 8px }
+.wsec.fold summary::-webkit-details-marker { display: none }
+.wsec.fold summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.wsec.fold summary h2 { margin: 0 }
+.fold-hint { font: 600 12px var(--f-body); color: var(--accent); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; white-space: nowrap }
+.fold-hint::before { content: "▸ 展開" } details[open] > summary .fold-hint::before { content: "▾ 收合" }
+.wsec.fold details:not([open]) > summary { margin-bottom: 0 }
 .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 560px), 1fr)); gap: 12px }
 .res { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; min-width: 0 }
 .res-team { display: grid; gap: 4px; min-width: 0 }
@@ -537,6 +550,7 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
     <div class="eyebrow" id="stamp">Worlds 2026 · Swiss Stage</div>
     <div class="views" role="tablist" aria-label="切換頁面">
       <button class="vtab" role="tab" id="tab-worlds" data-view="worlds" aria-selected="true" aria-controls="view-worlds">世界賽戰況</button>
+      <button class="vtab" role="tab" id="tab-champs" data-view="champs" aria-selected="false" aria-controls="view-champs">英雄資訊變化</button>
       <button class="vtab" role="tab" id="tab-predict" data-view="predict" aria-selected="false" aria-controls="view-predict">水晶球預測</button>
       <button class="vtab" role="tab" id="tab-matchup" data-view="matchup" aria-selected="false" aria-controls="view-matchup">英雄對位</button>
       <button class="vtab" role="tab" id="tab-player" data-view="player" aria-selected="false" aria-controls="view-player">選手對位</button>
@@ -549,6 +563,13 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
     </header>
     <div class="view" id="wv-body"></div>
     <footer class="wv-foot" id="wv-foot"></footer>
+  </div>
+  <div class="view" id="view-champs" role="tabpanel" aria-labelledby="tab-champs" hidden>
+    <header>
+      <h1>英雄資訊變化</h1>
+      <p class="lede" id="ch-sub"></p>
+    </header>
+    <div class="view" id="ch-body"></div>
   </div>
   <div class="view" id="view-matchup" role="tabpanel" aria-labelledby="tab-matchup" hidden>
     <header>
@@ -1650,7 +1671,10 @@ function renderWorlds(W) {
   W.next = nextRound(W) || { name: "下一輪", matches: [] };
   document.getElementById("wv-stage").textContent = W.stage;
   document.getElementById("wv-sub").textContent = `${W.status} 資料整理於 ${W.collected}。`;
-  const sec = (title, sub, body, id = `s-${slug(title)}`) => `<section class="wsec" id="${esc(id)}"><h2>${title}${anc(id)}</h2>${sub ? `<p>${sub}</p>` : ""}${body}</section>`;
+  // fold: "open" / "closed" makes the section collapsible (its heading toggles it), starting in that state
+  const sec = (title, sub, body, id = `s-${slug(title)}`, fold) => fold
+    ? `<section class="wsec fold" id="${esc(id)}"><details${fold === "open" ? " open" : ""}><summary><h2>${title}${anc(id)}</h2><span class="fold-hint" aria-hidden="true"></span></summary>${sub ? `<p>${sub}</p>` : ""}${body}</details></section>`
+    : `<section class="wsec" id="${esc(id)}"><h2>${title}${anc(id)}</h2>${sub ? `<p>${sub}</p>` : ""}${body}</section>`;
 
   // round tabs: finished rounds show results + drafts, upcoming rounds show schedule + odds
   // open on the round holding the next unplayed match; when everything is played, the latest round with results
@@ -1663,13 +1687,14 @@ function renderWorlds(W) {
     <p class="rnote">${esc(r.format)} · ${esc(r.date)}${r.note ? ` · ${esc(r.note)}` : ""}</p>
     ${r.matches.some(m => !m.winner) ? `${r.matches.some(m => m.winner) ? `<h3 class="rsub">未開打（依時間，最近的在最上面）</h3>` : ""}${upcomingTable(r, i)}` : ""}
     ${r.matches.some(m => m.winner) ? `${r.matches.some(m => !m.winner) ? `<h3 class="rsub">已結束</h3>` : ""}<div class="res-grid">${r.matches.map((m, k) => (m.winner ? matchCard(m, i, k) : "")).join("")}</div>` : ""}</div>`).join("");
-  const results = sec("賽事", "", tabs + panels, "wv-rounds");
+  const results = sec("賽事", "", tabs + panels, "wv-rounds", "open");
 
   const tree = sec("賽程樹狀圖", "瑞士輪每一欄是一輪，依戰績分組；勝方往上一組（綠線）、敗方往下一組（紅線），3 勝晉級淘汰賽、3 敗淘汰。戰績由已結束的賽果推算；點比賽可跳到該場。手機可左右滑動。",
-    swissTree(W), "wv-tree");
+    swissTree(W), "wv-tree", "closed");
 
-  const champs = sec("英雄資訊變化", "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。",
-    champChanges(W));
+  // 英雄資訊變化 has its own tab
+  document.getElementById("ch-sub").textContent = "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。";
+  document.getElementById("ch-body").innerHTML = champChanges(W);
 
   // title odds: now vs before round 1, as probability and as decimal odds
   const O = W.outright, maxP = Math.max(...O.rows.map(r => r.poly));
@@ -1699,7 +1724,7 @@ function renderWorlds(W) {
 
   const mb = mvpBoard(W);
   const mvps = mb ? sec("MVP 統計", "每局 MVP（Player of the Game）次數。", mb, "wv-mvp") : "";
-  document.getElementById("wv-body").innerHTML = results + tree + mvps + champs;
+  document.getElementById("wv-body").innerHTML = tree + results + mvps;
   const sw = document.getElementById("sw");
   if (sw && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawSwissLines()).observe(sw);
   else { drawSwissLines(); addEventListener("resize", drawSwissLines); }
@@ -1804,6 +1829,8 @@ function setupAnchors() {
     if (id.startsWith("pl-") && !document.getElementById(id)) { SHOW_VIEW("player"); PL_SHOW(id); }
     const el = id && !VIEWS.includes(id) && document.getElementById(id); if (!el) return;
     const view = el.closest('.view[role="tabpanel"]'); if (view) SHOW_VIEW(view.id.replace("view-", ""));
+    // collapsed sections open for a link to them or to anything inside them
+    [el.closest("details"), el.querySelector(":scope > details")].forEach(d => { if (d && !d.open) d.open = true; });
     const rp = el.closest(".rpanel"); if (rp?.hidden) document.getElementById(rp.getAttribute("aria-labelledby"))?.click();
     // a link to an unplayed match opens its preview
     if (el.matches("tr.mx-tr") && el.getAttribute("aria-expanded") !== "true") MX_TOGGLE(el);
@@ -1825,7 +1852,7 @@ function setupAnchors() {
 }
 
 // four pages in one artifact: Worlds results (default), #predict, #matchup and #player
-const VIEWS = ["worlds", "predict", "matchup", "player"];
+const VIEWS = ["worlds", "champs", "predict", "matchup", "player"];
 let SHOW_VIEW = () => {};
 function setupViews() {
   const tabs = [...document.querySelectorAll(".vtab")];
@@ -1836,6 +1863,9 @@ function setupViews() {
       t.tabIndex = on ? 0 : -1;
       document.getElementById(`view-${t.dataset.view}`).hidden = !on;
     });
+    // on phones the tab row scrolls sideways: keep the chosen tab in sight
+    const cur = tabs.find(t => t.dataset.view === v), bar = cur?.parentElement;
+    if (bar && bar.scrollWidth > bar.clientWidth) bar.scrollLeft = cur.offsetLeft - (bar.clientWidth - cur.offsetWidth) / 2;
   };
   tabs.forEach(t => t.addEventListener("click", () => { show(t.dataset.view); scrollTo(0, 0); }));
   document.querySelector(".views").addEventListener("keydown", e => {
