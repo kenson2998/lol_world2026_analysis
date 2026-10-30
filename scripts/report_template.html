@@ -351,6 +351,9 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .pv-pairs .mo .ci, .pv-ch .ci { width: 24px; height: 24px; border-radius: 4px }
 .pv-vs { font: 600 10px var(--f-data); color: var(--muted); margin: 0 3px }
 .pv-ch { display: inline-flex; align-items: center }
+/* the narrow games table must not squeeze the champion icons into slivers */
+.pv-ch > *, .pv-pairs .mo > * { flex: none }
+.pv-pairs .mo .ci, .pv-ch .ci { min-width: 24px; object-fit: cover }
 .pv-games { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums }
 .pv-games th { font: 600 11px var(--f-data); color: var(--muted); text-align: right; padding: 4px 6px; border-bottom: 1px solid var(--line) }
 .pv-games td { text-align: right; padding: 4px 6px; border-top: 1px solid var(--line); white-space: nowrap }
