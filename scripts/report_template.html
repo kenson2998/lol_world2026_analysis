@@ -947,7 +947,9 @@ function upcomingTable(r, ri) {
   // every row (copies too) knows its match id, so its preview can link the pre-match analysis page
   const ri0 = ri ?? DATA.worlds.rounds.findIndex(x => x.name === r.name), mid = m => matchId(ri0, DATA.worlds.rounds[ri0].matches.findIndex(x => x.a === m.a && x.b === m.b));
   const fromBooks = ms.some(m => !m.pct && m.books?.length);
-  return `<p class="rnote">${fromBooks ? "勝率優先用 Polymarket 價格；沒有 Polymarket 時改用莊家賠率換算（去除抽水後取平均，標「莊」）。" : "勝率為 Polymarket 價格。"}賠率為十進位。時間為台灣時間，括號內為美國中部時間。</p>
+  const priced = ms.some(m => m.pct || m.books?.length);
+  return `<p class="rnote">${!priced ? "尚未取得這些場次的 Polymarket 價格或莊家賠率，勝率留空。"
+    : fromBooks ? "勝率優先用 Polymarket 價格；沒有 Polymarket 時改用莊家賠率換算（去除抽水後取平均，標「莊」）。賠率為十進位。" : "勝率為 Polymarket 價格。賠率為十進位。"}時間為台灣時間，括號內為美國中部時間。</p>
     <div class="wbox"><table class="wtable"><tr><th>時間</th><th>組別</th><th style="text-align:center">對戰與勝率</th><th>Polymarket</th><th>Kalshi</th>${anyBooks ? "<th>莊家賠率</th>" : ""}</tr>${
     ms.map(m => { const pct = m.pct || bookPct(m.books), p = pct || [50, 50], fa = pct && p[0] >= p[1], fb = pct && p[1] > p[0];
       const odds = o => (o ? o.map(x => x.toFixed(2)).join(" / ") : "—");
