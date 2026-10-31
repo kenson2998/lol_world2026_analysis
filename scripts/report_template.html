@@ -451,6 +451,13 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .bp-table th.mid, .bp-table td.mid { text-align: left; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: var(--surface);
   position: sticky; left: 0; right: 0; z-index: 1 }
 .bp-table tr:nth-child(even) > td.mid { background: var(--zebra) }
+/* phones: the pinned champion column takes only what it needs — the name wraps under the icon instead of widening it */
+@media (max-width: 640px) {
+  .bp-table th.mid, .bp-table td.mid { width: auto; min-width: 6.5em; max-width: 8.5em; white-space: normal; padding: 4px 5px }
+  .bp-table td.mid .cn-cell { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 5px; font-size: 11.5px; line-height: 1.25 }
+  /* break only between the English and the Chinese name, never inside a word */
+  .bp-table td.mid .cn-cell .pl-link { min-width: 0; word-break: keep-all; overflow-wrap: normal }
+}
 .bpx-table thead th.mid { z-index: 3 }
 .bp-table th.lane, .bp-table td.lane { text-align: left; border-right: 1px solid var(--line) }
 .bp-table td.lane .ln { display: inline-block; font: 600 11px var(--f-body); background: var(--mid-soft); border-radius: 4px; padding: 1px 5px; margin-right: 3px }
