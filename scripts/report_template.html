@@ -427,6 +427,15 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .mx-an { display: inline-block; margin-bottom: 10px; font: 600 13px var(--f-body); color: var(--accent); background: var(--surface);
   border: 1px solid var(--accent); border-radius: 999px; padding: 4px 14px; text-decoration: none }
 .mx-an:hover { background: var(--accent-soft) }
+/* 賽事總結 inside a match preview */
+.mx-summ { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin-bottom: 14px; white-space: normal }
+.mx-summ h4 { margin: 0 0 6px; font: 700 18px var(--f-display) }
+.mx-summ-g { display: grid; grid-template-columns: 9.5em 1fr; gap: 4px 14px; padding: 6px 0; border-top: 1px solid var(--line) }
+.mx-summ-g:first-of-type { border-top: 0 }
+.mx-summ h5 { margin: 2px 0 0; font: 700 13px var(--f-body); color: var(--accent) }
+.mx-summ ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.55 }
+.mx-summ li { margin: 2px 0 }
+@media (max-width: 640px) { .mx-summ-g { grid-template-columns: 1fr } .mx-summ { padding: 10px 12px } }
 /* both teams' BP in one table: A columns | champion | B columns */
 .bpx { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; min-width: 0 }
 .bpx > .bp-note { margin: 0 0 8px }
@@ -839,7 +848,11 @@ function matchPreview(a, b, mid) {
   // link to the standalone pre-match analysis page (data/analysis/<stem>.html, next to this page's folder)
   const page = DATA.analysis?.[mid];
   const link = page ? `<a class="mx-an" href="analysis/${encodeURIComponent(page)}.html" target="_blank" rel="noopener">${esc(a)} vs ${esc(b)} 選角數據分析頁 ↗</a>` : "";
-  return `<div class="mx-inner">${link}${bpCompare(a, b)}
+  // 賽事總結 from match_analysis.py (data-only facts), the same text as the analysis page
+  const summ = DATA.analysis_summary?.[mid];
+  const summary = summ?.length ? `<section class="mx-summ"><h4>賽事總結</h4>${summ.map(([t, lines]) =>
+    `<div class="mx-summ-g"><h5>${esc(t)}</h5><ul>${lines.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</section>` : "";
+  return `<div class="mx-inner">${link}${summary}${bpCompare(a, b)}
     <p class="rnote">各路線兩隊選手的世界賽數據（雷達圖含該路線平均）與常用英雄。</p><div class="mx-grid">${cards}</div></div>`;
 }
 

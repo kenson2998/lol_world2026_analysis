@@ -324,7 +324,7 @@ footer {{ color:var(--muted); font-size:12px; margin-top:8px }}
 def main():
     out_dir = f"{data_dir}/analysis"
     os.makedirs(out_dir, exist_ok=True)
-    made = []
+    made, summaries = [], {}
     for ri, rnd in enumerate(W["rounds"]):
         if rnd["status"] == "done":
             continue
@@ -343,8 +343,11 @@ def main():
             if export:
                 open(f"{export}/{stem}.txt", "w").write(as_text(a, b, mid, *res))
             made.append((mid, stem))
+            summaries[mid] = res[-1]
         break   # only the round in progress
     json.dump(dict(made), open(f"{out_dir}/index.json", "w"), ensure_ascii=False, indent=1)
+    # the same 賽事總結 for the site's match previews (build_report.py embeds it)
+    json.dump(summaries, open(f"{out_dir}/summary.json", "w"), ensure_ascii=False, indent=1)
     print("\n".join(f"{mid}: {stem}" for mid, stem in made))
 
 

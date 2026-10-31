@@ -252,6 +252,8 @@ def main(out_dir, roster_path):
             "worlds": worlds,
             # pre-match analysis pages (match share id -> file stem under data/analysis), from match_analysis.py
             "analysis": json.load(open(f"{out_dir}/analysis/index.json")) if os.path.exists(f"{out_dir}/analysis/index.json") else {},
+            # 賽事總結 per match id (match_analysis.py), shown at the top of each unplayed match's preview
+            "analysis_summary": json.load(open(f"{out_dir}/analysis/summary.json")) if os.path.exists(f"{out_dir}/analysis/summary.json") else {},
             "icons": used_icons(out_dir, players, worlds_picks(worlds)),
             "zh": {c: ZH[c] for c in used_champs(players, worlds) if c in ZH},
             "avatars": json.load(open(f"{out_dir}/player_avatars.json")) if os.path.exists(f"{out_dir}/player_avatars.json") else {},
