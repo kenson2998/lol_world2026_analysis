@@ -315,7 +315,9 @@ details[open]:not(.closing) > summary .fold-sw i { transform: translateX(20px) }
 .sortbar .clr { font: 600 12px var(--f-body); color: var(--accent); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0 0 0 6px }
 .sortbtn.on .arr { opacity: 1 }
 .cn-cell { display: inline-flex; align-items: center; gap: 8px }
-.cn-cell > .tip, .cn-cell > .mv { flex: none }   /* a long champion name must not squeeze the icon away */
+.cn-cell > .tip, .cn-cell > .mv { flex: none }
+.upd-ic { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: var(--accent); background: var(--mid-soft); cursor: default }
+.upd-ic:focus-visible { outline: 2px solid var(--accent) }   /* a long champion name must not squeeze the icon away */
 .acc-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px }
 .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: grid; gap: 2px }
 .kpi b { font: 700 26px var(--f-display); font-variant-numeric: tabular-nums }
@@ -977,6 +979,8 @@ function champStats(W, upto) {
   return { games: gs.length, rows: [...st.values()] };
 }
 
+// circular-arrows "updated" mark
+const UPD_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/></svg>`;
 // per-champion pick / ban totals with presence; each number carries its rise / fall since before the latest match day
 function champChanges(W) {
   const withRates = S => S.rows.map(r => ({ ...r, presence: (r.picks + r.bans) / S.games * 100, wr: r.picks ? r.wins / r.picks * 100 : null }));
@@ -985,11 +989,20 @@ function champChanges(W) {
   const pctF = v => `${Math.round(v)}%`;
   // counts only grow, so they stay neutral; rates are green up / red down; the record only says it changed
   const mv = (r, f, fmt, good) => { const p = was.get(r.champion); return p ? valMove(f(r) == null ? null : Math.round(f(r)), f(p) == null ? null : Math.round(f(p)), fmt, good) : ""; };
+  // update icon by the name when the champion was picked or banned on the latest day (presence alone moves for every
+  // champion as games are added, so it doesn't count), listing what changed in its tooltip
+  const updIcon = r => { const p = was.get(r.champion); if (!p || (r.picks === p.picks && r.bans === p.bans)) return "";
+    const ch = [["選用", r.picks - p.picks, ""], ["禁用", r.bans - p.bans, ""], ["出場率", Math.round(r.presence) - Math.round(p.presence), " 個百分點"],
+      ["勝率", r.wr == null || p.wr == null ? 0 : Math.round(r.wr) - Math.round(p.wr), " 個百分點"]].filter(([, d]) => d);
+    if (r.picks !== p.picks && r.wr != null && p.wr == null) ch.push(["勝率", 0, ""]);
+    if (!ch.length) return "";
+    const tip = [`${PREV.label.replace(/前$/, "")}有更新`, ...ch.map(([k, d, u]) => (d ? `${k} ${d > 0 ? "+" : ""}${d}${u}` : `${k}：首次有戰績`))].join("\n");
+    return `<span class="upd-ic tip" tabindex="0" data-tip="${esc(tip)}" aria-label="有更新">${UPD_SVG}</span>`; };
   const recMove = r => { const p = was.get(r.champion);
     return p && p.picks !== r.picks ? `<span class="mv flat tip" tabindex="0" data-tip="${esc(`${PREV.label}：${p.picks ? `${p.wins}-${p.picks - p.wins}` : "未選用"}`)}">更新</span>` : ""; };
   // sortable columns: [label, sort key (null = not sortable), text column?, cell renderer]
   const cols = [
-    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}<span>${esc(cname(r.champion))}</span>${PREV && !was.has(r.champion) ? rankMove(1) : ""}</span></td>`],
+    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}<span>${esc(cname(r.champion))}</span>${PREV && !was.has(r.champion) ? rankMove(1) : updIcon(r)}</span></td>`],
     ["路線", r => [...r.roles].map(x => ROLE_SHORT[x]).join("、"), true, r => `<td>${[...r.roles].map(x => ROLE_SHORT[x]).join("、") || "—"}</td>`],
     ["選用", r => r.picks, false, r => `<td>${r.picks}${mv(r, x => x.picks, v => v, 0)}</td>`],
     ["禁用", r => r.bans, false, r => `<td>${r.bans}${mv(r, x => x.bans, v => v, 0)}</td>`],
@@ -1710,7 +1723,7 @@ function renderWorlds(W) {
 
   // 英雄資訊變化 has its own tab
   document.getElementById("ch-sub").textContent = "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。" +
-    (PREV ? `數字旁的 ▲▼ 為變化：選用／禁用為增加次數，出場率／勝率為百分點；戰績只標「更新」，「新」為該日才出現的英雄。${prevNote()}滑鼠移到標記上可看當時數值。` : "");
+    (PREV ? `數字旁的 ▲▼ 為變化：選用／禁用為增加次數，出場率／勝率為百分點；戰績只標「更新」，「新」為該日才出現的英雄；名字旁的更新圖示表示該英雄在該日被選用或禁用（滑鼠移上可看變化）。${prevNote()}滑鼠移到標記上可看當時數值。` : "");
   document.getElementById("ch-body").innerHTML = champChanges(W);
 
   // title odds: now vs before round 1, as probability and as decimal odds
