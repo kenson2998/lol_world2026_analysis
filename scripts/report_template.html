@@ -507,6 +507,12 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .picks { display: flex; gap: 3px; justify-content: flex-end; min-width: 0 }
 .picks .ci { width: 24px; height: 24px; border-radius: 4px }
 .res-meta { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 6px }
+/* 賽後總結: a chip button right after the game length, its list under the meta line */
+.pg-btn { font: 600 11.5px var(--f-body); color: var(--accent); background: var(--surface); border: 1px solid var(--accent); border-radius: 999px;
+  padding: 1px 9px; margin-left: 8px; cursor: pointer; vertical-align: 1px }
+.pg-btn::after { content: " ▸" } .pg-btn[aria-expanded="true"] { background: var(--accent); color: var(--surface) } .pg-btn[aria-expanded="true"]::after { content: " ▾" }
+.pg-sum { background: var(--mid-soft); border-radius: 8px; padding: 8px 10px 8px 4px; margin-top: 6px }
+.pg-sum ul { margin: 0; padding-left: 20px; font-size: 12.5px; line-height: 1.55 } .pg-sum li { margin: 2px 0 }
 .stand { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px }
 .pool { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px }
 .pool h3 { margin: 0 0 8px; font: 700 20px var(--f-display) }
@@ -808,6 +814,32 @@ function matchCard(m, ri, k) {
       gameCard({ ...g, a: m.a, b: m.b }, `第 ${i + 1} 局 · ${g.winner} 勝`, ri, `${label} G${i + 1}`, `${id}-g${i + 1}`)).join("")}</div></div>`;
 }
 
+// 賽後總結 of one finished game: data-only lines from W.player_games and the draft (nothing when the game has no player numbers)
+function postGame(m, ri, label) {
+  PG_BY_GAME ||= (DATA.worlds.player_games || []).reduce((acc, g) => ((acc[`${g.round}|${g.match}`] ||= []).push(g), acc), {});
+  const gs = PG_BY_GAME[`${ri}|${label}`]; if (!gs?.length) return [];
+  const W_ = m.winner, L_ = m.winner === m.a ? m.b : m.a, of = t => gs.filter(g => g.team === t);
+  const sum = (t, f) => of(t).reduce((s, g) => s + (g[f] || 0), 0), has = f => gs.every(g => g[f] != null);
+  const k = v => `${(v / 1000).toFixed(1)}k`, sg = v => `${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}`;
+  const out = [];
+  const pair = (name, f) => { const a = sum(W_, f), b = sum(L_, f); return `${name} ${esc(W_)} ${k(a)} / ${esc(L_)} ${k(b)}（${sg(a - b)}）`; };
+  if (has("gold") || has("dmg")) out.push([has("gold") && pair("總金錢", "gold"), has("dmg") && pair("對英雄傷害", "dmg")].filter(Boolean).join("；"));
+  if (has("gd15")) {
+    const lead = t => of(t).filter(g => g.gd15 > 0).length;
+    out.push(`15 分鐘：${esc(W_)} 全隊經濟差 ${sg(sum(W_, "gd15"))}；領先路線 ${esc(W_)} ${lead(W_)} 路、${esc(L_)} ${lead(L_)} 路`);
+  }
+  const kda = g => (g.k + g.a) / Math.max(1, g.d);
+  const best = [["最高 KDA", [...gs].sort((x, y) => kda(y) - kda(x) || y.k - x.k)[0], g => `${g.k}/${g.d}/${g.a}`],
+    has("dmg") && ["最高傷害", [...gs].sort((x, y) => y.dmg - x.dmg)[0], g => `${k(g.dmg)}${g.dmg_pct != null ? `（隊伍 ${g.dmg_pct}%）` : ""}`],
+    has("vs") && ["最高視野", [...gs].sort((x, y) => y.vs - x.vs)[0], g => `${Math.round(g.vs)}`]].filter(Boolean);
+  best.forEach(([name, g, fmt]) => out.push(`${name}：${esc(g.player)}（${esc(g.team)} · ${esc(cname(g.champion || ""))}）${fmt(g)}`));
+  if (m.draft) {
+    const sideTxt = t => `${m.blue === t ? "藍方" : m.red === t ? "紅方" : ""}${m.first_pick === t ? "・先選" : ""}`;
+    out.push(`勝方 ${esc(W_)}（${sideTxt(W_)}）陣容：${Object.keys(ROLE_SHORT).map(r => m.draft.picks.find(p => p.team === W_ && p.role === r)).filter(Boolean).map(p => esc(cname(p.champion))).join("、")}`);
+  }
+  return out;
+}
+
 function gameCard(m, head, ri, label, id) {
   const side = (team, k) => { const win = m.winner === team;
     return `<div class="res-team"><div class="res-side ${win ? "win" : "lose"}"><span class="tm" title="${esc(fullName(team))}">${esc(team)}</span>
@@ -816,13 +848,15 @@ function gameCard(m, head, ri, label, id) {
   const chart = bpChart(m);
   const ord = m.draft ? (chart ? ""
     : m.draft.order_known ? "禁用與選用依 BP 順序排列，#為全場第幾步（1–20）；紅框斜線為禁用" : "選用順序未知，依路線排列") : "";
+  const pg = ri != null ? postGame(m, ri, label) : [];
   const mvpTeam = m.mvp && m.draft?.picks.find(p => p.player === m.mvp)?.team;
   const mvpPick = m.mvp && m.draft?.picks.find(p => p.player === m.mvp);
   const mvp = m.mvp ? `<div class="mvp-line"><span class="mvp-tag">MVP</span>${avatar(mvpTeam || "", m.mvp, true)}<b>${esc(m.mvp)}</b>
     <span>${esc(mvpTeam || "")}${mvpPick ? ` · ${esc(cname(mvpPick.champion))}` : ""}</span></div>` : "";
   return `<div class="res"${id ? ` id="${esc(id)}"` : ""}>${head ? `<div class="res-head">${esc(head)}</div>` : ""}${side(m.a, m.kills?.[0])}${side(m.b, m.kills?.[1])}${mvp}${chart}
     ${ri != null ? dmgBars(m, ri, label) : ""}
-    <div class="res-meta">時長 ${esc(m.length || "—")}${m.note ? ` · ${esc(m.note)}` : ""}${id ? anc(id) : ""}${ord ? `<br>${ord}` : ""}</div></div>`;
+    <div class="res-meta">時長 ${esc(m.length || "—")}${pg.length ? `<button type="button" class="pg-btn" aria-expanded="false">賽後總結</button>` : ""}${m.note ? ` · ${esc(m.note)}` : ""}${id ? anc(id) : ""}${ord ? `<br>${ord}` : ""}</div>
+    ${pg.length ? `<div class="pg-sum" hidden><ul>${pg.map(x => `<li>${x}</li>`).join("")}</ul></div>` : ""}</div>`;
 }
 
 // bookmaker implied win chance: each book's 1/odds normalised to remove its margin, averaged over books
@@ -1816,6 +1850,14 @@ function renderWorlds(W) {
 // collapsible sections: clicking the banner slides the content open / shut (height + fade) instead of jumping
 function setupFolds() {
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // 賽後總結 button next to a finished game's length: shows / hides the summary right under it
+  document.addEventListener("click", e => {
+    const btn = e.target.closest(".pg-btn"); if (!btn) return;
+    const box = btn.closest(".res")?.querySelector(":scope > .pg-sum"); if (!box) return;
+    const open = box.hidden;
+    box.hidden = !open; btn.setAttribute("aria-expanded", String(open));
+    if (open && !still) box.animate([{ opacity: 0, transform: "translateY(-4px)" }, { opacity: 1, transform: "none" }], { duration: 220, easing: "ease-out" });
+  });
   document.addEventListener("click", e => {
     const s = e.target.closest(".wsec.fold summary"); if (!s || e.target.closest("[data-anc]")) return;
     e.preventDefault();
