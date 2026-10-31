@@ -143,8 +143,116 @@ def analyse(a, b):
     return A, B, best, lists, [(c, *champ_lines(c, A, B)) for c in noted]
 
 
-def as_text(a, b, mid, A, B, best, lists, champs):
-    L = [f"{a} vs {b} 觀賽前的選角數據分析：", "", "值得注意的選角:", "當前賽事勝率最高前三（至少選用 3 次）"]
+def record(team):
+    """Swiss record, series W-L and game W-L of a team over finished matches."""
+    rec = next((k for k, ts in W["standings"].items() if team in ts), "")
+    ms = [m for r in W["rounds"] for m in r["matches"] if m.get("winner") and team in (m["a"], m["b"])]
+    gs = [g for m in ms for g in (m.get("games") or [m])]
+    return rec, sum(m["winner"] == team for m in ms), len(ms), sum(g.get("winner") == team for g in gs), len(gs)
+
+
+def lane_rows(team):
+    """Per lane, the team's player with the most games there and their averages from W["player_games"]."""
+    by = defaultdict(list)
+    for g in W.get("player_games", []):
+        if g["team"] == team:
+            by[(g["role"], g["player"])].append(g)
+    avg = lambda gs, f: (lambda v: sum(v) / len(v) if v else None)([x[f] for x in gs if x.get(f) is not None])
+    out = {}
+    for (role, player), gs in by.items():
+        if role in out and len(out[role]["gs"]) >= len(gs):
+            continue
+        k, d, a_ = (sum(x.get(f) or 0 for x in gs) for f in ("k", "d", "a"))
+        out[role] = {"player": player, "gs": gs, "kda": (k + a_) / max(1, d), "gd15": avg(gs, "gd15"), "dpm": avg(gs, "dpm"), "kp": avg(gs, "kp")}
+    return out
+
+
+def team_game_stats(team):
+    """Per finished game of the team: its kills, kills against it, and length in minutes."""
+    out = []
+    for r in W["rounds"]:
+        for m in r["matches"]:
+            if not m.get("winner") or team not in (m["a"], m["b"]):
+                continue
+            i = 0 if team == m["a"] else 1
+            for g in m.get("games") or [m]:
+                if g.get("kills") and g.get("length"):
+                    mm, ss = map(int, g["length"].split(":"))
+                    out.append((g["kills"][i], g["kills"][1 - i], mm + ss / 60))
+    return out
+
+
+def summary(a, b, A, B, mid):
+    """賽事總結: only facts from the finished games — records, draft overlaps, lane numbers, team averages."""
+    S = []
+    # records, head-to-head, pre-match price if any
+    lines = []
+    for t in (a, b):
+        rec, sw, sn, gw, gn = record(t)
+        lines.append(f"{t}：瑞士輪 {rec}，系列賽 {sw}勝{sn - sw}敗，單局 {gw}勝{gn - gw}敗")
+    h2h = [m for r in W["rounds"] for m in r["matches"] if m.get("winner") and {m["a"], m["b"]} == {a, b}]
+    lines.append("本屆交手：" + ("、".join(f"{m['winner']} 勝" + (f"（{max(m['score'])}-{min(m['score'])}）" if m.get("score") else "") for m in h2h) if h2h else "尚未交手"))
+    ri, k = int(mid[1:mid.index("-")]) - 1, int(mid[mid.index("m") + 1:]) - 1
+    m = W["rounds"][ri]["matches"][k]
+    pct = m.get("pct") or (lambda bs: bs and (lambda pa: [round(pa * 100, 1), round(100 - pa * 100, 1)])(
+        sum((1 / x["odds"][0]) / (1 / x["odds"][0] + 1 / x["odds"][1]) for x in bs) / len(bs)))(m.get("books"))
+    lines.append(f"賽前勝率：{a} {pct[0]}% / {b} {pct[1]}%" + ("" if m.get("pct") else "（莊家賠率換算）") if pct else "賽前勝率：尚未取得 Polymarket 價格或莊家賠率")
+    S.append(("戰績與交手", lines))
+
+    # draft: what one side bans that the other picks, what both only ban, each side's best picks
+    lines = []
+    sa, sb = A[1], B[1]
+    for (t, s), (u, o) in (((a, sa), (b, sb)), ((b, sb), (a, sa))):
+        for c, (bn, _) in sorted(s["ban"].items(), key=lambda kv: (-kv[1][0], zh(kv[0]))):
+            pn, pw = o["pick"].get(c, [0, 0])
+            if bn >= 2 and pn >= 2:
+                lines.append(f"{t} 禁過 {zh(c)} {bn} 次，{u} 選過 {pn} 次（{pw}勝{pn - pw}敗）")
+    both = [c for c in set(sa["ban"]) | set(sa["banned"]) if c in set(sb["ban"]) | set(sb["banned"])
+            and not any(s[k].get(c, [0])[0] for s in (sa, sb) for k in ("pick", "face"))]
+    both = sorted(both, key=lambda c: (-sum(s[k].get(c, [0])[0] for s in (sa, sb) for k in ("ban", "banned")), zh(c)))[:4]
+    if both:
+        lines.append("兩隊都只禁不選（雙方對局皆未出場）：" + "、".join(
+            f"{zh(c)}（{a} 禁{sa['ban'].get(c, [0])[0]}被禁{sa['banned'].get(c, [0])[0]}、{b} 禁{sb['ban'].get(c, [0])[0]}被禁{sb['banned'].get(c, [0])[0]}）" for c in both))
+    for t, s in ((a, sa), (b, sb)):
+        top = sorted(((c, n, w) for c, (n, w) in s["pick"].items() if n >= 2), key=lambda x: (-x[2] / x[1], -x[1], zh(x[0])))[:3]
+        lines.append(f"{t} 選用 2 次以上的英雄（依勝率排序，前三）：" + ("、".join(f"{zh(c)} {round(w / n * 100)}%（{w}勝{n - w}敗）" for c, n, w in top) or "無（沒有選用 2 次以上的英雄）"))
+    S.append(("BP 重點", lines))
+
+    # lanes: the usual player of each side, their averages, and who leads each number
+    La, Lb = lane_rows(a), lane_rows(b)
+    f1 = lambda v: "—" if v is None else f"{v:.1f}"
+    f0 = lambda v: "—" if v is None else f"{round(v):,}"
+    sg = lambda v: "—" if v is None else f"{'+' if v > 0 else ''}{round(v):,}"
+    lines, lead = [], {"kda": [0, 0], "gd15": [0, 0], "dpm": [0, 0]}
+    for role, name in ROLES.items():
+        x, y = La.get(role), Lb.get(role)
+        if not x or not y:
+            continue
+        for key in lead:
+            if x[key] is not None and y[key] is not None and x[key] != y[key]:
+                lead[key][0 if x[key] > y[key] else 1] += 1
+        lines.append(f"{name} {x['player']} vs {y['player']}：KDA {f1(x['kda'])} / {f1(y['kda'])}、15分經濟差 {sg(x['gd15'])} / {sg(y['gd15'])}、"
+                     f"每分傷害 {f0(x['dpm'])} / {f0(y['dpm'])}、參團率 {f0(x['kp'])}% / {f0(y['kp'])}%")
+    lines.append("領先路線數（{a} : {b}）：KDA {k[0]}:{k[1]}、15分經濟差 {g[0]}:{g[1]}、每分傷害 {d[0]}:{d[1]}".format(
+        a=a, b=b, k=lead["kda"], g=lead["gd15"], d=lead["dpm"]))
+    S.append(("各路線對位數據（本屆平均）", lines))
+
+    # team averages per game
+    lines = []
+    for t in (a, b):
+        gs = team_game_stats(t)
+        if gs:
+            n, sec = len(gs), round(sum(x[2] for x in gs) / len(gs) * 60)
+            lines.append(f"{t}：每局平均擊殺 {sum(x[0] for x in gs) / n:.1f}、陣亡 {sum(x[1] for x in gs) / n:.1f}、時長 {sec // 60}:{sec % 60:02d}（{n} 局）")
+    S.append(("隊伍每局數據", lines))
+    return S
+
+
+def as_text(a, b, mid, A, B, best, lists, champs, summ):
+    L = [f"{a} vs {b} 觀賽前的選角數據分析：", "", "賽事總結:"]
+    for title, lines in summ:
+        L += [f"【{title}】"] + [f"- {x}" for x in lines]
+    L += ["", "值得注意的選角:", "當前賽事勝率最高前三（至少選用 3 次）"]
     L += [f"{i + 1}. {zh(c)}（{c}）{round(w / n * 100)}%（{w}勝{n - w}敗）" for i, (c, n, w) in enumerate(best)]
     for key, title, verb in (("banned", "被ban前三", "被ban"), ("ban", "ban前三", "ban")):
         L += ["", f"{title}:"] + [f"{t}：{groups_text(*lists[t][key], verb)}" for t in (a, b)]
@@ -154,7 +262,7 @@ def as_text(a, b, mid, A, B, best, lists, champs):
     return "\n".join(L) + "\n"
 
 
-def as_html(a, b, mid, rname, A, B, best, lists, champs, home):
+def as_html(a, b, mid, rname, A, B, best, lists, champs, summ, home):
     """home: link back to the site's main page, relative to this page's folder."""
     e = html.escape
     icon = lambda c: (f'<img src="{ICONS[c]}" alt="" width="28" height="28">' if c in ICONS else "") + f"<span>{e(zh(c))}</span>"
@@ -165,6 +273,7 @@ def as_html(a, b, mid, rname, A, B, best, lists, champs, home):
         return out + (f'<span class="more">其餘都只{verb}1次，不列出</span>' if dropped else "")
     rows = "".join(f"""<section class="champ"><h3>{chip(c)}</h3>{"".join(f'<p class="lead">{e(x)}</p>' for x in lead)}
       <p><b class="ta">{e(a)}</b>{e(la)}</p><p><b class="tb">{e(b)}</b>{e(lb)}</p></section>""" for c, lead, la, lb in champs)
+    summ_html = "".join(f'<h3>{e(t)}</h3><ul>{"".join(f"<li>{e(x)}</li>" for x in lines)}</ul>' for t, lines in summ)
     best_html = "".join(f'<li>{chip(c)}<span class="wr">{round(w / n * 100)}%</span><span class="rec">{w}勝{n - w}敗</span></li>' for c, n, w in best)
     return f"""<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -190,6 +299,8 @@ ol {{ margin:0; padding-left:20px }} li {{ margin:4px 0 }} .wr {{ font-weight:70
 .champ {{ border:1px solid var(--line); border-radius:10px; padding:10px 12px }} .champ h3 {{ margin:0 0 4px; font-size:16px }}
 .champ p {{ margin:3px 0; font-size:14px }} .champ p b {{ display:inline-block; min-width:52px }}
 .champ .lead {{ background:var(--accent-soft); border-radius:6px; padding:2px 8px; font-size:13px }}
+.summ h3 {{ margin:12px 0 4px; font-size:15px; color:var(--a) }} .summ h3:first-of-type {{ margin-top:0 }}
+.summ ul {{ margin:0; padding-left:20px }} .summ li {{ margin:3px 0; font-size:14px }}
 footer {{ color:var(--muted); font-size:12px; margin-top:8px }}
 .top {{ display:flex; justify-content:flex-end; margin-bottom:6px }}
 .home {{ display:inline-flex; align-items:center; gap:8px; color:var(--ink); text-decoration:none; font-weight:700; font-size:14px;
@@ -200,11 +311,12 @@ footer {{ color:var(--muted); font-size:12px; margin-top:8px }}
 <div class="eyebrow">{e(rname)} · {e(mid)}</div>
 <h1><span class="ta">{e(a)}</span> vs <span class="tb">{e(b)}</span></h1>
 <p class="sub">觀賽前的選角數據分析 · {e(a)} {A[0]} 局、{e(b)} {B[0]} 局的 BP 統計；勝率皆為該隊在那些局的戰績</p>
+<div class="card summ"><h2>賽事總結</h2>{summ_html}</div>
 <div class="card"><h2>當前賽事勝率最高前三 <small class="rec">（至少選用 3 次）</small></h2><ol>{best_html}</ol></div>
 <div class="card"><h2>被ban前三</h2><div class="row"><b class="ta">{e(a)}</b><div>{groups(a, "banned", "被ban")}</div></div><div class="row"><b class="tb">{e(b)}</b><div>{groups(b, "banned", "被ban")}</div></div></div>
 <div class="card"><h2>ban前三</h2><div class="row"><b class="ta">{e(a)}</b><div>{groups(a, "ban", "ban")}</div></div><div class="row"><b class="tb">{e(b)}</b><div>{groups(b, "ban", "ban")}</div></div></div>
 <div class="card"><h2>值得注意的選角</h2><div class="champs">{rows}</div></div>
-<footer>資料整理於 {e(W['collected'])} · 賽果與 BP 取自 gol.gg／Leaguepedia／Liquipedia</footer>
+<footer>資料整理於 {e(W['collected'])} · 賽果與 BP 取自 gol.gg／Leaguepedia／Liquipedia · 選手數據取自 gol.gg（無法連線的場次用 Leaguepedia）</footer>
 </main></body></html>
 """
 
@@ -221,6 +333,7 @@ def main():
                 continue
             mid, a, b = f"r{ri + 1}-m{k + 1}", m["a"], m["b"]
             res = analyse(a, b)
+            res = (*res, summary(a, b, res[0], res[1], mid))
             stem = f"{mid}_{a}_vs_{b}"
             # the site copy links home to the main page; the exported copy to that day's dated snapshot
             open(f"{out_dir}/{stem}.html", "w").write(as_html(a, b, mid, rnd["name"], *res, "../worlds2026_analysis.html"))

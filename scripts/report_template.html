@@ -798,7 +798,7 @@ function gameCard(m, head, ri, label, id) {
       <span class="sdw"><span class="sd ${m.blue === team ? "blue" : m.red === team ? "red" : ""}">${m.blue === team ? "藍方" : m.red === team ? "紅方" : ""}</span>${m.first_pick === team ? `<span class="fp">先選</span>` : ""}</span>
       <span class="k">${k ?? ""}</span><span class="wl ${win ? "w" : "l"}">${win ? "勝" : "敗"}</span></div>${chart ? "" : draftSide(m, team)}</div>`; };
   const chart = bpChart(m);
-  const ord = m.draft ? (chart ? "BP 圖：上排為先選方、下排為後選方，由左到右依 BP 順序；紅框斜線為禁用"
+  const ord = m.draft ? (chart ? ""
     : m.draft.order_known ? "禁用與選用依 BP 順序排列，#為全場第幾步（1–20）；紅框斜線為禁用" : "選用順序未知，依路線排列") : "";
   const mvpTeam = m.mvp && m.draft?.picks.find(p => p.player === m.mvp)?.team;
   const mvpPick = m.mvp && m.draft?.picks.find(p => p.player === m.mvp);
