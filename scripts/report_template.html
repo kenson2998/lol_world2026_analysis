@@ -1009,8 +1009,12 @@ function champChanges(W) {
     ["出場率", r => r.presence, false, r => `<td><span class="pbar2" style="width:${r.presence * 0.6}px"></span>${pctF(r.presence)}${mv(r, x => x.presence, pctF, 1)}</td>`],
     ["戰績", r => (r.picks ? r.wins : null), false, r => `<td>${r.picks ? `${r.wins}-${r.picks - r.wins}` : "—"}${recMove(r)}</td>`],
     ["勝率", r => r.wr, false,
-      r => `<td>${r.wr != null ? `<span class="wr ${wrCls(r.wr)}">${pctF(r.wr)}</span>` : "—"}${mv(r, x => x.wr, pctF, 1)}</td>`],
+      r => `<td>${r.wr != null ? `<span class="wr ${wrCls(r.wr)}">${pctF(r.wr)}</span>` : "—"}</td>`],
   ];
+  // win-rate change since before the latest match day, in percentage points, as its own sortable column
+  const wrDelta = r => { const p = was.get(r.champion); return p && r.wr != null && p.wr != null ? Math.round(r.wr) - Math.round(p.wr) : null; };
+  if (PREV) cols.push(["勝率變化", wrDelta, false, r => { const d = wrDelta(r), p = was.get(r.champion);
+    return `<td>${d == null ? "—" : `<span class="dlt ${d > 0 ? "up" : d < 0 ? "down" : "flat"} tip" tabindex="0" data-tip="${esc(`${PREV.label}：${pctF(p.wr)}（${p.wins}-${p.picks - p.wins}）`)}">${d > 0 ? `▲${d}` : d < 0 ? `▼${-d}` : "0"}</span>`}</td>`; }]);
   sortTable("champ-table", cols, rows, [{ col: 4, desc: true }],   // presence, high to low
     (a, b) => b.presence - a.presence || a.champion.localeCompare(b.champion));
   return sortTableHTML("champ-table");
@@ -1723,7 +1727,7 @@ function renderWorlds(W) {
 
   // 英雄資訊變化 has its own tab
   document.getElementById("ch-sub").textContent = "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。" +
-    (PREV ? `數字旁的 ▲▼ 為變化：選用／禁用為增加次數，出場率／勝率為百分點；戰績只標「更新」，「新」為該日才出現的英雄；名字旁的更新圖示表示該英雄在該日被選用或禁用（滑鼠移上可看變化）。${prevNote()}滑鼠移到標記上可看當時數值。` : "");
+    (PREV ? `數字旁的 ▲▼ 為變化：選用／禁用為增加次數，出場率為百分點；「勝率變化」欄為勝率增減的百分點（可排序，— 為之前或現在沒有選用紀錄）；戰績只標「更新」，「新」為該日才出現的英雄；名字旁的更新圖示表示該英雄在該日被選用或禁用（滑鼠移上可看變化）。${prevNote()}滑鼠移到標記上可看當時數值。` : "");
   document.getElementById("ch-body").innerHTML = champChanges(W);
 
   // title odds: now vs before round 1, as probability and as decimal odds
