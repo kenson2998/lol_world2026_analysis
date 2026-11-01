@@ -160,9 +160,9 @@
 | 下路 | Duduhh | 15 | 10-5 | 67% | [KR] —<br>[NA] 2小時34分前 | Aphelios (亞菲利歐) 2場 13% 100%、Jhin (燼) 2場 13% 50%、Akali (阿卡莉) 1場 7% 100%、Caitlyn (凱特琳) 1場 7% 100%、Irelia (伊瑞莉雅) 1場 7% 100%、Kalista (克黎思妲) 1場 7% 100% |
 | 輔助 | Ackerman | 14 | 12-2 | 86% | [KR] —<br>[NA] 2小時53分前 | Camille (卡蜜兒) 3場 21% 67%、Bard (巴德) 2場 14% 100%、Annie (安妮) 1場 7% 100%、Blitzcrank (布里茨) 1場 7% 100%、Karma (卡瑪) 1場 7% 100%、Pantheon (潘森) 1場 7% 100% |
 
-## 世界賽戰況（整理於 2026-10-31 11:57（台灣時間））
+## 世界賽戰況（整理於 2026-11-01 10:14（台灣時間））
 
-Swiss Stage 第四輪結束：DK、GEN 3-0，IG、T1、TES 3-1 晉級淘汰賽；AL、TSW 0-3，CFO、G2、TLAW 1-3 淘汰。第五輪（2-2 組，全部 Bo3）11/1（台灣時間）01:00 KC vs MKOI、04:00 LOS vs LYON、07:00 HLE vs BLG，勝者 3-2 晉級、敗者 2-3 淘汰。
+Swiss Stage 結束：DK、GEN 3-0，IG、T1、TES 3-1，BLG、KC、LYON 3-2 晉級淘汰賽；HLE、LOS、MKOI 2-3，CFO、G2、TLAW 1-3，AL、TSW 0-3 淘汰。八強賽（全部 Bo5）台灣時間 11/4 06:00 TES vs IG、11/5 06:00 GEN vs LYON、11/6 06:00 DK vs BLG、11/7 06:00 T1 vs KC；四強 11/8、11/9 06:00，決賽 11/15 03:00。
 
 ### 第一輪結果（Bo1）
 
@@ -228,13 +228,26 @@ Swiss Stage 第四輪結束：DK、GEN 3-0，IG、T1、TES 3-1 晉級淘汰賽�
 | HLE vs G2 第1局 | HLE | 22-11 | 28:05 | HLE Lee Sin (李星)、G2 Pantheon (潘森)、G2 Nautilus (納帝魯斯)、HLE Alistar (亞歷斯塔)、HLE Syndra (星朵拉)、G2 Olaf (歐拉夫)、G2 Cassiopeia (卡莎碧雅)、HLE Corki (庫奇)、HLE K'Sante (卡桑帝)、G2 Jhin (燼) |  |
 | HLE vs G2 第2局 | HLE | 19-7 | 26:12 | G2 Qiyana (姬亞娜)、HLE Lucian (路西恩)、HLE Milio (米里歐)、G2 Xayah (剎雅)、G2 Rakan (銳空)、HLE Jarvan IV (嘉文四世)、HLE Ambessa (安比薩)、G2 Camille (卡蜜兒)、G2 Galio (加里歐)、HLE Swain (斯溫) |  |
 
-### 第五輪（Bo3，未開打）
+### 第五輪結果（Bo3）
+
+| 對戰 | 勝方 | 擊殺 | 時長 | 選用（BP 順序） | 備註 |
+|---|---|---|---|---|---|
+| KC vs MKOI 第1局 | KC | 13-14 | 40:02 | MKOI Cassiopeia (卡莎碧雅)、KC Ashe (艾希)、KC Seraphine (瑟菈紛)、MKOI Zeri (婕莉)、MKOI Yuumi (悠咪)、KC Syndra (星朵拉)、KC Wukong (悟空)、MKOI Camille (卡蜜兒)、MKOI Sejuani (史瓦妮)、KC Renekton (雷尼克頓) |  |
+| KC vs MKOI 第2局 | KC | 18-4 | 26:10 | MKOI Lee Sin (李星)、KC Pantheon (潘森)、KC Lulu (露璐)、MKOI Ezreal (伊澤瑞爾)、MKOI Karma (卡瑪)、KC Sivir (希維爾)、KC Rumble (藍寶)、MKOI Anivia (艾妮維亞)、MKOI Ornn (鄂爾)、KC Viktor (維克特) |  |
+| LOS vs LYON 第1局 | LOS | 11-8 | 35:06 | LYON Syndra (星朵拉)、LOS Cassiopeia (卡莎碧雅)、LOS Vi (菲艾)、LYON Ezreal (伊澤瑞爾)、LYON Pantheon (潘森)、LOS Kai'Sa (凱莎)、LOS Nautilus (納帝魯斯)、LYON Alistar (亞歷斯塔)、LYON Rumble (藍寶)、LOS Aurora (歐羅拉) |  |
+| LOS vs LYON 第2局 | LYON | 9-9 | 47:06 | LOS Qiyana (姬亞娜)、LYON Yunara (尤娜拉)、LYON Lulu (露璐)、LOS Caitlyn (凱特琳)、LOS Karma (卡瑪)、LYON Orianna (奧莉安娜)、LYON Lee Sin (李星)、LOS Ambessa (安比薩)、LOS LeBlanc (勒布朗)、LYON Gnar (吶兒) |  |
+| LOS vs LYON 第3局 | LYON | 7-17 | 36:42 | LYON Nocturne (夜曲)、LOS Kalista (克黎思妲)、LOS Renata Glasc (睿娜妲．格萊斯克)、LYON Lucian (路西恩)、LYON Milio (米里歐)、LOS Ryze (雷茲)、LOS Cho'Gath (科加斯)、LYON Taliyah (塔莉雅)、LYON K'Sante (卡桑帝)、LOS Renekton (雷尼克頓) |  |
+| HLE vs BLG 第1局 | BLG | 18-19 | 41:51 | HLE Cassiopeia (卡莎碧雅)、BLG Orianna (奧莉安娜)、BLG Nautilus (納帝魯斯)、HLE Jarvan IV (嘉文四世)、HLE Alistar (亞歷斯塔)、BLG Ezreal (伊澤瑞爾)、BLG Lee Sin (李星)、HLE Corki (庫奇)、HLE Rumble (藍寶)、BLG Gnar (吶兒) |  |
+| HLE vs BLG 第2局 | BLG | 3-14 | 32:44 | HLE Syndra (星朵拉)、BLG Yunara (尤娜拉)、BLG Lulu (露璐)、HLE Caitlyn (凱特琳)、HLE Karma (卡瑪)、BLG Locke (洛克)、BLG Pantheon (潘森)、HLE Skarner (史加納)、HLE K'Sante (卡桑帝)、BLG Olaf (歐拉夫) |  |
+
+### 八強賽（Bo5，未開打）
 
 | 台灣時間 | 組別 | 對戰 | Polymarket 勝率 | 賠率 Polymarket | 賠率 Kalshi |
 |---|---|---|---|---|---|
-| 11/01 01:00 | 2-2 | KC vs MKOI | — | — | — |
-| 11/01 04:00 | 2-2 | LOS vs LYON | — | — | — |
-| 11/01 07:00 | 2-2 | HLE vs BLG | — | — | — |
+| 11/04 06:00 | 八強 | TES vs IG | — | — | — |
+| 11/05 06:00 | 八強 | GEN vs LYON | — | — | — |
+| 11/06 06:00 | 八強 | DK vs BLG | — | — | — |
+| 11/07 06:00 | 八強 | T1 vs KC | — | — | — |
 
 
 ### 冠軍機率（10/26 14:46 台灣時間，對比 10/24 00:00 台灣時間，第一輪開打前 1 小時）
@@ -275,5 +288,9 @@ Swiss Stage 第四輪結束：DK、GEN 3-0，IG、T1、TES 3-1 晉級淘汰賽�
 - 冠軍賠率與晉級機率無法更新（Polymarket／Kalshi 無法連線、未找到新的莊家冠軍賠率、outdrafted 不再提供晉級機率表），沿用先前數據與其時間標示。
 - 第四輪 10/31 兩場：LOS 2-1 TLAW（TLAW 1-3 淘汰）、HLE 2-0 G2（G2 1-3 淘汰）。BP 取自 Leaguepedia，禁用與 Liquipedia、gol.gg 三方一致，選用與 gol.gg 一致；時長、勝方、擊殺一致。選手數據取自 gol.gg（83681–83685）；gol.gg 另有 83686「HLE vs G2 game 3」為 0:00、無選手資料的空白頁，已排除。
 - 第五輪對陣與時間取自 Liquipedia（outdrafted 一致）；先選權尚未公布。未找到第五輪莊家賠率（win.gg 404、tips.gg 無文章）。outdrafted 頁面內嵌的 Polymarket 價格（未直接取得）：KC 59% / MKOI 42%、LOS 27% / LYON 74%、HLE 61% / BLG 40%；其模型：KC 64.7 / MKOI 35.3、LOS 29.9 / LYON 70.1、HLE 52.7 / BLG 47.3。
+- 第五輪：KC 2-0 MKOI、LYON 2-1 LOS、BLG 2-0 HLE（勝方 3-2 晉級、敗方 2-3 淘汰）。BP 取自 Leaguepedia，禁用與 Liquipedia、gol.gg 三方一致，選用與 gol.gg 一致；時長、勝方、擊殺一致。選手數據取自 gol.gg（83686、83687、83689–83693；83686 先前為空白佔位頁，現為 KC-MKOI 第一局）。
+- 第五輪賽前未取得 Polymarket 或莊家賠率，第五輪不列入預測準確度。
+- 八強賽對陣、時間與第一局先選權取自 Liquipedia（api.php?action=parse）：全部 Bo5（Fearless），TES 抽籤取得先選權，GEN、DK、T1 因戰績較佳。四強 11/7、11/8 16:00 CT（台灣 11/8、11/9 06:00），決賽 11/14 14:00 EST（台灣 11/15 03:00）。四強對陣依賽程表位置推得：DK/BLG 勝方 vs T1/KC 勝方、GEN/LYON 勝方 vs TES/IG 勝方（非文字明載）。
+- outdrafted.lol 頁面數字（未直接取得，僅供參考）：八強模型勝率 TES 52 / IG 48、GEN 92 / LYON 8、DK 55 / BLG 45、T1 80 / KC 20；內嵌的 Polymarket 奪冠價格 GEN 47%、T1 21%、BLG 15.4%、DK 7.3%、IG 6.8%、TES 3.2%、KC 1.9%、LYON 0.9%。
 
 來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)、[Leaguepedia Scoreboards Round 4](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Round_4)
