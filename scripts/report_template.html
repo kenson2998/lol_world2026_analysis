@@ -535,6 +535,11 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .rec-chip { font: 700 11px var(--f-data); border-radius: 4px; padding: 1px 6px; background: var(--mid-soft) }
 .rec-chip.up { background: var(--good-soft); color: var(--good) }
 .rec-chip.down { background: var(--bad-soft); color: var(--bad) }
+/* teams whose Swiss run is decided: the result replaces stale market numbers */
+.fate { font: 700 12px var(--f-body); border-radius: 999px; padding: 2px 10px }
+.fate.in { background: var(--good-soft); color: var(--good) } .fate.out { background: var(--bad-soft); color: var(--bad) }
+.wtable tr.elim > td { color: var(--muted) } .wtable tr.elim .tm { opacity: .6 }
+.wtable td[colspan] { text-align: left }
 .split { display: flex; height: 8px; border-radius: 4px; overflow: hidden; min-width: 140px; background: var(--mid-soft) }
 .split i { display: block; height: 100% }
 .split i.a { background: var(--accent) }
@@ -1123,7 +1128,7 @@ function crystalBall(W, collect) {
   const list = rows => (last = rows).length ? `<ol>${rows.map((r, i) => `<li class="${rows.length > 1 ? `r${i + 1}` : ""}">${who(r, i, rows.length > 1)}
     <span class="nm"><b>${esc(r.name)}${r.low ? `<span class="lowg">未滿 5 場</span>` : ""}<i data-mv="${i}"></i></b>${r.sub ? `<span>${r.sub}</span>` : ""}</span>
     <span class="val">${r.val}</span></li>`).join("")}</ol>` : "";
-  const ST = { lead: ["目前領先", ""], yes: ["已達成", "yes"], no: ["尚未達成", "no"], wait: ["待定", ""] };
+  const ST = { lead: ["目前領先", ""], yes: ["已達成", "yes"], no: ["尚未達成", "no"], wait: ["待定", ""], done: ["已確定", "yes"] };
   // a one-row card compares its value; a ranking compares places
   const move = (title, rows, i) => { const r = rows[i], p = CB_PREV[title]?.get(cbId(r));
     if (rows.length > 1) return rankMove(i + 1, p, r.val);
@@ -1209,24 +1214,31 @@ function crystalBall(W, collect) {
   const regions = new Map();
   DATA.teams.forEach(t => { const [, l] = rec(t.team); if (l >= 3) return;
     if (!regions.has(t.region)) regions.set(t.region, []); regions.get(t.region).push(t.team); });
+  // once every team has 3 wins or 3 losses the Swiss stage is over and the knockout field is known
+  const decided = t => { const [w, l] = rec(t); return w >= 3 || l >= 3; };
+  const swissOver = DATA.teams.every(t => decided(t.team));
   cards.push(card("淘汰賽地區", "淘汰賽會有幾個不同參賽地區？8 支隊伍將晉級淘汰賽",
     `<ol>${[...regions].sort((a, b) => b[1].length - a[1].length).map(([r, ts], i) =>
       `<li>${who({ badge: r }, i, false)}<span class="nm"><b>${esc(r)}</b><span>${ts.map(t => `${esc(t)} ${swissRecord(W, t)}`).join("、")}</span></span>
-      <span class="val">${ts.length} 隊</span></li>`).join("")}</ol>`, "wait",
-    `<p class="cb-q">目前仍有機會晉級的地區：<b>${regions.size}</b> 個</p>`));
+      <span class="val">${ts.length} 隊</span></li>`).join("")}</ol>`, swissOver ? "done" : "wait",
+    `<p class="cb-q">${swissOver ? "晉級淘汰賽的地區" : "目前仍有機會晉級的地區"}：<b>${regions.size}</b> 個</p>`));
 
+  // a decided team shows its result; an open one the (older) market price
   const adv = t => W.advance?.rows.find(r => r.team === t);
+  const fateTxt = t => (rec(t)[0] >= 3 ? "已晉級" : rec(t)[1] >= 3 ? "已淘汰" : "");
   const lcs = DATA.teams.filter(t => t.region === "LCS").map(t => t.team);
   const lcsIn = lcs.some(t => rec(t)[0] >= 3);
   cards.push(card("LCS 晉級", "會有 LCS 戰隊闖進淘汰賽嗎？",
-    list(lcs.map(t => ({ team: t, name: fullName(t), sub: `Swiss ${swissRecord(W, t)} · 市場晉級機率`, val: pct1(adv(t)?.ko) }))
-      .sort((a, b) => (adv(b.team)?.ko || 0) - (adv(a.team)?.ko || 0))), lcsIn ? "yes" : lcs.every(t => rec(t)[1] >= 3) ? "no" : "wait"));
+    list(lcs.map(t => ({ team: t, name: fullName(t), sub: `Swiss ${swissRecord(W, t)}${fateTxt(t) ? "" : " · 市場晉級機率"}`, val: fateTxt(t) || pct1(adv(t)?.ko) }))
+      .sort((a, b) => (rec(b.team)[0] >= 3) - (rec(a.team)[0] >= 3) || (adv(b.team)?.ko || 0) - (adv(a.team)?.ko || 0))), lcsIn ? "yes" : lcs.every(t => rec(t)[1] >= 3) ? "no" : "wait"));
 
   const odds = t => W.outright.rows.find(r => r.team === t)?.poly || 0;
   const ht = ["HLE", "T1"].map(t => ({ team: t, r: rec(t) })).sort((a, b) => (b.r[0] - b.r[1]) - (a.r[0] - a.r[1]) || odds(b.team) - odds(a.team));
+  // settled once one of them is out of the Swiss stage and the other is through
+  const htDone = ht[0].r[0] >= 3 && ht[1].r[1] >= 3;
   cards.push(card("HLE vs T1", "哪支戰隊會排名更高：HLE 還是 T1？",
-    list(ht.map(x => ({ team: x.team, name: fullName(x.team), sub: `奪冠機率 ${pct1(odds(x.team))}`, val: `Swiss ${swissRecord(W, x.team)}` }))),
-    ht[0].r.join() === ht[1].r.join() ? "wait" : "lead"));
+    list(ht.map(x => ({ team: x.team, name: fullName(x.team), sub: fateTxt(x.team) || `奪冠機率 ${pct1(odds(x.team))}`, val: `Swiss ${swissRecord(W, x.team)}` }))),
+    htDone ? "done" : ht[0].r.join() === ht[1].r.join() ? "wait" : "lead"));
 
   cards.push(card("速勝", "哪支戰隊會以最短時間贏得對戰勝利？",
     list([...done].filter(m => m.length).sort((a, b) => secs(a.length) - secs(b.length)).slice(0, LIM).map(m => ({ id: `${m.a}|${m.b}|${m.gi}`, team: m.winner, name: fullName(m.winner),
@@ -1785,6 +1797,10 @@ function renderWorlds(W) {
   document.getElementById("ch-body").innerHTML = champChanges(W);
 
   // title odds: now vs before round 1, as probability and as decimal odds
+  // a team whose Swiss run is decided (3 wins or 3 losses): its result replaces the stale market numbers
+  const fate = t => { const [w, l] = (swissRecord(W, t) || "0-0").split("-").map(Number); return w >= 3 ? "in" : l >= 3 ? "out" : ""; };
+  const fateTag = t => { const f = fate(t), rec = swissRecord(W, t);
+    return f ? `<span class="fate ${f}">${f === "in" ? "已晉級" : "已淘汰"}（${esc(rec)}）</span>` : ""; };
   const O = W.outright, maxP = Math.max(...O.rows.map(r => r.poly));
   const delta = r => { const d = Math.round((r.poly - r.pre_poly) * 10) / 10;
     return `<span class="dlt ${d > 0 ? "up" : d < 0 ? "down" : "flat"}">${d > 0 ? "▲ +" : d < 0 ? "▼ " : "– "}${d === 0 ? "0" : d}</span>`; };
@@ -1792,21 +1808,29 @@ function renderWorlds(W) {
   const oddsMove = r => { const p = preOdds(r); if (p == null) return "—";
     const cls = r.poly_odds < p ? "up" : r.poly_odds > p ? "down" : "flat";
     return `${p} → <b>${r.poly_odds}</b> <span class="dlt ${cls}">${cls === "up" ? "▼ 變熱門" : cls === "down" ? "▲ 變冷門" : "持平"}</span>`; };
-  const outright = sec("冠軍賠率", `Polymarket 奪冠機率與十進位賠率：第一輪前（${esc(O.pre_label)}）→ 現在（${esc(O.now_label)}）。最右欄為賽前莊家賠率。`,
+  const anyOut = O.rows.some(r => fate(r.team) === "out");
+  const outright = sec("冠軍賠率", `Polymarket 奪冠機率與十進位賠率：第一輪前（${esc(O.pre_label)}）→ 現在（${esc(O.now_label)}）。最右欄為賽前莊家賠率。${anyOut ? "已在瑞士輪淘汰的隊伍不再列價格，排在最後。" : ""}`,
     `<div class="wbox"><table class="wtable"><tr><th>隊伍</th><th>Swiss</th><th>Polymarket 奪冠 %</th><th>機率變化</th><th>賠率變化（賽前 → 現在）</th><th>Kalshi %</th><th>賽前 Stake（10/12）</th></tr>${
-      O.rows.map(r => { const rec = swissRecord(W, r.team);
-        return `<tr><td class="l"><span class="tm" title="${esc(fullName(r.team))}">${esc(r.team)}</span></td>
-          <td>${rec ? `<span class="rec-chip ${recCls(rec)}">${esc(rec)}</span>` : "—"}</td>
+      [...O.rows].sort((x, y) => (fate(x.team) === "out") - (fate(y.team) === "out")).map(r => { const rec = swissRecord(W, r.team);
+        const head = `<td class="l"><span class="tm" title="${esc(fullName(r.team))}">${esc(r.team)}</span></td>
+          <td>${rec ? `<span class="rec-chip ${recCls(rec)}">${esc(rec)}</span>` : "—"}</td>`;
+        if (fate(r.team) === "out") return `<tr class="elim">${head}<td colspan="4">${fateTag(r.team)}</td><td>${r.pre_stake ?? "—"}</td></tr>`;
+        return `<tr>${head}
           <td><span class="pbar2" style="width:${Math.max(2, r.poly / maxP * 90)}px"></span>${pct1(r.poly)}</td>
           <td>${delta(r)}</td><td>${oddsMove(r)}</td><td>${pct1(r.kalshi)}</td><td>${r.pre_stake ?? "—"}</td></tr>`; }).join("")
     }</table></div>`);
 
   // advance markets
   const A = W.advance;
-  const advance = sec("晉級機率", A.cols.map(c => `${esc(c.label)}：${esc(c.note)}`).join("；") + "。",
+  // decided teams show their result instead of the old prices: advanced first (by record), then still open, then out
+  const fateRank = r => { const f = fate(r.team), [w, l] = (swissRecord(W, r.team) || "0-0").split("-").map(Number); return f === "in" ? -10 + l : f === "out" ? 10 - w : 0; };
+  const anyFate = A.rows.some(r => fate(r.team));
+  const advance = sec("晉級機率", A.cols.map(c => `${esc(c.label)}：${esc(c.note)}`).join("；") + "。" + (anyFate ? "瑞士輪結果已確定的隊伍改列實際結果（已晉級／已淘汰），不再列先前的機率。" : ""),
     `<div class="wbox"><table class="wtable"><tr><th>隊伍</th><th>Swiss</th>${A.cols.map(c => `<th>${esc(c.label)}</th>`).join("")}</tr>${
-      A.rows.map(r => { const rec = swissRecord(W, r.team);
-        return `<tr><td class="l"><span class="tm">${esc(r.team)}</span></td><td>${rec ? `<span class="rec-chip ${recCls(rec)}">${esc(rec)}</span>` : "—"}</td>
+      [...A.rows].sort((x, y) => fateRank(x) - fateRank(y)).map(r => { const rec = swissRecord(W, r.team), f = fate(r.team);
+        const head = `<td class="l"><span class="tm">${esc(r.team)}</span></td><td>${rec ? `<span class="rec-chip ${recCls(rec)}">${esc(rec)}</span>` : "—"}</td>`;
+        if (f) return `<tr${f === "out" ? ' class="elim"' : ""}>${head}<td colspan="${A.cols.length}" class="l">${fateTag(r.team)}</td></tr>`;
+        return `<tr>${head}
           ${A.cols.map((c, i) => `<td>${i === 0 && r[c.key] != null ? `<span class="pbar2" style="width:${r[c.key] * 0.9}px"></span>` : ""}${r[c.key] == null ? "—" : pct1(r[c.key])}</td>`).join("")}</tr>`; }).join("")
     }</table></div>`);
 

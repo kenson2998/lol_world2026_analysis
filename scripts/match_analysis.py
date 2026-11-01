@@ -8,7 +8,7 @@ where <id> is the site's share id, e.g. r4-m3 = round 4, 3rd match.
 
 usage: python3 -I match_analysis.py data_dir [export_dir]
 """
-import base64, html, json, os, sys
+import base64, html, json, os, re, sys
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
@@ -321,6 +321,27 @@ footer {{ color:var(--muted); font-size:12px; margin-top:8px }}
 """
 
 
+def stamp_finished(folder, home):
+    """Analysis pages of matches that have since been played stay as pre-match snapshots, but say so at the top:
+    the final result and a link to the match on the site. home: the site page, relative to the folder."""
+    for ri, rnd in enumerate(W["rounds"]):
+        for k, m in enumerate(rnd["matches"]):
+            if not m.get("winner"):
+                continue
+            mid = f"r{ri + 1}-m{k + 1}"
+            path = f"{folder}/{mid}_{m['a']}_vs_{m['b']}.html"
+            if not os.path.exists(path):
+                continue
+            page = open(path).read()
+            score = f" {max(m['score'])}-{min(m['score'])}" if m.get("score") else ""
+            note = (f'<div class="done-note" style="border:1px solid var(--good);background:var(--accent-soft);border-radius:10px;padding:8px 12px;margin:0 0 12px;font-size:14px">'
+                    f'比賽已結束：<b>{html.escape(m["winner"])} 勝{score}</b>。以下為賽前（資料整理當時）的選角數據分析，戰績與數據未含這場比賽。'
+                    f' <a href="{html.escape(home)}#{mid}">看賽果 ↗</a></div>')
+            page = re.sub(r'<div class="done-note".*?</div>', "", page, count=1, flags=re.S)
+            page = page.replace('<div class="eyebrow">', note + '<div class="eyebrow">', 1)
+            open(path, "w").write(page)
+
+
 def main():
     out_dir = f"{data_dir}/analysis"
     os.makedirs(out_dir, exist_ok=True)
@@ -348,6 +369,9 @@ def main():
     json.dump(dict(made), open(f"{out_dir}/index.json", "w"), ensure_ascii=False, indent=1)
     # the same 賽事總結 for the site's match previews (build_report.py embeds it)
     json.dump(summaries, open(f"{out_dir}/summary.json", "w"), ensure_ascii=False, indent=1)
+    stamp_finished(out_dir, "../worlds2026_analysis.html")
+    if export:
+        stamp_finished(f"{export}/analysis", f"../worlds2026_{TODAY}.html")
     print("\n".join(f"{mid}: {stem}" for mid, stem in made))
 
 
