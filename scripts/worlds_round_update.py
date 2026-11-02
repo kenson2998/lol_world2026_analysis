@@ -2,11 +2,12 @@
 
 Input JSON:
   {"collected", "finished": [{a, b, winner, score, games: [{winner, kills, length, blue, red, first_pick, src, bans, picks}]}],
-   "unfinished": [{a, b, pct, poly, kalshi}], "standings",
+   "unfinished": [{a, b, pct, poly, kalshi, books?, model?}], "standings",
    "outright": {label, poly: {team: %}, kalshi?: {team: %}},
    "advance": {market: {team: [ko, 3-0, 0-3]}, model: {team: [3-0, 3-1, 3-2, adv]} | null},
    "next"?: {name, date, note, matches: [{pool, a, b, format, time_tw, time_ct, pct, poly, kalshi}]}}
-A finished match's last upcoming price becomes `pre_pct`, so the prediction page can score it.
+A finished match's last upcoming price becomes `pre_pct`, so the prediction page can score it: the market price, else the
+bookmaker lines, else `model` (outdrafted model win %, [a, b]) with `pre_src: "model"`.
 The round is "live" until every match has a winner, then "done".
 
 usage: python3 -I worlds_round_update.py data/worlds.json collected.json round_index
@@ -38,7 +39,10 @@ for r in d["finished"]:
     if m.get("winner"):
         continue
     flip = r["a"] != m["a"]   # keep our a/b order; kills and score follow it
-    m["pre_pct"] = m.pop("pct", None) or book_pct(m.get("books"))
+    # market price, else bookmaker lines, else the outdrafted model (labelled as such on the page)
+    m["pre_pct"] = m.pop("pct", None) or book_pct(m.get("books")) or m.get("model")
+    if m["pre_pct"] is m.get("model") and m.get("model"):
+        m["pre_src"] = "model"
     for k in ("poly", "kalshi"):
         m.pop(k, None)
     games = [game(g, flip) for g in r["games"]]
@@ -52,7 +56,7 @@ for r in d["finished"]:
 for r in d.get("unfinished", []):
     m = by_pair[frozenset((r["a"], r["b"]))]
     flip = r["a"] != m["a"]
-    for k in ("pct", "poly", "kalshi"):
+    for k in ("pct", "poly", "kalshi", "model"):   # model: outdrafted model win %, used only when no price exists
         if r.get(k):
             m[k] = r[k][::-1] if flip else r[k]
     if r.get("books"):   # fresher bookmaker lines replace the old ones

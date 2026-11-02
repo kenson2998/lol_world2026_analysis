@@ -1008,13 +1008,16 @@ function upcomingTable(r, ri) {
   // every row (copies too) knows its match id, so its preview can link the pre-match analysis page
   const ri0 = ri ?? DATA.worlds.rounds.findIndex(x => x.name === r.name), mid = m => matchId(ri0, DATA.worlds.rounds[ri0].matches.findIndex(x => x.a === m.a && x.b === m.b));
   const fromBooks = ms.some(m => !m.pct && m.books?.length);
-  const priced = ms.some(m => m.pct || m.books?.length);
+  // no market and no bookmaker line: the outdrafted model win % (tagged 模)
+  const fromModel = ms.some(m => !m.pct && !m.books?.length && m.model);
+  const priced = ms.some(m => m.pct || m.books?.length || m.model);
   return `<p class="rnote">${!priced ? "尚未取得這些場次的 Polymarket 價格或莊家賠率，勝率留空。"
-    : fromBooks ? "勝率優先用 Polymarket 價格；沒有 Polymarket 時改用莊家賠率換算（去除抽水後取平均，標「莊」）。賠率為十進位。" : "勝率為 Polymarket 價格。賠率為十進位。"}時間為台灣時間，括號內為美國中部時間。</p>
+    : fromBooks ? "勝率優先用 Polymarket 價格；沒有 Polymarket 時改用莊家賠率換算（去除抽水後取平均，標「莊」）。賠率為十進位。" : fromModel ? "" : "勝率為 Polymarket 價格。賠率為十進位。"}${
+    fromModel ? "沒有 Polymarket 價格與莊家賠率的場次，勝率改用 outdrafted 模型（標「模」，為模型而非市場價格）。" : ""}時間為台灣時間，括號內為美國中部時間。</p>
     <div class="wbox"><table class="wtable"><tr><th>時間</th><th>組別</th><th style="text-align:center">對戰與勝率</th><th>Polymarket</th><th>Kalshi</th>${anyBooks ? "<th>莊家賠率</th>" : ""}</tr>${
-    ms.map(m => { const pct = m.pct || bookPct(m.books), p = pct || [50, 50], fa = pct && p[0] >= p[1], fb = pct && p[1] > p[0];
+    ms.map(m => { const book = bookPct(m.books), pct = m.pct || book || m.model, p = pct || [50, 50], fa = pct && p[0] >= p[1], fb = pct && p[1] > p[0];
       const odds = o => (o ? o.map(x => x.toFixed(2)).join(" / ") : "—");
-      const tag = !m.pct && pct ? `<span class="bk-tag" title="莊家賠率換算">莊</span>` : "";
+      const tag = m.pct || !pct ? "" : book ? `<span class="bk-tag" title="莊家賠率換算">莊</span>` : `<span class="bk-tag" title="outdrafted 模型勝率（非市場）">模</span>`;
       const books = (m.books || []).map(b => `<span class="bk" title="${esc(`${b.book}，${b.as_of}`)}"><b>${esc(b.book)}</b> ${odds(b.odds)}</span>`).join("") || "—";
       const id = rowId(m);
       return `<tr class="mx-tr"${id ? ` id="${id}"` : ""} tabindex="0" data-a="${esc(m.a)}" data-b="${esc(m.b)}" data-mid="${mid(m)}" aria-expanded="false" title="點一下展開各路線對位"><td class="l"><span class="mx-chev" aria-hidden="true">▸</span>${esc(m.time_tw)}${id ? anc(id) : ""}<br><span class="n">(${esc(m.time_ct)} CT)</span></td>
@@ -1101,7 +1104,7 @@ function accuracy(W, sec) {
       <div class="kpi"><b>${ms.length - hits}</b><span>爆冷場次</span></div></div>`;
     const table = `<div class="wbox"><table class="wtable"><tr><th>對戰</th><th>賽前看好</th><th>勝方</th><th>勝方賽前機率</th><th>結果</th></tr>${
       rows.map(({ m, fav, pFav, hit, pWin }) => `<tr><td class="l"><span class="tm">${esc(m.a)}</span> vs <span class="tm">${esc(m.b)}</span></td>
-        <td>${esc(fav)} ${Math.round(pFav * 100)}%</td><td><b>${esc(m.winner)}</b></td>
+        <td>${esc(fav)} ${Math.round(pFav * 100)}%${m.pre_src === "model" ? ` <span class="bk-tag" title="outdrafted 模型勝率（非市場）">模</span>` : ""}</td><td><b>${esc(m.winner)}</b></td>
         <td><span class="pbar2" style="width:${pWin * 80}px"></span>${Math.round(pWin * 100)}%</td>
         <td>${hit ? `<span class="wl w">猜中</span>` : `<span class="wl l">爆冷</span>`}</td></tr>`).join("")}</table></div>`;
     return sec(`${esc(r.name)}預測準確度`, `以${esc(r.pre_label || "賽前市場價格")}判斷看好方（兩邊價格換算成合計 100%），依爆冷程度排序。`, summary + table);

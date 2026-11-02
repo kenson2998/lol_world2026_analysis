@@ -196,7 +196,12 @@ def summary(a, b, A, B, mid):
     m = W["rounds"][ri]["matches"][k]
     pct = m.get("pct") or (lambda bs: bs and (lambda pa: [round(pa * 100, 1), round(100 - pa * 100, 1)])(
         sum((1 / x["odds"][0]) / (1 / x["odds"][0] + 1 / x["odds"][1]) for x in bs) / len(bs)))(m.get("books"))
-    lines.append(f"賽前勝率：{a} {pct[0]}% / {b} {pct[1]}%" + ("" if m.get("pct") else "（莊家賠率換算）") if pct else "賽前勝率：尚未取得 Polymarket 價格或莊家賠率")
+    if pct:
+        lines.append(f"賽前勝率：{a} {pct[0]}% / {b} {pct[1]}%" + ("" if m.get("pct") else "（莊家賠率換算）"))
+    elif m.get("model"):   # no market, no bookmaker line: the outdrafted model, said to be a model
+        lines.append(f"賽前勝率（outdrafted 模型，非市場）：{a} {m['model'][0]}% / {b} {m['model'][1]}%")
+    else:
+        lines.append("賽前勝率：尚未取得 Polymarket 價格或莊家賠率")
     S.append(("戰績與交手", lines))
 
     # draft: what one side bans that the other picks, what both only ban, each side's best picks
