@@ -551,6 +551,7 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .kp-t.tbd { color: var(--muted); font-size: 12px }
 .kp-champ { border: 2px solid var(--medal1) } .kp-champ .kp-t b { font-size: 20px }
 .kp-e { stroke: var(--muted); opacity: .5 }
+a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visible { outline: 1.5px solid var(--accent); outline-offset: 0 }
 /* 選手單排 */
 .sq-list { list-style: none; margin: 0; padding: 0 }
 /* two lines per player: avatar · name · record, then champions · last game */
@@ -1903,11 +1904,54 @@ function koPredict(W) {
   return html;
 }
 let KP_LINKS = [];
-function drawKoLines() {
-  const kp = document.getElementById("kp"), svg = kp?.querySelector(".sw-lines"); if (!svg || !kp.offsetWidth) return;
+// the same knockout shape, actual results only: 八強 → 四強 → 決賽 → 冠軍. Teams not decided yet show as
+// "A / B 勝方"; every match that is on the schedule links to its card in 8強賽事.
+function koBracket(W) {
+  const K = W.knockout, qf = W.rounds[SW_ROUNDS]?.matches || []; if (!K || !qf.length) return "";
+  // feed id -> its winner, else the teams that can still come out of it (shown as "A / B / C / D 勝方")
+  const win = {}, pool = {};
+  const slot = id => win[id] || (pool[id]?.length ? `${pool[id].join(" / ")} 勝方` : "待定");
+  const box = (label, a, b, m, ri, k, time, feeds) => {
+    if (m?.winner) win[label] = m.winner;
+    pool[label] = m ? [m.a, m.b] : feeds.flatMap(x => (win[x] ? [win[x]] : pool[x] || []));
+    const side = t => { if (!t) return `<div class="kp-t tbd">待定</div>`;
+      if (/ 勝方$|^待定$/.test(t)) return `<div class="kp-t tbd">${esc(t)}</div>`;
+      const cls = m?.winner ? (m.winner === t ? "w" : "l") : "";
+      const right = m?.winner ? (m.score ? m.score[t === m.a ? 0 : 1] : m.winner === t ? "勝" : "") : "";
+      return `<div class="kp-t ${cls}"><b title="${esc(fullName(t))}">${esc(t)}</b><span>${right}</span></div>`; };
+    const inner = `<div class="kp-h">${m?.winner ? "已結束" : "未開打"}${time ? `<span>${esc(time)}</span>` : ""}</div>${side(a)}${side(b)}`;
+    return m ? `<a class="kp-box kt-m${m.winner ? " played" : ""}" data-k="${esc(label)}" href="#${matchId(ri, k)}" title="看這場比賽">${inner}</a>`
+      : `<div class="kp-box" data-k="${esc(label)}">${inner}</div>`;
+  };
+  const order = (K.rounds[0]?.feeds || []).flat();
+  const qfs = qf.map((m, k) => ({ m, k, id: `r${SW_ROUNDS + 1}-m${k + 1}` }))
+    .sort((x, y) => (order.indexOf(x.id) + 1 || 99) - (order.indexOf(y.id) + 1 || 99));
+  const cols = [{ name: W.rounds[SW_ROUNDS].name || "八強", html: qfs.map(({ m, k, id }) => box(id, m.a, m.b, m, SW_ROUNDS, k, m.time_tw)).join("") }];
+  const links = [];
+  K.rounds.forEach((r, ri) => {
+    const html = r.feeds.map(([x, y], k) => {
+      const id = ri === K.rounds.length - 1 ? "final" : `sf${k + 1}`;
+      links.push([x, id], [y, id]);
+      // a later round actually scheduled lives in W.rounds after the quarterfinals
+      const real = W.rounds[SW_ROUNDS + 1 + ri]?.matches?.[k];
+      return real?.a ? box(id, real.a, real.b, real, SW_ROUNDS + 1 + ri, k, real.time_tw) : box(id, slot(x), slot(y), null, 0, 0, r.time_tw?.[k], [x, y]);
+    }).join("");
+    cols.push({ name: r.name, html });
+  });
+  links.push(["final", "champ"]);
+  KT_LINKS = links;
+  const champ = win.final;
+  return `<div class="kp-scroll"><div class="kp" id="kt">${cols.map(c => `<div class="kp-col"><div class="sw-ch">${esc(c.name)}</div><div class="kp-boxes">${c.html}</div></div>`).join("")}
+    <div class="kp-col"><div class="sw-ch">冠軍</div><div class="kp-boxes"><div class="kp-box${champ ? " kp-champ" : ""}" data-k="champ">${champ
+      ? `<div class="kp-t w"><b title="${esc(fullName(champ))}">${esc(champ)}</b></div>` : `<div class="kp-t tbd">待定</div>`}</div></div></div>
+    <svg class="sw-lines" aria-hidden="true"></svg></div></div>`;
+}
+let KT_LINKS = [];
+function drawKoLines(id = "kp", links = KP_LINKS) {
+  const kp = document.getElementById(id), svg = kp?.querySelector(".sw-lines"); if (!svg || !kp.offsetWidth) return;
   const o = kp.getBoundingClientRect(), at = k => kp.querySelector(`[data-k="${k}"]`)?.getBoundingClientRect();
   svg.setAttribute("width", kp.scrollWidth); svg.setAttribute("height", kp.scrollHeight);
-  svg.innerHTML = KP_LINKS.map(([x, y]) => { const a = at(x), b = at(y); if (!a || !b) return "";
+  svg.innerHTML = links.map(([x, y]) => { const a = at(x), b = at(y); if (!a || !b) return "";
     const x1 = a.right - o.left, y1 = a.top - o.top + a.height / 2, x2 = b.left - o.left, y2 = b.top - o.top + b.height / 2, mx = (x1 + x2) / 2;
     return `<path class="sw-e kp-e" d="M${x1},${y1} H${mx} V${y2} H${x2}"/>`; }).join("");
 }
@@ -1959,11 +2003,14 @@ function renderWorlds(W) {
     return tabs + panels;
   };
   const allIdx = W.rounds.map((_, i) => i);
-  const results = sec("賽事", "瑞士輪各輪賽果與 BP。", roundTabs(allIdx.filter(i => i < SW_ROUNDS), "切換瑞士輪輪次"), "wv-rounds", "open");
+  const results = sec("瑞士輪賽事", "瑞士輪（前五輪）各輪賽果與 BP。", roundTabs(allIdx.filter(i => i < SW_ROUNDS), "切換瑞士輪輪次"), "wv-rounds", "closed");
   const koIdx = allIdx.filter(i => i >= SW_ROUNDS);
-  const knockout = koIdx.length ? sec("淘汰賽", "瑞士輪前 8 名的單淘汰賽（全部 Bo5）。", roundTabs(koIdx, "切換淘汰賽輪次"), "wv-ko", "open") : "";
+  const knockout = koIdx.length ? sec("8強賽事", "瑞士輪前 8 名的單淘汰賽（全部 Bo5）。", roundTabs(koIdx, "切換淘汰賽輪次"), "wv-ko", "closed") : "";
+  const ktHtml = koBracket(W);
+  const koTree = ktHtml ? sec("8強樹狀圖", `八強 → 四強 → 決賽 → 冠軍，只列實際賽果；尚未決定的隊伍以「A / B 勝方」佔位。點比賽可跳到該場。手機可左右滑動。${esc(W.knockout?.note || "")}`,
+    ktHtml, "wv-kotree", "open") : "";
 
-  const tree = sec("賽程樹狀圖", "瑞士輪每一欄是一輪，依戰績分組；勝方往上一組（綠線）、敗方往下一組（紅線），3 勝晉級淘汰賽、3 敗淘汰。戰績由已結束的賽果推算；點比賽可跳到該場。手機可左右滑動。",
+  const tree = sec("瑞士輪樹狀圖", "瑞士輪每一欄是一輪，依戰績分組；勝方往上一組（綠線）、敗方往下一組（紅線），3 勝晉級淘汰賽、3 敗淘汰。戰績由已結束的賽果推算；點比賽可跳到該場。手機可左右滑動。",
     swissTree(W), "wv-tree", "closed");
 
   // 英雄資訊變化 has its own tab
@@ -2009,7 +2056,10 @@ function renderWorlds(W) {
 
   const mb = mvpBoard(W);
   const mvps = mb ? sec("MVP 統計", "每局 MVP（Player of the Game）次數。", mb, "wv-mvp") : "";
-  document.getElementById("wv-body").innerHTML = tree + knockout + results + mvps;
+  document.getElementById("wv-body").innerHTML = koTree + knockout + mvps + results + tree;
+  const kt = document.getElementById("kt");
+  if (kt && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawKoLines("kt", KT_LINKS)).observe(kt);
+  else if (kt) { drawKoLines("kt", KT_LINKS); addEventListener("resize", () => drawKoLines("kt", KT_LINKS)); }
   const sw = document.getElementById("sw");
   if (sw && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawSwissLines()).observe(sw);
   else { drawSwissLines(); addEventListener("resize", drawSwissLines); }
@@ -2025,7 +2075,7 @@ function renderWorlds(W) {
   document.getElementById("pv-body").innerHTML = cb + kpSec + accuracy(W, sec) + nextSec + outright + advance;
   const kp = document.getElementById("kp");
   if (kp && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawKoLines()).observe(kp);
-  else { drawKoLines(); addEventListener("resize", drawKoLines); }
+  else { drawKoLines(); addEventListener("resize", () => drawKoLines()); }
   renderMatchups(W, sec);
   renderPlayerVs(W, sec);
   renderSoloq(sec);
