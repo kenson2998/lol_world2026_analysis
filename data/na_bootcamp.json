@@ -336,6 +336,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "BLG",
+  "role": "jungle",
+  "player": "Xun",
+  "region": "NA",
+  "riot_id": "xxxzz#8988",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "LOS",
   "role": "jungle",
   "player": "Curse",
@@ -357,14 +365,6 @@
   "player": "Caps",
   "region": "NA",
   "riot_id": "G2 Caps#1324",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "BLG",
-  "role": "jungle",
-  "player": "Xun",
-  "region": "NA",
-  "riot_id": "xxxzz#8988",
   "source": "ttp-bootcamp"
  },
  {

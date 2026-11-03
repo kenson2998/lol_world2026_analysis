@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import soloq
 
-SINCE = "2026-10-11"
+SINCE = os.environ.get("SINCE", "2026-10-11")   # only crawl games from this date on (KST date)
 PART_RE = re.compile(r'Participant\(Summoner\("((?:[^"\\]|\\.)*)",(Player\((.*?)\)|None|null|"[^"]*"),"((?:[^"\\]|\\.)*)"\),"([^"]*)","([^"]*)"\)')
 
 
@@ -26,18 +26,27 @@ def parse_pros(text):
     """Return [(nickname, game_name, tagline)] for participants OP.GG tags as pro players."""
     header = dict(re.findall(r"class (\w+): ([\w,]+)", text))
     out = []
-    # Player(...) fields come in the order the header declares
-    pfields = header.get("Player", "").split(",")
-    for m in re.finditer(r'Summoner\("((?:[^"\\]|\\.)*)",Player\(((?:"(?:[^"\\]|\\.)*"|[^()"])*)\),"((?:[^"\\]|\\.)*)"\)', text):
-        vals = re.findall(r'"((?:[^"\\]|\\.)*)"|(null|None|-?\d+)', m.group(2))
-        vals = [a if a or not b else b for a, b in vals]
-        player = dict(zip(pfields, vals))
-        out.append((player.get("nickname"), m.group(1), m.group(3)))
+    # Summoner(...) and Player(...) fields come in the order the header declares (OP.GG has changed it before:
+    # game_name,player,tagline then game_name,tagline,player), so read them by name rather than by position
+    sfields, pfields = header.get("Summoner", "").split(","), header.get("Player", "").split(",")
+    arg = r'"(?:[^"\\]|\\.)*"|Player\((?:"(?:[^"\\]|\\.)*"|[^()"])*\)|null|None'
+    for m in re.finditer(rf'Summoner\(((?:(?:{arg}),?)+)\)', text):
+        parts = re.findall(arg, m.group(1))
+        summ = dict(zip(sfields, parts))
+        p = summ.get("player", "")
+        if not p.startswith("Player("):
+            continue
+        vals = re.findall(r'"((?:[^"\\]|\\.)*)"|(null|None|-?\d+)', p[7:-1])
+        player = dict(zip(pfields, [a if a or not b else b for a, b in vals]))
+        unq = lambda s: (s or "")[1:-1] if (s or "").startswith('"') else ""
+        out.append((player.get("nickname"), unq(summ.get("game_name")), unq(summ.get("tagline"))))
     return out
 
 
 def main(data_dir, hops=2):
     raw = json.load(open(f"{data_dir}/soloq_raw.json"))
+    # the latest window pull (soloq_na_window.py) seeds the crawl too: its games are the freshest NA ones
+    win = json.load(open(f"{data_dir}/soloq_na.json"))["players"] if os.path.exists(f"{data_dir}/soloq_na.json") else []
     rosters = json.load(open(f"{data_dir}/rosters.json"))
     starters = {t[r].lower(): (t["team"], r, t[r]) for t in rosters for r in soloq.ROLES}
     known = {}  # (game_name, tagline) lower -> nickname
@@ -45,8 +54,12 @@ def main(data_dir, hops=2):
         for a in p["accounts"]:
             if a["region"] == "NA":
                 known[(a["game_name"].lower(), a["tagline"].lower())] = p["player"]
+    for p in win:
+        for rid in p["accounts"]:
+            gn, tag = rid.rsplit("#", 1)
+            known[(gn.lower(), tag.lower())] = p["player"]
     seen_games, found = set(), {}
-    frontier = [g for p in raw for g in p["games"] if g["account"].startswith("NA:") and g["time"][:10] >= SINCE]
+    frontier = [g for p in raw + win for g in p["games"] if g["account"].startswith("NA:") and g["time"][:10] >= SINCE]
     for hop in range(hops):
         frontier = [g for g in frontier if g["id"] not in seen_games]
         seen_games.update(g["id"] for g in frontier)

@@ -451,6 +451,11 @@
    "region": "NA",
    "game_name": "qweasdzxc",
    "tagline": "TWSJM"
+  },
+  {
+   "region": "KR",
+   "game_name": "yuezhihuxiz",
+   "tagline": "KR2"
   }
  ],
  "IG/mid": [
@@ -690,6 +695,11 @@
    "region": "NA",
    "game_name": "LYON Berserker",
    "tagline": "ddd"
+  },
+  {
+   "region": "NA",
+   "game_name": "chud",
+   "tagline": "LYON"
   }
  ],
  "LYON/support": [

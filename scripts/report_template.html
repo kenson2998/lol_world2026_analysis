@@ -1662,7 +1662,11 @@ function renderPlayerVs(W, sec) {
   PL_SHOW = id => show(id, false);
 }
 
-// ---- 選手單排 page: NA ranked solo games of the teams still in, over a Taiwan-date window (soloq_na_window.py) ----
+// ---- 選手單排 page: NA + KR ranked solo games of the teams still in, over a Taiwan-date window (soloq_na_window.py) ----
+const REGION_ZH = { NA: "美服", KR: "韓服" };
+// "美 9・韓 2" — games per server (older pulls have NA games only, without a region tag)
+const regionSplit = gs => { const c = {}; gs.forEach(g => { const r = g.region || "NA"; c[r] = (c[r] || 0) + 1; });
+  return ["NA", "KR"].filter(r => c[r]).map(r => `${REGION_ZH[r][0]} ${c[r]}`).join("・"); };
 function renderSoloq(sec) {
   const S = DATA.soloq_na, body = document.getElementById("sq-body");
   if (!body) return;
@@ -1676,7 +1680,7 @@ function renderSoloq(sec) {
       champs: Object.values(pool).sort((a, b) => b.games - a.games || b.wins - a.wins),
       last: gs.map(g => g.time_tw).sort().at(-1) || null }; });
   document.getElementById("sq-sub").textContent =
-    `${S.teams.length} 支淘汰賽隊伍先發選手在 ${win}（台灣時間）的美服（NA）積分單排，只計本位（OP.GG 判定的位置與世界賽位置相同）的場次；資料取自 OP.GG（擷取於 ${S.fetched} 台灣時間），帳號來自 OP.GG 職業選手資料、TrackingThePros／集訓帳號追蹤與先前找到的帳號。不含重開局。OP.GG 每個帳號最多只給最近 20 場，標「可能不完整」的選手實際場數可能更多。`;
+    `${S.teams.length} 支淘汰賽隊伍先發選手在 ${win}（台灣時間）的美服（NA）與韓服（KR）積分單排，只計本位（OP.GG 判定的位置與世界賽位置相同）的場次；資料取自 OP.GG（擷取於 ${S.fetched} 台灣時間），帳號來自 OP.GG 職業選手資料、TrackingThePros／集訓帳號追蹤與先前找到的帳號。不含重開局。OP.GG 每個帳號最多只給最近 20 場，標「可能不完整」的選手實際場數可能更多。`;
   // most played champions over everyone in the window
   const champ = {}; P.forEach(p => p.gs.forEach(g => { const c = (champ[g.champion] ||= { n: 0, w: 0 }); c.n++; c.w += g.result === "WIN"; }));
   const topC = Object.entries(champ).sort((a, b) => b[1].n - a[1].n || b[1].w - a[1].w).slice(0, 10);
@@ -1689,10 +1693,11 @@ function renderSoloq(sec) {
     : `<div class="cb-empty">沒有資料</div>`;
   const row = p => {
     const champs = p.champs.slice(0, 3).map(c => `<span class="sq-c">${icon(c.champion)}<i>${c.games}</i></span>`).join("");
-    const none = !p.accounts.length ? "查無美服帳號"
-      : `區間內無本位單排${p.last_na ? `（最後一場美服單排 ${esc(p.last_na)}）` : ""}`;
+    const accts = p.all_accounts || p.accounts, last = p.last || p.last_na, lastRegion = REGION_ZH[p.last_region || "NA"];
+    const none = !accts.length ? "查無美服／韓服帳號"
+      : `區間內無本位單排${last ? `（最後一場單排 ${esc(last)}・${lastRegion}）` : ""}`;
     return `<li class="${p.n ? "" : "idle"}">${avatar(p.team, p.player, true)}
-      <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${p.off ? ` · 另有非本位 ${p.off} 場未計` : ""}</span></span>
+      <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${p.n ? ` · ${regionSplit(p.gs)}` : ""}</span></span>
       ${p.n ? `<span class="sq-rec"><b>${p.n}${p.partial ? "+" : ""} 場${p.partial ? `<span class="lowg tip" tabindex="0" data-tip="OP.GG 每個帳號只給最近 20 場，這位選手某帳號的 20 場都在區間內，更早的場次可能沒算到">可能不完整</span>` : ""}</b><span class="wr ${wrCls(p.w / p.n * 100)}">${p.w}-${p.n - p.w}・${Math.round(p.w / p.n * 100)}%</span></span>
         <span class="sq-cs">${champs}</span><span class="sq-last">最後一場 ${esc(p.last)}</span>`
         : `<span class="sq-none">${none}</span>`}</li>`; };
@@ -1700,7 +1705,7 @@ function renderSoloq(sec) {
     return `<article class="cb sq-team" id="sq-${esc(t)}"><div class="cb-h"><h3>${esc(t)}${anc(`sq-${t}`)}</h3>
       <span class="cb-st">${g ? `全隊 ${g} 場 · ${Math.round(w / g * 100)}%` : "全隊 0 場"}</span></div>
       <ol class="sq-list">${ps.map(row).join("")}</ol></article>`; }).join("");
-  body.innerHTML = sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
+  body.innerHTML = sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服＋韓服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
     + sec(`各隊選手（${win}）`, "每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。", `<div class="cb-grid">${cards}</div>`, "sq-teams");
 }
 
