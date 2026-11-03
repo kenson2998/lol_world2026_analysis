@@ -40,19 +40,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "LYON",
-  "role": "top",
-  "player": "Dhokla",
-  "region": "NA",
-  "riot_id": "Dhokla#NA1",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "GEN",
   "role": "jungle",
   "player": "Canyon",
   "region": "NA",
   "riot_id": "Concrete jungle#USA",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "LYON",
+  "role": "top",
+  "player": "Dhokla",
+  "region": "NA",
+  "riot_id": "Dhokla#NA1",
   "source": "ttp-bootcamp"
  },
  {
@@ -64,14 +64,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "KC",
-  "role": "bot",
-  "player": "Caliste",
-  "region": "NA",
-  "riot_id": "MASTERMOVE#WORLD",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "BLG",
   "role": "bot",
   "player": "Viper",
@@ -80,11 +72,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "MKOI",
-  "role": "support",
-  "player": "Alvaro",
+  "team": "KC",
+  "role": "bot",
+  "player": "Caliste",
   "region": "NA",
-  "riot_id": "Treecko#MKOI",
+  "riot_id": "MASTERMOVE#WORLD",
   "source": "ttp-bootcamp"
  },
  {
@@ -93,6 +85,14 @@
   "player": "Career",
   "region": "NA",
   "riot_id": "하이용#1015",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "MKOI",
+  "role": "support",
+  "player": "Alvaro",
+  "region": "NA",
+  "riot_id": "Treecko#MKOI",
   "source": "ttp-bootcamp"
  },
  {
@@ -112,19 +112,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "LOS",
-  "role": "bot",
-  "player": "Duduhh",
-  "region": "NA",
-  "riot_id": "FatYusi#BR18",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "DK",
   "role": "top",
   "player": "Siwoo",
   "region": "NA",
   "riot_id": "Siuuuuuuuuuuuuuu#yarrr",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "LOS",
+  "role": "bot",
+  "player": "Duduhh",
+  "region": "NA",
+  "riot_id": "FatYusi#BR18",
   "source": "ttp-bootcamp"
  },
  {
@@ -149,6 +149,14 @@
   "player": "Chovy",
   "region": "NA",
   "riot_id": "calm down#can",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "T1",
+  "role": "bot",
+  "player": "Peyz",
+  "region": "NA",
+  "riot_id": "gaesalbuger#aaaa",
   "source": "ttp-bootcamp"
  },
  {
@@ -184,14 +192,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "T1",
-  "role": "bot",
-  "player": "Peyz",
-  "region": "NA",
-  "riot_id": "gaesalbuger#aaaa",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "DK",
   "role": "jungle",
   "player": "Lucid",
@@ -224,6 +224,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "DK",
+  "role": "bot",
+  "player": "Smash",
+  "region": "NA",
+  "riot_id": "123321#KR12",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "HLE",
   "role": "mid",
   "player": "Zeka",
@@ -241,6 +249,14 @@
  },
  {
   "team": "KC",
+  "role": "top",
+  "player": "Canna",
+  "region": "NA",
+  "riot_id": "worldspro0073#world",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "KC",
   "role": "mid",
   "player": "Kyeahoo",
   "region": "NA",
@@ -253,22 +269,6 @@
   "player": "ShowMaker",
   "region": "NA",
   "riot_id": "Sonny Hayes#722",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "DK",
-  "role": "bot",
-  "player": "Smash",
-  "region": "NA",
-  "riot_id": "123321#KR12",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "KC",
-  "role": "top",
-  "player": "Canna",
-  "region": "NA",
-  "riot_id": "worldspro0073#world",
   "source": "ttp-bootcamp"
  },
  {
@@ -344,11 +344,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "BLG",
-  "role": "jungle",
-  "player": "Xun",
+  "team": "TES",
+  "role": "bot",
+  "player": "JackeyLove",
   "region": "NA",
-  "riot_id": "xxxzz#8988",
+  "riot_id": "zxczxzxczxczx#1111",
   "source": "ttp-bootcamp"
  },
  {
@@ -384,6 +384,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "BLG",
+  "role": "jungle",
+  "player": "Xun",
+  "region": "NA",
+  "riot_id": "xxxzz#8988",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "HLE",
   "role": "support",
   "player": "Delight",
@@ -392,11 +400,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "TES",
-  "role": "bot",
-  "player": "JackeyLove",
+  "team": "T1",
+  "role": "support",
+  "player": "Keria",
   "region": "NA",
-  "riot_id": "zxczxzxczxczx#1111",
+  "riot_id": "doryunnim#Frank",
   "source": "ttp-bootcamp"
  },
  {
@@ -421,14 +429,6 @@
   "player": "Doran",
   "region": "NA",
   "riot_id": "buriburii#1234",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "T1",
-  "role": "support",
-  "player": "Keria",
-  "region": "NA",
-  "riot_id": "doryunnim#Frank",
   "source": "ttp-bootcamp"
  },
  {
