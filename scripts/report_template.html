@@ -35,7 +35,6 @@ body { background: var(--bg); color: var(--ink); font-family: var(--f-body); fon
 header { display: grid; gap: 8px }
 .eyebrow { font-family: var(--f-data); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent) }
 h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.05; margin: 0; text-wrap: balance }
-.lede { color: var(--muted); max-width: 70ch; margin: 0 }
 .filters { display: grid; gap: 8px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
   background: var(--bg); padding-block: 10px; border-bottom: 1px solid var(--line) }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--bg) }
@@ -644,7 +643,6 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
   <div class="view" id="view-worlds" role="tabpanel" aria-labelledby="tab-worlds">
     <header>
       <h1>世界賽戰況：<span id="wv-stage">Swiss Stage</span></h1>
-      <p class="lede" id="wv-sub"></p>
     </header>
     <div class="view" id="wv-body"></div>
     <footer class="wv-foot" id="wv-foot"></footer>
@@ -652,35 +650,30 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
   <div class="view" id="view-champs" role="tabpanel" aria-labelledby="tab-champs" hidden>
     <header>
       <h1>英雄資訊變化</h1>
-      <p class="lede" id="ch-sub"></p>
     </header>
     <div class="view" id="ch-body"></div>
   </div>
   <div class="view" id="view-matchup" role="tabpanel" aria-labelledby="tab-matchup" hidden>
     <header>
       <h1>英雄對位勝率</h1>
-      <p class="lede" id="mu-sub"></p>
     </header>
     <div class="view" id="mu-body"></div>
   </div>
   <div class="view" id="view-player" role="tabpanel" aria-labelledby="tab-player" hidden>
     <header>
       <h1>選手對位</h1>
-      <p class="lede" id="pl-sub"></p>
     </header>
     <div class="view" id="pl-body"></div>
   </div>
   <div class="view" id="view-soloq" role="tabpanel" aria-labelledby="tab-soloq" hidden>
     <header>
       <h1>選手單排</h1>
-      <p class="lede" id="sq-sub"></p>
     </header>
     <div class="view" id="sq-body"></div>
   </div>
   <div class="view" id="view-predict" role="tabpanel" aria-labelledby="tab-predict" hidden>
     <header>
       <h1>水晶球預測</h1>
-      <p class="lede" id="pv-sub"></p>
     </header>
     <div class="view" id="pv-body"></div>
     <footer class="wv-foot" id="pv-foot"></footer>
@@ -1433,11 +1426,7 @@ function muChamps(W) {
 const muLaneRank = (champs, role) => champs.filter(c => c.role === role && c.n >= 2).sort((a, b) => b.wr - a.wr || b.n - a.n);
 
 function renderMatchups(W, sec) {
-  const rows = matchupRows(W);
   const body = document.getElementById("mu-body"); if (!body) return;
-  const nGames = doneGames(W).length;
-  document.getElementById("mu-sub").textContent =
-    `以世界賽已結束 ${nGames} 局、同一路線兩隊選手所用英雄配成對位（共 ${rows.length / 2} 組），統計勝負與對線數據；樣本少，單一對位多為 1–2 場，請當作參考。數據取自 gol.gg${usesLP(W) ? "（無法連線的場次用 Leaguepedia，沒有 15 分經濟差）" : ""}。${prevNote()}`;
   const sgn = v => (v == null ? "—" : `<span class="dlt ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "+" : ""}${Math.round(v).toLocaleString()}</span>`);
   const champs = muChamps(W);
   // the same rows before the latest match day, for the rise / fall badges
@@ -1573,8 +1562,6 @@ function renderPlayerVs(W, sec) {
   const teams = DATA.teams.map(t => t.team), roles = Object.keys(ROLE_SHORT);
   const rows = playerRows(W).sort((a, b) => teams.indexOf(a.team) - teams.indexOf(b.team) || roles.indexOf(a.role) - roles.indexOf(b.role));
   if (!rows.length) { body.innerHTML = `<div class="cmp-empty">尚無選手比賽數據。</div>`; return; }
-  document.getElementById("pl-sub").textContent =
-    `全部選手的世界賽數據；點任一位選手展開他的各項數據（含同路線排名）、英雄池，以及每位對線選手與雙方英雄的勝率。`;
   const pid = r => `pl-${r.team}-${r.player}`;
   const byGame = {};
   (W.player_games || []).forEach(g => (byGame[`${g.round}|${g.match}`] ||= []).push(g));
@@ -1696,8 +1683,6 @@ function renderSoloq(sec) {
     return { ...p, gs, n: gs.length, w, off: p.games.length - gs.length,
       champs: Object.values(pool).sort((a, b) => b.games - a.games || b.wins - a.wins),
       last: gs.map(g => g.time_tw).sort().at(-1) || null }; });
-  document.getElementById("sq-sub").textContent =
-    `${S.teams.length} 支淘汰賽隊伍先發選手在 ${win}（台灣時間）的美服（NA）與韓服（KR）積分單排，只計本位（OP.GG 判定的位置與世界賽位置相同）的場次；資料取自 OP.GG（擷取於 ${S.fetched} 台灣時間），帳號來自 OP.GG 職業選手資料、TrackingThePros／集訓帳號追蹤與先前找到的帳號。不含重開局。OP.GG 每個帳號最多只給最近 20 場，標「可能不完整」的選手實際場數可能更多。`;
   // most played champions over everyone in the window
   const champ = {}; P.forEach(p => p.gs.forEach(g => { const c = (champ[g.champion] ||= { n: 0, w: 0 }); c.n++; c.w += g.result === "WIN"; }));
   const topC = Object.entries(champ).sort((a, b) => b[1].n - a[1].n || b[1].w - a[1].w).slice(0, 10);
@@ -1932,7 +1917,6 @@ function renderWorlds(W) {
   PREV = prevWorlds(W);   // the "before the latest match day" baseline every rise / fall badge compares with
   W.next = nextRound(W) || { name: "下一輪", matches: [] };
   document.getElementById("wv-stage").textContent = W.stage;
-  document.getElementById("wv-sub").textContent = `${W.status} 資料整理於 ${W.collected}。`;
   // fold: "open" / "closed" makes the section collapsible (its heading toggles it), starting in that state
   const sec = (title, sub, body, id = `s-${slug(title)}`, fold) => fold
     ? `<section class="wsec fold" id="${esc(id)}"><details${fold === "open" ? " open" : ""}><summary><h2>${title}${anc(id)}</h2>
@@ -1966,8 +1950,6 @@ function renderWorlds(W) {
     swissTree(W), "wv-tree", "closed");
 
   // 英雄資訊變化 has its own tab
-  document.getElementById("ch-sub").textContent = "統計所有已結束場次的禁用／選用（BP）。出場率 =（選用 + 禁用）÷ 場數；戰績與勝率以選用該英雄的隊伍輸贏計算。" +
-    (PREV ? `數字旁的 ▲▼ 為變化：選用／禁用為增加次數，出場率為百分點；「勝率變化」欄為勝率增減的百分點（可排序，— 為之前或現在沒有選用紀錄）；戰績只標「更新」，「新」為該日才出現的英雄；名字旁的更新圖示表示該英雄在該日被選用或禁用（滑鼠移上可看變化）。${prevNote()}滑鼠移到標記上可看當時數值。` : "");
   document.getElementById("ch-body").innerHTML = champChanges(W);
 
   // title odds: now vs before round 1, as probability and as decimal odds
@@ -2027,8 +2009,6 @@ function renderWorlds(W) {
   const kp = document.getElementById("kp");
   if (kp && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawKoLines()).observe(kp);
   else { drawKoLines(); addEventListener("resize", drawKoLines); }
-  document.getElementById("pv-sub").textContent =
-    `整理預測市場（Polymarket、Kalshi）與模型（Outdrafted）對世界賽的預測，並檢驗已結束場次的準確度。資料整理於 ${W.collected}。賠率會變動，僅供參考。`;
   renderMatchups(W, sec);
   renderPlayerVs(W, sec);
   renderSoloq(sec);
