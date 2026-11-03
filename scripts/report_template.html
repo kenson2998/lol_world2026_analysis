@@ -535,6 +535,22 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .rec-chip { font: 700 11px var(--f-data); border-radius: 4px; padding: 1px 6px; background: var(--mid-soft) }
 .rec-chip.up { background: var(--good-soft); color: var(--good) }
 .rec-chip.down { background: var(--bad-soft); color: var(--bad) }
+/* 選手單排 */
+.sq-list { list-style: none; margin: 0; padding: 0 }
+/* two lines per player: avatar · name · record, then champions · last game */
+.sq-list li { display: grid; grid-template-columns: 26px 1fr auto; gap: 6px 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
+.sq-list .sq-cs { grid-column: 2 / 3 } .sq-list .sq-last { grid-column: 3 / 4; justify-self: end }
+.sq-cs > * { flex: none } .sq-c .ci { min-width: 26px; object-fit: cover }
+.sq-list li:first-child { border-top: 0 }
+.sq-list li.idle { opacity: .6 }
+.sq-list .nm { display: grid; min-width: 0 } .sq-list .nm b { font-size: 14px } .sq-list .nm span { font-size: 11.5px; color: var(--muted) }
+.sq-rec { display: grid; justify-items: end; font-size: 12px } .sq-rec b { font: 700 13px var(--f-data) }
+.sq-cs { display: inline-flex; gap: 4px } .sq-c { position: relative } .sq-c .ci { width: 26px; height: 26px; border-radius: 5px }
+.sq-c i { position: absolute; right: -3px; bottom: -3px; font: 700 9.5px/13px var(--f-data); font-style: normal; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0 3px }
+.sq-last { font: 500 11px var(--f-data); color: var(--muted); white-space: nowrap }
+.sq-none { grid-column: 3 / -1; font-size: 12px; color: var(--muted); text-align: right }
+.sq-champs { display: flex; flex-wrap: wrap; gap: 6px }
+@media (max-width: 640px) { .sq-none { grid-column: 2 / -1; text-align: left } }
 /* teams whose Swiss run is decided: the result replaces stale market numbers */
 .fate { font: 700 12px var(--f-body); border-radius: 999px; padding: 2px 10px }
 .fate.in { background: var(--good-soft); color: var(--good) } .fate.out { background: var(--bad-soft); color: var(--bad) }
@@ -598,6 +614,7 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
       <button class="vtab" role="tab" id="tab-predict" data-view="predict" aria-selected="false" aria-controls="view-predict">水晶球預測</button>
       <button class="vtab" role="tab" id="tab-matchup" data-view="matchup" aria-selected="false" aria-controls="view-matchup">英雄對位</button>
       <button class="vtab" role="tab" id="tab-player" data-view="player" aria-selected="false" aria-controls="view-player">選手對位</button>
+      <button class="vtab" role="tab" id="tab-soloq" data-view="soloq" aria-selected="false" aria-controls="view-soloq">選手單排</button>
     </div>
   </div>
   <div class="view" id="view-worlds" role="tabpanel" aria-labelledby="tab-worlds">
@@ -628,6 +645,13 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
       <p class="lede" id="pl-sub"></p>
     </header>
     <div class="view" id="pl-body"></div>
+  </div>
+  <div class="view" id="view-soloq" role="tabpanel" aria-labelledby="tab-soloq" hidden>
+    <header>
+      <h1>選手單排</h1>
+      <p class="lede" id="sq-sub"></p>
+    </header>
+    <div class="view" id="sq-body"></div>
   </div>
   <div class="view" id="view-predict" role="tabpanel" aria-labelledby="tab-predict" hidden>
     <header>
@@ -1631,6 +1655,41 @@ function renderPlayerVs(W, sec) {
   PL_SHOW = id => show(id, false);
 }
 
+// ---- 選手單排 page: NA ranked solo games of the teams still in, over a Taiwan-date window (soloq_na_window.py) ----
+function renderSoloq(sec) {
+  const S = DATA.soloq_na, body = document.getElementById("sq-body");
+  if (!body) return;
+  if (!S) { document.getElementById("tab-soloq").hidden = true; return; }
+  const md = d => d.slice(5).replace("-", "/");
+  const win = `${md(S.window[0])}–${md(S.window[1])}`;
+  const P = S.players, tot = P.reduce((s, p) => s + p.summary.games, 0), wins = P.reduce((s, p) => s + p.summary.wins, 0);
+  const active = P.filter(p => p.summary.games).length;
+  document.getElementById("sq-sub").textContent =
+    `${S.teams.length} 支淘汰賽隊伍先發選手在 ${win}（台灣時間）的美服（NA）積分單排；資料取自 OP.GG（擷取於 ${S.fetched} 台灣時間），帳號來自 OP.GG 職業選手資料、TrackingThePros／集訓帳號追蹤與先前找到的帳號。只計美服單雙排，不含重開局。OP.GG 每個帳號最多只給最近 20 場，標「可能不完整」的選手實際場數可能更多。`;
+  const kpis = `<div class="acc-sum">
+    <div class="kpi"><b>${tot}</b><span>總場數</span></div>
+    <div class="kpi"><b>${active}/${P.length}</b><span>有打美服單排的選手</span></div>
+    <div class="kpi"><b>${tot ? Math.round(wins / tot * 100) : 0}%</b><span>整體勝率</span></div></div>`;
+  // most played champions over everyone in the window
+  const champ = {}; P.forEach(p => p.games.forEach(g => { const c = (champ[g.champion] ||= { n: 0, w: 0 }); c.n++; c.w += g.result === "WIN"; }));
+  const topC = Object.entries(champ).sort((a, b) => b[1].n - a[1].n || b[1].w - a[1].w).slice(0, 10);
+  const champList = topC.length ? `<div class="sq-champs">${topC.map(([c, x]) => `<span class="mo ${x.w * 2 > x.n ? "w" : x.w * 2 < x.n ? "l" : ""}">${icon(c)}<b>${x.n} 場 ${Math.round(x.w / x.n * 100)}%</b></span>`).join("")}</div>` : `<div class="cb-empty">沒有資料</div>`;
+  const row = p => { const s = p.summary;
+    const champs = s.champions.slice(0, 3).map(c => `<span class="sq-c">${icon(c.champion)}<i>${c.games}</i></span>`).join("");
+    const none = !p.accounts.length ? "查無美服帳號" : `區間內無美服單排${p.last_na ? `（最後一場 ${esc(p.last_na)}）` : ""}`;
+    return `<li class="${s.games ? "" : "idle"}">${avatar(p.team, p.player, true)}
+      <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${s.games ? ` · 本位 ${p.on_role}/${s.games}` : ""}</span></span>
+      ${s.games ? `<span class="sq-rec"><b>${s.games}${p.partial ? "+" : ""} 場${p.partial ? `<span class="lowg tip" tabindex="0" data-tip="OP.GG 每個帳號只給最近 20 場，這位選手某帳號的 20 場都在區間內，更早的場次可能沒算到">可能不完整</span>` : ""}</b><span class="wr ${wrCls(s.win_rate)}">${s.wins}-${s.games - s.wins}・${Math.round(s.win_rate)}%</span></span>
+        <span class="sq-cs">${champs}</span><span class="sq-last" title="最後一場（台灣時間）">${esc(p.last_na || "")}</span>`
+        : `<span class="sq-none">${none}</span>`}</li>`; };
+  const cards = S.teams.map(t => { const ps = P.filter(p => p.team === t), g = ps.reduce((s, p) => s + p.summary.games, 0), w = ps.reduce((s, p) => s + p.summary.wins, 0);
+    return `<article class="cb sq-team" id="sq-${esc(t)}"><div class="cb-h"><h3>${esc(t)}${anc(`sq-${t}`)}</h3>
+      <span class="cb-st">${g ? `全隊 ${g} 場 · ${Math.round(w / g * 100)}%` : "全隊 0 場"}</span></div>
+      <ol class="sq-list">${ps.map(row).join("")}</ol></article>`; }).join("");
+  body.innerHTML = kpis + sec(`各隊選手（${win}）`, "每位先發選手的場數、戰績、本位（OP.GG 判定的位置與世界賽位置相同）場數、最常用的 3 隻英雄與最後一場時間；灰色為區間內沒有美服單排。", `<div class="cb-grid">${cards}</div>`, "sq-teams")
+    + sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs");
+}
+
 // Worlds player stats table
 function playerStats(W) {
   if (!(W.player_games || []).length) return `<div class="cmp-empty">尚無選手比賽數據。</div>`;
@@ -1778,18 +1837,27 @@ function renderWorlds(W) {
         <div class="fold-body">${sub ? `<p>${sub}</p>` : ""}${body}</div></details></section>`
     : `<section class="wsec" id="${esc(id)}"><h2>${title}${anc(id)}</h2>${sub ? `<p>${sub}</p>` : ""}${body}</section>`;
 
-  // round tabs: finished rounds show results + drafts, upcoming rounds show schedule + odds
-  // open on the round holding the next unplayed match; when everything is played, the latest round with results
-  const upNext = W.rounds.findIndex(r => r.matches.some(m => !m.winner));
-  const sel = upNext >= 0 ? upNext : Math.max(0, W.rounds.map(played).lastIndexOf(true));
-  const tabs = `<div class="rtabs" role="tablist" aria-label="切換輪次">${W.rounds.map((r, i) =>
-    `<button class="rtab" role="tab" id="rtab-${i}" aria-controls="rpanel-${i}" aria-selected="${i === sel}" tabindex="${i === sel ? 0 : -1}" data-i="${i}">
-      ${esc(r.name)}<span class="rst ${r.status}">${{ done: "已結束", live: "進行中" }[r.status] || "未開打"}</span></button>`).join("")}</div>`;
-  const panels = W.rounds.map((r, i) => `<div class="rpanel" role="tabpanel" id="rpanel-${i}" aria-labelledby="rtab-${i}"${i === sel ? "" : " hidden"}>
-    <p class="rnote">${esc(r.format)} · ${esc(r.date)}${r.note ? ` · ${esc(r.note)}` : ""}</p>
-    ${r.matches.some(m => !m.winner) ? `${r.matches.some(m => m.winner) ? `<h3 class="rsub">未開打（依時間，最近的在最上面）</h3>` : ""}${upcomingTable(r, i)}` : ""}
-    ${r.matches.some(m => m.winner) ? `${r.matches.some(m => !m.winner) ? `<h3 class="rsub">已結束</h3>` : ""}<div class="res-grid">${r.matches.map((m, k) => (m.winner ? matchCard(m, i, k) : "")).join("")}</div>` : ""}</div>`).join("");
-  const results = sec("賽事", "", tabs + panels, "wv-rounds", "open");
+  // round tabs: finished rounds show results + drafts, upcoming rounds show schedule + odds. The Swiss rounds (first
+  // SW_ROUNDS) sit in 賽事; knockout rounds (八強、四強、決賽) get their own section. Each block opens on its round with
+  // the next unplayed match, else its latest round with results. Ids stay by round index, so links work across both.
+  const roundTabs = (idx, label) => {
+    if (!idx.length) return "";
+    const up = idx.find(i => W.rounds[i].matches.some(m => !m.winner));
+    const sel = up ?? [...idx].reverse().find(i => played(W.rounds[i])) ?? idx[0];
+    const tabs = `<div class="rtabs" role="tablist" aria-label="${esc(label)}">${idx.map(i => { const r = W.rounds[i];
+      return `<button class="rtab" role="tab" id="rtab-${i}" aria-controls="rpanel-${i}" aria-selected="${i === sel}" tabindex="${i === sel ? 0 : -1}" data-i="${i}">
+        ${esc(r.name)}<span class="rst ${r.status}">${{ done: "已結束", live: "進行中" }[r.status] || "未開打"}</span></button>`; }).join("")}</div>`;
+    const panels = idx.map(i => { const r = W.rounds[i];
+      return `<div class="rpanel" role="tabpanel" id="rpanel-${i}" aria-labelledby="rtab-${i}"${i === sel ? "" : " hidden"}>
+      <p class="rnote">${esc(r.format)} · ${esc(r.date)}${r.note ? ` · ${esc(r.note)}` : ""}</p>
+      ${r.matches.some(m => !m.winner) ? `${r.matches.some(m => m.winner) ? `<h3 class="rsub">未開打（依時間，最近的在最上面）</h3>` : ""}${upcomingTable(r, i)}` : ""}
+      ${r.matches.some(m => m.winner) ? `${r.matches.some(m => !m.winner) ? `<h3 class="rsub">已結束</h3>` : ""}<div class="res-grid">${r.matches.map((m, k) => (m.winner ? matchCard(m, i, k) : "")).join("")}</div>` : ""}</div>`; }).join("");
+    return tabs + panels;
+  };
+  const allIdx = W.rounds.map((_, i) => i);
+  const results = sec("賽事", "瑞士輪各輪賽果與 BP。", roundTabs(allIdx.filter(i => i < SW_ROUNDS), "切換瑞士輪輪次"), "wv-rounds", "open");
+  const koIdx = allIdx.filter(i => i >= SW_ROUNDS);
+  const knockout = koIdx.length ? sec("淘汰賽", "瑞士輪前 8 名的單淘汰賽（全部 Bo5）。", roundTabs(koIdx, "切換淘汰賽輪次"), "wv-ko", "open") : "";
 
   const tree = sec("賽程樹狀圖", "瑞士輪每一欄是一輪，依戰績分組；勝方往上一組（綠線）、敗方往下一組（紅線），3 勝晉級淘汰賽、3 敗淘汰。戰績由已結束的賽果推算；點比賽可跳到該場。手機可左右滑動。",
     swissTree(W), "wv-tree", "closed");
@@ -1839,7 +1907,7 @@ function renderWorlds(W) {
 
   const mb = mvpBoard(W);
   const mvps = mb ? sec("MVP 統計", "每局 MVP（Player of the Game）次數。", mb, "wv-mvp") : "";
-  document.getElementById("wv-body").innerHTML = tree + results + mvps;
+  document.getElementById("wv-body").innerHTML = tree + knockout + results + mvps;
   const sw = document.getElementById("sw");
   if (sw && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawSwissLines()).observe(sw);
   else { drawSwissLines(); addEventListener("resize", drawSwissLines); }
@@ -1854,9 +1922,10 @@ function renderWorlds(W) {
     `整理預測市場（Polymarket、Kalshi）與模型（Outdrafted）對世界賽的預測，並檢驗已結束場次的準確度。資料整理於 ${W.collected}。賠率會變動，僅供參考。`;
   renderMatchups(W, sec);
   renderPlayerVs(W, sec);
+  renderSoloq(sec);
   Object.values(TABLES).forEach(T => { wireTable(T); T.wireExtra?.(); });
-  const rt = document.querySelector(".rtabs");
-  if (rt) {
+  // every round-tab row (賽事 and 淘汰賽) switches only its own panels
+  document.querySelectorAll(".rtabs").forEach(rt => {
     const tabsEl = [...rt.querySelectorAll(".rtab")];
     const pick = b => tabsEl.forEach(t => { const on = t === b;
       t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;
@@ -1867,7 +1936,7 @@ function renderWorlds(W) {
       const i = tabsEl.indexOf(document.activeElement); if (i < 0) return;
       const n = tabsEl[(i + (e.key === "ArrowRight" ? 1 : tabsEl.length - 1)) % tabsEl.length]; n.focus(); pick(n);
     });
-  }
+  });
   const foot = W.notes.map(n => `<p>${esc(n)}</p>`).join("") +
     `<p>來源：${W.sources.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join("、")}</p>`;
   document.getElementById("wv-foot").innerHTML = foot;
@@ -2000,7 +2069,7 @@ function setupAnchors() {
 }
 
 // four pages in one artifact: Worlds results (default), #predict, #matchup and #player
-const VIEWS = ["worlds", "champs", "predict", "matchup", "player"];
+const VIEWS = ["worlds", "champs", "predict", "matchup", "player", "soloq"];
 let SHOW_VIEW = () => {};
 function setupViews() {
   const tabs = [...document.querySelectorAll(".vtab")];

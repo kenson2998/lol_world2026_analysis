@@ -160,7 +160,7 @@
 | 下路 | Duduhh | 15 | 10-5 | 67% | [KR] —<br>[NA] 2小時34分前 | Aphelios (亞菲利歐) 2場 13% 100%、Jhin (燼) 2場 13% 50%、Akali (阿卡莉) 1場 7% 100%、Caitlyn (凱特琳) 1場 7% 100%、Irelia (伊瑞莉雅) 1場 7% 100%、Kalista (克黎思妲) 1場 7% 100% |
 | 輔助 | Ackerman | 14 | 12-2 | 86% | [KR] —<br>[NA] 2小時53分前 | Camille (卡蜜兒) 3場 21% 67%、Bard (巴德) 2場 14% 100%、Annie (安妮) 1場 7% 100%、Blitzcrank (布里茨) 1場 7% 100%、Karma (卡瑪) 1場 7% 100%、Pantheon (潘森) 1場 7% 100% |
 
-## 世界賽戰況（整理於 2026-11-01 10:14（台灣時間））
+## 世界賽戰況（整理於 2026-11-03 10:12（台灣時間））
 
 Swiss Stage 結束：DK、GEN 3-0，IG、T1、TES 3-1，BLG、KC、LYON 3-2 晉級淘汰賽；HLE、LOS、MKOI 2-3，CFO、G2、TLAW 1-3，AL、TSW 0-3 淘汰。八強賽（全部 Bo5）台灣時間 11/4 06:00 TES vs IG、11/5 06:00 GEN vs LYON、11/6 06:00 DK vs BLG、11/7 06:00 T1 vs KC；四強 11/8、11/9 06:00，決賽 11/15 03:00。
 
@@ -291,6 +291,8 @@ Swiss Stage 結束：DK、GEN 3-0，IG、T1、TES 3-1，BLG、KC、LYON 3-2 晉�
 - 第五輪：KC 2-0 MKOI、LYON 2-1 LOS、BLG 2-0 HLE（勝方 3-2 晉級、敗方 2-3 淘汰）。BP 取自 Leaguepedia，禁用與 Liquipedia、gol.gg 三方一致，選用與 gol.gg 一致；時長、勝方、擊殺一致。選手數據取自 gol.gg（83686、83687、83689–83693；83686 先前為空白佔位頁，現為 KC-MKOI 第一局）。
 - 八強賽對陣、時間與第一局先選權取自 Liquipedia（api.php?action=parse）：全部 Bo5（Fearless），TES 抽籤取得先選權，GEN、DK、T1 因戰績較佳。四強 11/7、11/8 16:00 CT（台灣 11/8、11/9 06:00），決賽 11/14 14:00 EST（台灣 11/15 03:00）。四強對陣依賽程表位置推得：DK/BLG 勝方 vs T1/KC 勝方、GEN/LYON 勝方 vs TES/IG 勝方（非文字明載）。
 - outdrafted.lol 頁面數字（未直接取得，僅供參考）：八強模型勝率 TES 52 / IG 48、GEN 92 / LYON 8、DK 55 / BLG 45、T1 80 / KC 20；內嵌的 Polymarket 奪冠價格 GEN 47%、T1 21%、BLG 15.4%、DK 7.3%、IG 6.8%、TES 3.2%、KC 1.9%、LYON 0.9%。
-- 第五輪與八強賽沒有 Polymarket／Kalshi（無法連線）或莊家賠率，賽前勝率改用 outdrafted.lol 頁面的模型勝率（模型，非市場）：第五輪 KC 64.7 / MKOI 35.3、LOS 29.9 / LYON 70.1、HLE 52.7 / BLG 47.3；八強 TES 52 / IG 48、GEN 92 / LYON 8、DK 55 / BLG 45、T1 80 / KC 20。頁面上標「模」。
+- 第五輪沒有 Polymarket／Kalshi（無法連線）或莊家賠率，賽前勝率改用 outdrafted.lol 模型勝率（模型，非市場）：KC 64.7 / MKOI 35.3、LOS 29.9 / LYON 70.1、HLE 52.7 / BLG 47.3。頁面上標「模」。
+- 八強賠率（11/3 整理）：勝率取自 rg.org 2026-11-02 文章引用 esports.gg 以 11/1 擷取的多家賠率去水平均（IG 55.6 / TES 44.4、GEN 92.1 / LYON 7.9、BLG 59.4 / DK 40.6、T1 84.3 / KC 15.7），表中以「市場平均」列出並換算成去水十進位賠率，標「莊」。esports.gg 原文、tips.gg 回 403，egamersworld 無法連線；搜尋摘要中的 Stake、1xbet 等個別賠率未能直接核對，不採用。
+- outdrafted.lol 八強模型勝率（11/3 10:10 抓取，模型非市場）：TES 52.8 / IG 47.2、GEN 92.0 / LYON 8.0、DK 49.3 / BLG 50.7、T1 78.1 / KC 21.9；其頁面內嵌的 Polymarket 奪冠價格（未直接取得）GEN 48%、T1 21%、BLG 15.3%、DK 8.6%、IG 5.3%、TES 2.9%、KC 1.6%、LYON 0.7%。冠軍賠率表仍為 10/26 快照（找不到可直接核對的新奪冠賠率）。
 
 來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)、[Leaguepedia Scoreboards Round 4](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Round_4)

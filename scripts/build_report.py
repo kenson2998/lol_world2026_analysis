@@ -238,6 +238,9 @@ def main(out_dir, roster_path):
     prev = load_prev(out_dir)
     meta = role_meta(players)
     worlds = json.load(open(f"{out_dir}/worlds.json")) if os.path.exists(f"{out_dir}/worlds.json") else None
+    # champions from the NA solo-queue window (選手單排 tab) need icons and names too
+    na = json.load(open(f"{out_dir}/soloq_na.json")) if os.path.exists(f"{out_dir}/soloq_na.json") else None
+    na_champs = {g["champion"] for p in (na or {}).get("players", []) for g in p["games"]}
     for p in players:
         p["changed"] = player_diff(p, prev.get("players", {}).get(f'{p["team"]}/{p["role"]}'), short_when(prev)) if prev else {}
     data = {"teams": [{"team": t, "region": r.get("region", ""), "full": r.get("full", t),
@@ -252,10 +255,12 @@ def main(out_dir, roster_path):
             "worlds": worlds,
             # pre-match analysis pages (match share id -> file stem under data/analysis), from match_analysis.py
             "analysis": json.load(open(f"{out_dir}/analysis/index.json")) if os.path.exists(f"{out_dir}/analysis/index.json") else {},
+            # NA solo queue of the teams still in, over a date window (soloq_na_window.py), for the 選手單排 tab
+            "soloq_na": na,
             # 賽事總結 per match id (match_analysis.py), shown at the top of each unplayed match's preview
             "analysis_summary": json.load(open(f"{out_dir}/analysis/summary.json")) if os.path.exists(f"{out_dir}/analysis/summary.json") else {},
-            "icons": used_icons(out_dir, players, worlds_picks(worlds)),
-            "zh": {c: ZH[c] for c in used_champs(players, worlds) if c in ZH},
+            "icons": used_icons(out_dir, players, worlds_picks(worlds) | na_champs),
+            "zh": {c: ZH[c] for c in used_champs(players, worlds) | na_champs if c in ZH},
             "avatars": json.load(open(f"{out_dir}/player_avatars.json")) if os.path.exists(f"{out_dir}/player_avatars.json") else {},
             "fetched": fetched.strftime("%Y-%m-%d %H:%M KST"),
             "fetched_iso": fetched.isoformat(),
