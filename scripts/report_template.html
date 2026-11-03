@@ -1905,17 +1905,13 @@ function koPredict(W) {
 }
 let KP_LINKS = [];
 // the same knockout shape, actual results only: 八強 → 四強 → 決賽 → 冠軍. Teams not decided yet show as
-// "A / B 勝方"; every match that is on the schedule links to its card in 8強賽事.
+// 待定; every match that is on the schedule links to its card in 8強賽事.
 function koBracket(W) {
   const K = W.knockout, qf = W.rounds[SW_ROUNDS]?.matches || []; if (!K || !qf.length) return "";
-  // feed id -> its winner, else the teams that can still come out of it (shown as "A / B / C / D 勝方")
-  const win = {}, pool = {};
-  const slot = id => win[id] || (pool[id]?.length ? `${pool[id].join(" / ")} 勝方` : "待定");
-  const box = (label, a, b, m, ri, k, time, feeds) => {
+  const win = {};   // feed id -> its winner; a side not decided yet shows 待定
+  const box = (label, a, b, m, ri, k, time) => {
     if (m?.winner) win[label] = m.winner;
-    pool[label] = m ? [m.a, m.b] : feeds.flatMap(x => (win[x] ? [win[x]] : pool[x] || []));
     const side = t => { if (!t) return `<div class="kp-t tbd">待定</div>`;
-      if (/ 勝方$|^待定$/.test(t)) return `<div class="kp-t tbd">${esc(t)}</div>`;
       const cls = m?.winner ? (m.winner === t ? "w" : "l") : "";
       const right = m?.winner ? (m.score ? m.score[t === m.a ? 0 : 1] : m.winner === t ? "勝" : "") : "";
       return `<div class="kp-t ${cls}"><b title="${esc(fullName(t))}">${esc(t)}</b><span>${right}</span></div>`; };
@@ -1934,7 +1930,7 @@ function koBracket(W) {
       links.push([x, id], [y, id]);
       // a later round actually scheduled lives in W.rounds after the quarterfinals
       const real = W.rounds[SW_ROUNDS + 1 + ri]?.matches?.[k];
-      return real?.a ? box(id, real.a, real.b, real, SW_ROUNDS + 1 + ri, k, real.time_tw) : box(id, slot(x), slot(y), null, 0, 0, r.time_tw?.[k], [x, y]);
+      return real?.a ? box(id, real.a, real.b, real, SW_ROUNDS + 1 + ri, k, real.time_tw) : box(id, win[x], win[y], null, 0, 0, r.time_tw?.[k]);
     }).join("");
     cols.push({ name: r.name, html });
   });
@@ -2007,7 +2003,7 @@ function renderWorlds(W) {
   const koIdx = allIdx.filter(i => i >= SW_ROUNDS);
   const knockout = koIdx.length ? sec("8強賽事", "瑞士輪前 8 名的單淘汰賽（全部 Bo5）。", roundTabs(koIdx, "切換淘汰賽輪次"), "wv-ko", "closed") : "";
   const ktHtml = koBracket(W);
-  const koTree = ktHtml ? sec("8強樹狀圖", `八強 → 四強 → 決賽 → 冠軍，只列實際賽果；尚未決定的隊伍以「A / B 勝方」佔位。點比賽可跳到該場。手機可左右滑動。${esc(W.knockout?.note || "")}`,
+  const koTree = ktHtml ? sec("8強樹狀圖", `八強 → 四強 → 決賽 → 冠軍，只列實際賽果；尚未決定的隊伍顯示「待定」。點比賽可跳到該場。手機可左右滑動。`,
     ktHtml, "wv-kotree", "open") : "";
 
   const tree = sec("瑞士輪樹狀圖", "瑞士輪每一欄是一輪，依戰績分組；勝方往上一組（綠線）、敗方往下一組（紅線），3 勝晉級淘汰賽、3 敗淘汰。戰績由已結束的賽果推算；點比賽可跳到該場。手機可左右滑動。",
