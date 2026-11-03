@@ -22794,5 +22794,53 @@
    "csd15": 8.0,
    "xpd15": -90.0
   }
- ]
+ ],
+ "outright_model": {
+  "label": "outdrafted.lol 模型奪冠機率（2026-11-03 10:10 台灣時間抓取，模型非市場）",
+  "src": "https://outdrafted.lol/worlds",
+  "rows": {
+   "GEN": 48,
+   "T1": 20,
+   "BLG": 12,
+   "DK": 11,
+   "TES": 4.6,
+   "IG": 3.4,
+   "KC": 1.2,
+   "LYON": "<1"
+  }
+ },
+ "knockout": {
+  "rounds": [
+   {
+    "name": "四強",
+    "feeds": [
+     [
+      "r6-m3",
+      "r6-m4"
+     ],
+     [
+      "r6-m2",
+      "r6-m1"
+     ]
+    ],
+    "time_tw": [
+     "11/08 06:00",
+     "11/09 06:00"
+    ]
+   },
+   {
+    "name": "決賽",
+    "feeds": [
+     [
+      "sf1",
+      "sf2"
+     ]
+    ],
+    "time_tw": [
+     "11/15 03:00"
+    ]
+   }
+  ],
+  "note": "四強對陣依 Liquipedia 賽程表位置推得（DK/BLG 勝方 vs T1/KC 勝方、GEN/LYON 勝方 vs TES/IG 勝方），非文字明載；兩場四強誰在 11/8、誰在 11/9 同樣依版面推得。"
+ }
 }

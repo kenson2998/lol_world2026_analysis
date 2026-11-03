@@ -535,6 +535,23 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .rec-chip { font: 700 11px var(--f-data); border-radius: 4px; padding: 1px 6px; background: var(--mid-soft) }
 .rec-chip.up { background: var(--good-soft); color: var(--good) }
 .rec-chip.down { background: var(--bad-soft); color: var(--bad) }
+/* 水晶球: knockout prediction tree */
+.kp-scroll { overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 6px }
+.kp { position: relative; display: grid; grid-template-columns: repeat(4, minmax(170px, 1fr)); gap: 34px; min-width: 780px }
+.kp-col { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1 }
+.kp-boxes { flex: 1; display: flex; flex-direction: column; justify-content: space-around; gap: 14px }
+.kp-box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px 8px; display: grid; gap: 3px }
+.kp-box.played { border-color: var(--accent) }
+.kp-h { display: flex; justify-content: space-between; gap: 6px; font: 600 10.5px var(--f-body); color: var(--muted) }
+.kp-h span { font-family: var(--f-data) }
+.kp-t { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 3px 6px; border-radius: 6px }
+.kp-t b { font: 700 15px var(--f-display) } .kp-t span { font: 700 12.5px var(--f-data); display: inline-flex; align-items: center; gap: 4px }
+.kp-t small { font: 500 11px var(--f-data); color: var(--muted) }
+.kp-t.fav { background: var(--accent-soft) } .kp-t.fav b { color: var(--accent) }
+.kp-t.w { background: var(--good-soft) } .kp-t.w b { color: var(--good) } .kp-t.l { color: var(--muted) } .kp-t.l b { font-weight: 500 }
+.kp-t.tbd { color: var(--muted); font-size: 12px }
+.kp-champ { border: 2px solid var(--medal1) } .kp-champ .kp-t b { font-size: 20px }
+.kp-e { stroke: var(--muted); opacity: .5 }
 /* 選手單排 */
 .sq-list { list-style: none; margin: 0; padding: 0 }
 /* two lines per player: avatar · name · record, then champions · last game */
@@ -1826,6 +1843,73 @@ function swissTree(W) {
       <div class="sw-h">${head(b)}${count(b) ? `<small>${b.out ? `${count(b)} 隊` : `${count(b)} 場`}</small>` : ""}</div>${body(b)}</div>`).join("")}</div></div>`).join("")}
     <svg class="sw-lines" aria-hidden="true"></svg></div></div>`;
 }
+// ---- 水晶球: knockout prediction tree (八強 → 四強 → 決賽 → 冠軍) ----
+// 八強 uses each match's own pre-match win chance (market, bookmaker average, else model); later rounds have no match
+// odds yet, so the side with the higher model title chance (W.outright_model) moves on. A played match uses its winner.
+function koPredict(W) {
+  const K = W.knockout; if (!K) return "";
+  const byId = id => { const m = /^r(\d+)-m(\d+)$/.exec(id); return m && W.rounds[+m[1] - 1]?.matches[+m[2] - 1]; };
+  const title = t => W.outright_model?.rows?.[t];
+  const tnum = t => { const v = title(t); return v == null ? -1 : typeof v === "number" ? v : 0.5; };
+  const tTxt = t => { const v = title(t); return v == null ? "" : `奪冠 ${typeof v === "number" ? v : v}%`; };
+  // a box: two sides; each side { team, pct, src } ; winner = actual or predicted
+  const boxOf = (a, b, m, label) => {
+    if (m) {
+      const book = bookPct(m.books), pct = m.pct || book || m.model, src = m.pct ? "" : book ? "莊" : m.model ? "模" : "";
+      const w = m.winner || (pct ? (pct[0] >= pct[1] ? m.a : m.b) : null);
+      return { a: m.a, b: m.b, pa: pct?.[0], pb: pct?.[1], src, winner: w, played: !!m.winner, score: m.score, label, time: m.time_tw };
+    }
+    const w = a && b ? (tnum(a) >= tnum(b) ? a : b) : null;
+    return { a, b, winner: w, byTitle: true, label };
+  };
+  const cols = [];
+  const qf = W.rounds[SW_ROUNDS]?.matches || [];
+  // quarterfinals in bracket order (the pairs that feed each semifinal sit together), so the lines don't cross
+  const qfBoxes = qf.map((m, k) => boxOf(null, null, m, `r${SW_ROUNDS + 1}-m${k + 1}`));
+  const order = (K.rounds[0]?.feeds || []).flat();
+  qfBoxes.sort((x, y) => (order.indexOf(x.label) + 1 || 99) - (order.indexOf(y.label) + 1 || 99));
+  cols.push({ name: W.rounds[SW_ROUNDS]?.name || "八強", boxes: qfBoxes });
+  const done = { };
+  cols[0].boxes.forEach(x => { done[x.label] = x.winner; });
+  K.rounds.forEach((r, ri) => {
+    const boxes = r.feeds.map(([x, y], k) => {
+      const id = ri === K.rounds.length - 1 ? "final" : `sf${k + 1}`;
+      // a later round actually played lives in W.rounds after the quarterfinals
+      const real = W.rounds[SW_ROUNDS + 1 + ri]?.matches?.[k];
+      const bx = boxOf(done[x], done[y], real?.a ? real : null, id);
+      bx.time = bx.time || r.time_tw?.[k];
+      done[id] = bx.winner; return bx; });
+    cols.push({ name: r.name, boxes });
+  });
+  const champ = done.final;
+  const side = (bx, t, p) => { if (!t) return `<div class="kp-t tbd">待定</div>`;
+    const win = bx.winner === t, cls = bx.played ? (win ? "w" : "l") : win ? "fav" : "";
+    const right = bx.played ? (bx.score ? bx.score[t === bx.a ? 0 : 1] : win ? "勝" : "")
+      : p != null ? `${Math.round(p)}%${bx.src ? `<span class="bk-tag">${bx.src}</span>` : ""}` : `<small>${esc(tTxt(t))}</small>`;
+    return `<div class="kp-t ${cls}"><b title="${esc(fullName(t))}">${esc(t)}</b><span>${right}</span></div>`; };
+  const box = bx => `<div class="kp-box${bx.played ? " played" : ""}" data-k="${esc(bx.label)}">
+      <div class="kp-h">${bx.played ? "已結束" : bx.byTitle ? "依模型奪冠機率推進" : "賽前勝率"}${bx.time ? `<span>${esc(bx.time)}</span>` : ""}</div>
+      ${side(bx, bx.a, bx.pa)}${side(bx, bx.b, bx.pb)}</div>`;
+  const html = `<div class="kp-scroll"><div class="kp" id="kp">${cols.map(c => `<div class="kp-col"><div class="sw-ch">${esc(c.name)}</div><div class="kp-boxes">${c.boxes.map(box).join("")}</div></div>`).join("")}
+    <div class="kp-col"><div class="sw-ch">冠軍</div><div class="kp-boxes"><div class="kp-box kp-champ" data-k="champ">${champ
+      ? `<div class="kp-h">預測冠軍</div><div class="kp-t fav"><b title="${esc(fullName(champ))}">${esc(champ)}</b><span><small>${esc(tTxt(champ))}</small></span></div>` : `<div class="kp-t tbd">待定</div>`}</div></div></div>
+    <svg class="sw-lines" aria-hidden="true"></svg></div></div>`;
+  // connector pairs: each box to the one it feeds
+  KP_LINKS = [];
+  K.rounds.forEach((r, ri) => r.feeds.forEach(([x, y], k) => { const id = ri === K.rounds.length - 1 ? "final" : `sf${k + 1}`; KP_LINKS.push([x, id], [y, id]); }));
+  KP_LINKS.push(["final", "champ"]);
+  return html;
+}
+let KP_LINKS = [];
+function drawKoLines() {
+  const kp = document.getElementById("kp"), svg = kp?.querySelector(".sw-lines"); if (!svg || !kp.offsetWidth) return;
+  const o = kp.getBoundingClientRect(), at = k => kp.querySelector(`[data-k="${k}"]`)?.getBoundingClientRect();
+  svg.setAttribute("width", kp.scrollWidth); svg.setAttribute("height", kp.scrollHeight);
+  svg.innerHTML = KP_LINKS.map(([x, y]) => { const a = at(x), b = at(y); if (!a || !b) return "";
+    const x1 = a.right - o.left, y1 = a.top - o.top + a.height / 2, x2 = b.left - o.left, y2 = b.top - o.top + b.height / 2, mx = (x1 + x2) / 2;
+    return `<path class="sw-e kp-e" d="M${x1},${y1} H${mx} V${y2} H${x2}"/>`; }).join("");
+}
+
 // connector lines between pools, drawn from the laid-out boxes (again whenever the tree changes size, e.g. its tab opens)
 function drawSwissLines() {
   const sw = document.getElementById("sw"), svg = sw?.querySelector(".sw-lines"); if (!svg || !sw.offsetWidth) return;
@@ -1936,7 +2020,13 @@ function renderWorlds(W) {
   CB_PREV = PREV ? crystalBall(PREV.W, true) : {};
   const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg${usesLP(W) ? "（無法連線的場次用 Leaguepedia）" : ""}，KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。${PREV ? `名字旁的 ${prevNote()}單一數值的題目顯示數值變化；滑鼠移到標記上可看當時名次與數值。` : ""}`,
     crystalBall(W), "pv-cb");
-  document.getElementById("pv-body").innerHTML = cb + accuracy(W, sec) + nextSec + outright + advance;
+  const kpHtml = koPredict(W);
+  const kpSec = kpHtml ? sec("淘汰賽預測樹狀圖", `八強每場依賽前勝率（市場平均標「莊」、沒有市場時用 outdrafted 模型標「模」）由看好方晉級；四強與決賽還沒有單場賠率，改以 ${esc(W.outright_model?.label || "模型奪冠機率")}較高的一方推進。已結束的場次以實際勝方取代預測。${esc(W.knockout?.note || "")}`,
+    kpHtml, "pv-ko") : "";
+  document.getElementById("pv-body").innerHTML = cb + kpSec + accuracy(W, sec) + nextSec + outright + advance;
+  const kp = document.getElementById("kp");
+  if (kp && typeof ResizeObserver !== "undefined") new ResizeObserver(() => drawKoLines()).observe(kp);
+  else { drawKoLines(); addEventListener("resize", drawKoLines); }
   document.getElementById("pv-sub").textContent =
     `整理預測市場（Polymarket、Kalshi）與模型（Outdrafted）對世界賽的預測，並檢驗已結束場次的準確度。資料整理於 ${W.collected}。賠率會變動，僅供參考。`;
   renderMatchups(W, sec);
