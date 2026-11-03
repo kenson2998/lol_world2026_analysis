@@ -576,6 +576,12 @@ a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visi
 .sq-c i { position: absolute; right: -3px; bottom: -3px; font: 700 9.5px/13px var(--f-data); font-style: normal; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0 3px }
 .sq-last { font: 500 11px var(--f-data); color: var(--muted); white-space: nowrap }
 .sq-none { grid-column: 2 / -1; font-size: 12px; color: var(--muted) }
+/* team cards in 八強 pairs: a matchup heading, then the two teams side by side (stacked on narrow screens) */
+.sq-pairs { display: grid; gap: 20px }
+.sq-ph { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 8px; font: 700 15px var(--f-display); color: inherit; text-decoration: none }
+.sq-ph:hover, .sq-ph:focus-visible { color: var(--accent) }
+.sq-ph span { font: 500 12px var(--f-data); color: var(--muted) }
+.sq-pg { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px; align-items: start }
 .sq-top { list-style: none; margin: 0; padding: 4px 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 24px;
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px }
 .sq-top li { display: grid; grid-template-columns: 1.6em 32px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
@@ -1732,13 +1738,20 @@ function renderSoloq(sec) {
           ? `<span class="sq-mvp tip" tabindex="0" data-tip="${esc(`OP.GG 評分全場第 1：\n${p.mvps.map(g => `${g.time_tw} ${cname(g.champion)}（${g.result === "WIN" ? "勝" : "敗"}）`).join("\n")}`)}"><span class="mvp-star">★</span>MVP ${p.mvps.length}</span>` : ""}</span>
         <span class="sq-cs">${champs}</span><span class="sq-last">最後一場 ${esc(p.last)}</span>`
         : `<span class="sq-none">${none}</span>`}</li>`; };
-  const cards = S.teams.map(t => { const ps = P.filter(p => p.team === t), g = ps.reduce((s, p) => s + p.n, 0), w = ps.reduce((s, p) => s + p.w, 0);
+  const card = t => { const ps = P.filter(p => p.team === t), g = ps.reduce((s, p) => s + p.n, 0), w = ps.reduce((s, p) => s + p.w, 0);
     const f = ps.reduce((s, p) => s + p.fresh.length, 0), mv = ps.reduce((s, p) => s + p.mvps.length, 0);
     return `<article class="cb sq-team${f ? " sq-upd-card" : ""}" id="sq-${esc(t)}"><div class="cb-h"><h3>${esc(t)}${anc(`sq-${t}`)}</h3>
       ${f ? plus(f, `${since}後全隊新增 ${f} 場`) : ""}${hasRank && mv ? `<span class="sq-mvp"><span class="mvp-star">★</span>MVP ${mv}</span>` : ""}<span class="cb-st">${g ? `全隊 ${g} 場 · ${Math.round(w / g * 100)}%` : "全隊 0 場"}</span></div>
-      <ol class="sq-list">${ps.map(row).join("")}</ol></article>`; }).join("");
+      <ol class="sq-list">${ps.map(row).join("")}</ol></article>`; };
+  // teams grouped by their 八強 match, the two opponents side by side, earliest match first; teams without one go last
+  const W = DATA.worlds, QR = W?.rounds[SW_ROUNDS], qf = (QR?.matches || []).map((m, k) => ({ m, k }))
+    .filter(({ m }) => S.teams.includes(m.a) && S.teams.includes(m.b)).sort((x, y) => (x.m.time_tw || "").localeCompare(y.m.time_tw || ""));
+  const paired = new Set(qf.flatMap(({ m }) => [m.a, m.b]));
+  const cards = qf.map(({ m, k }) => `<div class="sq-pair"><a class="sq-ph" href="#${matchId(SW_ROUNDS, k)}" title="看這場比賽">${esc(QR.name)}・${esc(m.a)} vs ${esc(m.b)}${m.time_tw ? `<span>${esc(m.time_tw)}</span>` : ""}${m.winner ? `<span>${esc(m.winner)} 勝${m.score ? ` ${m.score.join("-")}` : ""}</span>` : ""}</a>
+      <div class="sq-pg">${card(m.a)}${card(m.b)}</div></div>`).join("")
+    + (S.teams.some(t => !paired.has(t)) ? `<div class="cb-grid">${S.teams.filter(t => !paired.has(t)).map(card).join("")}</div>` : "");
   body.innerHTML = sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服＋韓服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
-    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${hasRank ? "★ MVP 為本位場次中 OP.GG 評分全場第 1 的次數（滑鼠移上可看是哪幾場）。" : ""}${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}`, `<div class="cb-grid">${cards}</div>`, "sq-teams");
+    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${hasRank ? "★ MVP 為本位場次中 OP.GG 評分全場第 1 的次數（滑鼠移上可看是哪幾場）。" : ""}${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}依八強對戰兩兩並排，最早開打的在最上面。`, `<div class="sq-pairs">${cards}</div>`, "sq-teams");
 }
 
 // Worlds player stats table
