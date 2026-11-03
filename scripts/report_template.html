@@ -555,7 +555,11 @@ a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visi
 /* 選手單排 */
 .sq-list { list-style: none; margin: 0; padding: 0 }
 /* two lines per player: avatar · name · record, then champions · last game */
-.sq-list li { display: grid; grid-template-columns: 26px 1fr auto; gap: 6px 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
+.sq-list li { display: grid; grid-template-columns: 44px 1fr auto; gap: 6px 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
+/* in-game profile icon of the main NA account (pro photo when there is none) */
+.sq-pi { display: block; width: 44px; height: 44px } .sq-pi img, .sq-pi .av { width: 44px; height: 44px; border-radius: 10px; display: block; object-fit: cover }
+.sq-pi .av { border-radius: 50% }
+.sq-list .nm .sq-id { font: 500 11px var(--f-data); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .sq-list .sq-cs { grid-column: 2 / 3 } .sq-list .sq-last { grid-column: 3 / 4; justify-self: end }
 .sq-cs > * { flex: none } .sq-c .ci { min-width: 26px; object-fit: cover }
 .sq-list li:first-child { border-top: 0 }
@@ -571,7 +575,7 @@ a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visi
 .sq-cs { display: inline-flex; gap: 4px } .sq-c { position: relative } .sq-c .ci { width: 26px; height: 26px; border-radius: 5px }
 .sq-c i { position: absolute; right: -3px; bottom: -3px; font: 700 9.5px/13px var(--f-data); font-style: normal; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0 3px }
 .sq-last { font: 500 11px var(--f-data); color: var(--muted); white-space: nowrap }
-.sq-none { grid-column: 3 / -1; font-size: 12px; color: var(--muted); text-align: right }
+.sq-none { grid-column: 2 / -1; font-size: 12px; color: var(--muted) }
 .sq-top { list-style: none; margin: 0; padding: 4px 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 24px;
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px }
 .sq-top li { display: grid; grid-template-columns: 1.6em 32px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
@@ -1713,9 +1717,17 @@ function renderSoloq(sec) {
     const accts = p.all_accounts || p.accounts, last = p.last || p.last_na, lastRegion = REGION_ZH[p.last_region || "NA"];
     const none = !accts.length ? "查無美服／韓服帳號"
       : `區間內無本位單排${last ? `（最後一場單排 ${esc(last)}・${lastRegion}）` : ""}`;
+    // main NA account: the one with the most own-role games in the window, else the first known; its in-game icon
+    // replaces the pro photo (kept as the fallback), other NA accounts go in the tooltip
+    const na = (p.all_accounts || []).filter(a => a.startsWith("NA:")), cnt = a => p.gs.filter(g => g.account === a).length;
+    const main = [...na].sort((x, y) => cnt(y) - cnt(x))[0], prof = main && DATA.na_profiles?.[main];
+    const others = na.filter(a => a !== main).map(a => a.slice(3));
+    const pic = prof ? `<span class="sq-pi tip" tabindex="0" data-tip="${esc(`美服 ${main.slice(3)} 遊戲內頭像${prof.level ? `・Lv ${prof.level}` : ""}（OP.GG）`)}"><img src="${prof.icon}" alt="${esc(p.player)}" width="44" height="44"></span>`
+      : `<span class="sq-pi">${avatar(p.team, p.player)}</span>`;
+    const naId = main ? `<span class="sq-id" title="${esc(`美服 ${main.slice(3)}${others.length ? `\n其他美服帳號：${others.join("、")}` : ""}`)}">美服 ${esc(main.slice(3))}${others.length ? ` +${others.length}` : ""}</span>` : "";
     const fr = p.fresh.length ? plus(p.fresh.length, `${since}後新增 ${p.fresh.length} 場本位單排（${regionSplit(p.fresh)}）；當時 ${p.nBefore} 場`) : "";
-    return `<li class="${p.n ? "" : "idle"}${p.fresh.length ? " sq-upd" : ""}">${avatar(p.team, p.player, true)}
-      <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${p.n ? ` · ${regionSplit(p.gs)}` : ""}</span></span>
+    return `<li class="${p.n ? "" : "idle"}${p.fresh.length ? " sq-upd" : ""}">${pic}
+      <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${p.n ? ` · ${regionSplit(p.gs)}` : ""}</span>${naId}</span>
       ${p.n ? `<span class="sq-rec"><b>${p.n}${p.partial ? "+" : ""} 場${fr}${p.partial ? `<span class="lowg tip" tabindex="0" data-tip="OP.GG 每個帳號只給最近 20 場，這位選手某帳號的 20 場都在區間內，更早的場次可能沒算到">可能不完整</span>` : ""}</b><span class="wr ${wrCls(p.w / p.n * 100)}">${p.w}-${p.n - p.w}・${Math.round(p.w / p.n * 100)}%</span>${hasRank && p.mvps.length
           ? `<span class="sq-mvp tip" tabindex="0" data-tip="${esc(`OP.GG 評分全場第 1：\n${p.mvps.map(g => `${g.time_tw} ${cname(g.champion)}（${g.result === "WIN" ? "勝" : "敗"}）`).join("\n")}`)}"><span class="mvp-star">★</span>MVP ${p.mvps.length}</span>` : ""}</span>
         <span class="sq-cs">${champs}</span><span class="sq-last">最後一場 ${esc(p.last)}</span>`

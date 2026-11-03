@@ -264,6 +264,8 @@ def main(out_dir, roster_path):
             # NA solo queue of the teams still in, over a date window (soloq_na_window.py), for the 選手單排 tab
             "soloq_na": na,
             "soloq_na_prev": na_prev,
+            # NA account -> in-game profile icon (inlined) and level, from OP.GG (na_profiles.py)
+            "na_profiles": json.load(open(f"{out_dir}/na_profiles.json")) if os.path.exists(f"{out_dir}/na_profiles.json") else {},
             # 賽事總結 per match id (match_analysis.py), shown at the top of each unplayed match's preview
             "analysis_summary": json.load(open(f"{out_dir}/analysis/summary.json")) if os.path.exists(f"{out_dir}/analysis/summary.json") else {},
             "icons": used_icons(out_dir, players, worlds_picks(worlds) | na_champs),
