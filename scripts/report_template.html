@@ -1155,7 +1155,7 @@ function accuracy(W, sec) {
         <td>${esc(fav)} ${Math.round(pFav * 100)}%${m.pre_src === "model" ? ` <span class="bk-tag" title="outdrafted 模型勝率（非市場）">模</span>` : ""}</td><td><b>${esc(m.winner)}</b></td>
         <td><span class="pbar2" style="width:${pWin * 80}px"></span>${Math.round(pWin * 100)}%</td>
         <td>${hit ? `<span class="wl w">猜中</span>` : `<span class="wl l">爆冷</span>`}</td></tr>`).join("")}</table></div>`;
-    return sec(`${esc(r.name)}預測準確度`, `以${esc(r.pre_label || "賽前市場價格")}判斷看好方（兩邊價格換算成合計 100%），依爆冷程度排序。`, summary + table);
+    return sec(`${esc(r.name)}預測準確度`, `以${esc(r.pre_label || "賽前市場價格")}判斷看好方（兩邊價格換算成合計 100%），依爆冷程度排序。`, summary + table, undefined, "closed");
   }).join("");
 }
 
