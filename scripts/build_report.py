@@ -266,8 +266,6 @@ def main(out_dir, roster_path):
             "soloq_na_prev": na_prev,
             # NA account -> in-game profile icon (inlined) and level, from OP.GG (na_profiles.py)
             "na_profiles": json.load(open(f"{out_dir}/na_profiles.json")) if os.path.exists(f"{out_dir}/na_profiles.json") else {},
-            # 賽事總結 per match id (match_analysis.py), shown at the top of each unplayed match's preview
-            "analysis_summary": json.load(open(f"{out_dir}/analysis/summary.json")) if os.path.exists(f"{out_dir}/analysis/summary.json") else {},
             "icons": used_icons(out_dir, players, worlds_picks(worlds) | na_champs),
             "zh": {c: ZH[c] for c in used_champs(players, worlds) | na_champs if c in ZH},
             "avatars": json.load(open(f"{out_dir}/player_avatars.json")) if os.path.exists(f"{out_dir}/player_avatars.json") else {},
