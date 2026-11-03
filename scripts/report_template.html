@@ -2046,8 +2046,8 @@ function renderWorlds(W) {
       const n = tabsEl[(i + (e.key === "ArrowRight" ? 1 : tabsEl.length - 1)) % tabsEl.length]; n.focus(); pick(n);
     });
   });
-  const foot = W.notes.map(n => `<p>${esc(n)}</p>`).join("") +
-    `<p>來源：${W.sources.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join("、")}</p>`;
+  // the footer lists sources only (the working notes stay in worlds.json)
+  const foot = `<p>來源：${W.sources.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join("、")}</p>`;
   document.getElementById("wv-foot").innerHTML = foot;
   document.getElementById("pv-foot").innerHTML = foot;
 }
