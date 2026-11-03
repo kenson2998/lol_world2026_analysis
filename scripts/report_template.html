@@ -549,7 +549,14 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .sq-c i { position: absolute; right: -3px; bottom: -3px; font: 700 9.5px/13px var(--f-data); font-style: normal; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0 3px }
 .sq-last { font: 500 11px var(--f-data); color: var(--muted); white-space: nowrap }
 .sq-none { grid-column: 3 / -1; font-size: 12px; color: var(--muted); text-align: right }
-.sq-champs { display: flex; flex-wrap: wrap; gap: 6px }
+.sq-top { list-style: none; margin: 0; padding: 4px 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 24px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px }
+.sq-top li { display: grid; grid-template-columns: 1.6em 32px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
+.sq-top li:nth-child(-n+2) { border-top: 0 }
+@media (max-width: 760px) { .sq-top li:nth-child(2) { border-top: 1px solid var(--line) } }
+.sq-top .sq-rk { font: 700 14px var(--f-data); color: var(--muted); text-align: right }
+.sq-top .ci { width: 32px; height: 32px; border-radius: 6px }
+.sq-top .nm { display: grid; min-width: 0 } .sq-top .nm b { font-size: 14px } .sq-top .nm span { font-size: 11.5px; color: var(--muted) }
 @media (max-width: 640px) { .sq-none { grid-column: 2 / -1; text-align: left } }
 /* teams whose Swiss run is decided: the result replaces stale market numbers */
 .fate { font: 700 12px var(--f-body); border-radius: 999px; padding: 2px 10px }
@@ -1662,32 +1669,39 @@ function renderSoloq(sec) {
   if (!S) { document.getElementById("tab-soloq").hidden = true; return; }
   const md = d => d.slice(5).replace("-", "/");
   const win = `${md(S.window[0])}–${md(S.window[1])}`;
-  const P = S.players, tot = P.reduce((s, p) => s + p.summary.games, 0), wins = P.reduce((s, p) => s + p.summary.wins, 0);
-  const active = P.filter(p => p.summary.games).length;
+  // only games in the player's own Worlds role (OP.GG's position); everything below is computed from these
+  const P = S.players.map(p => { const gs = p.games.filter(g => g.on_role), w = gs.filter(g => g.result === "WIN").length;
+    const pool = {}; gs.forEach(g => { const c = (pool[g.champion] ||= { champion: g.champion, games: 0, wins: 0 }); c.games++; c.wins += g.result === "WIN"; });
+    return { ...p, gs, n: gs.length, w, off: p.games.length - gs.length,
+      champs: Object.values(pool).sort((a, b) => b.games - a.games || b.wins - a.wins),
+      last: gs.map(g => g.time_tw).sort().at(-1) || null }; });
   document.getElementById("sq-sub").textContent =
-    `${S.teams.length} 支淘汰賽隊伍先發選手在 ${win}（台灣時間）的美服（NA）積分單排；資料取自 OP.GG（擷取於 ${S.fetched} 台灣時間），帳號來自 OP.GG 職業選手資料、TrackingThePros／集訓帳號追蹤與先前找到的帳號。只計美服單雙排，不含重開局。OP.GG 每個帳號最多只給最近 20 場，標「可能不完整」的選手實際場數可能更多。`;
-  const kpis = `<div class="acc-sum">
-    <div class="kpi"><b>${tot}</b><span>總場數</span></div>
-    <div class="kpi"><b>${active}/${P.length}</b><span>有打美服單排的選手</span></div>
-    <div class="kpi"><b>${tot ? Math.round(wins / tot * 100) : 0}%</b><span>整體勝率</span></div></div>`;
+    `${S.teams.length} 支淘汰賽隊伍先發選手在 ${win}（台灣時間）的美服（NA）積分單排，只計本位（OP.GG 判定的位置與世界賽位置相同）的場次；資料取自 OP.GG（擷取於 ${S.fetched} 台灣時間），帳號來自 OP.GG 職業選手資料、TrackingThePros／集訓帳號追蹤與先前找到的帳號。不含重開局。OP.GG 每個帳號最多只給最近 20 場，標「可能不完整」的選手實際場數可能更多。`;
   // most played champions over everyone in the window
-  const champ = {}; P.forEach(p => p.games.forEach(g => { const c = (champ[g.champion] ||= { n: 0, w: 0 }); c.n++; c.w += g.result === "WIN"; }));
+  const champ = {}; P.forEach(p => p.gs.forEach(g => { const c = (champ[g.champion] ||= { n: 0, w: 0 }); c.n++; c.w += g.result === "WIN"; }));
   const topC = Object.entries(champ).sort((a, b) => b[1].n - a[1].n || b[1].w - a[1].w).slice(0, 10);
-  const champList = topC.length ? `<div class="sq-champs">${topC.map(([c, x]) => `<span class="mo ${x.w * 2 > x.n ? "w" : x.w * 2 < x.n ? "l" : ""}">${icon(c)}<b>${x.n} 場 ${Math.round(x.w / x.n * 100)}%</b></span>`).join("")}</div>` : `<div class="cb-empty">沒有資料</div>`;
-  const row = p => { const s = p.summary;
-    const champs = s.champions.slice(0, 3).map(c => `<span class="sq-c">${icon(c.champion)}<i>${c.games}</i></span>`).join("");
-    const none = !p.accounts.length ? "查無美服帳號" : `區間內無美服單排${p.last_na ? `（最後一場 ${esc(p.last_na)}）` : ""}`;
-    return `<li class="${s.games ? "" : "idle"}">${avatar(p.team, p.player, true)}
-      <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${s.games ? ` · 本位 ${p.on_role}/${s.games}` : ""}</span></span>
-      ${s.games ? `<span class="sq-rec"><b>${s.games}${p.partial ? "+" : ""} 場${p.partial ? `<span class="lowg tip" tabindex="0" data-tip="OP.GG 每個帳號只給最近 20 場，這位選手某帳號的 20 場都在區間內，更早的場次可能沒算到">可能不完整</span>` : ""}</b><span class="wr ${wrCls(s.win_rate)}">${s.wins}-${s.games - s.wins}・${Math.round(s.win_rate)}%</span></span>
-        <span class="sq-cs">${champs}</span><span class="sq-last" title="最後一場（台灣時間）">${esc(p.last_na || "")}</span>`
+  // who played it: the players behind each top champion, most games first
+  const by = c => { const m = {}; P.forEach(p => p.gs.forEach(g => { if (g.champion === c) m[p.player] = (m[p.player] || 0) + 1; }));
+    return Object.entries(m).sort((a, b) => b[1] - a[1]).map(([n, k]) => `${n} ${k}`).join("、"); };
+  const champList = topC.length ? `<ol class="sq-top">${topC.map(([c, x], i) => `<li><span class="sq-rk">${i + 1}</span>${icon(c)}
+      <span class="nm"><b>${esc(cname(c))}</b><span>${esc(by(c))}</span></span>
+      <span class="sq-rec"><b>${x.n} 場</b><span class="wr ${wrCls(x.w / x.n * 100)}">${x.w}-${x.n - x.w}・${Math.round(x.w / x.n * 100)}%</span></span></li>`).join("")}</ol>`
+    : `<div class="cb-empty">沒有資料</div>`;
+  const row = p => {
+    const champs = p.champs.slice(0, 3).map(c => `<span class="sq-c">${icon(c.champion)}<i>${c.games}</i></span>`).join("");
+    const none = !p.accounts.length ? "查無美服帳號"
+      : `區間內無本位單排${p.last_na ? `（最後一場美服單排 ${esc(p.last_na)}）` : ""}`;
+    return `<li class="${p.n ? "" : "idle"}">${avatar(p.team, p.player, true)}
+      <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${p.off ? ` · 另有非本位 ${p.off} 場未計` : ""}</span></span>
+      ${p.n ? `<span class="sq-rec"><b>${p.n}${p.partial ? "+" : ""} 場${p.partial ? `<span class="lowg tip" tabindex="0" data-tip="OP.GG 每個帳號只給最近 20 場，這位選手某帳號的 20 場都在區間內，更早的場次可能沒算到">可能不完整</span>` : ""}</b><span class="wr ${wrCls(p.w / p.n * 100)}">${p.w}-${p.n - p.w}・${Math.round(p.w / p.n * 100)}%</span></span>
+        <span class="sq-cs">${champs}</span><span class="sq-last">最後一場 ${esc(p.last)}</span>`
         : `<span class="sq-none">${none}</span>`}</li>`; };
-  const cards = S.teams.map(t => { const ps = P.filter(p => p.team === t), g = ps.reduce((s, p) => s + p.summary.games, 0), w = ps.reduce((s, p) => s + p.summary.wins, 0);
+  const cards = S.teams.map(t => { const ps = P.filter(p => p.team === t), g = ps.reduce((s, p) => s + p.n, 0), w = ps.reduce((s, p) => s + p.w, 0);
     return `<article class="cb sq-team" id="sq-${esc(t)}"><div class="cb-h"><h3>${esc(t)}${anc(`sq-${t}`)}</h3>
       <span class="cb-st">${g ? `全隊 ${g} 場 · ${Math.round(w / g * 100)}%` : "全隊 0 場"}</span></div>
       <ol class="sq-list">${ps.map(row).join("")}</ol></article>`; }).join("");
-  body.innerHTML = kpis + sec(`各隊選手（${win}）`, "每位先發選手的場數、戰績、本位（OP.GG 判定的位置與世界賽位置相同）場數、最常用的 3 隻英雄與最後一場時間；灰色為區間內沒有美服單排。", `<div class="cb-grid">${cards}</div>`, "sq-teams")
-    + sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs");
+  body.innerHTML = sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
+    + sec(`各隊選手（${win}）`, "每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。", `<div class="cb-grid">${cards}</div>`, "sq-teams");
 }
 
 // Worlds player stats table
