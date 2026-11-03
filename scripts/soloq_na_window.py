@@ -6,7 +6,7 @@ and every account seen before (known_accounts.json). Ranked solo games on either
 each tagged with its server (remakes dropped). New accounts that produced games are added to known_accounts.json.
 
 usage: python3 -I soloq_na_window.py data_dir rosters.json YYYY-MM-DD YYYY-MM-DD TEAM [TEAM ...]
-writes data_dir/soloq_na.json
+writes data_dir/soloq_na.json (the previous one is kept as soloq_na_prev.json, which the page highlights changes against)
 """
 import json, os, sys
 from concurrent.futures import ThreadPoolExecutor
@@ -89,6 +89,10 @@ def main(data_dir, roster_path, start, end, teams):
                 known.setdefault(f'{p["team"]}/{p["role"]}', []).append({"region": region, "game_name": gn, "tagline": tag})
                 print(f'  new account {p["team"]} {p["player"]}: {key}', file=sys.stderr)
     json.dump(known, open(kpath, "w"), ensure_ascii=False, indent=1)
+    # the previous pull becomes the baseline the page highlights changes against
+    out_path = f"{data_dir}/soloq_na.json"
+    if os.path.exists(out_path):
+        os.replace(out_path, f"{data_dir}/soloq_na_prev.json")
     fetched = datetime.now(TW).strftime("%Y-%m-%d %H:%M")
     json.dump({"window": [lo, hi], "fetched": fetched, "teams": teams, "players": players},
               open(f"{data_dir}/soloq_na.json", "w"), ensure_ascii=False, indent=1)
