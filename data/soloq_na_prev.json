@@ -3,7 +3,7 @@
   "2026-11-01",
   "2026-11-03"
  ],
- "fetched": "2026-11-03 10:20",
+ "fetched": "2026-11-03 11:01",
  "teams": [
   "GEN",
   "T1",
@@ -23,6 +23,10 @@
    "accounts": [
     "asdzxcvqwe#123"
    ],
+   "all_accounts": [
+    "KR:kiin#KR1",
+    "NA:asdzxcvqwe#123"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXMvWi2qctG203fSoZTB2Ug7StLNl6pHVs=",
@@ -32,6 +36,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
      "time_tw": "11/02 16:56",
      "on_role": true
     },
@@ -43,6 +48,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
      "time_tw": "11/02 16:19",
      "on_role": true
     },
@@ -54,6 +60,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
      "time_tw": "11/01 14:54",
      "on_role": true
     },
@@ -65,6 +72,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
      "time_tw": "11/01 14:22",
      "on_role": false
     },
@@ -76,6 +84,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
      "time_tw": "11/01 13:52",
      "on_role": false
     },
@@ -87,6 +96,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
      "time_tw": "11/01 13:12",
      "on_role": true
     }
@@ -140,6 +150,8 @@
     ]
    },
    "on_role": 4,
+   "last": "11/02 16:56",
+   "last_region": "NA",
    "last_na": "11/02 16:56"
   },
   {
@@ -150,6 +162,10 @@
    "accounts": [
     "Concrete jungle#USA"
    ],
+   "all_accounts": [
+    "KR:JUGKlNG#kr",
+    "NA:Concrete jungle#USA"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgVTKTCYrxwvi7ZNl7fByw4esQnY_BKnQps=",
@@ -159,6 +175,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 16:19",
      "on_role": false
     },
@@ -170,6 +187,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 15:46",
      "on_role": true
     },
@@ -181,6 +199,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 15:13",
      "on_role": false
     },
@@ -192,6 +211,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 14:38",
      "on_role": true
     },
@@ -203,6 +223,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 14:17",
      "on_role": false
     },
@@ -214,6 +235,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 13:21",
      "on_role": true
     },
@@ -225,6 +247,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 12:40",
      "on_role": true
     },
@@ -236,6 +259,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 12:04",
      "on_role": false
     },
@@ -247,6 +271,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 11:22",
      "on_role": false
     },
@@ -258,6 +283,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/02 02:32",
      "on_role": true
     },
@@ -269,6 +295,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/01 17:00",
      "on_role": false
     },
@@ -280,6 +307,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/01 16:11",
      "on_role": true
     },
@@ -291,6 +319,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/01 15:31",
      "on_role": true
     },
@@ -302,6 +331,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:Concrete jungle#USA",
+     "region": "NA",
      "time_tw": "11/01 15:00",
      "on_role": false
     }
@@ -379,6 +409,8 @@
     ]
    },
    "on_role": 7,
+   "last": "11/02 16:19",
+   "last_region": "NA",
    "last_na": "11/02 16:19"
   },
   {
@@ -389,6 +421,10 @@
    "accounts": [
     "calm down#can"
    ],
+   "all_accounts": [
+    "KR:허거덩#0303",
+    "NA:calm down#can"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgV_S_4wyzixWPhp2mnuHzLq_sEWbStNMmc=",
@@ -398,6 +434,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/02 12:59",
      "on_role": false
     },
@@ -409,6 +446,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/02 12:25",
      "on_role": true
     },
@@ -420,6 +458,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/02 11:36",
      "on_role": false
     },
@@ -431,6 +470,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/02 11:12",
      "on_role": false
     },
@@ -442,6 +482,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/02 10:41",
      "on_role": false
     },
@@ -453,6 +494,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/02 03:51",
      "on_role": true
     },
@@ -464,6 +506,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/01 14:30",
      "on_role": true
     },
@@ -475,6 +518,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/01 14:04",
      "on_role": false
     },
@@ -486,6 +530,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/01 13:30",
      "on_role": true
     },
@@ -497,6 +542,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:calm down#can",
+     "region": "NA",
      "time_tw": "11/01 12:59",
      "on_role": false
     }
@@ -571,6 +617,8 @@
     ]
    },
    "on_role": 4,
+   "last": "11/02 12:59",
+   "last_region": "NA",
    "last_na": "11/02 12:59"
   },
   {
@@ -581,6 +629,10 @@
    "accounts": [
     "proteinmonster#thief"
    ],
+   "all_accounts": [
+    "KR:강 철#샤 넬",
+    "NA:proteinmonster#thief"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgUxsKl3anqOTDi0oJ6n-XrHqIkwSS2tDi4=",
@@ -590,6 +642,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/03 08:48",
      "on_role": true
     },
@@ -601,6 +654,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 16:34",
      "on_role": true
     },
@@ -612,6 +666,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 16:07",
      "on_role": true
     },
@@ -623,6 +678,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 15:28",
      "on_role": true
     },
@@ -634,6 +690,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 14:57",
      "on_role": false
     },
@@ -645,6 +702,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 14:33",
      "on_role": true
     },
@@ -656,6 +714,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 14:07",
      "on_role": true
     },
@@ -667,6 +726,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 13:43",
      "on_role": true
     },
@@ -678,6 +738,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/02 12:09",
      "on_role": true
     },
@@ -689,6 +750,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/01 15:39",
      "on_role": true
     },
@@ -700,6 +762,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/01 14:59",
      "on_role": true
     },
@@ -711,6 +774,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/01 14:30",
      "on_role": false
     },
@@ -722,6 +786,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:proteinmonster#thief",
+     "region": "NA",
      "time_tw": "11/01 03:50",
      "on_role": true
     }
@@ -796,6 +861,8 @@
     ]
    },
    "on_role": 11,
+   "last": "11/03 08:48",
+   "last_region": "NA",
    "last_na": "11/03 08:48"
   },
   {
@@ -806,6 +873,10 @@
    "accounts": [
     "New York#1114"
    ],
+   "all_accounts": [
+    "KR:Duro#Gen",
+    "NA:New York#1114"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgWzrcZGcgNNVgdomMOwx_aIMb2csAHt2zk=",
@@ -815,6 +886,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 15:50",
      "on_role": true
     },
@@ -826,6 +898,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 14:55",
      "on_role": true
     },
@@ -837,6 +910,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 14:28",
      "on_role": false
     },
@@ -848,6 +922,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 13:43",
      "on_role": true
     },
@@ -859,6 +934,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 13:07",
      "on_role": true
     },
@@ -870,6 +946,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 12:20",
      "on_role": true
     },
@@ -881,6 +958,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 11:50",
      "on_role": true
     },
@@ -892,6 +970,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/02 11:16",
      "on_role": true
     },
@@ -903,6 +982,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/01 14:54",
      "on_role": false
     },
@@ -914,6 +994,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/01 14:26",
      "on_role": true
     },
@@ -925,6 +1006,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/01 13:12",
      "on_role": false
     },
@@ -936,6 +1018,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:New York#1114",
+     "region": "NA",
      "time_tw": "11/01 12:31",
      "on_role": false
     }
@@ -1033,6 +1116,8 @@
     ]
    },
    "on_role": 8,
+   "last": "11/02 15:50",
+   "last_region": "NA",
    "last_na": "11/02 15:50"
   },
   {
@@ -1043,6 +1128,10 @@
    "accounts": [
     "buriburii#1234"
    ],
+   "all_accounts": [
+    "KR:어리고싶다#KR1",
+    "NA:buriburii#1234"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgU4BOcc4YtNvaZHmL6WI8Qq26-vyOPjjL8=",
@@ -1052,6 +1141,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:buriburii#1234",
+     "region": "NA",
      "time_tw": "11/02 04:56",
      "on_role": true
     },
@@ -1063,6 +1153,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:buriburii#1234",
+     "region": "NA",
      "time_tw": "11/01 13:50",
      "on_role": true
     },
@@ -1074,6 +1165,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:buriburii#1234",
+     "region": "NA",
      "time_tw": "11/01 13:12",
      "on_role": true
     }
@@ -1112,6 +1204,8 @@
     ]
    },
    "on_role": 3,
+   "last": "11/02 04:56",
+   "last_region": "NA",
    "last_na": "11/02 04:56"
   },
   {
@@ -1122,6 +1216,10 @@
    "accounts": [
     "worlds#111"
    ],
+   "all_accounts": [
+    "KR:오 너#111",
+    "NA:worlds#111"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgUFGZmMlY0XN4Y4UPMpSQhXSOld51Wf8rs=",
@@ -1131,6 +1229,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:worlds#111",
+     "region": "NA",
      "time_tw": "11/02 15:44",
      "on_role": true
     },
@@ -1142,6 +1241,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:worlds#111",
+     "region": "NA",
      "time_tw": "11/02 15:15",
      "on_role": true
     },
@@ -1153,6 +1253,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:worlds#111",
+     "region": "NA",
      "time_tw": "11/02 14:33",
      "on_role": true
     },
@@ -1164,6 +1265,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:worlds#111",
+     "region": "NA",
      "time_tw": "11/02 13:49",
      "on_role": true
     },
@@ -1175,6 +1277,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:worlds#111",
+     "region": "NA",
      "time_tw": "11/02 12:37",
      "on_role": true
     },
@@ -1186,6 +1289,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:worlds#111",
+     "region": "NA",
      "time_tw": "11/01 13:03",
      "on_role": true
     },
@@ -1197,6 +1301,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:worlds#111",
+     "region": "NA",
      "time_tw": "11/01 12:34",
      "on_role": true
     }
@@ -1249,6 +1354,8 @@
     ]
    },
    "on_role": 7,
+   "last": "11/02 15:44",
+   "last_region": "NA",
    "last_na": "11/02 15:44"
   },
   {
@@ -1259,6 +1366,10 @@
    "accounts": [
     "Hide in bush#NYKR"
    ],
+   "all_accounts": [
+    "KR:Hide on bush#KR1",
+    "NA:Hide in bush#NYKR"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgVKsuDeAtwdCZ1XHMI9R0wR2QWdSleVjro=",
@@ -1268,6 +1379,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/02 16:19",
      "on_role": false
     },
@@ -1279,6 +1391,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/02 15:27",
      "on_role": true
     },
@@ -1290,6 +1403,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/02 03:53",
      "on_role": false
     },
@@ -1301,6 +1415,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/02 03:17",
      "on_role": true
     },
@@ -1312,6 +1427,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/01 13:38",
      "on_role": false
     },
@@ -1323,6 +1439,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/01 13:01",
      "on_role": true
     },
@@ -1334,6 +1451,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/01 12:29",
      "on_role": false
     },
@@ -1345,6 +1463,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/01 07:58",
      "on_role": false
     },
@@ -1356,6 +1475,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
      "time_tw": "11/01 03:03",
      "on_role": true
     }
@@ -1425,6 +1545,8 @@
     ]
    },
    "on_role": 4,
+   "last": "11/02 16:19",
+   "last_region": "NA",
    "last_na": "11/02 16:19"
   },
   {
@@ -1435,6 +1557,10 @@
    "accounts": [
     "gaesalbuger#aaaa"
    ],
+   "all_accounts": [
+    "KR:Peyz#KR11",
+    "NA:gaesalbuger#aaaa"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgW8yMUjFRHYxcF8PsRRgOOc2HOnmCApyAw=",
@@ -1444,6 +1570,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 16:55",
      "on_role": true
     },
@@ -1455,6 +1582,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 16:16",
      "on_role": true
     },
@@ -1466,6 +1594,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 15:50",
      "on_role": true
     },
@@ -1477,6 +1606,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 15:08",
      "on_role": true
     },
@@ -1488,6 +1618,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 14:35",
      "on_role": true
     },
@@ -1499,6 +1630,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 14:00",
      "on_role": true
     },
@@ -1510,6 +1642,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 13:32",
      "on_role": false
     },
@@ -1521,6 +1654,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 12:43",
      "on_role": true
     },
@@ -1532,6 +1666,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 12:09",
      "on_role": false
     },
@@ -1543,6 +1678,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/02 04:58",
      "on_role": true
     },
@@ -1554,6 +1690,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/01 13:32",
      "on_role": false
     },
@@ -1565,6 +1702,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/01 12:24",
      "on_role": true
     },
@@ -1576,6 +1714,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
      "time_tw": "11/01 09:45",
      "on_role": false
     }
@@ -1687,6 +1826,8 @@
     ]
    },
    "on_role": 9,
+   "last": "11/02 16:55",
+   "last_region": "NA",
    "last_na": "11/02 16:55"
   },
   {
@@ -1697,6 +1838,10 @@
    "accounts": [
     "doryunnim#Frank"
    ],
+   "all_accounts": [
+    "KR:Ciro#KR10",
+    "NA:doryunnim#Frank"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXNbV4WBqFhyyZppqp5iUAZr0N9gP3F9Ng=",
@@ -1706,6 +1851,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:doryunnim#Frank",
+     "region": "NA",
      "time_tw": "11/02 14:19",
      "on_role": false
     },
@@ -1717,6 +1863,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:doryunnim#Frank",
+     "region": "NA",
      "time_tw": "11/02 13:43",
      "on_role": false
     },
@@ -1728,6 +1875,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:doryunnim#Frank",
+     "region": "NA",
      "time_tw": "11/02 05:05",
      "on_role": false
     }
@@ -1767,6 +1915,8 @@
     ]
    },
    "on_role": 0,
+   "last": "11/02 14:19",
+   "last_region": "NA",
    "last_na": "11/02 14:19"
   },
   {
@@ -1777,7 +1927,24 @@
    "accounts": [
     "Siuuuuuuuuuuuuuu#yarrr"
    ],
+   "all_accounts": [
+    "KR:TOPKING#asd",
+    "NA:Siuuuuuuuuuuuuuu#yarrr",
+    "KR:다죽이는게정#L을가져가"
+   ],
    "games": [
+    {
+     "id": "eq3KyFixtgUeIB1QoYvu7g_H0oYveg-oa3WwUsjRmWY=",
+     "time": "2026-11-03T11:38:23+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Olaf",
+     "position": "TOP",
+     "result": "LOSE",
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/03 10:38",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgXxh8LF6b398pYGlk76sAVxO91tMfmaYzA=",
      "time": "2026-11-02T18:19:28+09:00",
@@ -1786,6 +1953,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/02 17:19",
      "on_role": true
     },
@@ -1797,6 +1965,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/02 16:47",
      "on_role": true
     },
@@ -1808,6 +1977,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/02 15:58",
      "on_role": true
     },
@@ -1819,6 +1989,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/02 15:28",
      "on_role": true
     },
@@ -1830,6 +2001,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/02 15:00",
      "on_role": true
     },
@@ -1841,6 +2013,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/02 14:27",
      "on_role": true
     },
@@ -1852,6 +2025,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/02 05:03",
      "on_role": true
     },
@@ -1863,6 +2037,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/01 16:01",
      "on_role": true
     },
@@ -1874,6 +2049,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/01 15:29",
      "on_role": true
     },
@@ -1885,6 +2061,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/01 04:42",
      "on_role": true
     },
@@ -1896,73 +2073,83 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
      "time_tw": "11/01 03:26",
      "on_role": true
     }
    ],
    "summary": {
-    "games": 11,
+    "games": 12,
     "wins": 5,
-    "win_rate": 45.5,
+    "win_rate": 41.7,
     "first": "2026-11-01T04:26:47+09:00",
-    "last": "2026-11-02T18:19:28+09:00",
+    "last": "2026-11-03T11:38:23+09:00",
     "positions": {
-     "TOP": 11
+     "TOP": 12
     },
     "champions": [
      {
       "champion": "Jayce",
       "games": 4,
       "wins": 3,
-      "pick_rate": 36.4,
+      "pick_rate": 33.3,
       "win_rate": 75.0
      },
      {
       "champion": "Ornn",
       "games": 2,
       "wins": 0,
-      "pick_rate": 18.2,
+      "pick_rate": 16.7,
       "win_rate": 0.0
      },
      {
       "champion": "Jax",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 8.3,
       "win_rate": 100.0
      },
      {
       "champion": "Vayne",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 8.3,
       "win_rate": 100.0
      },
      {
       "champion": "Gragas",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 8.3,
       "win_rate": 0.0
      },
      {
       "champion": "Nidalee",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 8.3,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Olaf",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 8.3,
       "win_rate": 0.0
      },
      {
       "champion": "Renekton",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 8.3,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 11,
-   "last_na": "11/02 17:19"
+   "on_role": 12,
+   "last": "11/03 10:38",
+   "last_region": "NA",
+   "last_na": "11/03 10:38"
   },
   {
    "team": "DK",
@@ -1971,6 +2158,10 @@
    "partial": false,
    "accounts": [
     "tyjoierg#123"
+   ],
+   "all_accounts": [
+    "KR:DK Lucid#KR1",
+    "NA:tyjoierg#123"
    ],
    "games": [
     {
@@ -1981,6 +2172,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:tyjoierg#123",
+     "region": "NA",
      "time_tw": "11/02 16:11",
      "on_role": false
     },
@@ -1992,6 +2184,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:tyjoierg#123",
+     "region": "NA",
      "time_tw": "11/02 15:46",
      "on_role": false
     },
@@ -2003,6 +2196,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:tyjoierg#123",
+     "region": "NA",
      "time_tw": "11/02 15:05",
      "on_role": true
     },
@@ -2014,6 +2208,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:tyjoierg#123",
+     "region": "NA",
      "time_tw": "11/02 14:27",
      "on_role": true
     },
@@ -2025,6 +2220,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:tyjoierg#123",
+     "region": "NA",
      "time_tw": "11/01 15:10",
      "on_role": true
     },
@@ -2036,6 +2232,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:tyjoierg#123",
+     "region": "NA",
      "time_tw": "11/01 14:26",
      "on_role": true
     },
@@ -2047,6 +2244,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:tyjoierg#123",
+     "region": "NA",
      "time_tw": "11/01 14:07",
      "on_role": true
     }
@@ -2086,6 +2284,8 @@
     ]
    },
    "on_role": 5,
+   "last": "11/02 16:11",
+   "last_region": "NA",
    "last_na": "11/02 16:11"
   },
   {
@@ -2096,6 +2296,12 @@
    "accounts": [
     "Sonny Hayes#722"
    ],
+   "all_accounts": [
+    "KR:DK ShowMaker#KR1",
+    "NA:Sonny Hayes#722",
+    "KR:MIDKING#asd",
+    "KR:DWG KIA#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgVHrp5nFgONqlVjQ9Pfun--7Se-ajA1Ez8=",
@@ -2105,6 +2311,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:Sonny Hayes#722",
+     "region": "NA",
      "time_tw": "11/02 14:42",
      "on_role": true
     },
@@ -2116,6 +2323,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:Sonny Hayes#722",
+     "region": "NA",
      "time_tw": "11/02 14:19",
      "on_role": true
     }
@@ -2147,6 +2355,8 @@
     ]
    },
    "on_role": 2,
+   "last": "11/02 14:42",
+   "last_region": "NA",
    "last_na": "11/02 14:42"
   },
   {
@@ -2157,6 +2367,10 @@
    "accounts": [
     "123321#KR12"
    ],
+   "all_accounts": [
+    "KR:DK Smash#KR7",
+    "NA:123321#KR12"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgVIwzqbBPFiD6IDByuv0aJFri6g87CSTC0=",
@@ -2166,6 +2380,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:123321#KR12",
+     "region": "NA",
      "time_tw": "11/01 17:03",
      "on_role": true
     },
@@ -2177,6 +2392,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:123321#KR12",
+     "region": "NA",
      "time_tw": "11/01 16:20",
      "on_role": false
     },
@@ -2188,6 +2404,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:123321#KR12",
+     "region": "NA",
      "time_tw": "11/01 15:41",
      "on_role": true
     },
@@ -2199,6 +2416,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:123321#KR12",
+     "region": "NA",
      "time_tw": "11/01 14:58",
      "on_role": false
     },
@@ -2210,6 +2428,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:123321#KR12",
+     "region": "NA",
      "time_tw": "11/01 05:24",
      "on_role": true
     },
@@ -2221,6 +2440,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:123321#KR12",
+     "region": "NA",
      "time_tw": "11/01 03:59",
      "on_role": true
     }
@@ -2281,6 +2501,8 @@
     ]
    },
    "on_role": 4,
+   "last": "11/01 17:03",
+   "last_region": "NA",
    "last_na": "11/01 17:03"
   },
   {
@@ -2291,6 +2513,10 @@
    "accounts": [
     "하이용#1015"
    ],
+   "all_accounts": [
+    "KR:팽도리#1015",
+    "NA:하이용#1015"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgUIa7JiZvrwUtzAB-yhocz1o1hfWKqahZY=",
@@ -2300,6 +2526,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/02 14:55",
      "on_role": true
     },
@@ -2311,6 +2538,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/02 14:27",
      "on_role": true
     },
@@ -2322,6 +2550,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/02 14:02",
      "on_role": true
     },
@@ -2333,6 +2562,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/02 13:38",
      "on_role": true
     },
@@ -2344,6 +2574,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/01 17:03",
      "on_role": true
     },
@@ -2355,6 +2586,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/01 16:26",
      "on_role": false
     },
@@ -2366,6 +2598,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/01 15:56",
      "on_role": true
     },
@@ -2377,6 +2610,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/01 15:28",
      "on_role": true
     },
@@ -2388,6 +2622,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/01 15:00",
      "on_role": true
     },
@@ -2399,6 +2634,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/01 14:26",
      "on_role": false
     },
@@ -2410,6 +2646,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:하이용#1015",
+     "region": "NA",
      "time_tw": "11/01 05:47",
      "on_role": false
     }
@@ -2477,6 +2714,8 @@
     ]
    },
    "on_role": 8,
+   "last": "11/02 14:55",
+   "last_region": "NA",
    "last_na": "11/02 14:55"
   },
   {
@@ -2487,6 +2726,10 @@
    "accounts": [
     "hfdgjhfgdnh#123"
    ],
+   "all_accounts": [
+    "NA:hfdgjhfgdnh#123",
+    "KR:빈 스토리#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXgPYH4GNHpFs7bl-x3Y9G3phnMrgQWbeY=",
@@ -2496,6 +2739,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 17:04",
      "on_role": true
     },
@@ -2507,6 +2751,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 14:58",
      "on_role": true
     },
@@ -2518,6 +2763,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 14:18",
      "on_role": true
     },
@@ -2529,6 +2775,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 13:45",
      "on_role": true
     },
@@ -2540,6 +2787,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 13:22",
      "on_role": true
     },
@@ -2551,6 +2799,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 11:10",
      "on_role": true
     },
@@ -2562,6 +2811,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 05:52",
      "on_role": true
     },
@@ -2573,6 +2823,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 05:20",
      "on_role": true
     },
@@ -2584,6 +2835,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/02 04:42",
      "on_role": true
     },
@@ -2595,6 +2847,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 17:11",
      "on_role": true
     },
@@ -2606,6 +2859,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 16:20",
      "on_role": true
     },
@@ -2617,6 +2871,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 15:41",
      "on_role": true
     },
@@ -2628,6 +2883,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 14:41",
      "on_role": true
     },
@@ -2639,6 +2895,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 14:09",
      "on_role": true
     },
@@ -2650,6 +2907,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 13:30",
      "on_role": true
     },
@@ -2661,6 +2919,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 12:51",
      "on_role": true
     },
@@ -2672,6 +2931,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
      "time_tw": "11/01 12:16",
      "on_role": true
     }
@@ -2766,6 +3026,8 @@
     ]
    },
    "on_role": 17,
+   "last": "11/02 17:04",
+   "last_region": "NA",
    "last_na": "11/02 17:04"
   },
   {
@@ -2776,7 +3038,22 @@
    "accounts": [
     "xxxzz#8988"
    ],
+   "all_accounts": [
+    "NA:xxxzz#8988"
+   ],
    "games": [
+    {
+     "id": "eq3KyFixtgXD4qABh-1CrSMwY0KwB4kDG0XCLGfpbzA=",
+     "time": "2026-11-03T11:43:55+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "account": "NA:xxxzz#8988",
+     "region": "NA",
+     "time_tw": "11/03 10:43",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgWYG95vex_CwNNFNwQktavm_w_OzMjJUsQ=",
      "time": "2026-11-02T15:46:21+09:00",
@@ -2785,6 +3062,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/02 14:46",
      "on_role": true
     },
@@ -2796,6 +3074,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/02 13:23",
      "on_role": true
     },
@@ -2807,6 +3086,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/02 12:57",
      "on_role": true
     },
@@ -2818,6 +3098,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/02 12:29",
      "on_role": true
     },
@@ -2829,6 +3110,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/02 11:50",
      "on_role": true
     },
@@ -2840,6 +3122,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/02 11:19",
      "on_role": true
     },
@@ -2851,6 +3134,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/02 03:40",
      "on_role": true
     },
@@ -2862,6 +3146,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/01 14:19",
      "on_role": true
     },
@@ -2873,6 +3158,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/01 13:39",
      "on_role": true
     },
@@ -2884,87 +3170,90 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:xxxzz#8988",
+     "region": "NA",
      "time_tw": "11/01 13:13",
      "on_role": true
     }
    ],
    "summary": {
-    "games": 10,
-    "wins": 8,
-    "win_rate": 80.0,
+    "games": 11,
+    "wins": 9,
+    "win_rate": 81.8,
     "first": "2026-11-01T14:13:10+09:00",
-    "last": "2026-11-02T15:46:21+09:00",
+    "last": "2026-11-03T11:43:55+09:00",
     "positions": {
-     "JUNGLE": 10
+     "JUNGLE": 11
     },
     "champions": [
      {
       "champion": "Jayce",
-      "games": 2,
-      "wins": 1,
-      "pick_rate": 20.0,
-      "win_rate": 50.0
+      "games": 3,
+      "wins": 2,
+      "pick_rate": 27.3,
+      "win_rate": 66.7
      },
      {
       "champion": "Cho'Gath",
       "games": 1,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Kha'Zix",
       "games": 1,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Lee Sin",
       "games": 1,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Naafiri",
       "games": 1,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Nocturne",
       "games": 1,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Qiyana",
       "games": 1,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Vi",
       "games": 1,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Kindred",
       "games": 1,
       "wins": 0,
-      "pick_rate": 10.0,
+      "pick_rate": 9.1,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 10,
-   "last_na": "11/02 14:46"
+   "on_role": 11,
+   "last": "11/03 10:43",
+   "last_region": "NA",
+   "last_na": "11/03 10:43"
   },
   {
    "team": "BLG",
@@ -2973,6 +3262,9 @@
    "partial": false,
    "accounts": [
     "hdjsaunqnsk#2026"
+   ],
+   "all_accounts": [
+    "NA:hdjsaunqnsk#2026"
    ],
    "games": [
     {
@@ -2983,6 +3275,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/03 05:00",
      "on_role": false
     },
@@ -2994,6 +3287,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/02 14:21",
      "on_role": false
     },
@@ -3005,6 +3299,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/02 12:16",
      "on_role": false
     },
@@ -3016,6 +3311,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/02 04:25",
      "on_role": false
     },
@@ -3027,6 +3323,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/02 03:03",
      "on_role": false
     },
@@ -3038,6 +3335,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/01 09:27",
      "on_role": true
     },
@@ -3049,6 +3347,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/01 08:56",
      "on_role": true
     },
@@ -3060,6 +3359,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:hdjsaunqnsk#2026",
+     "region": "NA",
      "time_tw": "11/01 08:32",
      "on_role": false
     }
@@ -3135,6 +3435,8 @@
     ]
    },
    "on_role": 2,
+   "last": "11/03 05:00",
+   "last_region": "NA",
    "last_na": "11/03 05:00"
   },
   {
@@ -3145,6 +3447,10 @@
    "accounts": [
     "painn#110"
    ],
+   "all_accounts": [
+    "KR:Blue#KR33",
+    "NA:painn#110"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgULJTKL_857IfsjlmNhWj3ujSu0USi5Uow=",
@@ -3154,6 +3460,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/03 01:59",
      "on_role": true
     },
@@ -3165,6 +3472,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/03 01:02",
      "on_role": true
     },
@@ -3176,6 +3484,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 14:17",
      "on_role": false
     },
@@ -3187,6 +3496,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 13:33",
      "on_role": false
     },
@@ -3198,6 +3508,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 12:55",
      "on_role": true
     },
@@ -3209,6 +3520,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 12:15",
      "on_role": false
     },
@@ -3220,6 +3532,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 06:11",
      "on_role": true
     },
@@ -3231,6 +3544,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 04:01",
      "on_role": true
     },
@@ -3242,6 +3556,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 03:22",
      "on_role": true
     },
@@ -3253,6 +3568,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 02:44",
      "on_role": false
     },
@@ -3264,6 +3580,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 02:14",
      "on_role": true
     },
@@ -3275,6 +3592,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 01:29",
      "on_role": true
     },
@@ -3286,6 +3604,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/02 00:55",
      "on_role": true
     },
@@ -3297,6 +3616,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/01 13:28",
      "on_role": true
     },
@@ -3308,6 +3628,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:painn#110",
+     "region": "NA",
      "time_tw": "11/01 02:10",
      "on_role": true
     }
@@ -3396,6 +3717,8 @@
     ]
    },
    "on_role": 11,
+   "last": "11/03 01:59",
+   "last_region": "NA",
    "last_na": "11/03 01:59"
   },
   {
@@ -3406,6 +3729,11 @@
    "accounts": [
     "burgershutiao#zxcvb"
    ],
+   "all_accounts": [
+    "KR:키보드에음료쏟아서고장내는이도윤#KR1",
+    "NA:burgershutiao#zxcvb",
+    "KR:BLG 온#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgWZZKjGLOgHr4Hn7URnLGAsBzAuqFsiz2Q=",
@@ -3415,6 +3743,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/03 02:02",
      "on_role": true
     },
@@ -3426,6 +3755,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/02 14:28",
      "on_role": true
     },
@@ -3437,6 +3767,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/02 13:23",
      "on_role": true
     },
@@ -3448,6 +3779,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/02 12:20",
      "on_role": true
     },
@@ -3459,6 +3791,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/02 11:38",
      "on_role": false
     },
@@ -3470,6 +3803,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/02 05:43",
      "on_role": true
     },
@@ -3481,6 +3815,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/01 14:01",
      "on_role": true
     },
@@ -3492,6 +3827,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
      "time_tw": "11/01 02:01",
      "on_role": true
     }
@@ -3566,6 +3902,8 @@
     ]
    },
    "on_role": 7,
+   "last": "11/03 02:02",
+   "last_region": "NA",
    "last_na": "11/03 02:02"
   },
   {
@@ -3576,6 +3914,9 @@
    "accounts": [
     "woaini1111111111#123"
    ],
+   "all_accounts": [
+    "NA:woaini1111111111#123"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXuz7e-f12Zl8g5UXJtLWzXSXE0-Qk4Dy8=",
@@ -3585,6 +3926,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 05:54",
      "on_role": true
     },
@@ -3596,6 +3938,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 05:01",
      "on_role": false
     },
@@ -3607,6 +3950,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 04:19",
      "on_role": true
     },
@@ -3618,6 +3962,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 03:47",
      "on_role": false
     },
@@ -3629,6 +3974,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 03:26",
      "on_role": false
     },
@@ -3640,6 +3986,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 02:43",
      "on_role": true
     },
@@ -3651,6 +3998,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 02:02",
      "on_role": false
     },
@@ -3662,6 +4010,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/03 01:36",
      "on_role": true
     },
@@ -3673,6 +4022,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 13:42",
      "on_role": true
     },
@@ -3684,6 +4034,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 13:08",
      "on_role": false
     },
@@ -3695,6 +4046,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 12:27",
      "on_role": true
     },
@@ -3706,6 +4058,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 11:38",
      "on_role": true
     },
@@ -3717,6 +4070,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 10:59",
      "on_role": true
     },
@@ -3728,6 +4082,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 10:19",
      "on_role": true
     },
@@ -3739,6 +4094,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 09:46",
      "on_role": true
     },
@@ -3750,6 +4106,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 08:51",
      "on_role": true
     },
@@ -3761,6 +4118,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 06:28",
      "on_role": true
     },
@@ -3772,6 +4130,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 05:50",
      "on_role": true
     },
@@ -3783,6 +4142,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:woaini1111111111#123",
+     "region": "NA",
      "time_tw": "11/02 05:16",
      "on_role": true
     }
@@ -3913,6 +4273,8 @@
     ]
    },
    "on_role": 14,
+   "last": "11/03 05:54",
+   "last_region": "NA",
    "last_na": "11/03 05:54"
   },
   {
@@ -3923,6 +4285,11 @@
    "accounts": [
     "qweasdzxc#TWSJM"
    ],
+   "all_accounts": [
+    "KR:yuezhihuxiz#KR2",
+    "NA:qweasdzxc#TWSJM",
+    "KR:Kimman#zxfkk"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgWGB_lJG2a2VyFd4VX7DFPIDhwAyeNYcBk=",
@@ -3932,6 +4299,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/03 04:51",
      "on_role": true
     },
@@ -3943,8 +4311,81 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/03 04:24",
      "on_role": false
+    },
+    {
+     "id": "m_eaDVNbCj9Cup63ZMVSZf1bBqmvWEOjFRTccGaIQLg=",
+     "time": "2026-11-03T02:43:48+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Lucian",
+     "position": "MID",
+     "result": "LOSE",
+     "account": "KR:yuezhihuxiz#KR2",
+     "region": "KR",
+     "time_tw": "11/03 01:43",
+     "on_role": false
+    },
+    {
+     "id": "m_eaDVNbCj9iLNc8cDKcmyYVizsogPgAol8p8HRTBis=",
+     "time": "2026-11-03T02:22:01+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Fizz",
+     "position": "JUNGLE",
+     "result": "LOSE",
+     "account": "KR:yuezhihuxiz#KR2",
+     "region": "KR",
+     "time_tw": "11/03 01:22",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj_tH1CqZuch33BMJtaMxx5FUQkf5qvXUfg=",
+     "time": "2026-11-03T00:32:10+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yone",
+     "position": "MID",
+     "result": "WIN",
+     "account": "KR:yuezhihuxiz#KR2",
+     "region": "KR",
+     "time_tw": "11/02 23:32",
+     "on_role": false
+    },
+    {
+     "id": "m_eaDVNbCj9758Gxiy59MJpqIlhDph7UoLFBRx5o628=",
+     "time": "2026-11-03T00:00:56+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Pyke",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "account": "KR:yuezhihuxiz#KR2",
+     "region": "KR",
+     "time_tw": "11/02 23:00",
+     "on_role": false
+    },
+    {
+     "id": "m_eaDVNbCj_DnzBlar2v-yCHQNuAY3IKA9xrI3_Tkxk=",
+     "time": "2026-11-02T23:24:41+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ezreal",
+     "position": "ADC",
+     "result": "WIN",
+     "account": "KR:yuezhihuxiz#KR2",
+     "region": "KR",
+     "time_tw": "11/02 22:24",
+     "on_role": false
+    },
+    {
+     "id": "m_eaDVNbCj-NU90XDiy1arANBpP7GLxDxOz0uktmqP4=",
+     "time": "2026-11-02T22:51:44+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Lee Sin",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "account": "KR:yuezhihuxiz#KR2",
+     "region": "KR",
+     "time_tw": "11/02 21:51",
+     "on_role": true
     },
     {
      "id": "eq3KyFixtgXM3-CUVRc1xmd6sLE9J3mXeC-yXVTFAT0=",
@@ -3954,6 +4395,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/02 15:48",
      "on_role": false
     },
@@ -3965,6 +4407,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/02 15:13",
      "on_role": false
     },
@@ -3976,6 +4419,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/02 14:48",
      "on_role": true
     },
@@ -3987,6 +4431,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/02 14:09",
      "on_role": false
     },
@@ -3998,6 +4443,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/02 12:19",
      "on_role": true
     },
@@ -4009,6 +4455,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/02 04:29",
      "on_role": false
     },
@@ -4020,6 +4467,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/02 03:03",
      "on_role": true
     },
@@ -4031,6 +4479,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/01 12:59",
      "on_role": true
     },
@@ -4042,88 +4491,146 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:qweasdzxc#TWSJM",
+     "region": "NA",
      "time_tw": "11/01 02:57",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj8anA8x3xS4HpOWRvcm3YjLQiXHms5p8Eg=",
+     "time": "2026-11-01T02:11:43+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jax",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "account": "KR:yuezhihuxiz#KR2",
+     "region": "KR",
+     "time_tw": "11/01 01:11",
      "on_role": true
     }
    ],
    "summary": {
-    "games": 11,
-    "wins": 9,
-    "win_rate": 81.8,
-    "first": "2026-11-01T03:57:00+09:00",
+    "games": 18,
+    "wins": 14,
+    "win_rate": 77.8,
+    "first": "2026-11-01T02:11:43+09:00",
     "last": "2026-11-03T05:51:05+09:00",
     "positions": {
-     "JUNGLE": 6,
-     "ADC": 4,
-     "SUPPORT": 1
+     "JUNGLE": 9,
+     "ADC": 5,
+     "SUPPORT": 2,
+     "MID": 2
     },
     "champions": [
      {
       "champion": "Jayce",
       "games": 3,
       "wins": 3,
-      "pick_rate": 27.3,
+      "pick_rate": 16.7,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Lee Sin",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 11.1,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Ezreal",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.6,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jax",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.6,
       "win_rate": 100.0
      },
      {
       "champion": "Jhin",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
       "win_rate": 100.0
      },
      {
       "champion": "Kai'Sa",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Pyke",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.6,
       "win_rate": 100.0
      },
      {
       "champion": "Skarner",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
       "win_rate": 100.0
      },
      {
       "champion": "Sylas",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
       "win_rate": 100.0
      },
      {
       "champion": "Viego",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Yone",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.6,
       "win_rate": 100.0
      },
      {
       "champion": "Yunara",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
       "win_rate": 100.0
      },
      {
-      "champion": "Lee Sin",
+      "champion": "Fizz",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Lucian",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 5.6,
       "win_rate": 0.0
      },
      {
       "champion": "Rengar",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 5.6,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 6,
+   "on_role": 9,
+   "last": "11/03 04:51",
+   "last_region": "NA",
    "last_na": "11/03 04:51"
   },
   {
@@ -4134,6 +4641,10 @@
    "accounts": [
     "qwerasdfzxcv#0311"
    ],
+   "all_accounts": [
+    "NA:qwerasdfzxcv#0311",
+    "KR:모든일은같이#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgU57Ic647UbsulMA2BqzOoiiUfGpnjUrKI=",
@@ -4143,6 +4654,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/03 04:24",
      "on_role": true
     },
@@ -4154,6 +4666,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 16:48",
      "on_role": true
     },
@@ -4165,6 +4678,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 16:11",
      "on_role": true
     },
@@ -4176,6 +4690,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 15:48",
      "on_role": true
     },
@@ -4187,6 +4702,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 15:13",
      "on_role": true
     },
@@ -4198,6 +4714,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 14:48",
      "on_role": true
     },
@@ -4209,6 +4726,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 14:07",
      "on_role": false
     },
@@ -4220,6 +4738,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 13:43",
      "on_role": true
     },
@@ -4231,6 +4750,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 13:10",
      "on_role": true
     },
@@ -4242,6 +4762,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 12:40",
      "on_role": true
     },
@@ -4253,6 +4774,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 04:29",
      "on_role": true
     },
@@ -4264,6 +4786,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 03:25",
      "on_role": true
     },
@@ -4275,6 +4798,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/02 02:49",
      "on_role": true
     },
@@ -4286,6 +4810,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/01 16:11",
      "on_role": true
     },
@@ -4297,6 +4822,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/01 15:32",
      "on_role": false
     },
@@ -4308,6 +4834,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/01 14:53",
      "on_role": true
     },
@@ -4319,6 +4846,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/01 14:19",
      "on_role": true
     },
@@ -4330,6 +4858,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/01 09:39",
      "on_role": false
     },
@@ -4341,6 +4870,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/01 08:55",
      "on_role": true
     },
@@ -4352,6 +4882,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:qwerasdfzxcv#0311",
+     "region": "NA",
      "time_tw": "11/01 02:47",
      "on_role": false
     }
@@ -4463,6 +4994,8 @@
     ]
    },
    "on_role": 16,
+   "last": "11/03 04:24",
+   "last_region": "NA",
    "last_na": "11/03 04:24"
   },
   {
@@ -4473,7 +5006,84 @@
    "accounts": [
     "Whymesod1ao#Jiaq3"
    ],
+   "all_accounts": [
+    "NA:Whymesod1ao#Jiaq3",
+    "KR:wanan theworld#xdbx1",
+    "KR:번치코#블레이즈킥"
+   ],
    "games": [
+    {
+     "id": "m_eaDVNbCj_mGusX8tWcnKPz2TfE9e4Od0JoneOH8-k=",
+     "time": "2026-11-02T22:53:30+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Caitlyn",
+     "position": "ADC",
+     "result": "LOSE",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/02 21:53",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj_PDymEoXriumj5ZmQE1Z0Bv4fGKaHusGg=",
+     "time": "2026-11-02T22:29:07+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jhin",
+     "position": "ADC",
+     "result": "WIN",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/02 21:29",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj9I_FqnoCC1kam0k17rnl9cIz557mvHKAQ=",
+     "time": "2026-11-02T21:48:58+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Nautilus",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/02 20:48",
+     "on_role": false
+    },
+    {
+     "id": "m_eaDVNbCj-3T7MUbin43HqeYgbaa3SAL6Eg9bfWdLc=",
+     "time": "2026-11-02T21:05:25+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Xayah",
+     "position": "ADC",
+     "result": "WIN",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/02 20:05",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj85Ya4dJbWxMHJuJ1IeX_ZAivxB3EzTUHw=",
+     "time": "2026-11-02T20:34:40+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Zeri",
+     "position": "ADC",
+     "result": "LOSE",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/02 19:34",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj8mE6LEepuv1nN1sRScpvKa978UW85Uno0=",
+     "time": "2026-11-02T18:10:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Kalista",
+     "position": "ADC",
+     "result": "WIN",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/02 17:10",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgW7QtSH3RARtz6c_7WGIo9YBZ3zBTzHOEM=",
      "time": "2026-11-02T04:39:37+09:00",
@@ -4482,6 +5092,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:Whymesod1ao#Jiaq3",
+     "region": "NA",
      "time_tw": "11/02 03:39",
      "on_role": true
     },
@@ -4493,38 +5104,139 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:Whymesod1ao#Jiaq3",
+     "region": "NA",
      "time_tw": "11/02 03:04",
      "on_role": false
+    },
+    {
+     "id": "m_eaDVNbCj9SLcRv6EeVI1Lsva7BMt4i8EmkjjHsiBU=",
+     "time": "2026-11-01T23:27:31+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yunara",
+     "position": "ADC",
+     "result": "LOSE",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/01 22:27",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj_fYPEG8aZomnWInN1ntiOYcftdyf1r0YE=",
+     "time": "2026-11-01T22:51:18+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Caitlyn",
+     "position": "ADC",
+     "result": "LOSE",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/01 21:51",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj_Rv18WfJXsDaevVOuFN-ME7aYori8hv9I=",
+     "time": "2026-11-01T22:19:56+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Caitlyn",
+     "position": "ADC",
+     "result": "LOSE",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/01 21:19",
+     "on_role": true
+    },
+    {
+     "id": "m_eaDVNbCj9t1k3Ep2YZbNwEJTFYYqZKesRNBsxipks=",
+     "time": "2026-11-01T19:36:09+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ezreal",
+     "position": "ADC",
+     "result": "WIN",
+     "account": "KR:wanan theworld#xdbx1",
+     "region": "KR",
+     "time_tw": "11/01 18:36",
+     "on_role": true
     }
    ],
    "summary": {
-    "games": 2,
-    "wins": 2,
-    "win_rate": 100.0,
-    "first": "2026-11-02T04:04:11+09:00",
-    "last": "2026-11-02T04:39:37+09:00",
+    "games": 12,
+    "wins": 7,
+    "win_rate": 58.3,
+    "first": "2026-11-01T19:36:09+09:00",
+    "last": "2026-11-02T22:53:30+09:00",
     "positions": {
-     "ADC": 1,
+     "ADC": 10,
+     "SUPPORT": 1,
      "TOP": 1
     },
     "champions": [
      {
-      "champion": "Olaf",
-      "games": 1,
-      "wins": 1,
-      "pick_rate": 50.0,
-      "win_rate": 100.0
+      "champion": "Caitlyn",
+      "games": 3,
+      "wins": 0,
+      "pick_rate": 25.0,
+      "win_rate": 0.0
      },
      {
       "champion": "Yunara",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 16.7,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Ezreal",
       "games": 1,
       "wins": 1,
-      "pick_rate": 50.0,
+      "pick_rate": 8.3,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Jhin",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 8.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Kalista",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 8.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Nautilus",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 8.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Olaf",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 8.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Xayah",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 8.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Zeri",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 8.3,
+      "win_rate": 0.0
      }
     ]
    },
-   "on_role": 1,
+   "on_role": 10,
+   "last": "11/02 21:53",
+   "last_region": "KR",
    "last_na": "11/02 03:39"
   },
   {
@@ -4535,6 +5247,10 @@
    "accounts": [
     "IGlGIGlG#IGlG"
    ],
+   "all_accounts": [
+    "KR:qweasdqweasdb#1372",
+    "NA:IGlGIGlG#IGlG"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXPiXg87OQMbmwdDv2vvSSJRo1s-Lpa9qA=",
@@ -4544,6 +5260,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:IGlGIGlG#IGlG",
+     "region": "NA",
      "time_tw": "11/02 12:26",
      "on_role": true
     }
@@ -4568,6 +5285,8 @@
     ]
    },
    "on_role": 1,
+   "last": "11/02 12:26",
+   "last_region": "NA",
    "last_na": "11/02 12:26"
   },
   {
@@ -4578,6 +5297,10 @@
    "accounts": [
     "godrjs#gktpd"
    ],
+   "all_accounts": [
+    "NA:godrjs#gktpd",
+    "KR:qsxmiocmio#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgVnfYZ56HE-MYf_7FUCaIC8N7wP2pxkqs4=",
@@ -4587,6 +5310,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:godrjs#gktpd",
+     "region": "NA",
      "time_tw": "11/02 03:55",
      "on_role": false
     },
@@ -4598,6 +5322,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:godrjs#gktpd",
+     "region": "NA",
      "time_tw": "11/01 14:36",
      "on_role": true
     },
@@ -4609,6 +5334,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:godrjs#gktpd",
+     "region": "NA",
      "time_tw": "11/01 14:02",
      "on_role": false
     },
@@ -4620,6 +5346,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:godrjs#gktpd",
+     "region": "NA",
      "time_tw": "11/01 13:27",
      "on_role": true
     },
@@ -4631,6 +5358,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:godrjs#gktpd",
+     "region": "NA",
      "time_tw": "11/01 12:49",
      "on_role": false
     }
@@ -4677,6 +5405,8 @@
     ]
    },
    "on_role": 2,
+   "last": "11/02 03:55",
+   "last_region": "NA",
    "last_na": "11/02 03:55"
   },
   {
@@ -4687,6 +5417,10 @@
    "accounts": [
     "sharkbee#369"
    ],
+   "all_accounts": [
+    "NA:sharkbee#369",
+    "KR:yiqunsb#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXrtpdlyvJD07V9AwlnogZtkhKm5SBgxVI=",
@@ -4696,6 +5430,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/03 05:49",
      "on_role": false
     },
@@ -4707,6 +5442,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 15:19",
      "on_role": false
     },
@@ -4718,6 +5454,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 14:09",
      "on_role": false
     },
@@ -4729,6 +5466,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 13:49",
      "on_role": false
     },
@@ -4740,6 +5478,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 13:22",
      "on_role": true
     },
@@ -4751,6 +5490,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 12:54",
      "on_role": true
     },
@@ -4762,6 +5502,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 12:17",
      "on_role": true
     },
@@ -4773,6 +5514,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 11:57",
      "on_role": true
     },
@@ -4784,6 +5526,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 11:22",
      "on_role": true
     },
@@ -4795,6 +5538,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 10:53",
      "on_role": false
     },
@@ -4806,6 +5550,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 05:39",
      "on_role": true
     },
@@ -4817,6 +5562,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/02 05:05",
      "on_role": false
     },
@@ -4828,6 +5574,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/01 15:02",
      "on_role": false
     },
@@ -4839,6 +5586,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/01 14:30",
      "on_role": true
     },
@@ -4850,6 +5598,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/01 14:03",
      "on_role": true
     },
@@ -4861,6 +5610,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/01 09:28",
      "on_role": true
     },
@@ -4872,6 +5622,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:sharkbee#369",
+     "region": "NA",
      "time_tw": "11/01 06:12",
      "on_role": true
     }
@@ -4996,6 +5747,8 @@
     ]
    },
    "on_role": 10,
+   "last": "11/03 05:49",
+   "last_region": "NA",
    "last_na": "11/03 05:49"
   },
   {
@@ -5006,6 +5759,10 @@
    "accounts": [
     "tideeee#21314"
    ],
+   "all_accounts": [
+    "NA:tideeee#21314",
+    "KR:livinli#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgUedU_-C4wQ88Nv6Klm6XvRSb7Xe4iOsIY=",
@@ -5015,6 +5772,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/03 06:03",
      "on_role": true
     },
@@ -5026,6 +5784,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/03 04:21",
      "on_role": false
     },
@@ -5037,6 +5796,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 16:16",
      "on_role": true
     },
@@ -5048,6 +5808,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 15:46",
      "on_role": true
     },
@@ -5059,6 +5820,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 15:08",
      "on_role": true
     },
@@ -5070,6 +5832,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 14:35",
      "on_role": false
     },
@@ -5081,6 +5844,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 14:00",
      "on_role": true
     },
@@ -5092,6 +5856,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 13:32",
      "on_role": true
     },
@@ -5103,6 +5868,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 12:57",
      "on_role": true
     },
@@ -5114,6 +5880,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 12:27",
      "on_role": true
     },
@@ -5125,6 +5892,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 11:27",
      "on_role": true
     },
@@ -5136,6 +5904,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 10:54",
      "on_role": true
     },
@@ -5147,6 +5916,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 10:19",
      "on_role": true
     },
@@ -5158,6 +5928,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 05:56",
      "on_role": true
     },
@@ -5169,6 +5940,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 05:24",
      "on_role": true
     },
@@ -5180,6 +5952,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/02 04:37",
      "on_role": true
     },
@@ -5191,6 +5964,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/01 16:00",
      "on_role": true
     },
@@ -5202,6 +5976,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/01 15:39",
      "on_role": false
     },
@@ -5213,6 +5988,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:tideeee#21314",
+     "region": "NA",
      "time_tw": "11/01 15:09",
      "on_role": true
     }
@@ -5317,6 +6093,8 @@
     ]
    },
    "on_role": 16,
+   "last": "11/03 06:03",
+   "last_region": "NA",
    "last_na": "11/03 06:03"
   },
   {
@@ -5327,6 +6105,10 @@
    "accounts": [
     "zxczxzxczxczx#1111"
    ],
+   "all_accounts": [
+    "NA:zxczxzxczxczx#1111",
+    "KR:qweasdqweasdqw#KR1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgUqzbS9E-OF8YiB58SXkCZw8mrtnoSrz6E=",
@@ -5336,6 +6118,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/03 05:44",
      "on_role": true
     },
@@ -5347,6 +6130,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/03 04:19",
      "on_role": true
     },
@@ -5358,6 +6142,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 15:25",
      "on_role": false
     },
@@ -5369,6 +6154,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 14:11",
      "on_role": true
     },
@@ -5380,6 +6166,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 13:30",
      "on_role": false
     },
@@ -5391,6 +6178,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 13:00",
      "on_role": false
     },
@@ -5402,6 +6190,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 12:30",
      "on_role": false
     },
@@ -5413,6 +6202,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 11:58",
      "on_role": false
     },
@@ -5424,6 +6214,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 11:24",
      "on_role": false
     },
@@ -5435,6 +6226,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 11:04",
      "on_role": true
     },
@@ -5446,6 +6238,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 10:43",
      "on_role": true
     },
@@ -5457,6 +6250,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 10:09",
      "on_role": true
     },
@@ -5468,6 +6262,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 06:19",
      "on_role": false
     },
@@ -5479,6 +6274,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/02 05:42",
      "on_role": true
     },
@@ -5490,6 +6286,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/01 16:00",
      "on_role": true
     },
@@ -5501,6 +6298,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/01 15:33",
      "on_role": false
     },
@@ -5512,6 +6310,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/01 14:59",
      "on_role": false
     },
@@ -5523,6 +6322,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/01 14:31",
      "on_role": false
     },
@@ -5534,6 +6334,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:zxczxzxczxczx#1111",
+     "region": "NA",
      "time_tw": "11/01 13:50",
      "on_role": false
     }
@@ -5645,6 +6446,8 @@
     ]
    },
    "on_role": 8,
+   "last": "11/03 05:44",
+   "last_region": "NA",
    "last_na": "11/03 05:44"
   },
   {
@@ -5655,6 +6458,9 @@
    "accounts": [
     "aubgaojnfoaif#123"
    ],
+   "all_accounts": [
+    "NA:aubgaojnfoaif#123"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgWjxVu3KUm_noWsMJdgN0GWLw3yFC2krf0=",
@@ -5664,6 +6470,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/03 04:25",
      "on_role": true
     },
@@ -5675,6 +6482,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/03 04:00",
      "on_role": true
     },
@@ -5686,6 +6494,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 14:57",
      "on_role": true
     },
@@ -5697,6 +6506,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 14:33",
      "on_role": true
     },
@@ -5708,6 +6518,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 14:07",
      "on_role": true
     },
@@ -5719,6 +6530,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 13:30",
      "on_role": true
     },
@@ -5730,6 +6542,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 13:02",
      "on_role": true
     },
@@ -5741,6 +6554,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 12:26",
      "on_role": true
     },
@@ -5752,6 +6566,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 11:24",
      "on_role": true
     },
@@ -5763,6 +6578,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 10:35",
      "on_role": true
     },
@@ -5774,6 +6590,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 10:04",
      "on_role": true
     },
@@ -5785,6 +6602,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 06:12",
      "on_role": true
     },
@@ -5796,6 +6614,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 05:36",
      "on_role": true
     },
@@ -5807,6 +6626,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/02 04:58",
      "on_role": true
     },
@@ -5818,6 +6638,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/01 16:26",
      "on_role": false
     },
@@ -5829,6 +6650,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/01 15:52",
      "on_role": false
     },
@@ -5840,6 +6662,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/01 15:14",
      "on_role": true
     },
@@ -5851,6 +6674,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/01 14:40",
      "on_role": true
     },
@@ -5862,6 +6686,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/01 14:09",
      "on_role": true
     },
@@ -5873,6 +6698,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:aubgaojnfoaif#123",
+     "region": "NA",
      "time_tw": "11/01 06:06",
      "on_role": false
     }
@@ -5989,6 +6815,8 @@
     ]
    },
    "on_role": 17,
+   "last": "11/03 04:25",
+   "last_region": "NA",
    "last_na": "11/03 04:25"
   },
   {
@@ -5999,6 +6827,10 @@
    "accounts": [
     "worldspro0073#world"
    ],
+   "all_accounts": [
+    "KR:칸 나#0211",
+    "NA:worldspro0073#world"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXXQDybnqjhDArghhYXB0ky5YUeHDSd1_E=",
@@ -6008,6 +6840,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/03 05:33",
      "on_role": true
     },
@@ -6019,6 +6852,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/03 04:24",
      "on_role": true
     },
@@ -6030,6 +6864,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/03 02:49",
      "on_role": true
     },
@@ -6041,6 +6876,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/02 13:43",
      "on_role": true
     },
@@ -6052,6 +6888,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/02 12:45",
      "on_role": true
     },
@@ -6063,6 +6900,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/02 12:17",
      "on_role": true
     },
@@ -6074,6 +6912,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/02 10:32",
      "on_role": false
     },
@@ -6085,6 +6924,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/02 03:39",
      "on_role": true
     },
@@ -6096,6 +6936,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/02 02:20",
      "on_role": true
     },
@@ -6107,6 +6948,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:worldspro0073#world",
+     "region": "NA",
      "time_tw": "11/01 12:04",
      "on_role": true
     }
@@ -6160,6 +7002,8 @@
     ]
    },
    "on_role": 9,
+   "last": "11/03 05:33",
+   "last_region": "NA",
    "last_na": "11/03 05:33"
   },
   {
@@ -6170,6 +7014,9 @@
    "accounts": [
     "quentin#dawg"
    ],
+   "all_accounts": [
+    "NA:quentin#dawg"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgWnlPE_MgOPpOwJ56868wW489pi-o8GW3Q=",
@@ -6179,6 +7026,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:quentin#dawg",
+     "region": "NA",
      "time_tw": "11/03 04:54",
      "on_role": true
     },
@@ -6190,6 +7038,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:quentin#dawg",
+     "region": "NA",
      "time_tw": "11/03 04:23",
      "on_role": false
     },
@@ -6201,6 +7050,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:quentin#dawg",
+     "region": "NA",
      "time_tw": "11/03 03:57",
      "on_role": true
     },
@@ -6212,6 +7062,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:quentin#dawg",
+     "region": "NA",
      "time_tw": "11/02 11:03",
      "on_role": false
     },
@@ -6223,6 +7074,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:quentin#dawg",
+     "region": "NA",
      "time_tw": "11/02 10:29",
      "on_role": false
     },
@@ -6234,6 +7086,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:quentin#dawg",
+     "region": "NA",
      "time_tw": "11/02 03:51",
      "on_role": false
     },
@@ -6245,6 +7098,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:quentin#dawg",
+     "region": "NA",
      "time_tw": "11/02 03:19",
      "on_role": true
     }
@@ -6312,6 +7166,8 @@
     ]
    },
    "on_role": 3,
+   "last": "11/03 04:54",
+   "last_region": "NA",
    "last_na": "11/03 04:54"
   },
   {
@@ -6322,6 +7178,10 @@
    "accounts": [
     "yeahoo#yaho"
    ],
+   "all_accounts": [
+    "KR:전설의용사김창동#canna",
+    "NA:yeahoo#yaho"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgVrQ9G5o7IV0ElpxH2iiy9-v4bDlmV7k3c=",
@@ -6331,6 +7191,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/03 05:07",
      "on_role": true
     },
@@ -6342,6 +7203,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/03 04:40",
      "on_role": false
     },
@@ -6353,6 +7215,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/03 04:11",
      "on_role": true
     },
@@ -6364,6 +7227,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/03 03:32",
      "on_role": true
     },
@@ -6375,6 +7239,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/03 02:16",
      "on_role": true
     },
@@ -6386,6 +7251,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 12:53",
      "on_role": true
     },
@@ -6397,6 +7263,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 12:12",
      "on_role": false
     },
@@ -6408,6 +7275,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 11:50",
      "on_role": true
     },
@@ -6419,6 +7287,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 11:18",
      "on_role": true
     },
@@ -6430,6 +7299,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 10:41",
      "on_role": true
     },
@@ -6441,6 +7311,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 03:33",
      "on_role": true
     },
@@ -6452,6 +7323,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 03:03",
      "on_role": false
     },
@@ -6463,6 +7335,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 02:17",
      "on_role": true
     },
@@ -6474,6 +7347,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:yeahoo#yaho",
+     "region": "NA",
      "time_tw": "11/02 01:29",
      "on_role": true
     }
@@ -6576,6 +7450,8 @@
     ]
    },
    "on_role": 11,
+   "last": "11/03 05:07",
+   "last_region": "NA",
    "last_na": "11/03 05:07"
   },
   {
@@ -6586,6 +7462,9 @@
    "accounts": [
     "MASTERMOVE#WORLD"
    ],
+   "all_accounts": [
+    "NA:MASTERMOVE#WORLD"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgWFiPj4AQOkDeiOoxG2q7mOhThcNg-q-hU=",
@@ -6595,6 +7474,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/03 05:22",
      "on_role": false
     },
@@ -6606,6 +7486,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/03 04:56",
      "on_role": true
     },
@@ -6617,6 +7498,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/03 04:22",
      "on_role": true
     },
@@ -6628,6 +7510,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/03 03:57",
      "on_role": true
     },
@@ -6639,6 +7522,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/03 02:25",
      "on_role": false
     },
@@ -6650,6 +7534,7 @@
      "position": "TOP",
      "result": "WIN",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/02 10:13",
      "on_role": false
     },
@@ -6661,6 +7546,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/02 09:44",
      "on_role": true
     },
@@ -6672,6 +7558,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/02 03:48",
      "on_role": true
     },
@@ -6683,6 +7570,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/02 02:56",
      "on_role": true
     },
@@ -6694,6 +7582,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:MASTERMOVE#WORLD",
+     "region": "NA",
      "time_tw": "11/02 02:14",
      "on_role": true
     }
@@ -6756,6 +7645,8 @@
     ]
    },
    "on_role": 7,
+   "last": "11/03 05:22",
+   "last_region": "NA",
    "last_na": "11/03 05:22"
   },
   {
@@ -6767,6 +7658,10 @@
     "basiil#fan",
     "KC Busio#000"
    ],
+   "all_accounts": [
+    "NA:basiil#fan",
+    "NA:KC Busio#000"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgUk-lvB4qlulTJcvoP6qy8PhRdYu2fX9dQ=",
@@ -6776,6 +7671,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/03 05:14",
      "on_role": true
     },
@@ -6787,6 +7683,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/03 04:10",
      "on_role": true
     },
@@ -6798,6 +7695,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/03 03:32",
      "on_role": true
     },
@@ -6809,6 +7707,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/03 02:49",
      "on_role": true
     },
@@ -6820,6 +7719,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/02 11:44",
      "on_role": true
     },
@@ -6831,6 +7731,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/02 10:43",
      "on_role": false
     },
@@ -6842,6 +7743,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/02 03:19",
      "on_role": false
     },
@@ -6853,6 +7755,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/02 02:44",
      "on_role": true
     },
@@ -6864,6 +7767,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:basiil#fan",
+     "region": "NA",
      "time_tw": "11/02 02:24",
      "on_role": false
     }
@@ -6939,6 +7843,8 @@
     ]
    },
    "on_role": 6,
+   "last": "11/03 05:14",
+   "last_region": "NA",
    "last_na": "11/03 05:14"
   },
   {
@@ -6949,6 +7855,9 @@
    "accounts": [
     "Dhokla#NA1"
    ],
+   "all_accounts": [
+    "NA:Dhokla#NA1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgVkqbjcZK6LEIqLKBo5tK9vfCg6pogFImw=",
@@ -6958,6 +7867,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Dhokla#NA1",
+     "region": "NA",
      "time_tw": "11/02 13:57",
      "on_role": true
     },
@@ -6969,6 +7879,7 @@
      "position": "TOP",
      "result": "LOSE",
      "account": "NA:Dhokla#NA1",
+     "region": "NA",
      "time_tw": "11/02 13:10",
      "on_role": true
     }
@@ -7000,6 +7911,8 @@
     ]
    },
    "on_role": 2,
+   "last": "11/02 13:57",
+   "last_region": "NA",
    "last_na": "11/02 13:57"
   },
   {
@@ -7010,6 +7923,9 @@
    "accounts": [
     "a Special One#1of1"
    ],
+   "all_accounts": [
+    "NA:a Special One#1of1"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXXQDybnqjhDArghhYXB0ky5YUeHDSd1_E=",
@@ -7019,6 +7935,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/03 05:33",
      "on_role": true
     },
@@ -7030,6 +7947,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 17:19",
      "on_role": true
     },
@@ -7041,6 +7959,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 16:48",
      "on_role": true
     },
@@ -7052,6 +7971,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 16:11",
      "on_role": true
     },
@@ -7063,6 +7983,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 15:28",
      "on_role": false
     },
@@ -7074,6 +7995,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 14:55",
      "on_role": false
     },
@@ -7085,6 +8007,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 14:35",
      "on_role": true
     },
@@ -7096,6 +8019,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 14:02",
      "on_role": false
     },
@@ -7107,6 +8031,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 13:38",
      "on_role": false
     },
@@ -7118,6 +8043,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 13:09",
      "on_role": false
     },
@@ -7129,6 +8055,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 12:15",
      "on_role": false
     },
@@ -7140,6 +8067,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 11:36",
      "on_role": false
     },
@@ -7151,6 +8079,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 06:07",
      "on_role": true
     },
@@ -7162,6 +8091,7 @@
      "position": "JUNGLE",
      "result": "LOSE",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 05:24",
      "on_role": true
     },
@@ -7173,6 +8103,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 04:53",
      "on_role": true
     },
@@ -7184,6 +8115,7 @@
      "position": "JUNGLE",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/02 04:25",
      "on_role": true
     },
@@ -7195,6 +8127,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/01 15:45",
      "on_role": false
     },
@@ -7206,6 +8139,7 @@
      "position": "MID",
      "result": "WIN",
      "account": "NA:a Special One#1of1",
+     "region": "NA",
      "time_tw": "11/01 14:41",
      "on_role": false
     }
@@ -7288,6 +8222,8 @@
     ]
    },
    "on_role": 9,
+   "last": "11/03 05:33",
+   "last_region": "NA",
    "last_na": "11/03 05:33"
   },
   {
@@ -7297,6 +8233,9 @@
    "partial": false,
    "accounts": [
     "Jesse Pinkman#LYON"
+   ],
+   "all_accounts": [
+    "NA:Jesse Pinkman#LYON"
    ],
    "games": [],
    "summary": {
@@ -7309,6 +8248,8 @@
     "champions": []
    },
    "on_role": 0,
+   "last": "10/28 08:50",
+   "last_region": "NA",
    "last_na": "10/28 08:50"
   },
   {
@@ -7320,6 +8261,10 @@
     "LYON Berserker#ddd",
     "chud#LYON"
    ],
+   "all_accounts": [
+    "NA:LYON Berserker#ddd",
+    "NA:chud#LYON"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgUWKsYL6nozZge1a8urjLsQ9R0VgncZCdg=",
@@ -7329,6 +8274,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 18:27",
      "on_role": true
     },
@@ -7340,6 +8286,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 17:54",
      "on_role": true
     },
@@ -7351,6 +8298,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 17:26",
      "on_role": false
     },
@@ -7362,6 +8310,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 16:55",
      "on_role": true
     },
@@ -7373,6 +8322,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 16:16",
      "on_role": true
     },
@@ -7384,6 +8334,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 15:50",
      "on_role": true
     },
@@ -7395,6 +8346,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 15:13",
      "on_role": true
     },
@@ -7406,6 +8358,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 14:42",
      "on_role": true
     },
@@ -7417,6 +8370,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 13:13",
      "on_role": true
     },
@@ -7428,6 +8382,7 @@
      "position": "MID",
      "result": "LOSE",
      "account": "NA:chud#LYON",
+     "region": "NA",
      "time_tw": "11/02 12:43",
      "on_role": false
     }
@@ -7496,6 +8451,8 @@
     ]
    },
    "on_role": 8,
+   "last": "11/02 18:27",
+   "last_region": "NA",
    "last_na": "11/02 18:27"
   },
   {
@@ -7507,6 +8464,10 @@
     "Isles#000",
     "depresion#NA2"
    ],
+   "all_accounts": [
+    "NA:Isles#000",
+    "NA:depresion#NA2"
+   ],
    "games": [
     {
      "id": "eq3KyFixtgXL9kt_XFdblxRrkXigFz73xQNG0SR4buk=",
@@ -7516,6 +8477,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:Isles#000",
+     "region": "NA",
      "time_tw": "11/02 15:13",
      "on_role": true
     },
@@ -7527,6 +8489,7 @@
      "position": "SUPPORT",
      "result": "WIN",
      "account": "NA:Isles#000",
+     "region": "NA",
      "time_tw": "11/02 14:51",
      "on_role": true
     },
@@ -7538,6 +8501,7 @@
      "position": "ADC",
      "result": "WIN",
      "account": "NA:Isles#000",
+     "region": "NA",
      "time_tw": "11/02 14:17",
      "on_role": false
     },
@@ -7549,6 +8513,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:Isles#000",
+     "region": "NA",
      "time_tw": "11/02 13:33",
      "on_role": false
     },
@@ -7560,6 +8525,7 @@
      "position": "SUPPORT",
      "result": "LOSE",
      "account": "NA:Isles#000",
+     "region": "NA",
      "time_tw": "11/02 12:59",
      "on_role": true
     },
@@ -7571,6 +8537,7 @@
      "position": "ADC",
      "result": "LOSE",
      "account": "NA:Isles#000",
+     "region": "NA",
      "time_tw": "11/02 05:06",
      "on_role": false
     }
@@ -7624,6 +8591,8 @@
     ]
    },
    "on_role": 3,
+   "last": "11/02 15:13",
+   "last_region": "NA",
    "last_na": "11/02 15:13"
   }
  ]

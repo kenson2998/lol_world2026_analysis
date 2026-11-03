@@ -74,6 +74,21 @@ def main(data_dir, roster_path, start, end, teams):
 
     with ThreadPoolExecutor(6) as ex:
         players = list(ex.map(run, jobs))
+    # OP.GG only returns an account's latest 20 games of any queue, so newer games (normals too) can push window games
+    # out between pulls; games the previous pull saw inside the same window are kept (they were played and seen)
+    prev_path = f"{data_dir}/soloq_na.json"
+    if os.path.exists(prev_path):
+        prev = json.load(open(prev_path))
+        if prev.get("window") == [lo, hi]:
+            seen = {(p["team"], p["role"]): p["games"] for p in prev["players"]}
+            for p in players:
+                have = {g["id"] for g in p["games"]}
+                kept = [g | {"kept": True} for g in seen.get((p["team"], p["role"]), []) if g["id"] not in have]
+                if kept:
+                    p["games"] = sorted(p["games"] + kept, key=lambda g: g["time"], reverse=True)
+                    p["summary"] = soloq.summarize(p["games"])
+                    p["on_role"] = sum(g["on_role"] for g in p["games"])
+                    print(f'  kept {len(kept)} earlier-seen games for {p["team"]} {p["player"]}', file=sys.stderr)
     for p in players:
         by = {r: sum(g["region"] == r for g in p["games"]) for r in soloq.REGIONS}
         print(f'{p["team"]:5} {p["role"]:8} {p["player"]:12} accts={len(p["all_accounts"])} games={by} last={p["last"]} {p["last_region"]}', file=sys.stderr)

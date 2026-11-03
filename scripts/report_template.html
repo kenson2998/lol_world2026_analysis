@@ -563,6 +563,8 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .sq-list li.sq-upd, .sq-top li.sq-upd { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); border-radius: 6px; padding-left: 8px; padding-right: 6px }
 .sq-upd-card { border-color: var(--accent) }
 .sq-new { margin-left: 6px }
+.sq-mvp { font: 700 11px var(--f-data); color: var(--medal1-ink); white-space: nowrap; cursor: default }
+.cb-h .sq-mvp { margin-right: 2px }
 .sq-list .nm { display: grid; min-width: 0 } .sq-list .nm b { font-size: 14px } .sq-list .nm span { font-size: 11.5px; color: var(--muted) }
 .sq-rec { display: grid; justify-items: end; font-size: 12px } .sq-rec b { font: 700 13px var(--f-data) }
 .sq-cs { display: inline-flex; gap: 4px } .sq-c { position: relative } .sq-c .ci { width: 26px; height: 26px; border-radius: 5px }
@@ -1687,10 +1689,13 @@ function renderSoloq(sec) {
   const P = S.players.map(p => { const gs = p.games.filter(g => g.on_role), w = gs.filter(g => g.result === "WIN").length;
     const pool = {}; gs.forEach(g => { const c = (pool[g.champion] ||= { champion: g.champion, games: 0, wins: 0 }); c.games++; c.wins += g.result === "WIN"; });
     const before = PV?.ids[`${p.team}/${p.role}`], fresh = before ? gs.filter(g => !before.includes(g.id)) : [];
-    return { ...p, gs, n: gs.length, w, off: p.games.length - gs.length, fresh, nBefore: before?.length ?? null,
+    // OP.GG MVP: the game's top in-game score (op_score_rank 1); older pulls have no rank
+    const mvps = gs.filter(g => g.op_rank === 1);
+    return { ...p, gs, n: gs.length, w, off: p.games.length - gs.length, fresh, nBefore: before?.length ?? null, mvps,
       champs: Object.values(pool).sort((a, b) => b.games - a.games || b.wins - a.wins),
       last: gs.map(g => g.time_tw).sort().at(-1) || null }; });
   const since = PV ? `${PV.fetched.slice(5).replace("-", "/")} 那次更新` : "";
+  const hasRank = P.some(p => p.gs.some(g => g.op_rank != null));   // the pull carries OP.GG score ranks
   const plus = (k, tip) => `<span class="mv up tip sq-new" tabindex="0" data-tip="${esc(tip)}">+${k}</span>`;
   // most played champions over everyone in the window
   const champ = {}; P.forEach(p => p.gs.forEach(g => { const c = (champ[g.champion] ||= { n: 0, w: 0, f: 0 }); c.n++; c.w += g.result === "WIN"; c.f += p.fresh.includes(g); }));
@@ -1710,16 +1715,17 @@ function renderSoloq(sec) {
     const fr = p.fresh.length ? plus(p.fresh.length, `${since}後新增 ${p.fresh.length} 場本位單排（${regionSplit(p.fresh)}）；當時 ${p.nBefore} 場`) : "";
     return `<li class="${p.n ? "" : "idle"}${p.fresh.length ? " sq-upd" : ""}">${avatar(p.team, p.player, true)}
       <span class="nm"><b>${esc(p.player)}</b><span>${ROLE_SHORT[p.role]}${p.n ? ` · ${regionSplit(p.gs)}` : ""}</span></span>
-      ${p.n ? `<span class="sq-rec"><b>${p.n}${p.partial ? "+" : ""} 場${fr}${p.partial ? `<span class="lowg tip" tabindex="0" data-tip="OP.GG 每個帳號只給最近 20 場，這位選手某帳號的 20 場都在區間內，更早的場次可能沒算到">可能不完整</span>` : ""}</b><span class="wr ${wrCls(p.w / p.n * 100)}">${p.w}-${p.n - p.w}・${Math.round(p.w / p.n * 100)}%</span></span>
+      ${p.n ? `<span class="sq-rec"><b>${p.n}${p.partial ? "+" : ""} 場${fr}${p.partial ? `<span class="lowg tip" tabindex="0" data-tip="OP.GG 每個帳號只給最近 20 場，這位選手某帳號的 20 場都在區間內，更早的場次可能沒算到">可能不完整</span>` : ""}</b><span class="wr ${wrCls(p.w / p.n * 100)}">${p.w}-${p.n - p.w}・${Math.round(p.w / p.n * 100)}%</span>${hasRank && p.mvps.length
+          ? `<span class="sq-mvp tip" tabindex="0" data-tip="${esc(`OP.GG 評分全場第 1：\n${p.mvps.map(g => `${g.time_tw} ${cname(g.champion)}（${g.result === "WIN" ? "勝" : "敗"}）`).join("\n")}`)}"><span class="mvp-star">★</span>MVP ${p.mvps.length}</span>` : ""}</span>
         <span class="sq-cs">${champs}</span><span class="sq-last">最後一場 ${esc(p.last)}</span>`
         : `<span class="sq-none">${none}</span>`}</li>`; };
   const cards = S.teams.map(t => { const ps = P.filter(p => p.team === t), g = ps.reduce((s, p) => s + p.n, 0), w = ps.reduce((s, p) => s + p.w, 0);
-    const f = ps.reduce((s, p) => s + p.fresh.length, 0);
+    const f = ps.reduce((s, p) => s + p.fresh.length, 0), mv = ps.reduce((s, p) => s + p.mvps.length, 0);
     return `<article class="cb sq-team${f ? " sq-upd-card" : ""}" id="sq-${esc(t)}"><div class="cb-h"><h3>${esc(t)}${anc(`sq-${t}`)}</h3>
-      ${f ? plus(f, `${since}後全隊新增 ${f} 場`) : ""}<span class="cb-st">${g ? `全隊 ${g} 場 · ${Math.round(w / g * 100)}%` : "全隊 0 場"}</span></div>
+      ${f ? plus(f, `${since}後全隊新增 ${f} 場`) : ""}${hasRank && mv ? `<span class="sq-mvp"><span class="mvp-star">★</span>MVP ${mv}</span>` : ""}<span class="cb-st">${g ? `全隊 ${g} 場 · ${Math.round(w / g * 100)}%` : "全隊 0 場"}</span></div>
       <ol class="sq-list">${ps.map(row).join("")}</ol></article>`; }).join("");
   body.innerHTML = sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服＋韓服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
-    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}`, `<div class="cb-grid">${cards}</div>`, "sq-teams");
+    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${hasRank ? "★ MVP 為本位場次中 OP.GG 評分全場第 1 的次數（滑鼠移上可看是哪幾場）。" : ""}${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}`, `<div class="cb-grid">${cards}</div>`, "sq-teams");
 }
 
 // Worlds player stats table

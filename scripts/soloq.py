@@ -49,8 +49,9 @@ def lookup(nick, region):
             "opgg_team": (p.get("team") or {}).get("short_name")}
 
 
+# Stats carries the result and, when asked for, OP.GG's in-game score rank (1 = the game's MVP)
 GAME_RE = re.compile(r'GameHistory\("([^"]*)","([^"]*)","([^"]*)",\[Participant\(Summoner\("(?:[^"\\]|\\.)*"\),'
-                     r'"([^"]*)","([^"]*)",Stats\("([^"]*)"\)\)\]\)')
+                     r'"([^"]*)","([^"]*)",Stats\("([^"]*)"(?:,(\d+|null))?\)\)\]\)')
 
 
 def matches(acc):
@@ -58,11 +59,12 @@ def matches(acc):
         "game_name": acc["game_name"], "tag_line": acc["tagline"], "region": acc["region"], "limit": N_GAMES,
         "desired_output_fields": ["data.game_history[].{created_at,game_type,id}",
                                   "data.game_history[].participants[].{champion_name,position}",
-                                  "data.game_history[].participants[].stats.{result}",
+                                  "data.game_history[].participants[].stats.{result,op_score_rank}",
                                   "data.game_history[].participants[].summoner.{game_name}"]})
     if is_err:
         return []
     return [{"id": m[0], "time": m[1], "queue": m[2], "champion": m[3], "position": m[4], "result": m[5],
+             "op_rank": int(m[6]) if m[6].isdigit() else None,
              "account": f'{acc["region"]}:{acc["game_name"]}#{acc["tagline"]}'} for m in GAME_RE.findall(text)]
 
 
