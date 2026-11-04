@@ -315,6 +315,9 @@ details[open]:not(.closing) > summary .fold-sw i { transform: translateX(20px) }
 .sortbtn.on .arr { opacity: 1 }
 .cn-cell { display: inline-flex; align-items: center; gap: 8px }
 .cn-cell > .tip, .cn-cell > .mv { flex: none }
+/* 英雄資訊變化: champion name linking to its 對位明細 rows */
+.hero-go { color: inherit; text-decoration: underline dotted var(--muted); text-underline-offset: 3px }
+.hero-go:hover, .hero-go:focus-visible { color: var(--accent); text-decoration-color: var(--accent) }
 .upd-ic { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: var(--accent); background: var(--mid-soft); cursor: default }
 .upd-ic:focus-visible { outline: 2px solid var(--accent) }   /* a long champion name must not squeeze the icon away */
 .acc-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px }
@@ -642,7 +645,6 @@ a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visi
     <div class="eyebrow" id="stamp">Worlds 2026</div>
     <div class="views" role="tablist" aria-label="切換頁面">
       <button class="vtab" role="tab" id="tab-worlds" data-view="worlds" aria-selected="true" aria-controls="view-worlds">世界賽戰況</button>
-      <button class="vtab" role="tab" id="tab-champs" data-view="champs" aria-selected="false" aria-controls="view-champs">英雄資訊變化</button>
       <button class="vtab" role="tab" id="tab-predict" data-view="predict" aria-selected="false" aria-controls="view-predict">水晶球預測</button>
       <button class="vtab" role="tab" id="tab-matchup" data-view="matchup" aria-selected="false" aria-controls="view-matchup">英雄對位</button>
       <button class="vtab" role="tab" id="tab-player" data-view="player" aria-selected="false" aria-controls="view-player">選手對位</button>
@@ -655,12 +657,6 @@ a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visi
     </header>
     <div class="view" id="wv-body"></div>
     <footer class="wv-foot" id="wv-foot"></footer>
-  </div>
-  <div class="view" id="view-champs" role="tabpanel" aria-labelledby="tab-champs" hidden>
-    <header>
-      <h1>英雄資訊變化</h1>
-    </header>
-    <div class="view" id="ch-body"></div>
   </div>
   <div class="view" id="view-matchup" role="tabpanel" aria-labelledby="tab-matchup" hidden>
     <header>
@@ -1096,6 +1092,7 @@ function champChanges(W) {
   const withRates = S => S.rows.map(r => ({ ...r, presence: (r.picks + r.bans) / S.games * 100, wr: r.picks ? r.wins / r.picks * 100 : null }));
   const rows = withRates(champStats(W)).sort((a, b) => b.presence - a.presence || b.picks - a.picks || a.champion.localeCompare(b.champion));
   const was = new Map(PREV ? withRates(champStats(PREV.W)).map(r => [r.champion, r]) : []);
+  const laned = new Set(matchupRows(W).map(r => r.champ));
   const pctF = v => `${Math.round(v)}%`;
   // counts only grow, so they stay neutral; rates are green up / red down; the record only says it changed
   const mv = (r, f, fmt, good) => { const p = was.get(r.champion); return p ? valMove(f(r) == null ? null : Math.round(f(r)), f(p) == null ? null : Math.round(f(p)), fmt, good) : ""; };
@@ -1112,7 +1109,10 @@ function champChanges(W) {
     return p && p.picks !== r.picks ? `<span class="mv flat tip" tabindex="0" data-tip="${esc(`${PREV.label}：${p.picks ? `${p.wins}-${p.picks - p.wins}` : "未選用"}`)}">更新</span>` : ""; };
   // sortable columns: [label, sort key (null = not sortable), text column?, cell renderer]
   const cols = [
-    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}<span>${esc(cname(r.champion))}</span>${PREV && !was.has(r.champion) ? rankMove(1) : updIcon(r)}</span></td>`],
+    // the name links to the champion's rows in 對位明細 above (only champions that have a lane matchup there)
+    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}${laned.has(r.champion)
+      ? `<a class="hero-go" href="${heroHref(r.champion)}" data-champ="${esc(r.champion)}" title="看 ${esc(cname(r.champion))} 的對位明細">${esc(cname(r.champion))}</a>`
+      : `<span>${esc(cname(r.champion))}</span>`}${PREV && !was.has(r.champion) ? rankMove(1) : updIcon(r)}</span></td>`],
     ["路線", r => [...r.roles].map(x => ROLE_SHORT[x]).join("、"), true, r => `<td>${[...r.roles].map(x => ROLE_SHORT[x]).join("、") || "—"}</td>`],
     ["選用", r => r.picks, false, r => `<td>${r.picks}${mv(r, x => x.picks, v => v, 0)}</td>`],
     ["禁用", r => r.bans, false, r => `<td>${r.bans}${mv(r, x => x.bans, v => v, 0)}</td>`],
@@ -1502,7 +1502,10 @@ function renderMatchups(W, sec) {
   };
   body.innerHTML = sec("各路線對位表現", `每條路線中，面對所有對手合計勝率最高的前五名英雄。${PREV ? `名字旁為名次升降（${prevNote()}）` : ""}`, `<div class="cb-grid">${lanes}</div>`, "mu-lanes")
     + sec("對位明細", `同一路線的同一隻英雄整合成一列，依該英雄的對位勝率排序（同勝率再依場數）；右欄列出它遇過的每個對位英雄與戰績，滑鼠移到戰績上可看每場對局。15 分經濟差為「英雄方 − 對位方」的平均。${PREV ? `數字旁的 ▲▼ 為數值變化、「新」為該日才出現的英雄；${prevNote()}` : ""}`,
-      sortTableHTML("mu-table", controls), "mu-detail");
+      sortTableHTML("mu-table", controls), "mu-detail")
+    // BP pick / ban totals (was its own 英雄資訊變化 tab); old "#champs" links land here
+    + sec("英雄資訊變化", `每隻英雄在世界賽的選用、禁用、出場率與勝率。點英雄名稱可跳到上方對位明細中該英雄的列。${PREV ? `名字旁的更新圖示表示最近一個比賽日有被選用或禁用（滑鼠移上看變化）；${prevNote()}` : ""}`,
+      champChanges(W), "mu-champs");
 }
 
 // per-player totals/averages over every finished game in W.player_games (shared by the stats table and 選手對位)
@@ -2030,8 +2033,6 @@ function renderWorlds(W) {
   const tree = sec("瑞士輪樹狀圖", "瑞士輪每一欄是一輪，依戰績分組；勝方往上一組（綠線）、敗方往下一組（紅線），3 勝晉級淘汰賽、3 敗淘汰。戰績由已結束的賽果推算；點比賽可跳到該場。手機可左右滑動。",
     swissTree(W), "wv-tree", "closed");
 
-  // 英雄資訊變化 has its own tab
-  document.getElementById("ch-body").innerHTML = champChanges(W);
 
   // title odds: now vs before round 1, as probability and as decimal odds
   // a team whose Swiss run is decided (3 wins or 3 losses): its result replaces the stale market numbers
@@ -2212,6 +2213,7 @@ function setupAnchors() {
   addEventListener("scroll", () => { pop.hidden = true; }, true);
   const go = () => {
     let id = decodeURIComponent(location.hash.slice(1));
+    if (id === "champs") id = "mu-champs";   // 英雄資訊變化 used to be its own tab; it now sits in 英雄對位
     if (VIEWS.includes(id)) { SHOW_VIEW(id); return; }   // #predict etc. (also Back/Forward between tabs)
     id = ANCHOR_ALIAS[id] || id;   // older team-based match links
     if (id.startsWith("hero-")) { SHOW_VIEW("matchup"); requestAnimationFrame(() => MU_SHOW(id.slice(5))); return; }
@@ -2237,12 +2239,17 @@ function setupAnchors() {
     const copied = navigator.clipboard?.writeText(url);
     copied ? copied.then(() => say(a, true, url), () => say(a, false, url)) : say(a, false, url);
   });
+  // the same champion link clicked again doesn't change the hash, so jump directly
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a.hero-go"); if (!a || a.getAttribute("href") !== location.hash) return;
+    e.preventDefault(); MU_SHOW(a.dataset.champ);
+  });
   addEventListener("hashchange", go);
   go();
 }
 
 // four pages in one artifact: Worlds results (default), #predict, #matchup and #player
-const VIEWS = ["worlds", "champs", "predict", "matchup", "player", "soloq"];
+const VIEWS = ["worlds", "predict", "matchup", "player", "soloq"];
 let SHOW_VIEW = () => {};
 function setupViews() {
   const tabs = [...document.querySelectorAll(".vtab")];

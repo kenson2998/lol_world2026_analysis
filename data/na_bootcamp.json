@@ -104,6 +104,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "DK",
+  "role": "top",
+  "player": "Siwoo",
+  "region": "NA",
+  "riot_id": "Siuuuuuuuuuuuuuu#yarrr",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "MKOI",
   "role": "bot",
   "player": "Supa",
@@ -112,11 +120,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "DK",
-  "role": "top",
-  "player": "Siwoo",
+  "team": "T1",
+  "role": "bot",
+  "player": "Peyz",
   "region": "NA",
-  "riot_id": "Siuuuuuuuuuuuuuu#yarrr",
+  "riot_id": "gaesalbuger#aaaa",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "GEN",
+  "role": "mid",
+  "player": "Chovy",
+  "region": "NA",
+  "riot_id": "calm down#can",
   "source": "ttp-bootcamp"
  },
  {
@@ -144,14 +160,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "GEN",
-  "role": "mid",
-  "player": "Chovy",
-  "region": "NA",
-  "riot_id": "calm down#can",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "KC",
   "role": "support",
   "player": "Busio",
@@ -160,19 +168,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "T1",
-  "role": "bot",
-  "player": "Peyz",
-  "region": "NA",
-  "riot_id": "gaesalbuger#aaaa",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "IG",
+  "team": "DK",
   "role": "jungle",
-  "player": "Wei",
+  "player": "Lucid",
   "region": "NA",
-  "riot_id": "qweasdzxc#TWSJM",
+  "riot_id": "tyjoierg#123",
   "source": "ttp-bootcamp"
  },
  {
@@ -185,18 +185,26 @@
  },
  {
   "team": "KC",
-  "role": "mid",
-  "player": "Kyeahoo",
-  "region": "NA",
-  "riot_id": "yeahoo#yaho",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "KC",
   "role": "jungle",
   "player": "Yike",
   "region": "NA",
   "riot_id": "quentin#dawg",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "IG",
+  "role": "jungle",
+  "player": "Wei",
+  "region": "NA",
+  "riot_id": "qweasdzxc#TWSJM",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "KC",
+  "role": "mid",
+  "player": "Kyeahoo",
+  "region": "NA",
+  "riot_id": "yeahoo#yaho",
   "source": "ttp-bootcamp"
  },
  {
@@ -209,10 +217,10 @@
  },
  {
   "team": "DK",
-  "role": "jungle",
-  "player": "Lucid",
+  "role": "bot",
+  "player": "Smash",
   "region": "NA",
-  "riot_id": "tyjoierg#123",
+  "riot_id": "123321#KR12",
   "source": "ttp-bootcamp"
  },
  {
@@ -232,14 +240,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "HLE",
-  "role": "mid",
-  "player": "Zeka",
-  "region": "NA",
-  "riot_id": "DAZBEEE#777",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "GEN",
   "role": "top",
   "player": "Kiin",
@@ -248,11 +248,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "DK",
+  "team": "GEN",
   "role": "bot",
-  "player": "Smash",
+  "player": "Ruler",
   "region": "NA",
-  "riot_id": "123321#KR12",
+  "riot_id": "proteinmonster#thief",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "HLE",
+  "role": "mid",
+  "player": "Zeka",
+  "region": "NA",
+  "riot_id": "DAZBEEE#777",
   "source": "ttp-bootcamp"
  },
  {
@@ -280,14 +288,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "GEN",
-  "role": "bot",
-  "player": "Ruler",
-  "region": "NA",
-  "riot_id": "proteinmonster#thief",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "TES",
   "role": "mid",
   "player": "Creme",
@@ -304,6 +304,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "BLG",
+  "role": "support",
+  "player": "ON",
+  "region": "NA",
+  "riot_id": "burgershutiao#zxcvb",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "T1",
   "role": "jungle",
   "player": "Oner",
@@ -312,11 +320,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "BLG",
-  "role": "support",
-  "player": "ON",
+  "team": "T1",
+  "role": "mid",
+  "player": "Faker",
   "region": "NA",
-  "riot_id": "burgershutiao#zxcvb",
+  "riot_id": "Hide in bush#NYKR",
   "source": "ttp-bootcamp"
  },
  {
@@ -376,19 +384,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "TSW",
-  "role": "mid",
-  "player": "Dire",
-  "region": "NA",
-  "riot_id": "reina#244",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "BLG",
   "role": "jungle",
   "player": "Xun",
   "region": "NA",
   "riot_id": "xxxzz#8988",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "TSW",
+  "role": "mid",
+  "player": "Dire",
+  "region": "NA",
+  "riot_id": "reina#244",
   "source": "ttp-bootcamp"
  },
  {
@@ -408,6 +416,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "T1",
+  "role": "top",
+  "player": "Doran",
+  "region": "NA",
+  "riot_id": "buriburii#1234",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "LOS",
   "role": "support",
   "player": "Ackerman",
@@ -421,22 +437,6 @@
   "player": "Tian",
   "region": "NA",
   "riot_id": "sharkbee#369",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "T1",
-  "role": "top",
-  "player": "Doran",
-  "region": "NA",
-  "riot_id": "buriburii#1234",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "T1",
-  "role": "mid",
-  "player": "Faker",
-  "region": "NA",
-  "riot_id": "Hide in bush#NYKR",
   "source": "ttp-bootcamp"
  },
  {
@@ -576,6 +576,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "TES",
+  "role": "top",
+  "player": "369",
+  "region": "NA",
+  "riot_id": "godrjs#gktpd",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "TSW",
   "role": "top",
   "player": "Pun",
@@ -597,14 +605,6 @@
   "player": "CoreJJ",
   "region": "NA",
   "riot_id": "EDG Meiko#NA12",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "TES",
-  "role": "top",
-  "player": "369",
-  "region": "NA",
-  "riot_id": "godrjs#gktpd",
   "source": "ttp-bootcamp"
  },
  {
