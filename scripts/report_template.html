@@ -638,7 +638,7 @@ a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visi
 
 <div class="wrap">
   <div class="topbar">
-    <div class="eyebrow" id="stamp">Worlds 2026 · Swiss Stage</div>
+    <div class="eyebrow" id="stamp">Worlds 2026</div>
     <div class="views" role="tablist" aria-label="切換頁面">
       <button class="vtab" role="tab" id="tab-worlds" data-view="worlds" aria-selected="true" aria-controls="view-worlds">世界賽戰況</button>
       <button class="vtab" role="tab" id="tab-champs" data-view="champs" aria-selected="false" aria-controls="view-champs">英雄資訊變化</button>
@@ -2149,7 +2149,7 @@ function render() {
   setupReveal();
   setupMatchPreviews();
   setupAnchors();
-  document.getElementById("stamp").textContent = `Worlds 2026 · Swiss Stage${DATA.worlds ? ` · 資料更新 ${DATA.worlds.collected}` : ""}`;
+  document.getElementById("stamp").textContent = `Worlds 2026${DATA.worlds ? ` · ${DATA.worlds.stage} · 資料更新 ${DATA.worlds.collected}` : ""}`;
 }
 
 // cards (not tables or lists) fade in as they scroll into view, and their single-number values count up from 0

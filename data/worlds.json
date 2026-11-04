@@ -1,7 +1,7 @@
 {
- "collected": "2026-11-03 10:12（台灣時間）",
- "stage": "Swiss Stage 結束 → 淘汰賽",
- "status": "Swiss Stage 結束：DK、GEN 3-0，IG、T1、TES 3-1，BLG、KC、LYON 3-2 晉級淘汰賽；HLE、LOS、MKOI 2-3，CFO、G2、TLAW 1-3，AL、TSW 0-3 淘汰。八強賽（全部 Bo5）台灣時間 11/4 06:00 TES vs IG、11/5 06:00 GEN vs LYON、11/6 06:00 DK vs BLG、11/7 06:00 T1 vs KC；四強 11/8、11/9 06:00，決賽 11/15 03:00。",
+ "collected": "2026-11-04 11:11（台灣時間）",
+ "stage": "淘汰賽：八強",
+ "status": "八強賽進行中：IG 3-1 TES，IG 晉級四強（11/8 06:00 對 GEN / LYON 勝方）。接下來台灣時間 11/5 06:00 GEN vs LYON、11/6 06:00 DK vs BLG、11/7 06:00 T1 vs KC；四強 11/8、11/9 06:00，決賽 11/15 03:00。",
  "rounds": [
   {
    "name": "第一輪",
@@ -5795,10 +5795,10 @@
   },
   {
    "name": "八強賽",
-   "status": "upcoming",
+   "status": "live",
    "format": "Bo5",
    "date": "11/3–11/6 CT · 11/4–11/7 06:00 台灣時間",
-   "note": "淘汰賽全部 Bo5（Fearless）。第一局先選權：TES（抽籤，vs IG）、GEN、DK、T1（戰績較佳）。對陣與時間取自 Liquipedia",
+   "note": "淘汰賽全部 Bo5（Fearless）。第一局先選權：TES（抽籤，vs IG）、GEN、DK、T1（戰績較佳）。對陣與時間取自 Liquipedia。TES vs IG（11/4）：IG 3-1 TES；gol.gg 尚未上傳此系列，BP／選邊／先選取自 Leaguepedia，擊殺、時長與選手數據待補",
    "matches": [
     {
      "pool": "八強",
@@ -5807,9 +5807,6 @@
      "format": "Bo5",
      "time_tw": "11/04 06:00",
      "time_ct": "11/03 16:00",
-     "pct": null,
-     "poly": null,
-     "kalshi": null,
      "books": [
       {
        "book": "市場平均（esports.gg 彙整、去水）",
@@ -5824,6 +5821,417 @@
      "model": [
       52.8,
       47.2
+     ],
+     "pre_pct": [
+      44.4,
+      55.6
+     ],
+     "winner": "IG",
+     "score": [
+      1,
+      3
+     ],
+     "games": [
+      {
+       "winner": "IG",
+       "kills": null,
+       "length": null,
+       "blue": "IG",
+       "red": "TES",
+       "first_pick": "TES",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "TES": [
+          "Olaf",
+          "Jarvan IV",
+          "Galio",
+          "Jhin",
+          "Renekton"
+         ],
+         "IG": [
+          "Nocturne",
+          "Renata Glasc",
+          "Rumble",
+          "Leona",
+          "Alistar"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "TES",
+          "champion": "Vi",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 2,
+          "team": "IG",
+          "champion": "Qiyana",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 3,
+          "team": "IG",
+          "champion": "Nautilus",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 4,
+          "team": "TES",
+          "champion": "Cassiopeia",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 5,
+          "team": "TES",
+          "champion": "Ezreal",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 6,
+          "team": "IG",
+          "champion": "Syndra",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 7,
+          "team": "IG",
+          "champion": "Kai'Sa",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 8,
+          "team": "TES",
+          "champion": "Ambessa",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 9,
+          "team": "TES",
+          "champion": "Rell",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 10,
+          "team": "IG",
+          "champion": "Gnar",
+          "player": null,
+          "role": null
+         }
+        ]
+       }
+      },
+      {
+       "winner": "TES",
+       "kills": null,
+       "length": null,
+       "blue": "IG",
+       "red": "TES",
+       "first_pick": "TES",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "TES": [
+          "Olaf",
+          "Jarvan IV",
+          "Locke",
+          "Jayce",
+          "Trundle"
+         ],
+         "IG": [
+          "Nocturne",
+          "Pantheon",
+          "Lee Sin",
+          "Rumble",
+          "Maokai"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "TES",
+          "champion": "Orianna",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 2,
+          "team": "IG",
+          "champion": "Lulu",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 3,
+          "team": "IG",
+          "champion": "Yunara",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 4,
+          "team": "TES",
+          "champion": "Kalista",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 5,
+          "team": "TES",
+          "champion": "Renata Glasc",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 6,
+          "team": "IG",
+          "champion": "Viktor",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 7,
+          "team": "IG",
+          "champion": "Wukong",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 8,
+          "team": "TES",
+          "champion": "Xin Zhao",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 9,
+          "team": "TES",
+          "champion": "Renekton",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 10,
+          "team": "IG",
+          "champion": "Vayne",
+          "player": null,
+          "role": null
+         }
+        ]
+       }
+      },
+      {
+       "winner": "IG",
+       "kills": null,
+       "length": null,
+       "blue": "TES",
+       "red": "IG",
+       "first_pick": "IG",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "TES": [
+          "Olaf",
+          "Nocturne",
+          "Jarvan IV",
+          "Trundle",
+          "Maokai"
+         ],
+         "IG": [
+          "Pantheon",
+          "Lee Sin",
+          "K'Sante",
+          "Locke",
+          "Akali"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "IG",
+          "champion": "Jayce",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 2,
+          "team": "TES",
+          "champion": "Ashe",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 3,
+          "team": "TES",
+          "champion": "Seraphine",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 4,
+          "team": "IG",
+          "champion": "Zeri",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 5,
+          "team": "IG",
+          "champion": "Yuumi",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 6,
+          "team": "TES",
+          "champion": "Skarner",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 7,
+          "team": "TES",
+          "champion": "Rumble",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 8,
+          "team": "IG",
+          "champion": "Annie",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 9,
+          "team": "IG",
+          "champion": "Ornn",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 10,
+          "team": "TES",
+          "champion": "Yone",
+          "player": null,
+          "role": null
+         }
+        ]
+       }
+      },
+      {
+       "winner": "IG",
+       "kills": null,
+       "length": null,
+       "blue": "IG",
+       "red": "TES",
+       "first_pick": "TES",
+       "draft_source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans",
+       "draft": {
+        "order_known": true,
+        "bans": {
+         "TES": [
+          "Olaf",
+          "Caitlyn",
+          "Lee Sin",
+          "Camille",
+          "Gwen"
+         ],
+         "IG": [
+          "Nocturne",
+          "Pantheon",
+          "Jarvan IV",
+          "Locke",
+          "Akali"
+         ]
+        },
+        "picks": [
+         {
+          "n": 1,
+          "team": "TES",
+          "champion": "Lucian",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 2,
+          "team": "IG",
+          "champion": "Jhin",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 3,
+          "team": "IG",
+          "champion": "Naafiri",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 4,
+          "team": "TES",
+          "champion": "Milio",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 5,
+          "team": "TES",
+          "champion": "Maokai",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 6,
+          "team": "IG",
+          "champion": "Alistar",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 7,
+          "team": "IG",
+          "champion": "K'Sante",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 8,
+          "team": "TES",
+          "champion": "Aatrox",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 9,
+          "team": "TES",
+          "champion": "Aurora",
+          "player": null,
+          "role": null
+         },
+         {
+          "n": 10,
+          "team": "IG",
+          "champion": "Taliyah",
+          "player": null,
+          "role": null
+         }
+        ]
+       }
+      }
      ]
     },
     {
@@ -5904,7 +6312,8 @@
       21.9
      ]
     }
-   ]
+   ],
+   "pre_label": "Polymarket 賽前價格"
   }
  ],
  "standings": {
@@ -6311,7 +6720,10 @@
   "outdrafted.lol 頁面數字（未直接取得，僅供參考）：八強模型勝率 TES 52 / IG 48、GEN 92 / LYON 8、DK 55 / BLG 45、T1 80 / KC 20；內嵌的 Polymarket 奪冠價格 GEN 47%、T1 21%、BLG 15.4%、DK 7.3%、IG 6.8%、TES 3.2%、KC 1.9%、LYON 0.9%。",
   "第五輪沒有 Polymarket／Kalshi（無法連線）或莊家賠率，賽前勝率改用 outdrafted.lol 模型勝率（模型，非市場）：KC 64.7 / MKOI 35.3、LOS 29.9 / LYON 70.1、HLE 52.7 / BLG 47.3。頁面上標「模」。",
   "八強賠率（11/3 整理）：勝率取自 rg.org 2026-11-02 文章引用 esports.gg 以 11/1 擷取的多家賠率去水平均（IG 55.6 / TES 44.4、GEN 92.1 / LYON 7.9、BLG 59.4 / DK 40.6、T1 84.3 / KC 15.7），表中以「市場平均」列出並換算成去水十進位賠率，標「莊」。esports.gg 原文、tips.gg 回 403，egamersworld 無法連線；搜尋摘要中的 Stake、1xbet 等個別賠率未能直接核對，不採用。",
-  "outdrafted.lol 八強模型勝率（11/3 10:10 抓取，模型非市場）：TES 52.8 / IG 47.2、GEN 92.0 / LYON 8.0、DK 49.3 / BLG 50.7、T1 78.1 / KC 21.9；其頁面內嵌的 Polymarket 奪冠價格（未直接取得）GEN 48%、T1 21%、BLG 15.3%、DK 8.6%、IG 5.3%、TES 2.9%、KC 1.6%、LYON 0.7%。冠軍賠率表仍為 10/26 快照（找不到可直接核對的新奪冠賠率）。"
+  "outdrafted.lol 八強模型勝率（11/3 10:10 抓取，模型非市場）：TES 52.8 / IG 47.2、GEN 92.0 / LYON 8.0、DK 49.3 / BLG 50.7、T1 78.1 / KC 21.9；其頁面內嵌的 Polymarket 奪冠價格（未直接取得）GEN 48%、T1 21%、BLG 15.3%、DK 8.6%、IG 5.3%、TES 2.9%、KC 1.6%、LYON 0.7%。冠軍賠率表仍為 10/26 快照（找不到可直接核對的新奪冠賠率）。",
+  "TES vs IG（八強，11/4）：IG 3-1 TES（G1 IG、G2 TES、G3 IG、G4 IG），Liquipedia API 與 Leaguepedia 一致。gol.gg 此系列頁面（83694–83697）尚為空白，BP 順序、藍紅方、先選取自 Leaguepedia Picks_and_Bans（T1=先選隊，依 T1P1、T2P1-2、T1P2-3、T2P3、T2P4、T1P4-5、T2P5 轉為整體順序）；擊殺、時長、選手與位置目前沒有來源，留空待 gol.gg 上線後補（未依英雄推測位置）。",
+  "STRAFE 11/3 八強預測文的「Indicative odds」（未註明莊家）：GEN 1.08 / LYON 11.50、DK 2.26 / BLG 1.61、T1 1.30 / KC 3.75；因未註明來源莊家，賽前勝率仍採 rg.org 引用 esports.gg 的多家去水平均。outdrafted 11/4 11:08 模型勝率不變（GEN 92.0 / LYON 8.0、DK 49.3 / BLG 50.7、T1 78.1 / KC 21.9）。",
+  "outdrafted.lol 奪冠模型（11/4 11:08 抓取，已反映 IG 3-1 TES）：GEN 49%、T1 20%、BLG 12%、DK 11%、IG 6.0%、KC 1.2%、LYON <1%。"
  ],
  "sources": [
   [
@@ -22820,15 +23232,14 @@
   }
  ],
  "outright_model": {
-  "label": "outdrafted.lol 模型奪冠機率（2026-11-03 10:10 台灣時間抓取，模型非市場）",
+  "label": "outdrafted.lol 模型奪冠機率（2026-11-04 11:08 台灣時間抓取，模型非市場）",
   "src": "https://outdrafted.lol/worlds",
   "rows": {
-   "GEN": 48,
+   "GEN": 49,
    "T1": 20,
    "BLG": 12,
    "DK": 11,
-   "TES": 4.6,
-   "IG": 3.4,
+   "IG": 6.0,
    "KC": 1.2,
    "LYON": "<1"
   }
@@ -22848,8 +23259,8 @@
      ]
     ],
     "time_tw": [
-     "11/08 06:00",
-     "11/09 06:00"
+     "11/09 06:00",
+     "11/08 06:00"
     ]
    },
    {
@@ -22865,6 +23276,6 @@
     ]
    }
   ],
-  "note": "四強對陣依 Liquipedia 賽程表位置推得（DK/BLG 勝方 vs T1/KC 勝方、GEN/LYON 勝方 vs TES/IG 勝方），非文字明載；兩場四強誰在 11/8、誰在 11/9 同樣依版面推得。"
+  "note": "四強對陣依 Liquipedia 賽程表位置推得（DK/BLG 勝方 vs T1/KC 勝方、GEN/LYON 勝方 vs TES/IG 勝方）；Liquipedia 11/4 已列 IG 的四強在 11/7 16:00 CT（台灣 11/8 06:00），另一場四強 11/8 16:00 CT（台灣 11/9 06:00）。"
  }
 }
