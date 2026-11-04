@@ -486,7 +486,21 @@ tr.hl > td { animation: rowhl 2.6s ease-out }
 .mo b { font: 600 11px var(--f-data); color: var(--muted) }
 .mo.w { border-color: var(--good) } .mo.w b { color: var(--good) }
 .mo.l { border-color: var(--bad) } .mo.l b { color: var(--bad) }
-#mu-table td.l:last-child { white-space: normal }
+/* 英雄明細: a champion row opens into its lanes, like the player table */
+.hc-tr.can { cursor: pointer }
+#mu-table .hc-tr.can:hover > td { background: var(--mid-soft) }
+#mu-table .hc-tr.open > td { background: var(--accent-soft) }
+.hc-chev { display: inline-block; width: 10px; flex: none; color: var(--muted); font-size: 11px; transition: transform .15s }
+.hc-tr.open .hc-chev { transform: rotate(90deg); color: var(--accent) }
+#mu-table .hc-row > td { padding: 0; text-align: left; white-space: normal; background: var(--expand-bg);
+  box-shadow: inset 3px 0 0 var(--accent), inset 0 -1px 0 var(--line) }
+.hc-inner { position: sticky; left: 0; z-index: 3; background: var(--expand-bg); padding: 10px 16px 12px; box-sizing: border-box }
+.hc-lanes { display: grid; gap: 10px }
+.hc-lane { display: grid; gap: 6px } .hc-lane + .hc-lane { border-top: 1px solid var(--line); padding-top: 10px }
+.hc-ls { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; font: 500 12.5px var(--f-data) }
+.hc-ls > b { font: 700 13px var(--f-body); color: var(--accent); min-width: 2.5em }
+.hc-opps { display: flex; align-items: flex-start; gap: 8px } .hc-ol { font-size: 11.5px; color: var(--muted); padding-top: 4px; white-space: nowrap }
+.hc-opps .mo-list { min-width: 0 }
 #player-table td, #player-table th { padding: 6px 8px }
 .cn-cell .ci { width: 24px; height: 24px }
 .wtable .wr { font: 600 11.5px var(--f-data); padding: 0 5px; border-radius: 4px; background: var(--mid-soft) }
@@ -1087,12 +1101,13 @@ function champStats(W, upto) {
 
 // circular-arrows "updated" mark
 const UPD_SVG = `<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/></svg>`;
-// per-champion pick / ban totals with presence; each number carries its rise / fall since before the latest match day
-function champChanges(W) {
+// per-champion pick / ban totals with presence; each number carries its rise / fall since before the latest match day.
+// This is the 英雄對位 page's merged table ("mu-table"): `laned` = champions with lane matchups (their rows expand),
+// `controls` = the filter bar shown above it
+function champChanges(W, laned = new Set(), controls = "") {
   const withRates = S => S.rows.map(r => ({ ...r, presence: (r.picks + r.bans) / S.games * 100, wr: r.picks ? r.wins / r.picks * 100 : null }));
   const rows = withRates(champStats(W)).sort((a, b) => b.presence - a.presence || b.picks - a.picks || a.champion.localeCompare(b.champion));
   const was = new Map(PREV ? withRates(champStats(PREV.W)).map(r => [r.champion, r]) : []);
-  const laned = new Set(matchupRows(W).map(r => r.champ));
   const pctF = v => `${Math.round(v)}%`;
   // counts only grow, so they stay neutral; rates are green up / red down; the record only says it changed
   const mv = (r, f, fmt, good) => { const p = was.get(r.champion); return p ? valMove(f(r) == null ? null : Math.round(f(r)), f(p) == null ? null : Math.round(f(p)), fmt, good) : ""; };
@@ -1109,10 +1124,8 @@ function champChanges(W) {
     return p && p.picks !== r.picks ? `<span class="mv flat tip" tabindex="0" data-tip="${esc(`${PREV.label}：${p.picks ? `${p.wins}-${p.picks - p.wins}` : "未選用"}`)}">更新</span>` : ""; };
   // sortable columns: [label, sort key (null = not sortable), text column?, cell renderer]
   const cols = [
-    // the name links to the champion's rows in 對位明細 above (only champions that have a lane matchup there)
-    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${icon(r.champion)}${laned.has(r.champion)
-      ? `<a class="hero-go" href="${heroHref(r.champion)}" data-champ="${esc(r.champion)}" title="看 ${esc(cname(r.champion))} 的對位明細">${esc(cname(r.champion))}</a>`
-      : `<span>${esc(cname(r.champion))}</span>`}${PREV && !was.has(r.champion) ? rankMove(1) : updIcon(r)}</span></td>`],
+    // a champion with lane matchups opens its per-lane detail (▸ / ▾) when its row is clicked
+    ["英雄", r => r.champion, true, r => `<td class="l"><span class="cn-cell">${laned.has(r.champion) ? `<span class="hc-chev" aria-hidden="true">▸</span>` : `<span class="hc-chev"></span>`}${icon(r.champion)}<span>${esc(cname(r.champion))}</span>${PREV && !was.has(r.champion) ? rankMove(1) : updIcon(r)}</span></td>`],
     ["路線", r => [...r.roles].map(x => ROLE_SHORT[x]).join("、"), true, r => `<td>${[...r.roles].map(x => ROLE_SHORT[x]).join("、") || "—"}</td>`],
     ["選用", r => r.picks, false, r => `<td>${r.picks}${mv(r, x => x.picks, v => v, 0)}</td>`],
     ["禁用", r => r.bans, false, r => `<td>${r.bans}${mv(r, x => x.bans, v => v, 0)}</td>`],
@@ -1125,9 +1138,9 @@ function champChanges(W) {
   const wrDelta = r => { const p = was.get(r.champion); return p && r.wr != null && p.wr != null ? Math.round(r.wr) - Math.round(p.wr) : null; };
   if (PREV) cols.push(["勝率變化", wrDelta, false, r => { const d = wrDelta(r), p = was.get(r.champion);
     return `<td>${d == null ? "—" : `<span class="dlt ${d > 0 ? "up" : d < 0 ? "down" : "flat"} tip" tabindex="0" data-tip="${esc(`${PREV.label}：${pctF(p.wr)}（${p.wins}-${p.picks - p.wins}）`)}">${d > 0 ? `▲${d}` : d < 0 ? `▼${-d}` : "0"}</span>`}</td>`; }]);
-  sortTable("champ-table", cols, rows, [{ col: 4, desc: true }],   // presence, high to low
+  sortTable("mu-table", cols, rows, [{ col: 4, desc: true }],   // presence, high to low
     (a, b) => b.presence - a.presence || a.champion.localeCompare(b.champion));
-  return sortTableHTML("champ-table");
+  return sortTableHTML("mu-table", controls);
 }
 
 // market accuracy on finished rounds: did the pre-game favourite win? plus Brier score per round
@@ -1448,7 +1461,7 @@ function renderMatchups(W, sec) {
       return rankMove(i + 1, p && { rank: at < 0 ? null : at + 1, val: at < 0 ? `${p.n} 場，未滿 2 場` : rec(p) }, rec(c)); };
     return `<article class="cb" id="mu-${role}"><div class="cb-h"><h3>${name}${anc(`mu-${role}`)}</h3></div><p class="cb-q">對位勝率前五（至少 2 場）</p>${top.length
       ? `<ol>${top.map((c, i) => `<li class="r${i + 1}"><span class="who2">${icon(c.champ)}<span class="rk r${i + 1}">#${i + 1}</span></span>
-          <span class="nm"><b>${esc(cname(c.champ))}${move(c, i)}</b><span>${c.wins} 勝 ${c.n - c.wins} 敗 · 15 分經濟差 ${c.gd15 == null ? "—" : `${c.gd15 > 0 ? "+" : ""}${Math.round(c.gd15)}`}</span></span>
+          <span class="nm"><b><a class="hero-go" href="${heroHref(c.champ)}" data-champ="${esc(c.champ)}" title="看 ${esc(cname(c.champ))} 的英雄明細">${esc(cname(c.champ))}</a>${move(c, i)}</b><span>${c.wins} 勝 ${c.n - c.wins} 敗 · 15 分經濟差 ${c.gd15 == null ? "—" : `${c.gd15 > 0 ? "+" : ""}${Math.round(c.gd15)}`}</span></span>
           <span class="val">${Math.round(c.wr * 100)}%</span></li>`).join("")}</ol>` : `<div class="cb-empty">尚無 2 場以上的英雄</div>`}</article>`;
   }).join("");
 
@@ -1458,54 +1471,72 @@ function renderMatchups(W, sec) {
       `${x.me.team}-${x.me.player} vs ${x.op.team}-${x.op.player}（${x.rname}・${x.me.win ? "勝" : "敗"}）`)].join("\n");
     return `<span class="mo tip ${o.wins * 2 > o.n ? "w" : o.wins * 2 < o.n ? "l" : ""}" tabindex="0" data-tip="${esc(tip)}">${champImg(o.opp)}<b>${Math.round(o.wr * 100)}%(${o.wins}W-${o.n - o.wins}L)</b></span>`; };
 
-  const cols = [
-    ["路線", r => Object.keys(ROLE_SHORT).indexOf(r.role), true, r => `<td>${ROLE_SHORT[r.role]}</td>`],
-    ["英雄", r => cname(r.champ), true, r => `<td class="l"><span class="cn-cell">${icon(r.champ)}<span>${esc(cname(r.champ))}</span>${PREV && !was.has(`${r.role}|${r.champ}`) ? rankMove(1) : ""}</span></td>`],
-    ["場數", r => r.n, false, r => `<td>${r.n}${valMove(r.n, was.get(`${r.role}|${r.champ}`)?.n, v => v, 0)}</td>`],
-    ["戰績", r => r.wins - (r.n - r.wins), false, r => `<td>${r.wins}-${r.n - r.wins}</td>`],
-    ["勝率", r => r.wr, false, r => { const p = was.get(`${r.role}|${r.champ}`);
-      return `<td><span class="wr ${wrCls(r.wr * 100)}">${Math.round(r.wr * 100)}%</span>${p ? valMove(Math.round(r.wr * 100), Math.round(p.wr * 100), v => `${v}%`, 1, `（${p.wins}-${p.n - p.wins}）`) : ""}</td>`; }],
-    ["15分經濟差", r => r.gd15, false, r => `<td>${sgn(r.gd15)}${valMove(gdOf(r), gdOf(was.get(`${r.role}|${r.champ}`)), v => v.toLocaleString())}</td>`],
-    ["對位英雄（戰績）", null, false, r => `<td class="l"><span class="mo-list">${r.opps.map(opp).join("")}</span></td>`],
-  ];
-  const T = sortTable("mu-table", cols, champs, [{ col: 4, desc: true }, { col: 2, desc: true }],   // win rate, then games
-    (a, b) => Object.keys(ROLE_SHORT).indexOf(a.role) - Object.keys(ROLE_SHORT).indexOf(b.role) || a.champ.localeCompare(b.champ));
-  const st = { role: "", champ: "" };
-  T.filter = r => (!st.role || r.role === st.role) && (!st.champ || r.champ === st.champ);
-  const names = [...new Set(champs.map(r => r.champ))].sort((a, b) => cname(a).localeCompare(cname(b)));
+  // one champion's lanes, shown when its row in the merged table is opened: games, record, win rate and 15-minute
+  // gold difference per lane (each with its change since before the latest match day), then the opponents met there
+  const byChamp = new Map();
+  champs.forEach(c => (byChamp.get(c.champ) || byChamp.set(c.champ, []).get(c.champ)).push(c));
+  byChamp.forEach(ls => ls.sort((a, b) => b.n - a.n || Object.keys(ROLE_SHORT).indexOf(a.role) - Object.keys(ROLE_SHORT).indexOf(b.role)));
+  const laneDetail = champ => `<div class="hc-lanes">${byChamp.get(champ).map(r => { const p = was.get(`${r.role}|${r.champ}`);
+    return `<div class="hc-lane"><div class="hc-ls"><b>${ROLE_SHORT[r.role]}</b>${PREV && !p ? rankMove(1) : ""}
+        <span>${r.n} 場${valMove(r.n, p?.n, v => v, 0)}</span><span>${r.wins}-${r.n - r.wins}</span>
+        <span><span class="wr ${wrCls(r.wr * 100)}">${Math.round(r.wr * 100)}%</span>${p ? valMove(Math.round(r.wr * 100), Math.round(p.wr * 100), v => `${v}%`, 1, `（${p.wins}-${p.n - p.wins}）`) : ""}</span>
+        <span>15 分經濟差 ${sgn(r.gd15)}${valMove(gdOf(r), gdOf(p), v => v.toLocaleString())}</span></div>
+      <div class="hc-opps"><span class="hc-ol">對位英雄</span><span class="mo-list">${r.opps.map(opp).join("")}</span></div></div>`; }).join("")}</div>`;
+
+  const names = [...new Set(champStats(W).rows.map(r => r.champion))].sort((a, b) => cname(a).localeCompare(cname(b)));
   const controls = `<span class="rolef muf" role="group" aria-label="路線篩選">${[["", "全部"], ...Object.entries(ROLE_SHORT)].map(([v, l]) =>
       `<button type="button" class="chip" data-role="${v}" aria-pressed="${v === ""}">${l}</button>`).join("")}</span>
     <label class="mu-pick">英雄 <select id="mu-champ"><option value="">全部英雄</option>${names.map(c =>
       `<option value="${esc(c)}">${esc(cname(c))}</option>`).join("")}</select></label>`;
+
+  // 英雄明細: one row per champion (BP totals from 英雄資訊變化), opening into its lanes (the old 對位明細)
+  const tableHtml = champChanges(W, new Set(byChamp.keys()), controls);
+  const T = TABLES["mu-table"];
+  const st = { role: "", champ: "" };
+  T.filter = r => (!st.role || r.roles.has(st.role)) && (!st.champ || r.champion === st.champ);
+  T.open = new Set();
+  const can = c => byChamp.has(c);
+  T.rowAttr = (r, zebra) => ` class="hc-tr${zebra ? " zb" : ""}${T.open.has(r.champion) ? " open" : ""}${can(r.champion) ? " can" : ""}" data-champ="${esc(r.champion)}"${can(r.champion) ? ` aria-expanded="${T.open.has(r.champion)}" title="點一下展開／收合各路線對位"` : ""}`;
+  T.after = r => (T.open.has(r.champion) && can(r.champion) ? `<tr class="hc-row"><td colspan="${T.cols.length}"><div class="hc-inner">${laneDetail(r.champion)}</div></td></tr>` : "");
+  const tbl = () => document.getElementById("mu-table");
+  // keep the opened detail as wide as the visible table area, pinned left while the table scrolls sideways
+  const fit = () => { const box = tbl()?.parentElement; if (!box?.clientWidth) return;
+    box.querySelectorAll(".hc-inner").forEach(el => { el.style.width = `${box.clientWidth - 2}px`; }); };
+  const redraw = () => { drawTable(T); fit(); };
+  const setFilter = (role, champ) => { st.role = role; st.champ = champ;
+    document.querySelectorAll(".muf .chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.role === role)));
+    const sel = document.getElementById("mu-champ"); if (sel) sel.value = champ; };
   T.wireExtra = () => {
     document.querySelector(".muf")?.addEventListener("click", e => {
       const b = e.target.closest("[data-role]"); if (!b) return;
-      st.role = b.dataset.role;
-      document.querySelectorAll(".muf .chip").forEach(c => c.setAttribute("aria-pressed", String(c === b)));
-      drawTable(T);
+      setFilter(b.dataset.role, st.champ); redraw();
     });
-    document.getElementById("mu-champ")?.addEventListener("change", e => { st.champ = e.target.value; drawTable(T); });
+    document.getElementById("mu-champ")?.addEventListener("change", e => { setFilter(st.role, e.target.value); redraw(); });
+    tbl()?.querySelector("tbody").addEventListener("click", e => {
+      if (e.target.closest(".tip")) return;   // tooltips (update icon, opponent chips) keep their own behaviour
+      const tr = e.target.closest("tr.hc-tr.can"); if (!tr) return;
+      const c = tr.dataset.champ; T.open.has(c) ? T.open.delete(c) : T.open.add(c);
+      redraw();
+    });
+    tbl()?.querySelector("thead").addEventListener("click", () => setTimeout(fit));
+    if (typeof ResizeObserver !== "undefined" && tbl()) new ResizeObserver(fit).observe(tbl().parentElement);
+    else addEventListener("resize", fit);
   };
-  // rows carry their champion so a "#hero-<champion>" link can find and highlight them
-  T.rowAttr = (r, zebra) => ` class="${zebra ? "zb" : ""}" data-champ="${esc(r.champ)}"`;
+  // "#hero-<champion>" links (lane cards above, other pages): clear the filters, open that champion's row and bring it up
   MU_SHOW = champ => {
-    if (!champs.some(r => r.champ === champ)) return false;
-    st.role = ""; st.champ = "";   // clear filters so the rows are there
-    document.querySelectorAll(".muf .chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.role === "")));
-    const sel = document.getElementById("mu-champ"); if (sel) sel.value = "";
-    drawTable(T);
-    const tbl = document.getElementById("mu-table"), rows = [...tbl.tBodies[0].rows].filter(tr => tr.dataset.champ === champ);
+    if (!T.rows.some(r => r.champion === champ)) return false;
+    setFilter("", "");
+    if (can(champ)) T.open.add(champ);
+    redraw();
+    const row = [...tbl().tBodies[0].rows].find(tr => tr.dataset.champ === champ); if (!row) return false;
     document.getElementById("mu-detail").scrollIntoView({ block: "start" });
-    tbl.parentElement.scrollTop = rows[0].offsetTop - tbl.tHead.offsetHeight;   // first row just under the frozen header
-    rows.forEach(tr => { tr.classList.remove("hl"); void tr.offsetWidth; tr.classList.add("hl"); });
+    tbl().parentElement.scrollTop = row.offsetTop - tbl().tHead.offsetHeight;   // just under the frozen header
+    row.classList.remove("hl"); void row.offsetWidth; row.classList.add("hl");
     return true;
   };
-  body.innerHTML = sec("各路線對位表現", `每條路線中，面對所有對手合計勝率最高的前五名英雄。${PREV ? `名字旁為名次升降（${prevNote()}）` : ""}`, `<div class="cb-grid">${lanes}</div>`, "mu-lanes")
-    + sec("對位明細", `同一路線的同一隻英雄整合成一列，依該英雄的對位勝率排序（同勝率再依場數）；右欄列出它遇過的每個對位英雄與戰績，滑鼠移到戰績上可看每場對局。15 分經濟差為「英雄方 − 對位方」的平均。${PREV ? `數字旁的 ▲▼ 為數值變化、「新」為該日才出現的英雄；${prevNote()}` : ""}`,
-      sortTableHTML("mu-table", controls), "mu-detail")
-    // BP pick / ban totals (was its own 英雄資訊變化 tab); old "#champs" links land here
-    + sec("英雄資訊變化", `每隻英雄在世界賽的選用、禁用、出場率與勝率。點英雄名稱可跳到上方對位明細中該英雄的列。${PREV ? `名字旁的更新圖示表示最近一個比賽日有被選用或禁用（滑鼠移上看變化）；${prevNote()}` : ""}`,
-      champChanges(W), "mu-champs");
+  body.innerHTML = sec("各路線對位表現", `每條路線中，面對所有對手合計勝率最高的前五名英雄；點英雄名稱可跳到下方英雄明細的該英雄。${PREV ? `名字旁為名次升降（${prevNote()}）` : ""}`, `<div class="cb-grid">${lanes}</div>`, "mu-lanes")
+    + sec("英雄明細", `每隻英雄一列：世界賽的選用、禁用、出場率（被選或被禁的局數比例）、戰績與勝率。<b>點有 ▸ 的英雄可展開各路線的對位</b>：該路線的場數、戰績、勝率、15 分經濟差（「英雄方 − 對位方」的平均），以及遇過的每個對位英雄與戰績（滑鼠移上可看每場對局）。只被禁用、沒有選用紀錄的英雄沒有對位可展開。可依路線或英雄篩選。${PREV ? `名字旁的更新圖示表示最近一個比賽日有被選用或禁用（滑鼠移上看變化）；${prevNote()}` : ""}`,
+      tableHtml, "mu-detail");
 }
 
 // per-player totals/averages over every finished game in W.player_games (shared by the stats table and 選手對位)
@@ -2213,7 +2244,8 @@ function setupAnchors() {
   addEventListener("scroll", () => { pop.hidden = true; }, true);
   const go = () => {
     let id = decodeURIComponent(location.hash.slice(1));
-    if (id === "champs") id = "mu-champs";   // 英雄資訊變化 used to be its own tab; it now sits in 英雄對位
+    // 英雄資訊變化 used to be its own tab, then its own section; it is now the merged 英雄明細 table in 英雄對位
+    if (id === "champs" || id === "mu-champs") id = "mu-detail";
     if (VIEWS.includes(id)) { SHOW_VIEW(id); return; }   // #predict etc. (also Back/Forward between tabs)
     id = ANCHOR_ALIAS[id] || id;   // older team-based match links
     if (id.startsWith("hero-")) { SHOW_VIEW("matchup"); requestAnimationFrame(() => MU_SHOW(id.slice(5))); return; }
