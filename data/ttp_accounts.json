@@ -302,7 +302,7 @@
    {
     "region": "KR",
     "riot_id": "Duro#Gen",
-    "rank": "Ch 2,214LP",
+    "rank": "Ch 2,064LP",
     "active": true
    },
    {
@@ -336,7 +336,7 @@
    {
     "region": "KR",
     "riot_id": "Athene#lll",
-    "rank": "Ch 1,964LP",
+    "rank": "Ch 1,889LP",
     "active": true
    },
    {
@@ -458,7 +458,7 @@
    {
     "region": "KR",
     "riot_id": "suis#kr7",
-    "rank": "GM 1,737LP",
+    "rank": "GM 1,662LP",
     "active": true
    },
    {
@@ -492,7 +492,7 @@
    {
     "region": "KR",
     "riot_id": "HLE Gumayusi#0298",
-    "rank": "Ch 2,192LP",
+    "rank": "Ch 2,117LP",
     "active": true
    },
    {
@@ -556,7 +556,7 @@
    {
     "region": "KR",
     "riot_id": "플레이리스트겨울#KR1",
-    "rank": "GM 1,398LP",
+    "rank": "Master 1,323LP",
     "active": true
    },
    {
@@ -660,7 +660,7 @@
    {
     "region": "KR",
     "riot_id": "오 너#111",
-    "rank": "GM 1,837LP",
+    "rank": "GM 1,762LP",
     "active": true
    },
    {
@@ -782,7 +782,7 @@
    {
     "region": "KR",
     "riot_id": "Peyz#KR11",
-    "rank": "Ch 1,981LP",
+    "rank": "Ch 1,906LP",
     "active": true
    },
    {
@@ -816,7 +816,7 @@
    {
     "region": "KR",
     "riot_id": "Ciro#KR10",
-    "rank": "GM 1,646LP",
+    "rank": "GM 1,571LP",
     "active": true
    },
    {
@@ -880,13 +880,13 @@
    {
     "region": "KR",
     "riot_id": "TOPKING#asd",
-    "rank": "Master 1,029LP",
+    "rank": "Master 879LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "다죽이는게정#L을가져가",
-    "rank": "Master 856LP",
+    "rank": "Master 706LP",
     "active": true
    }
   ]
@@ -902,7 +902,7 @@
    {
     "region": "KR",
     "riot_id": "DK Lucid#KR1",
-    "rank": "Ch 1,906LP",
+    "rank": "GM 1,831LP",
     "active": true
    },
    {
@@ -988,7 +988,7 @@
    {
     "region": "KR",
     "riot_id": "DK Smash#KR7",
-    "rank": "Ch 2,214LP",
+    "rank": "Ch 2,139LP",
     "active": true
    },
    {
@@ -1008,15 +1008,15 @@
   "ttp_role": "Support",
   "accounts": [
    {
-    "region": "KR",
-    "riot_id": "팽도리#1015",
-    "rank": "Ch 1,858LP",
-    "active": true
-   },
-   {
     "region": "NA",
     "riot_id": "하이용#1015",
     "rank": "GM 1,896LP",
+    "active": true
+   },
+   {
+    "region": "KR",
+    "riot_id": "팽도리#1015",
+    "rank": "GM 1,708LP",
     "active": true
    }
   ]
@@ -1044,7 +1044,7 @@
    {
     "region": "KR",
     "riot_id": "aierlanxiaozhu#01321",
-    "rank": "Master 1,332LP",
+    "rank": "Master 1,257LP",
     "active": true
    },
    {
@@ -1294,7 +1294,7 @@
    {
     "region": "KR",
     "riot_id": "AL Kael#0211",
-    "rank": "Ch 2,229LP",
+    "rank": "Ch 2,154LP",
     "active": true
    },
    {
@@ -1328,13 +1328,13 @@
    {
     "region": "NA",
     "riot_id": "hfdgjhfgdnh#123",
-    "rank": "Master 873LP",
+    "rank": "Master 789LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "빈 스토리#KR1",
-    "rank": "Master 639LP",
+    "rank": "Master 564LP",
     "active": true
    },
    {
@@ -1596,7 +1596,7 @@
    {
     "region": "KR",
     "riot_id": "키보드에음료쏟아서고장내는이도윤#KR1",
-    "rank": "Ch 2,199LP",
+    "rank": "Ch 2,124LP",
     "active": true
    },
    {
@@ -1608,7 +1608,7 @@
    {
     "region": "KR",
     "riot_id": "BLG 온#KR1",
-    "rank": "Master 180LP",
+    "rank": "Master 105LP",
     "active": true
    },
    {
@@ -1672,7 +1672,7 @@
    {
     "region": "KR",
     "riot_id": "qsxmiocmio#KR1",
-    "rank": "Master 205LP",
+    "rank": "Master 130LP",
     "active": true
    },
    {
@@ -1806,7 +1806,7 @@
    {
     "region": "KR",
     "riot_id": "livinli#KR1",
-    "rank": "GM 1,558LP",
+    "rank": "GM 1,483LP",
     "active": true
    },
    {
@@ -1978,7 +1978,7 @@
    {
     "region": "KR",
     "riot_id": "Kimman#zxfkk",
-    "rank": "GM 1,841LP",
+    "rank": "GM 1,766LP",
     "active": true
    },
    {
@@ -2328,7 +2328,7 @@
    {
     "region": "EUW",
     "riot_id": "G2 SkewMond#3327",
-    "rank": "GM 1,867LP",
+    "rank": "Master 1,717LP",
     "active": true
    },
    {
@@ -2471,7 +2471,7 @@
    {
     "region": "EUW",
     "riot_id": "G2 Labrov#8085",
-    "rank": "Master 1,364LP",
+    "rank": "Master 1,289LP",
     "active": true
    },
    {
@@ -2697,7 +2697,7 @@
    {
     "region": "EUW",
     "riot_id": "tukaan#tukan",
-    "rank": "Master 1,050LP",
+    "rank": "Master 975LP",
     "active": true
    },
    {
@@ -2743,7 +2743,7 @@
    {
     "region": "EUW",
     "riot_id": "alvarooo#000",
-    "rank": "Master 379LP",
+    "rank": "Master 229LP",
     "active": true
    },
    {
@@ -2805,7 +2805,7 @@
    {
     "region": "EUW",
     "riot_id": "KC Yiken#1111",
-    "rank": "Master 542LP",
+    "rank": "Master 392LP",
     "active": true
    },
    {
@@ -2879,7 +2879,7 @@
    {
     "region": "EUW",
     "riot_id": "KC NEXT ADKING#EUW",
-    "rank": "Master 1,404LP",
+    "rank": "Master 1,254LP",
     "active": true
    },
    {
@@ -3051,13 +3051,13 @@
    {
     "region": "NA",
     "riot_id": "Samuel Broadley#Gday",
-    "rank": "Ch 3,116LP",
+    "rank": "Ch 3,041LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "Jake Tiberi#BALD",
-    "rank": "Master 75LP",
+    "rank": "Master 0LP",
     "active": true
    },
    {
@@ -3265,7 +3265,7 @@
    {
     "region": "NA",
     "riot_id": "a Special One#1of1",
-    "rank": "Ch 2,263LP",
+    "rank": "Ch 2,292LP",
     "active": true
    },
    {
@@ -3359,7 +3359,7 @@
    {
     "region": "NA",
     "riot_id": "Jesse Pinkman#LYON",
-    "rank": "Ch 2,660LP",
+    "rank": "Ch 2,736LP",
     "active": true
    },
    {
@@ -3513,7 +3513,7 @@
    {
     "region": "KR",
     "riot_id": "hjzt0ahjhj#KR2",
-    "rank": "Master 894LP",
+    "rank": "Master 744LP",
     "active": true
    },
    {
@@ -3569,7 +3569,7 @@
    {
     "region": "KR",
     "riot_id": "edhdcntsw#KR11",
-    "rank": "GM 1,792LP",
+    "rank": "GM 1,642LP",
     "active": true
    },
    {
@@ -3861,8 +3861,8 @@
    {
     "region": "KR",
     "riot_id": "Zest#김동민",
-    "rank": "Diamond II",
-    "active": false
+    "rank": "Master 85LP",
+    "active": true
    },
    {
     "region": "EUW",

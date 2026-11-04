@@ -3,7 +3,7 @@
   "2026-11-01",
   "2026-11-04"
  ],
- "fetched": "2026-11-04 11:26",
+ "fetched": "2026-11-04 16:50",
  "teams": [
   "GEN",
   "T1",
@@ -27,6 +27,71 @@
     "NA:asdzxcvqwe#123"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgVrpEyNlQzG3B4_qIRjjZC5uuSHJpsbCQc=",
+     "time": "2026-11-04T15:13:08+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Lulu",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
+     "time_tw": "11/04 14:13",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgV0JdmJkMogohAarhvA2cMUYpONeV4UM-o=",
+     "time": "2026-11-04T14:29:37+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 6,
+     "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
+     "time_tw": "11/04 13:29",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUuFdPUCSYMjjTW0hJG4VV1WhrIZVJLLcI=",
+     "time": "2026-11-04T14:01:29+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Aurora",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 7,
+     "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
+     "time_tw": "11/04 13:01",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXXQ8blOh_dgnypaozG62n1uuI_ooUfSek=",
+     "time": "2026-11-04T13:17:01+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 7,
+     "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
+     "time_tw": "11/04 12:17",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgWq-tf_Oz5VDgJSn4SlDh1viv5DAhI1l_0=",
+     "time": "2026-11-04T12:54:56+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Camille",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 6,
+     "account": "NA:asdzxcvqwe#123",
+     "region": "NA",
+     "time_tw": "11/04 11:54",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgVerKzJ2QtCcTzJR49C_IpkkWKoXJOvd-M=",
      "time": "2026-11-03T16:31:01+09:00",
@@ -103,7 +168,8 @@
      "account": "NA:asdzxcvqwe#123",
      "region": "NA",
      "time_tw": "11/02 16:56",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVKsuDeAtwdCZ1XHMI9R0wR2QWdSleVjro=",
@@ -116,7 +182,8 @@
      "account": "NA:asdzxcvqwe#123",
      "region": "NA",
      "time_tw": "11/02 16:19",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUsUNWmm1t_FLb-qr0GnDRg733td5Oa3Xg=",
@@ -176,92 +243,99 @@
     }
    ],
    "summary": {
-    "games": 11,
-    "wins": 8,
-    "win_rate": 72.7,
+    "games": 16,
+    "wins": 11,
+    "win_rate": 68.8,
     "first": "2026-11-01T14:12:15+09:00",
-    "last": "2026-11-03T16:31:01+09:00",
+    "last": "2026-11-04T15:13:08+09:00",
     "positions": {
-     "TOP": 9,
-     "SUPPORT": 2
+     "TOP": 13,
+     "SUPPORT": 3
     },
     "champions": [
      {
       "champion": "Camille",
-      "games": 2,
-      "wins": 2,
-      "pick_rate": 18.2,
+      "games": 3,
+      "wins": 3,
+      "pick_rate": 18.8,
       "win_rate": 100.0
      },
      {
-      "champion": "Aurora",
-      "games": 1,
+      "champion": "Jayce",
+      "games": 3,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 18.8,
+      "win_rate": 33.3
+     },
+     {
+      "champion": "Aurora",
+      "games": 2,
+      "wins": 2,
+      "pick_rate": 12.5,
       "win_rate": 100.0
      },
      {
       "champion": "Blitzcrank",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
-      "win_rate": 100.0
-     },
-     {
-      "champion": "Jayce",
-      "games": 1,
-      "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 6.2,
       "win_rate": 100.0
      },
      {
       "champion": "Kled",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 6.2,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Lulu",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 6.2,
       "win_rate": 100.0
      },
      {
       "champion": "Orianna",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 6.2,
       "win_rate": 100.0
      },
      {
       "champion": "Urgot",
       "games": 1,
       "wins": 1,
-      "pick_rate": 9.1,
+      "pick_rate": 6.2,
       "win_rate": 100.0
      },
      {
       "champion": "Lucian",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 6.2,
       "win_rate": 0.0
      },
      {
       "champion": "Sylas",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 6.2,
       "win_rate": 0.0
      },
      {
       "champion": "Vayne",
       "games": 1,
       "wins": 0,
-      "pick_rate": 9.1,
+      "pick_rate": 6.2,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 9,
-   "last": "11/03 15:31",
+   "on_role": 13,
+   "last": "11/04 14:13",
    "last_region": "NA",
-   "last_na": "11/03 15:31"
+   "last_na": "11/04 14:13"
   },
   {
    "team": "GEN",
@@ -276,6 +350,97 @@
     "NA:Concrete jungle#USA"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgUcpohMDEL2uZMDhFFMlAkw8dkR45zQBIk=",
+     "time": "2026-11-04T16:37:50+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Naafiri",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Concrete jungle#USA",
+     "region": "NA",
+     "time_tw": "11/04 15:37",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUyx--Rib19gm7azWkmPaqmzRl01iF57XQ=",
+     "time": "2026-11-04T15:50:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Vi",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:Concrete jungle#USA",
+     "region": "NA",
+     "time_tw": "11/04 14:50",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgX4QJhulp7Q1256xpCH2FF0r7OnfwNRIa8=",
+     "time": "2026-11-04T15:06:11+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jarvan IV",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Concrete jungle#USA",
+     "region": "NA",
+     "time_tw": "11/04 14:06",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXVWtYxEbTHlvTD80gESxtuLwuftm3aiwI=",
+     "time": "2026-11-04T14:39:58+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "LOSE",
+     "op_rank": 5,
+     "account": "NA:Concrete jungle#USA",
+     "region": "NA",
+     "time_tw": "11/04 13:39",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXUuR4gdJn6EJUSDwLNfHk8-8-5O_P0Lus=",
+     "time": "2026-11-04T13:54:45+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Sylas",
+     "position": "SUPPORT",
+     "result": "LOSE",
+     "op_rank": 5,
+     "account": "NA:Concrete jungle#USA",
+     "region": "NA",
+     "time_tw": "11/04 12:54",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgXXQ8blOh_dgnypaozG62n1uuI_ooUfSek=",
+     "time": "2026-11-04T13:17:01+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Camille",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:Concrete jungle#USA",
+     "region": "NA",
+     "time_tw": "11/04 12:17",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVBHQkfN6n42n9kMsTpttYP2sBmdy1fLLI=",
+     "time": "2026-11-04T12:44:05+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Wukong",
+     "position": "JUNGLE",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:Concrete jungle#USA",
+     "region": "NA",
+     "time_tw": "11/04 11:44",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgVerKzJ2QtCcTzJR49C_IpkkWKoXJOvd-M=",
      "time": "2026-11-03T16:31:01+09:00",
@@ -339,7 +504,8 @@
      "account": "NA:Concrete jungle#USA",
      "region": "NA",
      "time_tw": "11/02 16:19",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUipsZbeInP4uaYrGJDGX3xAdQsZtc0qFI=",
@@ -352,7 +518,8 @@
      "account": "NA:Concrete jungle#USA",
      "region": "NA",
      "time_tw": "11/02 15:46",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXL9kt_XFdblxRrkXigFz73xQNG0SR4buk=",
@@ -365,7 +532,8 @@
      "account": "NA:Concrete jungle#USA",
      "region": "NA",
      "time_tw": "11/02 15:13",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWr8KR52LrB0DoVkLm2iGlDPWih_l3CtUQ=",
@@ -521,95 +689,123 @@
     }
    ],
    "summary": {
-    "games": 18,
-    "wins": 14,
-    "win_rate": 77.8,
+    "games": 25,
+    "wins": 18,
+    "win_rate": 72.0,
     "first": "2026-11-01T16:00:06+09:00",
-    "last": "2026-11-03T16:31:01+09:00",
+    "last": "2026-11-04T16:37:50+09:00",
     "positions": {
-     "JUNGLE": 8,
+     "JUNGLE": 13,
+     "SUPPORT": 4,
      "TOP": 4,
      "ADC": 3,
-     "SUPPORT": 2,
      "MID": 1
     },
     "champions": [
      {
+      "champion": "Camille",
+      "games": 3,
+      "wins": 3,
+      "pick_rate": 12.0,
+      "win_rate": 100.0
+     },
+     {
       "champion": "Jhin",
       "games": 3,
       "wins": 3,
-      "pick_rate": 16.7,
+      "pick_rate": 12.0,
       "win_rate": 100.0
      },
      {
       "champion": "Qiyana",
       "games": 3,
       "wins": 2,
-      "pick_rate": 16.7,
+      "pick_rate": 12.0,
       "win_rate": 66.7
      },
      {
       "champion": "Ambessa",
       "games": 2,
       "wins": 2,
-      "pick_rate": 11.1,
-      "win_rate": 100.0
-     },
-     {
-      "champion": "Camille",
-      "games": 2,
-      "wins": 2,
-      "pick_rate": 11.1,
+      "pick_rate": 8.0,
       "win_rate": 100.0
      },
      {
       "champion": "Lee Sin",
       "games": 2,
       "wins": 2,
-      "pick_rate": 11.1,
+      "pick_rate": 8.0,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Sylas",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 8.0,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Jayce",
+      "games": 2,
+      "wins": 0,
+      "pick_rate": 8.0,
+      "win_rate": 0.0
      },
      {
       "champion": "Yone",
       "games": 2,
       "wins": 0,
-      "pick_rate": 11.1,
+      "pick_rate": 8.0,
       "win_rate": 0.0
      },
      {
       "champion": "Gnar",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 4.0,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jarvan IV",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "K'Sante",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
-      "champion": "Sylas",
+      "champion": "Naafiri",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
-      "champion": "Jayce",
+      "champion": "Vi",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 4.0,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Wukong",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.6,
+      "pick_rate": 4.0,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 8,
-   "last": "11/03 15:31",
+   "on_role": 13,
+   "last": "11/04 15:37",
    "last_region": "NA",
-   "last_na": "11/03 15:31"
+   "last_na": "11/04 15:37"
   },
   {
    "team": "GEN",
@@ -624,6 +820,71 @@
     "NA:calm down#can"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgWmWS3u9n1FGYLVBbe_FGJLl8Tm2RtilNQ=",
+     "time": "2026-11-04T15:11:32+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Gnar",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:calm down#can",
+     "region": "NA",
+     "time_tw": "11/04 14:11",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgUnXJDZIgbr2vMb_kSx3QNSciahVOEtYlk=",
+     "time": "2026-11-04T14:36:14+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Galio",
+     "position": "MID",
+     "result": "LOSE",
+     "op_rank": 7,
+     "account": "NA:calm down#can",
+     "region": "NA",
+     "time_tw": "11/04 13:36",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXUuR4gdJn6EJUSDwLNfHk8-8-5O_P0Lus=",
+     "time": "2026-11-04T13:54:45+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:calm down#can",
+     "region": "NA",
+     "time_tw": "11/04 12:54",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgWfW6eFQ4FcUDByZqR1LmUhEvVpZSB2u5w=",
+     "time": "2026-11-04T13:20:12+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yone",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 7,
+     "account": "NA:calm down#can",
+     "region": "NA",
+     "time_tw": "11/04 12:20",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVBHQkfN6n42n9kMsTpttYP2sBmdy1fLLI=",
+     "time": "2026-11-04T12:44:05+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Orianna",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:calm down#can",
+     "region": "NA",
+     "time_tw": "11/04 11:44",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgXawmkMY-ry0rO7t-IyXTvMgkqAGOZNiCY=",
      "time": "2026-11-03T16:13:47+09:00",
@@ -713,7 +974,8 @@
      "account": "NA:calm down#can",
      "region": "NA",
      "time_tw": "11/02 11:36",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVt2tn7hysWgAKclU8Y32Kq8BauCGfT9lo=",
@@ -726,7 +988,8 @@
      "account": "NA:calm down#can",
      "region": "NA",
      "time_tw": "11/02 11:12",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgV6vva9ufmZm-UTz5-KGOAz6TyK5wODhw8=",
@@ -739,7 +1002,8 @@
      "account": "NA:calm down#can",
      "region": "NA",
      "time_tw": "11/02 10:41",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUPcoXxWYtRb0thrkMV2sPMTGO78HhSPt8=",
@@ -752,7 +1016,8 @@
      "account": "NA:calm down#can",
      "region": "NA",
      "time_tw": "11/02 03:51",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUrRkI8jxX7Btq3m6sZJHdJ7HFcRWVV8fs=",
@@ -765,7 +1030,8 @@
      "account": "NA:calm down#can",
      "region": "NA",
      "time_tw": "11/01 14:30",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUQeQG9e2I7YrPW6bhDshjhmWLT7ITE5j8=",
@@ -811,85 +1077,106 @@
     }
    ],
    "summary": {
-    "games": 14,
-    "wins": 10,
-    "win_rate": 71.4,
+    "games": 19,
+    "wins": 14,
+    "win_rate": 73.7,
     "first": "2026-11-01T13:59:16+09:00",
-    "last": "2026-11-03T16:13:47+09:00",
+    "last": "2026-11-04T15:11:32+09:00",
     "positions": {
-     "TOP": 8,
-     "MID": 6
+     "TOP": 10,
+     "MID": 9
     },
     "champions": [
      {
       "champion": "Ambessa",
       "games": 4,
       "wins": 4,
-      "pick_rate": 28.6,
+      "pick_rate": 21.1,
       "win_rate": 100.0
      },
      {
       "champion": "Cassiopeia",
       "games": 2,
       "wins": 2,
-      "pick_rate": 14.3,
+      "pick_rate": 10.5,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jayce",
+      "games": 2,
+      "wins": 2,
+      "pick_rate": 10.5,
       "win_rate": 100.0
      },
      {
       "champion": "K'Sante",
       "games": 2,
       "wins": 1,
-      "pick_rate": 14.3,
+      "pick_rate": 10.5,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Yone",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 10.5,
       "win_rate": 50.0
      },
      {
       "champion": "Ahri",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Annie",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
-      "champion": "Jayce",
+      "champion": "Gnar",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Orianna",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Camille",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Galio",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 5.3,
       "win_rate": 0.0
      },
      {
       "champion": "Taliyah",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
-      "win_rate": 0.0
-     },
-     {
-      "champion": "Yone",
-      "games": 1,
-      "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 6,
-   "last": "11/03 15:13",
+   "on_role": 9,
+   "last": "11/04 14:11",
    "last_region": "NA",
-   "last_na": "11/03 15:13"
+   "last_na": "11/04 14:11"
   },
   {
    "team": "GEN",
@@ -904,6 +1191,97 @@
     "NA:proteinmonster#thief"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgUmH3rpCJ2rB4-JDEYTc21Aj2OdK0zk840=",
+     "time": "2026-11-04T16:54:29+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yunara",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:proteinmonster#thief",
+     "region": "NA",
+     "time_tw": "11/04 15:54",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUQjGT76XiFftm6F83XjHEgF0yDSQldaMM=",
+     "time": "2026-11-04T16:20:04+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ambessa",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 8,
+     "account": "NA:proteinmonster#thief",
+     "region": "NA",
+     "time_tw": "11/04 15:20",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgXvXcYws62dpcyqalpmTlHwDI7Hs36S3FY=",
+     "time": "2026-11-04T15:46:08+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ashe",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:proteinmonster#thief",
+     "region": "NA",
+     "time_tw": "11/04 14:46",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUJYtpJm8Kf3E3PlcVxiJMbBqHmqN2MX7o=",
+     "time": "2026-11-04T15:10:45+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Corki",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:proteinmonster#thief",
+     "region": "NA",
+     "time_tw": "11/04 14:10",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVgkUnv15gJ1gXro9Cbh8XbvJx3dIW2-TE=",
+     "time": "2026-11-04T14:42:38+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ashe",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:proteinmonster#thief",
+     "region": "NA",
+     "time_tw": "11/04 13:42",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVfUS49tFFPcZ9igH4lqVLCi8E2xtyobYg=",
+     "time": "2026-11-04T14:10:15+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Pyke",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:proteinmonster#thief",
+     "region": "NA",
+     "time_tw": "11/04 13:10",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVdg1VSSqvOX28U4ZTRgkOzRGEuua5rhA0=",
+     "time": "2026-11-04T13:43:16+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Zeri",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:proteinmonster#thief",
+     "region": "NA",
+     "time_tw": "11/04 12:43",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgXCHlZIUrUKe_bwMq7H6gqJk_oHDcMlARE=",
      "time": "2026-11-03T17:28:19+09:00",
@@ -1045,7 +1423,8 @@
      "account": "NA:proteinmonster#thief",
      "region": "NA",
      "time_tw": "11/02 16:07",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXVkbP8AshDAuQ8aUVnTMUyxK6GiMLZQpE=",
@@ -1058,7 +1437,8 @@
      "account": "NA:proteinmonster#thief",
      "region": "NA",
      "time_tw": "11/02 15:28",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXRhIef20Vm7vFMpplqu1oeN-9pKJFLYn0=",
@@ -1071,7 +1451,8 @@
      "account": "NA:proteinmonster#thief",
      "region": "NA",
      "time_tw": "11/02 14:57",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgULppPhepbzwMF34MBf-7y3tfIjQAz_umU=",
@@ -1084,7 +1465,8 @@
      "account": "NA:proteinmonster#thief",
      "region": "NA",
      "time_tw": "11/02 14:33",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUHkx0CaVr4IFwiCJx9oe6Yml9E16wQoqQ=",
@@ -1097,7 +1479,8 @@
      "account": "NA:proteinmonster#thief",
      "region": "NA",
      "time_tw": "11/02 14:07",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXiBt67ZejEH4tTvdJJfVuFwyTZQbRR-uc=",
@@ -1110,7 +1493,8 @@
      "account": "NA:proteinmonster#thief",
      "region": "NA",
      "time_tw": "11/02 13:43",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUBVraL0Pln_ZS00hPBnYVnPMa8kvKobf4=",
@@ -1123,7 +1507,8 @@
      "account": "NA:proteinmonster#thief",
      "region": "NA",
      "time_tw": "11/02 12:09",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVZT21VVqotIlT71pn7evjrwPIWPtj2BmU=",
@@ -1183,99 +1568,129 @@
     }
    ],
    "summary": {
-    "games": 21,
-    "wins": 12,
-    "win_rate": 57.1,
+    "games": 28,
+    "wins": 18,
+    "win_rate": 64.3,
     "first": "2026-11-01T04:50:43+09:00",
-    "last": "2026-11-03T17:28:19+09:00",
+    "last": "2026-11-04T16:54:29+09:00",
     "positions": {
-     "ADC": 18,
-     "JUNGLE": 3
+     "ADC": 23,
+     "JUNGLE": 3,
+     "TOP": 1,
+     "SUPPORT": 1
     },
     "champions": [
      {
       "champion": "Kalista",
       "games": 4,
       "wins": 4,
-      "pick_rate": 19.0,
+      "pick_rate": 14.3,
       "win_rate": 100.0
      },
      {
-      "champion": "Yunara",
-      "games": 3,
-      "wins": 1,
+      "champion": "Ashe",
+      "games": 4,
+      "wins": 3,
       "pick_rate": 14.3,
-      "win_rate": 33.3
+      "win_rate": 75.0
+     },
+     {
+      "champion": "Yunara",
+      "games": 4,
+      "wins": 2,
+      "pick_rate": 14.3,
+      "win_rate": 50.0
      },
      {
       "champion": "Lee Sin",
       "games": 3,
       "wins": 0,
-      "pick_rate": 14.3,
+      "pick_rate": 10.7,
       "win_rate": 0.0
      },
      {
       "champion": "Caitlyn",
       "games": 2,
       "wins": 2,
-      "pick_rate": 9.5,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Ezreal",
       "games": 2,
       "wins": 2,
-      "pick_rate": 9.5,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
-      "champion": "Ashe",
-      "games": 2,
+      "champion": "Corki",
+      "games": 1,
       "wins": 1,
-      "pick_rate": 9.5,
-      "win_rate": 50.0
+      "pick_rate": 3.6,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Pyke",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.6,
+      "win_rate": 100.0
      },
      {
       "champion": "Tristana",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.8,
+      "pick_rate": 3.6,
       "win_rate": 100.0
      },
      {
       "champion": "Varus",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.8,
+      "pick_rate": 3.6,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Zeri",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.6,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Ambessa",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 3.6,
+      "win_rate": 0.0
      },
      {
       "champion": "Kai'Sa",
       "games": 1,
       "wins": 0,
-      "pick_rate": 4.8,
+      "pick_rate": 3.6,
       "win_rate": 0.0
      },
      {
       "champion": "Miss Fortune",
       "games": 1,
       "wins": 0,
-      "pick_rate": 4.8,
+      "pick_rate": 3.6,
       "win_rate": 0.0
      },
      {
       "champion": "Xayah",
       "games": 1,
       "wins": 0,
-      "pick_rate": 4.8,
+      "pick_rate": 3.6,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 18,
-   "last": "11/03 16:28",
+   "on_role": 23,
+   "last": "11/04 15:54",
    "last_region": "NA",
-   "last_na": "11/03 16:28"
+   "last_na": "11/04 15:54"
   },
   {
    "team": "GEN",
@@ -1290,6 +1705,84 @@
     "NA:New York#1114"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgXvXcYws62dpcyqalpmTlHwDI7Hs36S3FY=",
+     "time": "2026-11-04T15:46:08+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Seraphine",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:New York#1114",
+     "region": "NA",
+     "time_tw": "11/04 14:46",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgX4QJhulp7Q1256xpCH2FF0r7OnfwNRIa8=",
+     "time": "2026-11-04T15:06:11+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Seraphine",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:New York#1114",
+     "region": "NA",
+     "time_tw": "11/04 14:06",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUnXJDZIgbr2vMb_kSx3QNSciahVOEtYlk=",
+     "time": "2026-11-04T14:36:14+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Poppy",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:New York#1114",
+     "region": "NA",
+     "time_tw": "11/04 13:36",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUbj9wRdKzvv8S9-B7_vlUGUDlDl6lKSqA=",
+     "time": "2026-11-04T14:04:49+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Karma",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:New York#1114",
+     "region": "NA",
+     "time_tw": "11/04 13:04",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgW0ZbJtWXRsiEi9pyTOEtuF75z9ZeMDG6k=",
+     "time": "2026-11-04T13:29:37+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Alistar",
+     "position": "SUPPORT",
+     "result": "LOSE",
+     "op_rank": 8,
+     "account": "NA:New York#1114",
+     "region": "NA",
+     "time_tw": "11/04 12:29",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXv7-MS6H10Ad_XKseKER1XRohpxNDieGg=",
+     "time": "2026-11-04T12:46:15+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yuumi",
+     "position": "SUPPORT",
+     "result": "LOSE",
+     "op_rank": 5,
+     "account": "NA:New York#1114",
+     "region": "NA",
+     "time_tw": "11/04 11:46",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgVerKzJ2QtCcTzJR49C_IpkkWKoXJOvd-M=",
      "time": "2026-11-03T16:31:01+09:00",
@@ -1353,7 +1846,8 @@
      "account": "NA:New York#1114",
      "region": "NA",
      "time_tw": "11/02 15:50",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUIa7JiZvrwUtzAB-yhocz1o1hfWKqahZY=",
@@ -1366,7 +1860,8 @@
      "account": "NA:New York#1114",
      "region": "NA",
      "time_tw": "11/02 14:55",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUwafsz-CrMR9AKf5vBqAJeHkXRp7N7u8c=",
@@ -1379,7 +1874,8 @@
      "account": "NA:New York#1114",
      "region": "NA",
      "time_tw": "11/02 14:28",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXiBt67ZejEH4tTvdJJfVuFwyTZQbRR-uc=",
@@ -1392,7 +1888,8 @@
      "account": "NA:New York#1114",
      "region": "NA",
      "time_tw": "11/02 13:43",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgV9i6L6Rdj6zOTIJpg437_IoDg8Uxv0nec=",
@@ -1405,7 +1902,8 @@
      "account": "NA:New York#1114",
      "region": "NA",
      "time_tw": "11/02 13:07",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWfNqwDNV-OeQUFVZ71V2x5iEiMdrXLxeM=",
@@ -1418,7 +1916,8 @@
      "account": "NA:New York#1114",
      "region": "NA",
      "time_tw": "11/02 12:20",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWs2Rid8ENL31hST4jSS181P969nDU3GL4=",
@@ -1506,13 +2005,13 @@
     }
    ],
    "summary": {
-    "games": 16,
-    "wins": 11,
-    "win_rate": 68.8,
+    "games": 22,
+    "wins": 15,
+    "win_rate": 68.2,
     "first": "2026-11-01T13:31:17+09:00",
-    "last": "2026-11-03T16:31:01+09:00",
+    "last": "2026-11-04T15:46:08+09:00",
     "positions": {
-     "SUPPORT": 12,
+     "SUPPORT": 18,
      "TOP": 2,
      "MID": 1,
      "JUNGLE": 1
@@ -1522,99 +2021,120 @@
       "champion": "Lulu",
       "games": 3,
       "wins": 3,
-      "pick_rate": 18.8,
+      "pick_rate": 13.6,
       "win_rate": 100.0
      },
      {
       "champion": "Karma",
+      "games": 3,
+      "wins": 1,
+      "pick_rate": 13.6,
+      "win_rate": 33.3
+     },
+     {
+      "champion": "Seraphine",
       "games": 2,
-      "wins": 0,
-      "pick_rate": 12.5,
-      "win_rate": 0.0
+      "wins": 2,
+      "pick_rate": 9.1,
+      "win_rate": 100.0
      },
      {
       "champion": "Alistar",
-      "games": 1,
+      "games": 2,
       "wins": 1,
-      "pick_rate": 6.2,
-      "win_rate": 100.0
+      "pick_rate": 9.1,
+      "win_rate": 50.0
      },
      {
       "champion": "Blitzcrank",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 100.0
      },
      {
       "champion": "Lee Sin",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 100.0
      },
      {
       "champion": "Leona",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 100.0
      },
      {
       "champion": "Milio",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Poppy",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 4.5,
       "win_rate": 100.0
      },
      {
       "champion": "Senna",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 100.0
      },
      {
       "champion": "Thresh",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 100.0
      },
      {
       "champion": "Xerath",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 100.0
      },
      {
       "champion": "Fiora",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 0.0
      },
      {
       "champion": "Nautilus",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
       "win_rate": 0.0
      },
      {
       "champion": "Vayne",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.2,
+      "pick_rate": 4.5,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Yuumi",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 4.5,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 12,
-   "last": "11/03 15:31",
+   "on_role": 18,
+   "last": "11/04 14:46",
    "last_region": "NA",
-   "last_na": "11/03 15:31"
+   "last_na": "11/04 14:46"
   },
   {
    "team": "T1",
@@ -1629,6 +2149,71 @@
     "NA:buriburii#1234"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgUjxkSH2WjVbG-DxHvdEW8iBkISUg6XE8k=",
+     "time": "2026-11-04T16:18:25+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ekko",
+     "position": "JUNGLE",
+     "result": "LOSE",
+     "op_rank": 8,
+     "account": "NA:buriburii#1234",
+     "region": "NA",
+     "time_tw": "11/04 15:18",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgX1rwH9dcpfOVY7sH8aszbkZoxstyQWv_0=",
+     "time": "2026-11-04T15:44:26+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Rumble",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:buriburii#1234",
+     "region": "NA",
+     "time_tw": "11/04 14:44",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXrxPgjXLl8-KR6ZLAsnQJJE7c4redRZUQ=",
+     "time": "2026-11-04T14:58:30+09:00",
+     "queue": "SOLORANKED",
+     "champion": "K'Sante",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 5,
+     "account": "NA:buriburii#1234",
+     "region": "NA",
+     "time_tw": "11/04 13:58",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgV0JdmJkMogohAarhvA2cMUYpONeV4UM-o=",
+     "time": "2026-11-04T14:29:37+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Irelia",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:buriburii#1234",
+     "region": "NA",
+     "time_tw": "11/04 13:29",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXIONf_oakYiXaozYruQAa4QACS3OuhYyk=",
+     "time": "2026-11-04T12:58:19+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:buriburii#1234",
+     "region": "NA",
+     "time_tw": "11/04 11:58",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgV50XZyccqcoMatGQhyZMVXqD5EM8VjaiA=",
      "time": "2026-11-03T16:18:37+09:00",
@@ -1748,83 +2333,105 @@
     }
    ],
    "summary": {
-    "games": 9,
-    "wins": 7,
-    "win_rate": 77.8,
+    "games": 14,
+    "wins": 10,
+    "win_rate": 71.4,
     "first": "2026-11-01T14:12:24+09:00",
-    "last": "2026-11-03T16:18:37+09:00",
+    "last": "2026-11-04T16:18:25+09:00",
     "positions": {
-     "TOP": 9
+     "TOP": 13,
+     "JUNGLE": 1
     },
     "champions": [
      {
       "champion": "K'Sante",
+      "games": 3,
+      "wins": 3,
+      "pick_rate": 21.4,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Irelia",
       "games": 2,
       "wins": 2,
-      "pick_rate": 22.2,
+      "pick_rate": 14.3,
       "win_rate": 100.0
      },
      {
       "champion": "Aurora",
       "games": 1,
       "wins": 1,
-      "pick_rate": 11.1,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Fiora",
       "games": 1,
       "wins": 1,
-      "pick_rate": 11.1,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Gragas",
       "games": 1,
       "wins": 1,
-      "pick_rate": 11.1,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
-      "champion": "Irelia",
+      "champion": "Jayce",
       "games": 1,
       "wins": 1,
-      "pick_rate": 11.1,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Olaf",
       "games": 1,
       "wins": 1,
-      "pick_rate": 11.1,
+      "pick_rate": 7.1,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Ekko",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 7.1,
+      "win_rate": 0.0
      },
      {
       "champion": "Jax",
       "games": 1,
       "wins": 0,
-      "pick_rate": 11.1,
+      "pick_rate": 7.1,
       "win_rate": 0.0
      },
      {
       "champion": "Renekton",
       "games": 1,
       "wins": 0,
-      "pick_rate": 11.1,
+      "pick_rate": 7.1,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Rumble",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 7.1,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 9,
-   "last": "11/03 15:18",
+   "on_role": 13,
+   "last": "11/04 15:18",
    "last_region": "NA",
-   "last_na": "11/03 15:18"
+   "last_na": "11/04 15:18"
   },
   {
    "team": "T1",
    "role": "jungle",
    "player": "Oner",
-   "partial": false,
+   "partial": true,
    "accounts": [
     "worlds#111"
    ],
@@ -1833,6 +2440,84 @@
     "NA:worlds#111"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgUjxkSH2WjVbG-DxHvdEW8iBkISUg6XE8k=",
+     "time": "2026-11-04T16:18:25+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Pantheon",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:worlds#111",
+     "region": "NA",
+     "time_tw": "11/04 15:18",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgX1rwH9dcpfOVY7sH8aszbkZoxstyQWv_0=",
+     "time": "2026-11-04T15:44:26+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ambessa",
+     "position": "JUNGLE",
+     "result": "LOSE",
+     "op_rank": 6,
+     "account": "NA:worlds#111",
+     "region": "NA",
+     "time_tw": "11/04 14:44",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXrxPgjXLl8-KR6ZLAsnQJJE7c4redRZUQ=",
+     "time": "2026-11-04T14:58:30+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:worlds#111",
+     "region": "NA",
+     "time_tw": "11/04 13:58",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgV0JdmJkMogohAarhvA2cMUYpONeV4UM-o=",
+     "time": "2026-11-04T14:29:37+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Sylas",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:worlds#111",
+     "region": "NA",
+     "time_tw": "11/04 13:29",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXkYdFJoEuIzA61RBy5wv2_QSMOZQ_sQy0=",
+     "time": "2026-11-04T13:06:32+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Camille",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:worlds#111",
+     "region": "NA",
+     "time_tw": "11/04 12:06",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVDxTX5pRBL4PehVwAmVrcdMdvJ5DMU6cU=",
+     "time": "2026-11-04T12:36:17+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Camille",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 8,
+     "account": "NA:worlds#111",
+     "region": "NA",
+     "time_tw": "11/04 11:36",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgVl60duvOYVe4ozFKlweeG_riBSieoTun8=",
      "time": "2026-11-04T12:00:53+09:00",
@@ -2026,81 +2711,103 @@
      "account": "NA:worlds#111",
      "region": "NA",
      "time_tw": "11/01 12:34",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     }
    ],
    "summary": {
-    "games": 15,
-    "wins": 11,
-    "win_rate": 73.3,
+    "games": 21,
+    "wins": 13,
+    "win_rate": 61.9,
     "first": "2026-11-01T13:34:49+09:00",
-    "last": "2026-11-04T12:00:53+09:00",
+    "last": "2026-11-04T16:18:25+09:00",
     "positions": {
-     "JUNGLE": 14,
-     "TOP": 1
+     "JUNGLE": 17,
+     "TOP": 4
     },
     "champions": [
+     {
+      "champion": "Jayce",
+      "games": 4,
+      "wins": 4,
+      "pick_rate": 19.0,
+      "win_rate": 100.0
+     },
      {
       "champion": "Rengar",
       "games": 4,
       "wins": 3,
-      "pick_rate": 26.7,
+      "pick_rate": 19.0,
       "win_rate": 75.0
-     },
-     {
-      "champion": "Jayce",
-      "games": 3,
-      "wins": 3,
-      "pick_rate": 20.0,
-      "win_rate": 100.0
      },
      {
       "champion": "Hecarim",
       "games": 3,
       "wins": 2,
-      "pick_rate": 20.0,
+      "pick_rate": 14.3,
       "win_rate": 66.7
      },
      {
       "champion": "Aatrox",
       "games": 2,
       "wins": 2,
-      "pick_rate": 13.3,
+      "pick_rate": 9.5,
       "win_rate": 100.0
      },
      {
       "champion": "Sylas",
-      "games": 1,
-      "wins": 1,
-      "pick_rate": 6.7,
+      "games": 2,
+      "wins": 2,
+      "pick_rate": 9.5,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Camille",
+      "games": 2,
+      "wins": 0,
+      "pick_rate": 9.5,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Ambessa",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 4.8,
+      "win_rate": 0.0
      },
      {
       "champion": "Maokai",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.7,
+      "pick_rate": 4.8,
       "win_rate": 0.0
      },
      {
       "champion": "Nidalee",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.7,
+      "pick_rate": 4.8,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Pantheon",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 4.8,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 14,
-   "last": "11/04 11:00",
+   "on_role": 17,
+   "last": "11/04 15:18",
    "last_region": "NA",
-   "last_na": "11/04 11:00"
+   "last_na": "11/04 15:18"
   },
   {
    "team": "T1",
    "role": "mid",
    "player": "Faker",
-   "partial": false,
+   "partial": true,
    "accounts": [
     "Hide in bush#NYKR"
    ],
@@ -2109,6 +2816,71 @@
     "NA:Hide in bush#NYKR"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgXOWbsv2GZPMgscnBB2_vOAfkwat8Kv1l8=",
+     "time": "2026-11-04T17:35:57+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Locke",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
+     "time_tw": "11/04 16:35",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXdSYt6Fk2rCX-ZMaFGV6q-uxJdlDLmOrc=",
+     "time": "2026-11-04T15:14:34+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Locke",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
+     "time_tw": "11/04 14:14",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgV1j7_U2goQBpzLK3fRkVwykDpMhRsQMeY=",
+     "time": "2026-11-04T13:58:27+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Lee Sin",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
+     "time_tw": "11/04 12:58",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVdB7kxx15uSBJzuhQ9ZXMC0_8e1SdipMk=",
+     "time": "2026-11-04T13:24:02+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yone",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 7,
+     "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
+     "time_tw": "11/04 12:24",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUOqPOtzzuEZ-5aywjBRlG5gUm9jfkS_8k=",
+     "time": "2026-11-04T12:46:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Rengar",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Hide in bush#NYKR",
+     "region": "NA",
+     "time_tw": "11/04 11:46",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgXDcuXrqmI5oBWEm92TTKwXfZeSDUCD7bM=",
      "time": "2026-11-04T10:27:26+09:00",
@@ -2306,94 +3078,108 @@
     }
    ],
    "summary": {
-    "games": 15,
-    "wins": 10,
-    "win_rate": 66.7,
+    "games": 20,
+    "wins": 15,
+    "win_rate": 75.0,
     "first": "2026-11-01T04:03:51+09:00",
-    "last": "2026-11-04T10:27:26+09:00",
+    "last": "2026-11-04T17:35:57+09:00",
     "positions": {
-     "MID": 9,
-     "JUNGLE": 4,
+     "MID": 12,
+     "JUNGLE": 6,
      "SUPPORT": 1,
      "TOP": 1
     },
     "champions": [
      {
       "champion": "Rengar",
-      "games": 4,
-      "wins": 2,
-      "pick_rate": 26.7,
-      "win_rate": 50.0
+      "games": 5,
+      "wins": 3,
+      "pick_rate": 25.0,
+      "win_rate": 60.0
+     },
+     {
+      "champion": "Yone",
+      "games": 3,
+      "wins": 3,
+      "pick_rate": 15.0,
+      "win_rate": 100.0
      },
      {
       "champion": "LeBlanc",
       "games": 2,
       "wins": 2,
-      "pick_rate": 13.3,
+      "pick_rate": 10.0,
       "win_rate": 100.0
      },
      {
-      "champion": "Yone",
+      "champion": "Locke",
       "games": 2,
       "wins": 2,
-      "pick_rate": 13.3,
+      "pick_rate": 10.0,
       "win_rate": 100.0
      },
      {
       "champion": "Aurora",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.7,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Cassiopeia",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.7,
+      "pick_rate": 5.0,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Lee Sin",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Syndra",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.7,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Viktor",
       "games": 1,
       "wins": 1,
-      "pick_rate": 6.7,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Blitzcrank",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.7,
+      "pick_rate": 5.0,
       "win_rate": 0.0
      },
      {
       "champion": "Olaf",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.7,
+      "pick_rate": 5.0,
       "win_rate": 0.0
      },
      {
       "champion": "Ryze",
       "games": 1,
       "wins": 0,
-      "pick_rate": 6.7,
+      "pick_rate": 5.0,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 9,
-   "last": "11/04 09:27",
+   "on_role": 12,
+   "last": "11/04 16:35",
    "last_region": "NA",
-   "last_na": "11/04 09:27"
+   "last_na": "11/04 16:35"
   },
   {
    "team": "T1",
@@ -2408,6 +3194,110 @@
     "NA:gaesalbuger#aaaa"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgXaWRr1nJbt5ft1r6uL_xrazGGgMSXk-0g=",
+     "time": "2026-11-04T17:23:44+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jhin",
+     "position": "ADC",
+     "result": "LOSE",
+     "op_rank": 6,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 16:23",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVW_UIldpNG5KD8RvnpnuPhaGtgzN5gZqs=",
+     "time": "2026-11-04T16:47:29+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Xayah",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 15:47",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgWebTYOeMAon0px5726VDngnU0Y1XFCpJ4=",
+     "time": "2026-11-04T16:18:19+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Aphelios",
+     "position": "ADC",
+     "result": "LOSE",
+     "op_rank": 9,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 15:18",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgW0qKxJGKAlmoD11z-RCnsp9k_De4vWetc=",
+     "time": "2026-11-04T15:48:41+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Twitch",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 14:48",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgW4rolWU5vdesK-GKRI0RaF9cL70Wn8rdM=",
+     "time": "2026-11-04T15:07:13+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yunara",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 14:07",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgWW2q6ehfn1iZ5K4d6kPIrV5yWmQF6JXI4=",
+     "time": "2026-11-04T14:38:59+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 13:38",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgUbj9wRdKzvv8S9-B7_vlUGUDlDl6lKSqA=",
+     "time": "2026-11-04T14:04:49+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jhin",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 13:04",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgU1XahGOKI3X41SyHxKZhmwTtqgmKoyNX4=",
+     "time": "2026-11-04T12:53:01+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Akali",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:gaesalbuger#aaaa",
+     "region": "NA",
+     "time_tw": "11/04 11:53",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgXHVqRyUtqrT9z_KVJxkps8kKZYhU7qqF0=",
      "time": "2026-11-04T12:16:52+09:00",
@@ -2575,7 +3465,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/03 11:27",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgW8yMUjFRHYxcF8PsRRgOOc2HOnmCApyAw=",
@@ -2588,7 +3479,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/02 16:55",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgX4cpe6s2yVI8opEjfOD-P8UHyRaedfMDQ=",
@@ -2601,7 +3493,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/02 16:16",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWzrcZGcgNNVgdomMOwx_aIMb2csAHt2zk=",
@@ -2614,7 +3507,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/02 15:50",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVGDJlRUh9x2YRtvsCbWe1li7RsnnwO1Zo=",
@@ -2627,7 +3521,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/02 15:08",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUFdo_4Q6j0HlpqWfNrtS3K_0X8ZCTzB2E=",
@@ -2640,7 +3535,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/02 14:35",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUuHO3nFqwi-jHrlRDjD5SHT8uiVBdhSUM=",
@@ -2653,7 +3549,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/02 14:00",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVeHy7lnGGLsXuHi9XwC24eJL_SEdQH2YM=",
@@ -2666,7 +3563,8 @@
      "account": "NA:gaesalbuger#aaaa",
      "region": "NA",
      "time_tw": "11/02 13:32",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVLVGzA_Oxb2f66e0ZEKs7W1oNPIUwSXdU=",
@@ -2754,151 +3652,179 @@
     }
    ],
    "summary": {
-    "games": 26,
-    "wins": 17,
-    "win_rate": 65.4,
+    "games": 34,
+    "wins": 23,
+    "win_rate": 67.6,
     "first": "2026-11-01T10:45:46+09:00",
-    "last": "2026-11-04T12:16:52+09:00",
+    "last": "2026-11-04T17:23:44+09:00",
     "positions": {
-     "ADC": 16,
+     "ADC": 22,
+     "MID": 4,
      "JUNGLE": 4,
-     "MID": 3,
-     "TOP": 2,
+     "TOP": 3,
      "SUPPORT": 1
     },
     "champions": [
      {
+      "champion": "Jhin",
+      "games": 3,
+      "wins": 2,
+      "pick_rate": 8.8,
+      "win_rate": 66.7
+     },
+     {
       "champion": "Ezreal",
       "games": 3,
       "wins": 1,
-      "pick_rate": 11.5,
+      "pick_rate": 8.8,
       "win_rate": 33.3
      },
      {
       "champion": "Camille",
       "games": 2,
       "wins": 2,
-      "pick_rate": 7.7,
+      "pick_rate": 5.9,
       "win_rate": 100.0
      },
      {
       "champion": "Corki",
       "games": 2,
       "wins": 2,
-      "pick_rate": 7.7,
+      "pick_rate": 5.9,
       "win_rate": 100.0
      },
      {
       "champion": "Kai'Sa",
       "games": 2,
       "wins": 2,
-      "pick_rate": 7.7,
+      "pick_rate": 5.9,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Xayah",
+      "games": 2,
+      "wins": 2,
+      "pick_rate": 5.9,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Aphelios",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 5.9,
+      "win_rate": 50.0
      },
      {
       "champion": "Tristana",
       "games": 2,
       "wins": 1,
-      "pick_rate": 7.7,
+      "pick_rate": 5.9,
       "win_rate": 50.0
      },
      {
       "champion": "Kalista",
       "games": 2,
       "wins": 0,
-      "pick_rate": 7.7,
+      "pick_rate": 5.9,
       "win_rate": 0.0
      },
      {
       "champion": "Sylas",
       "games": 2,
       "wins": 0,
-      "pick_rate": 7.7,
+      "pick_rate": 5.9,
       "win_rate": 0.0
      },
      {
-      "champion": "Aphelios",
+      "champion": "Akali",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Aurora",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
-      "champion": "Jhin",
+      "champion": "Jayce",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Nidalee",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Olaf",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Qiyana",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
-      "champion": "Xayah",
+      "champion": "Twitch",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Yone",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Yunara",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Ziggs",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Ashe",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 0.0
      },
      {
       "champion": "Xin Zhao",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.8,
+      "pick_rate": 2.9,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 16,
-   "last": "11/04 11:16",
+   "on_role": 22,
+   "last": "11/04 16:23",
    "last_region": "NA",
-   "last_na": "11/04 11:16"
+   "last_na": "11/04 16:23"
   },
   {
    "team": "T1",
@@ -2913,6 +3839,71 @@
     "NA:doryunnim#Frank"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgV-UdUx5pl9qKMHtO3wubg2Pln_defAfoY=",
+     "time": "2026-11-04T16:35:11+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 9,
+     "account": "NA:doryunnim#Frank",
+     "region": "NA",
+     "time_tw": "11/04 15:35",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgXqQlwtyX0NklgdXsZHMjogjdFiejQ4oTA=",
+     "time": "2026-11-04T15:57:40+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Kalista",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:doryunnim#Frank",
+     "region": "NA",
+     "time_tw": "11/04 14:57",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgUDsv8MoNmqqYqCSAuTxjbb6-qiMRMfzjo=",
+     "time": "2026-11-04T15:16:37+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jarvan IV",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:doryunnim#Frank",
+     "region": "NA",
+     "time_tw": "11/04 14:16",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVgWNNdhJSPlskXGhbfR5BjsmOJdRSivPM=",
+     "time": "2026-11-04T14:50:37+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Camille",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 6,
+     "account": "NA:doryunnim#Frank",
+     "region": "NA",
+     "time_tw": "11/04 13:50",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVrNJ5PzK-0ycDq1hI3Qm421jJLTogDF3c=",
+     "time": "2026-11-04T12:47:18+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Corki",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:doryunnim#Frank",
+     "region": "NA",
+     "time_tw": "11/04 11:47",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgXHVqRyUtqrT9z_KVJxkps8kKZYhU7qqF0=",
      "time": "2026-11-04T12:16:52+09:00",
@@ -2993,64 +3984,85 @@
     }
    ],
    "summary": {
-    "games": 6,
-    "wins": 4,
-    "win_rate": 66.7,
+    "games": 11,
+    "wins": 6,
+    "win_rate": 54.5,
     "first": "2026-11-02T06:05:46+09:00",
-    "last": "2026-11-04T12:16:52+09:00",
+    "last": "2026-11-04T16:35:11+09:00",
     "positions": {
-     "TOP": 4,
-     "JUNGLE": 2
+     "TOP": 8,
+     "JUNGLE": 3
     },
     "champions": [
      {
       "champion": "Corki",
-      "games": 1,
+      "games": 2,
       "wins": 1,
-      "pick_rate": 16.7,
-      "win_rate": 100.0
+      "pick_rate": 18.2,
+      "win_rate": 50.0
      },
      {
       "champion": "Kalista",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 18.2,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Jarvan IV",
       "games": 1,
       "wins": 1,
-      "pick_rate": 16.7,
+      "pick_rate": 9.1,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jayce",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Sejuani",
       "games": 1,
       "wins": 1,
-      "pick_rate": 16.7,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Tristana",
       "games": 1,
       "wins": 1,
-      "pick_rate": 16.7,
+      "pick_rate": 9.1,
       "win_rate": 100.0
      },
      {
       "champion": "Aatrox",
       "games": 1,
       "wins": 0,
-      "pick_rate": 16.7,
+      "pick_rate": 9.1,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Camille",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 9.1,
       "win_rate": 0.0
      },
      {
       "champion": "Nocturne",
       "games": 1,
       "wins": 0,
-      "pick_rate": 16.7,
+      "pick_rate": 9.1,
       "win_rate": 0.0
      }
     ]
    },
    "on_role": 0,
-   "last": "11/04 11:16",
+   "last": "11/04 15:35",
    "last_region": "NA",
-   "last_na": "11/04 11:16"
+   "last_na": "11/04 15:35"
   },
   {
    "team": "DK",
@@ -3066,6 +4078,97 @@
     "KR:다죽이는게정#L을가져가"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgUQjGT76XiFftm6F83XjHEgF0yDSQldaMM=",
+     "time": "2026-11-04T16:20:04+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Zed",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/04 15:20",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgX1RPFqSaV6OFAxGwGWWqaz_5inkNpFNYA=",
+     "time": "2026-11-04T15:49:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Sylas",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 5,
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/04 14:49",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVrpEyNlQzG3B4_qIRjjZC5uuSHJpsbCQc=",
+     "time": "2026-11-04T15:13:08+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ahri",
+     "position": "MID",
+     "result": "LOSE",
+     "op_rank": 5,
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/04 14:13",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgXVWtYxEbTHlvTD80gESxtuLwuftm3aiwI=",
+     "time": "2026-11-04T14:39:58+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Renekton",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 3,
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/04 13:39",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXOL9ml4SSrV1f-ji2E0fHkC2A2SlhQjhY=",
+     "time": "2026-11-04T14:05:40+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/04 13:05",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgV_PFSmTehlPYavg1dDvxIeY14wyUppG_o=",
+     "time": "2026-11-04T13:28:51+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 5,
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/04 12:28",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVBHQkfN6n42n9kMsTpttYP2sBmdy1fLLI=",
+     "time": "2026-11-04T12:44:05+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Nautilus",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
+     "region": "NA",
+     "time_tw": "11/04 11:44",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgXOHf-B1F6Nkf33uXzppsuMj7MjcAJy7vI=",
      "time": "2026-11-03T16:46:03+09:00",
@@ -3246,7 +4349,8 @@
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
      "region": "NA",
      "time_tw": "11/02 15:00",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUJce_vUaqqPxm9oK0xRQLO1KPYFx2B_Bc=",
@@ -3259,7 +4363,8 @@
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
      "region": "NA",
      "time_tw": "11/02 14:27",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXtf9SKRTCE2pTbgvJn3NZxOpAoSEMM5O4=",
@@ -3272,7 +4377,8 @@
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
      "region": "NA",
      "time_tw": "11/02 05:03",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUx4sdF3V89rYt6_XRsNirokyhZI0REsOk=",
@@ -3285,7 +4391,8 @@
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
      "region": "NA",
      "time_tw": "11/01 16:01",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWPjGdl2ZLo-LsYXr5ZEycnE-DDU7R3eGg=",
@@ -3298,7 +4405,8 @@
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
      "region": "NA",
      "time_tw": "11/01 15:29",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgX0a6xm_8sclKtkDk9lRm782I9ESRIt15s=",
@@ -3311,7 +4419,8 @@
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
      "region": "NA",
      "time_tw": "11/01 04:42",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWhM8vwuPzQaV5R8V420nbs5VKCMZRUOqw=",
@@ -3324,118 +4433,149 @@
      "account": "NA:Siuuuuuuuuuuuuuu#yarrr",
      "region": "NA",
      "time_tw": "11/01 03:26",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     }
    ],
    "summary": {
-    "games": 20,
-    "wins": 8,
-    "win_rate": 40.0,
+    "games": 27,
+    "wins": 13,
+    "win_rate": 48.1,
     "first": "2026-11-01T04:26:47+09:00",
-    "last": "2026-11-03T16:46:03+09:00",
+    "last": "2026-11-04T16:20:04+09:00",
     "positions": {
-     "TOP": 18,
+     "TOP": 21,
+     "MID": 3,
+     "SUPPORT": 1,
      "ADC": 1,
      "JUNGLE": 1
     },
     "champions": [
      {
       "champion": "Jayce",
-      "games": 6,
-      "wins": 4,
-      "pick_rate": 30.0,
-      "win_rate": 66.7
+      "games": 8,
+      "wins": 6,
+      "pick_rate": 29.6,
+      "win_rate": 75.0
      },
      {
       "champion": "Jax",
       "games": 2,
       "wins": 2,
-      "pick_rate": 10.0,
+      "pick_rate": 7.4,
       "win_rate": 100.0
      },
      {
       "champion": "Ornn",
       "games": 2,
       "wins": 0,
-      "pick_rate": 10.0,
+      "pick_rate": 7.4,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Renekton",
+      "games": 2,
+      "wins": 0,
+      "pick_rate": 7.4,
       "win_rate": 0.0
      },
      {
       "champion": "Ezreal",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Nautilus",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.7,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Sylas",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.7,
       "win_rate": 100.0
      },
      {
       "champion": "Vayne",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Zed",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.7,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Ahri",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 3.7,
+      "win_rate": 0.0
      },
      {
       "champion": "Ambessa",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 0.0
      },
      {
       "champion": "Gragas",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 0.0
      },
      {
       "champion": "Jhin",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 0.0
      },
      {
       "champion": "Nasus",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 0.0
      },
      {
       "champion": "Nidalee",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 0.0
      },
      {
       "champion": "Olaf",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.0,
-      "win_rate": 0.0
-     },
-     {
-      "champion": "Renekton",
-      "games": 1,
-      "wins": 0,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 0.0
      },
      {
       "champion": "Yone",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.0,
+      "pick_rate": 3.7,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 18,
-   "last": "11/03 15:46",
+   "on_role": 21,
+   "last": "11/04 15:20",
    "last_region": "NA",
-   "last_na": "11/03 15:46"
+   "last_na": "11/04 15:20"
   },
   {
    "team": "DK",
@@ -3450,6 +4590,71 @@
     "NA:tyjoierg#123"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgUGoOZHlI6LJNOEXDDg88RvAoyhyioKVo0=",
+     "time": "2026-11-04T15:45:53+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Nautilus",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:tyjoierg#123",
+     "region": "NA",
+     "time_tw": "11/04 14:45",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgXWpKJihshkw0vauz3MH7zaemtJ6uZBAQo=",
+     "time": "2026-11-04T15:22:40+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:tyjoierg#123",
+     "region": "NA",
+     "time_tw": "11/04 14:22",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXbKTEv1qGMibgLJi5afRLf80qPOezVDZ8=",
+     "time": "2026-11-04T14:48:47+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Qiyana",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:tyjoierg#123",
+     "region": "NA",
+     "time_tw": "11/04 13:48",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgWfDqkToYLRFNvq8B1mxVH9vQDFUJmEGZo=",
+     "time": "2026-11-04T14:05:33+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Lee Sin",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:tyjoierg#123",
+     "region": "NA",
+     "time_tw": "11/04 13:05",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVdorS8SA6ZEdAk8yDdXe8F9mKprDLmuHA=",
+     "time": "2026-11-04T13:29:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ezreal",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:tyjoierg#123",
+     "region": "NA",
+     "time_tw": "11/04 12:29",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgXmb-pjTusVWi_u5bfQMHV8kbufBnXauOA=",
      "time": "2026-11-03T13:07:31+09:00",
@@ -3556,43 +4761,65 @@
     }
    ],
    "summary": {
-    "games": 8,
-    "wins": 5,
-    "win_rate": 62.5,
+    "games": 13,
+    "wins": 10,
+    "win_rate": 76.9,
     "first": "2026-11-01T15:07:10+09:00",
-    "last": "2026-11-03T13:07:31+09:00",
+    "last": "2026-11-04T15:45:53+09:00",
     "positions": {
-     "JUNGLE": 5,
-     "ADC": 3
+     "JUNGLE": 8,
+     "ADC": 4,
+     "SUPPORT": 1
     },
     "champions": [
      {
       "champion": "Lee Sin",
-      "games": 4,
-      "wins": 3,
-      "pick_rate": 50.0,
-      "win_rate": 75.0
+      "games": 5,
+      "wins": 4,
+      "pick_rate": 38.5,
+      "win_rate": 80.0
      },
      {
       "champion": "Jhin",
       "games": 3,
       "wins": 1,
-      "pick_rate": 37.5,
+      "pick_rate": 23.1,
       "win_rate": 33.3
      },
      {
       "champion": "Qiyana",
+      "games": 2,
+      "wins": 2,
+      "pick_rate": 15.4,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Ezreal",
       "games": 1,
       "wins": 1,
-      "pick_rate": 12.5,
+      "pick_rate": 7.7,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jayce",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 7.7,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Nautilus",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 7.7,
       "win_rate": 100.0
      }
     ]
    },
-   "on_role": 5,
-   "last": "11/03 12:07",
+   "on_role": 8,
+   "last": "11/04 14:45",
    "last_region": "NA",
-   "last_na": "11/03 12:07"
+   "last_na": "11/04 14:45"
   },
   {
    "team": "DK",
@@ -3609,6 +4836,58 @@
     "KR:DWG KIA#KR1"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgUoGIA3n6N_cIbIYxyLvp6GF8yo_JVAozY=",
+     "time": "2026-11-04T14:10:22+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Sylas",
+     "position": "MID",
+     "result": "LOSE",
+     "op_rank": 8,
+     "account": "NA:Sonny Hayes#722",
+     "region": "NA",
+     "time_tw": "11/04 13:10",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVjIlsHan6mXDNwBE9Z1YujIiZRR8_6d20=",
+     "time": "2026-11-04T13:39:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Nidalee",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:Sonny Hayes#722",
+     "region": "NA",
+     "time_tw": "11/04 12:39",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgU4689TwTWufkr4uln-AF0Wq77HkIUl03c=",
+     "time": "2026-11-04T13:18:38+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Sylas",
+     "position": "MID",
+     "result": "LOSE",
+     "op_rank": 2,
+     "account": "NA:Sonny Hayes#722",
+     "region": "NA",
+     "time_tw": "11/04 12:18",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgX6E__P-7URQGAgDHKjt56kIa2zKw5iMSE=",
+     "time": "2026-11-04T12:34:32+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yone",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:Sonny Hayes#722",
+     "region": "NA",
+     "time_tw": "11/04 11:34",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgVHrp5nFgONqlVjQ9Pfun--7Se-ajA1Ez8=",
      "time": "2026-11-02T15:42:33+09:00",
@@ -3637,35 +4916,50 @@
     }
    ],
    "summary": {
-    "games": 2,
-    "wins": 0,
-    "win_rate": 0.0,
+    "games": 6,
+    "wins": 2,
+    "win_rate": 33.3,
     "first": "2026-11-02T15:19:50+09:00",
-    "last": "2026-11-02T15:42:33+09:00",
+    "last": "2026-11-04T14:10:22+09:00",
     "positions": {
-     "MID": 2
+     "MID": 5,
+     "TOP": 1
     },
     "champions": [
+     {
+      "champion": "Yone",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 33.3,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Sylas",
+      "games": 2,
+      "wins": 0,
+      "pick_rate": 33.3,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Nidalee",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 16.7,
+      "win_rate": 100.0
+     },
      {
       "champion": "Kog'Maw",
       "games": 1,
       "wins": 0,
-      "pick_rate": 50.0,
-      "win_rate": 0.0
-     },
-     {
-      "champion": "Yone",
-      "games": 1,
-      "wins": 0,
-      "pick_rate": 50.0,
+      "pick_rate": 16.7,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 2,
-   "last": "11/02 14:42",
+   "on_role": 5,
+   "last": "11/04 13:10",
    "last_region": "NA",
-   "last_na": "11/02 14:42"
+   "last_na": "11/04 13:10"
   },
   {
    "team": "DK",
@@ -3680,6 +4974,71 @@
     "NA:123321#KR12"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgWtF_lDjPgPx3Umf9XS_lvqwr-r-K_4ODc=",
+     "time": "2026-11-04T16:09:32+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Aphelios",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:123321#KR12",
+     "region": "NA",
+     "time_tw": "11/04 15:09",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgWQUDJAhXRlSUPppHI9qxbdYDIniJurnVU=",
+     "time": "2026-11-04T15:47:32+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Tristana",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:123321#KR12",
+     "region": "NA",
+     "time_tw": "11/04 14:47",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUqhoQT-9Jq78EHPMVjq0pI4xDkuBVMemg=",
+     "time": "2026-11-04T15:27:51+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Lucian",
+     "position": "ADC",
+     "result": "LOSE",
+     "op_rank": 6,
+     "account": "NA:123321#KR12",
+     "region": "NA",
+     "time_tw": "11/04 14:27",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUwLHvSgIZi2thwDEJxc_7ncRBwk9Kw3f0=",
+     "time": "2026-11-04T14:59:44+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Varus",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:123321#KR12",
+     "region": "NA",
+     "time_tw": "11/04 13:59",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXgV8J-PR9h6HgpvbLsDoz-FKHmnbCpVFk=",
+     "time": "2026-11-04T14:27:04+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Yunara",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:123321#KR12",
+     "region": "NA",
+     "time_tw": "11/04 13:27",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgUwyo9YnAUatqJ3XxH7amlD0MdSt5W6NsM=",
      "time": "2026-11-03T17:48:39+09:00",
@@ -3864,13 +5223,13 @@
     }
    ],
    "summary": {
-    "games": 14,
-    "wins": 11,
-    "win_rate": 78.6,
+    "games": 19,
+    "wins": 15,
+    "win_rate": 78.9,
     "first": "2026-11-01T04:59:19+09:00",
-    "last": "2026-11-03T17:48:39+09:00",
+    "last": "2026-11-04T16:09:32+09:00",
     "positions": {
-     "ADC": 10,
+     "ADC": 15,
      "JUNGLE": 4
     },
     "champions": [
@@ -3878,105 +5237,126 @@
       "champion": "Cassiopeia",
       "games": 2,
       "wins": 1,
-      "pick_rate": 14.3,
+      "pick_rate": 10.5,
       "win_rate": 50.0
+     },
+     {
+      "champion": "Lucian",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 10.5,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Varus",
+      "games": 2,
+      "wins": 1,
+      "pick_rate": 10.5,
+      "win_rate": 50.0
+     },
+     {
+      "champion": "Aphelios",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.3,
+      "win_rate": 100.0
      },
      {
       "champion": "Ezreal",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Jarvan IV",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Kai'Sa",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
-      "win_rate": 100.0
-     },
-     {
-      "champion": "Lucian",
-      "games": 1,
-      "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Poppy",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Smolder",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Sylas",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Tristana",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Vi",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Xayah",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Yunara",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Zeri",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 100.0
      },
      {
       "champion": "Draven",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
-      "win_rate": 0.0
-     },
-     {
-      "champion": "Varus",
-      "games": 1,
-      "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.3,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 10,
-   "last": "11/03 16:48",
+   "on_role": 15,
+   "last": "11/04 15:09",
    "last_region": "NA",
-   "last_na": "11/03 16:48"
+   "last_na": "11/04 15:09"
   },
   {
    "team": "DK",
    "role": "support",
    "player": "Career",
-   "partial": false,
+   "partial": true,
    "accounts": [
     "하이용#1015"
    ],
@@ -3985,6 +5365,123 @@
     "NA:하이용#1015"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgW1EADjmOUcAth1h_OI5OD-jdrcbcBvEx8=",
+     "time": "2026-11-04T17:12:58+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "LOSE",
+     "op_rank": 9,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 16:12",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgW1htt4Ynxu-8zBDGH4fqAjE6B99ockXJU=",
+     "time": "2026-11-04T16:35:23+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jarvan IV",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 15:35",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgWGMC3zECOflINcK8qeRaUZQxXwjIU4SNo=",
+     "time": "2026-11-04T15:59:27+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Karma",
+     "position": "SUPPORT",
+     "result": "LOSE",
+     "op_rank": 2,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 14:59",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXWpKJihshkw0vauz3MH7zaemtJ6uZBAQo=",
+     "time": "2026-11-04T15:22:40+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Blitzcrank",
+     "position": "SUPPORT",
+     "result": "LOSE",
+     "op_rank": 8,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 14:22",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXbKTEv1qGMibgLJi5afRLf80qPOezVDZ8=",
+     "time": "2026-11-04T14:48:47+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Alistar",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 13:48",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVk9cfOQr7CshGTxf3xZmvzPnDpr01-QbE=",
+     "time": "2026-11-04T14:29:02+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ezreal",
+     "position": "ADC",
+     "result": "LOSE",
+     "op_rank": 5,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 13:29",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVjIlsHan6mXDNwBE9Z1YujIiZRR8_6d20=",
+     "time": "2026-11-04T13:39:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Camille",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 12:39",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgU-yOIaaFPE68xHweBonWN5QXGOZmHQKeQ=",
+     "time": "2026-11-04T13:12:59+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Pyke",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 12:12",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgU15s_YTHYPYgNL9K-jdqVtjkU9Ma0k_50=",
+     "time": "2026-11-04T12:40:51+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Ezreal",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:하이용#1015",
+     "region": "NA",
+     "time_tw": "11/04 11:40",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgXy7S9p06GJL9RGNLvvQ9PBhVTW6oHZAYM=",
      "time": "2026-11-04T05:04:03+09:00",
@@ -4139,7 +5636,8 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/02 13:38",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVIwzqbBPFiD6IDByuv0aJFri6g87CSTC0=",
@@ -4152,7 +5650,8 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/01 17:03",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUu48TEX2BdRlsF9dzLd66MIdt84bHvrNQ=",
@@ -4165,7 +5664,8 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/01 16:26",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUHyFcOuUvv-d31y6D7SGQSvB9bjmNkWGo=",
@@ -4178,7 +5678,8 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/01 15:56",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgX870EtnhG-rjXqm5beZTA1bTxIvjc5ujI=",
@@ -4191,7 +5692,8 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/01 15:28",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVHdLK3UptIZvzL1nfK0UETeDuUrFa2rOg=",
@@ -4204,7 +5706,8 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/01 15:00",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgVFKbm8ga6Mf-GyBjHwsyRqIh205OoGmgI=",
@@ -4217,7 +5720,8 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/01 14:26",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgV9Hr59R6V46WUc1dohQU6RexRm7qrMDLk=",
@@ -4230,110 +5734,147 @@
      "account": "NA:하이용#1015",
      "region": "NA",
      "time_tw": "11/01 05:47",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     }
    ],
    "summary": {
-    "games": 19,
-    "wins": 14,
-    "win_rate": 73.7,
+    "games": 28,
+    "wins": 19,
+    "win_rate": 67.9,
     "first": "2026-11-01T06:47:25+09:00",
-    "last": "2026-11-04T05:04:03+09:00",
+    "last": "2026-11-04T17:12:58+09:00",
     "positions": {
-     "SUPPORT": 16,
-     "ADC": 3
+     "SUPPORT": 21,
+     "ADC": 5,
+     "JUNGLE": 2
     },
     "champions": [
      {
       "champion": "Alistar",
+      "games": 5,
+      "wins": 4,
+      "pick_rate": 17.9,
+      "win_rate": 80.0
+     },
+     {
+      "champion": "Pyke",
       "games": 4,
-      "wins": 3,
-      "pick_rate": 21.1,
-      "win_rate": 75.0
+      "wins": 4,
+      "pick_rate": 14.3,
+      "win_rate": 100.0
      },
      {
       "champion": "Bard",
       "games": 3,
       "wins": 3,
-      "pick_rate": 15.8,
+      "pick_rate": 10.7,
       "win_rate": 100.0
      },
      {
-      "champion": "Pyke",
+      "champion": "Ezreal",
       "games": 3,
-      "wins": 3,
-      "pick_rate": 15.8,
+      "wins": 1,
+      "pick_rate": 10.7,
+      "win_rate": 33.3
+     },
+     {
+      "champion": "Camille",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.6,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jarvan IV",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.6,
       "win_rate": 100.0
      },
      {
       "champion": "Kalista",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
       "win_rate": 100.0
      },
      {
       "champion": "Lux",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
       "win_rate": 100.0
      },
      {
       "champion": "Rell",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
       "win_rate": 100.0
      },
      {
       "champion": "Skarner",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
       "win_rate": 100.0
      },
      {
       "champion": "Thresh",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
       "win_rate": 100.0
      },
      {
       "champion": "Aphelios",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Blitzcrank",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 3.6,
       "win_rate": 0.0
      },
      {
       "champion": "Draven",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
       "win_rate": 0.0
      },
      {
-      "champion": "Ezreal",
+      "champion": "Jayce",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Karma",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 3.6,
       "win_rate": 0.0
      },
      {
       "champion": "Trundle",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.3,
+      "pick_rate": 3.6,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 16,
-   "last": "11/04 04:04",
+   "on_role": 21,
+   "last": "11/04 16:12",
    "last_region": "NA",
-   "last_na": "11/04 04:04"
+   "last_na": "11/04 16:12"
   },
   {
    "team": "BLG",
@@ -4348,6 +5889,58 @@
     "KR:빈 스토리#KR1"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgVwuLa_6TB-zraH3qWOgyPL0Qu9luDq7Gc=",
+     "time": "2026-11-04T17:19:20+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Olaf",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 6,
+     "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
+     "time_tw": "11/04 16:19",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgWnBsTWpcP-nlj1F7usYkEVvhAPxOY4QkA=",
+     "time": "2026-11-04T16:13:55+09:00",
+     "queue": "SOLORANKED",
+     "champion": "K'Sante",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 9,
+     "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
+     "time_tw": "11/04 15:13",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgURGSIHJg6hMXzhYT3ZfYh8x1jBHFAlcd0=",
+     "time": "2026-11-04T15:32:07+09:00",
+     "queue": "SOLORANKED",
+     "champion": "K'Sante",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
+     "time_tw": "11/04 14:32",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXHvC9SemrNL-qzi45m-Oo2JSD6XfmM8sg=",
+     "time": "2026-11-04T15:02:05+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Gnar",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 7,
+     "account": "NA:hfdgjhfgdnh#123",
+     "region": "NA",
+     "time_tw": "11/04 14:02",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgWAKRQ2H7gyvYll5QLyFIdupqYhuc7jAJ0=",
      "time": "2026-11-03T18:47:13+09:00",
@@ -4567,7 +6160,8 @@
      "account": "NA:hfdgjhfgdnh#123",
      "region": "NA",
      "time_tw": "11/02 05:52",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXV7mDx4lApQXYyv0ar59huAoppc9JLp8U=",
@@ -4580,7 +6174,8 @@
      "account": "NA:hfdgjhfgdnh#123",
      "region": "NA",
      "time_tw": "11/02 05:20",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUI0UIhe_nzUkoWjvcWRkB40PjLJPnwNZI=",
@@ -4593,7 +6188,8 @@
      "account": "NA:hfdgjhfgdnh#123",
      "region": "NA",
      "time_tw": "11/02 04:42",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWxfIzOnGeZgpJzA-AjhAf87KGNBVhMq_k=",
@@ -4606,7 +6202,8 @@
      "account": "NA:hfdgjhfgdnh#123",
      "region": "NA",
      "time_tw": "11/01 17:11",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUDx0_WpDllI1sPbel5NE8ZYfyTcDhrj00=",
@@ -4708,112 +6305,119 @@
     }
    ],
    "summary": {
-    "games": 27,
-    "wins": 15,
-    "win_rate": 55.6,
+    "games": 31,
+    "wins": 17,
+    "win_rate": 54.8,
     "first": "2026-11-01T13:16:54+09:00",
-    "last": "2026-11-03T18:47:13+09:00",
+    "last": "2026-11-04T17:19:20+09:00",
     "positions": {
-     "TOP": 27
+     "TOP": 31
     },
     "champions": [
      {
       "champion": "K'Sante",
-      "games": 6,
-      "wins": 5,
-      "pick_rate": 22.2,
-      "win_rate": 83.3
+      "games": 8,
+      "wins": 7,
+      "pick_rate": 25.8,
+      "win_rate": 87.5
      },
      {
       "champion": "Ambessa",
       "games": 4,
       "wins": 4,
-      "pick_rate": 14.8,
+      "pick_rate": 12.9,
       "win_rate": 100.0
      },
      {
       "champion": "Jayce",
       "games": 3,
       "wins": 2,
-      "pick_rate": 11.1,
+      "pick_rate": 9.7,
       "win_rate": 66.7
      },
      {
       "champion": "Jax",
       "games": 3,
       "wins": 1,
-      "pick_rate": 11.1,
+      "pick_rate": 9.7,
       "win_rate": 33.3
+     },
+     {
+      "champion": "Olaf",
+      "games": 3,
+      "wins": 0,
+      "pick_rate": 9.7,
+      "win_rate": 0.0
      },
      {
       "champion": "Gwen",
       "games": 2,
       "wins": 1,
-      "pick_rate": 7.4,
+      "pick_rate": 6.5,
       "win_rate": 50.0
-     },
-     {
-      "champion": "Olaf",
-      "games": 2,
-      "wins": 0,
-      "pick_rate": 7.4,
-      "win_rate": 0.0
      },
      {
       "champion": "Camille",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.7,
+      "pick_rate": 3.2,
       "win_rate": 100.0
      },
      {
       "champion": "Vayne",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.7,
+      "pick_rate": 3.2,
       "win_rate": 100.0
      },
      {
       "champion": "Aatrox",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.7,
+      "pick_rate": 3.2,
       "win_rate": 0.0
      },
      {
       "champion": "Aurora",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.7,
+      "pick_rate": 3.2,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Gnar",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 3.2,
       "win_rate": 0.0
      },
      {
       "champion": "Mordekaiser",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.7,
+      "pick_rate": 3.2,
       "win_rate": 0.0
      },
      {
       "champion": "Renekton",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.7,
+      "pick_rate": 3.2,
       "win_rate": 0.0
      },
      {
       "champion": "Rumble",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.7,
+      "pick_rate": 3.2,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 27,
-   "last": "11/03 17:47",
+   "on_role": 31,
+   "last": "11/04 16:19",
    "last_region": "NA",
-   "last_na": "11/03 17:47"
+   "last_na": "11/04 16:19"
   },
   {
    "team": "BLG",
@@ -4827,6 +6431,32 @@
     "NA:xxxzz#8988"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgWlmCSBA0pKtbRMcfdao8QdDCGSAL4BpPE=",
+     "time": "2026-11-04T17:15:03+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 2,
+     "account": "NA:xxxzz#8988",
+     "region": "NA",
+     "time_tw": "11/04 16:15",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUI-Rmv2NQoeFo2CSZlEshQXhfX7U85fV8=",
+     "time": "2026-11-04T16:41:46+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:xxxzz#8988",
+     "region": "NA",
+     "time_tw": "11/04 15:41",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgXL6xWnECmIBvlmnQyRZetDtNcfIPWYU-I=",
      "time": "2026-11-04T10:28:05+09:00",
@@ -5046,7 +6676,8 @@
      "account": "NA:xxxzz#8988",
      "region": "NA",
      "time_tw": "11/01 14:19",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUxUUds7M0R-vBh-1lGARGTXqspnMsBp-E=",
@@ -5059,7 +6690,8 @@
      "account": "NA:xxxzz#8988",
      "region": "NA",
      "time_tw": "11/01 13:39",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUqYay2Vd3jzqaR8pY6KlmIiCnjCZYwxXU=",
@@ -5072,104 +6704,105 @@
      "account": "NA:xxxzz#8988",
      "region": "NA",
      "time_tw": "11/01 13:13",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     }
    ],
    "summary": {
-    "games": 19,
-    "wins": 12,
-    "win_rate": 63.2,
+    "games": 21,
+    "wins": 14,
+    "win_rate": 66.7,
     "first": "2026-11-01T14:13:10+09:00",
-    "last": "2026-11-04T10:28:05+09:00",
+    "last": "2026-11-04T17:15:03+09:00",
     "positions": {
-     "JUNGLE": 17,
+     "JUNGLE": 19,
      "SUPPORT": 1,
      "MID": 1
     },
     "champions": [
      {
       "champion": "Jayce",
-      "games": 4,
-      "wins": 2,
-      "pick_rate": 21.1,
-      "win_rate": 50.0
+      "games": 6,
+      "wins": 4,
+      "pick_rate": 28.6,
+      "win_rate": 66.7
      },
      {
       "champion": "Lee Sin",
       "games": 3,
       "wins": 2,
-      "pick_rate": 15.8,
+      "pick_rate": 14.3,
       "win_rate": 66.7
      },
      {
       "champion": "Kindred",
       "games": 2,
       "wins": 1,
-      "pick_rate": 10.5,
+      "pick_rate": 9.5,
       "win_rate": 50.0
      },
      {
       "champion": "Naafiri",
       "games": 2,
       "wins": 1,
-      "pick_rate": 10.5,
+      "pick_rate": 9.5,
       "win_rate": 50.0
      },
      {
       "champion": "Qiyana",
       "games": 2,
       "wins": 1,
-      "pick_rate": 10.5,
+      "pick_rate": 9.5,
       "win_rate": 50.0
      },
      {
       "champion": "Cho'Gath",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Kha'Zix",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Nocturne",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Tristana",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Vi",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Pantheon",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 17,
-   "last": "11/04 09:28",
+   "on_role": 19,
+   "last": "11/04 16:15",
    "last_region": "NA",
-   "last_na": "11/04 09:28"
+   "last_na": "11/04 16:15"
   },
   {
    "team": "BLG",
@@ -5396,6 +7029,19 @@
     "NA:painn#110"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgXrxPgjXLl8-KR6ZLAsnQJJE7c4redRZUQ=",
+     "time": "2026-11-04T14:58:30+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Syndra",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:painn#110",
+     "region": "NA",
+     "time_tw": "11/04 13:58",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgV4tdPRCBIwxfTuD9ADysYr1DN86r84jKc=",
      "time": "2026-11-04T10:20:42+09:00",
@@ -5654,7 +7300,8 @@
      "account": "NA:painn#110",
      "region": "NA",
      "time_tw": "11/02 06:11",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgWOx71H3OeoT8TX2HH9ysIwOqDhJTLkoAI=",
@@ -5770,13 +7417,13 @@
     }
    ],
    "summary": {
-    "games": 28,
-    "wins": 15,
-    "win_rate": 53.6,
+    "games": 29,
+    "wins": 16,
+    "win_rate": 55.2,
     "first": "2026-11-01T03:10:26+09:00",
-    "last": "2026-11-04T10:20:42+09:00",
+    "last": "2026-11-04T14:58:30+09:00",
     "positions": {
-     "ADC": 22,
+     "ADC": 23,
      "TOP": 6
     },
     "champions": [
@@ -5784,120 +7431,127 @@
       "champion": "Tristana",
       "games": 4,
       "wins": 3,
-      "pick_rate": 14.3,
+      "pick_rate": 13.8,
       "win_rate": 75.0
      },
      {
       "champion": "Kai'Sa",
       "games": 3,
       "wins": 2,
-      "pick_rate": 10.7,
+      "pick_rate": 10.3,
       "win_rate": 66.7
      },
      {
       "champion": "K'Sante",
       "games": 3,
       "wins": 0,
-      "pick_rate": 10.7,
+      "pick_rate": 10.3,
       "win_rate": 0.0
      },
      {
       "champion": "Caitlyn",
       "games": 2,
       "wins": 2,
-      "pick_rate": 7.1,
+      "pick_rate": 6.9,
       "win_rate": 100.0
      },
      {
       "champion": "Ambessa",
       "games": 2,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 6.9,
       "win_rate": 50.0
      },
      {
       "champion": "Jhin",
       "games": 2,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 6.9,
       "win_rate": 50.0
      },
      {
       "champion": "Lucian",
       "games": 2,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 6.9,
       "win_rate": 50.0
      },
      {
       "champion": "Sivir",
       "games": 2,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 6.9,
       "win_rate": 50.0
      },
      {
       "champion": "Ezreal",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Syndra",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 3.4,
       "win_rate": 100.0
      },
      {
       "champion": "Varus",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
       "win_rate": 100.0
      },
      {
       "champion": "Vayne",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
       "win_rate": 100.0
      },
      {
       "champion": "Yunara",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
       "win_rate": 100.0
      },
      {
       "champion": "Fiora",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
       "win_rate": 0.0
      },
      {
       "champion": "Kalista",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
       "win_rate": 0.0
      },
      {
       "champion": "Lux",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
       "win_rate": 0.0
      },
      {
       "champion": "Taliyah",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.6,
+      "pick_rate": 3.4,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 22,
-   "last": "11/04 09:20",
+   "on_role": 23,
+   "last": "11/04 13:58",
    "last_region": "NA",
-   "last_na": "11/04 09:20"
+   "last_na": "11/04 13:58"
   },
   {
    "team": "BLG",
@@ -5913,6 +7567,32 @@
     "KR:BLG 온#KR1"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgWnBsTWpcP-nlj1F7usYkEVvhAPxOY4QkA=",
+     "time": "2026-11-04T16:13:55+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Zoe",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
+     "time_tw": "11/04 15:13",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgUwLHvSgIZi2thwDEJxc_7ncRBwk9Kw3f0=",
+     "time": "2026-11-04T14:59:44+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Bard",
+     "position": "SUPPORT",
+     "result": "LOSE",
+     "op_rank": 9,
+     "account": "NA:burgershutiao#zxcvb",
+     "region": "NA",
+     "time_tw": "11/04 13:59",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgXS5iHDHQN8PA0rTDyIkaJ2u6N4m_n3lPI=",
      "time": "2026-11-04T06:16:12+09:00",
@@ -6071,13 +7751,13 @@
     }
    ],
    "summary": {
-    "games": 12,
-    "wins": 10,
-    "win_rate": 83.3,
+    "games": 14,
+    "wins": 11,
+    "win_rate": 78.6,
     "first": "2026-11-01T03:01:56+09:00",
-    "last": "2026-11-04T06:16:12+09:00",
+    "last": "2026-11-04T16:13:55+09:00",
     "positions": {
-     "SUPPORT": 10,
+     "SUPPORT": 12,
      "ADC": 1,
      "TOP": 1
     },
@@ -6086,85 +7766,92 @@
       "champion": "Rell",
       "games": 2,
       "wins": 2,
-      "pick_rate": 16.7,
+      "pick_rate": 14.3,
       "win_rate": 100.0
+     },
+     {
+      "champion": "Bard",
+      "games": 2,
+      "wins": 0,
+      "pick_rate": 14.3,
+      "win_rate": 0.0
      },
      {
       "champion": "Alistar",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Camille",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Galio",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Karma",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Pyke",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Renata Glasc",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Shen",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
       "champion": "Yunara",
       "games": 1,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 100.0
      },
      {
-      "champion": "Bard",
+      "champion": "Zoe",
       "games": 1,
-      "wins": 0,
-      "pick_rate": 8.3,
-      "win_rate": 0.0
+      "wins": 1,
+      "pick_rate": 7.1,
+      "win_rate": 100.0
      },
      {
       "champion": "Trundle",
       "games": 1,
       "wins": 0,
-      "pick_rate": 8.3,
+      "pick_rate": 7.1,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 10,
-   "last": "11/04 05:16",
+   "on_role": 12,
+   "last": "11/04 15:13",
    "last_region": "NA",
-   "last_na": "11/04 05:16"
+   "last_na": "11/04 15:13"
   },
   {
    "team": "IG",
@@ -8031,7 +9718,7 @@
    "team": "KC",
    "role": "top",
    "player": "Canna",
-   "partial": false,
+   "partial": true,
    "accounts": [
     "worldspro0073#world"
    ],
@@ -8040,6 +9727,32 @@
     "NA:worldspro0073#world"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgU7nBIXJYQ0oXk_Q5Oh0FiLlCX9UJLel4E=",
+     "time": "2026-11-04T13:02:39+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Olaf",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:worldspro0073#world",
+     "region": "NA",
+     "time_tw": "11/04 12:02",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgX5XZbf6LFVMDTDCKobtjCeIBmXD9tP0Tk=",
+     "time": "2026-11-04T12:35:15+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Gangplank",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 1,
+     "account": "NA:worldspro0073#world",
+     "region": "NA",
+     "time_tw": "11/04 11:35",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgWudL_a99EptdyPUtLDOjruCTjBqhbU3Ds=",
      "time": "2026-11-04T07:05:53+09:00",
@@ -8285,82 +9998,83 @@
      "account": "NA:worldspro0073#world",
      "region": "NA",
      "time_tw": "11/01 12:04",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     }
    ],
    "summary": {
-    "games": 19,
-    "wins": 11,
-    "win_rate": 57.9,
+    "games": 21,
+    "wins": 12,
+    "win_rate": 57.1,
     "first": "2026-11-01T13:04:02+09:00",
-    "last": "2026-11-04T07:05:53+09:00",
+    "last": "2026-11-04T13:02:39+09:00",
     "positions": {
-     "TOP": 17,
+     "TOP": 19,
      "ADC": 2
     },
     "champions": [
      {
       "champion": "Gangplank",
-      "games": 5,
+      "games": 6,
       "wins": 3,
-      "pick_rate": 26.3,
-      "win_rate": 60.0
+      "pick_rate": 28.6,
+      "win_rate": 50.0
      },
      {
       "champion": "Corki",
       "games": 5,
       "wins": 2,
-      "pick_rate": 26.3,
+      "pick_rate": 23.8,
       "win_rate": 40.0
      },
      {
       "champion": "Ambessa",
       "games": 3,
       "wins": 2,
-      "pick_rate": 15.8,
+      "pick_rate": 14.3,
       "win_rate": 66.7
      },
      {
       "champion": "Olaf",
-      "games": 2,
-      "wins": 1,
-      "pick_rate": 10.5,
-      "win_rate": 50.0
+      "games": 3,
+      "wins": 2,
+      "pick_rate": 14.3,
+      "win_rate": 66.7
      },
      {
       "champion": "Camille",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Jhin",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Yunara",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 100.0
      },
      {
       "champion": "Akali",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.3,
+      "pick_rate": 4.8,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 17,
-   "last": "11/04 06:05",
+   "on_role": 19,
+   "last": "11/04 12:02",
    "last_region": "NA",
-   "last_na": "11/04 06:05"
+   "last_na": "11/04 12:02"
   },
   {
    "team": "KC",
@@ -8374,6 +10088,45 @@
     "NA:quentin#dawg"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgVjIlsHan6mXDNwBE9Z1YujIiZRR8_6d20=",
+     "time": "2026-11-04T13:39:54+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:quentin#dawg",
+     "region": "NA",
+     "time_tw": "11/04 12:39",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXXQ8blOh_dgnypaozG62n1uuI_ooUfSek=",
+     "time": "2026-11-04T13:17:01+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Naafiri",
+     "position": "JUNGLE",
+     "result": "WIN",
+     "op_rank": 1,
+     "account": "NA:quentin#dawg",
+     "region": "NA",
+     "time_tw": "11/04 12:17",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgVDxTX5pRBL4PehVwAmVrcdMdvJ5DMU6cU=",
+     "time": "2026-11-04T12:36:17+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "JUNGLE",
+     "result": "LOSE",
+     "op_rank": 7,
+     "account": "NA:quentin#dawg",
+     "region": "NA",
+     "time_tw": "11/04 11:36",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgUYAryxKq6b9J0AUUqgk6iMOkqv6-xU5Sg=",
      "time": "2026-11-04T11:50:44+09:00",
@@ -8558,99 +10311,99 @@
     }
    ],
    "summary": {
-    "games": 14,
-    "wins": 7,
-    "win_rate": 50.0,
+    "games": 17,
+    "wins": 9,
+    "win_rate": 52.9,
     "first": "2026-11-02T04:19:27+09:00",
-    "last": "2026-11-04T11:50:44+09:00",
+    "last": "2026-11-04T13:39:54+09:00",
     "positions": {
-     "TOP": 8,
-     "JUNGLE": 6
+     "JUNGLE": 9,
+     "TOP": 8
     },
     "champions": [
      {
       "champion": "Jayce",
-      "games": 3,
-      "wins": 1,
-      "pick_rate": 21.4,
-      "win_rate": 33.3
+      "games": 5,
+      "wins": 2,
+      "pick_rate": 29.4,
+      "win_rate": 40.0
+     },
+     {
+      "champion": "Naafiri",
+      "games": 2,
+      "wins": 2,
+      "pick_rate": 11.8,
+      "win_rate": 100.0
      },
      {
       "champion": "Pantheon",
       "games": 2,
       "wins": 2,
-      "pick_rate": 14.3,
+      "pick_rate": 11.8,
       "win_rate": 100.0
      },
      {
       "champion": "Kha'Zix",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
-      "win_rate": 100.0
-     },
-     {
-      "champion": "Naafiri",
-      "games": 1,
-      "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 100.0
      },
      {
       "champion": "Trundle",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 100.0
      },
      {
       "champion": "Yone",
       "games": 1,
       "wins": 1,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 100.0
      },
      {
       "champion": "Bel'Veth",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 0.0
      },
      {
       "champion": "Corki",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 0.0
      },
      {
       "champion": "Qiyana",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 0.0
      },
      {
       "champion": "Vayne",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 0.0
      },
      {
       "champion": "Xin Zhao",
       "games": 1,
       "wins": 0,
-      "pick_rate": 7.1,
+      "pick_rate": 5.9,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 6,
-   "last": "11/04 10:50",
+   "on_role": 9,
+   "last": "11/04 12:39",
    "last_region": "NA",
-   "last_na": "11/04 10:50"
+   "last_na": "11/04 12:39"
   },
   {
    "team": "KC",
@@ -8665,6 +10418,19 @@
     "NA:yeahoo#yaho"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgVrNJ5PzK-0ycDq1hI3Qm421jJLTogDF3c=",
+     "time": "2026-11-04T12:47:18+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Aurora",
+     "position": "MID",
+     "result": "LOSE",
+     "op_rank": 3,
+     "account": "NA:yeahoo#yaho",
+     "region": "NA",
+     "time_tw": "11/04 11:47",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgXy844bgjMl0Bj_fPZKNcb4y3u2JQo5KFs=",
      "time": "2026-11-04T12:17:57+09:00",
@@ -8923,7 +10689,8 @@
      "account": "NA:yeahoo#yaho",
      "region": "NA",
      "time_tw": "11/02 10:41",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUUbUolDimtm5t4DYwNMgY-N-qbxoyu5LU=",
@@ -8983,150 +10750,150 @@
     }
    ],
    "summary": {
-    "games": 24,
+    "games": 25,
     "wins": 17,
-    "win_rate": 70.8,
+    "win_rate": 68.0,
     "first": "2026-11-02T02:29:25+09:00",
-    "last": "2026-11-04T12:17:57+09:00",
+    "last": "2026-11-04T12:47:18+09:00",
     "positions": {
-     "MID": 18,
+     "MID": 19,
      "TOP": 4,
      "SUPPORT": 1,
      "ADC": 1
     },
     "champions": [
      {
-      "champion": "Kog'Maw",
+      "champion": "Aurora",
       "games": 3,
       "wins": 2,
-      "pick_rate": 12.5,
+      "pick_rate": 12.0,
       "win_rate": 66.7
      },
      {
-      "champion": "Aurora",
-      "games": 2,
+      "champion": "Kog'Maw",
+      "games": 3,
       "wins": 2,
-      "pick_rate": 8.3,
-      "win_rate": 100.0
+      "pick_rate": 12.0,
+      "win_rate": 66.7
      },
      {
       "champion": "Mel",
       "games": 2,
       "wins": 2,
-      "pick_rate": 8.3,
+      "pick_rate": 8.0,
       "win_rate": 100.0
      },
      {
       "champion": "Ahri",
       "games": 2,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 8.0,
       "win_rate": 50.0
      },
      {
       "champion": "Tristana",
       "games": 2,
       "wins": 1,
-      "pick_rate": 8.3,
+      "pick_rate": 8.0,
       "win_rate": 50.0
      },
      {
       "champion": "Ambessa",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Anivia",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Annie",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Galio",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Gnar",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Gragas",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Locke",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Rakan",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Taliyah",
       "games": 1,
       "wins": 1,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 100.0
      },
      {
       "champion": "Ezreal",
       "games": 1,
       "wins": 0,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 0.0
      },
      {
       "champion": "Jax",
       "games": 1,
       "wins": 0,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 0.0
      },
      {
       "champion": "Sylas",
       "games": 1,
       "wins": 0,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 0.0
      },
      {
       "champion": "Yone",
       "games": 1,
       "wins": 0,
-      "pick_rate": 4.2,
+      "pick_rate": 4.0,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 18,
-   "last": "11/04 11:17",
+   "on_role": 19,
+   "last": "11/04 11:47",
    "last_region": "NA",
-   "last_na": "11/04 11:17"
+   "last_na": "11/04 11:47"
   },
   {
    "team": "KC",
@@ -9440,6 +11207,32 @@
    ],
    "games": [
     {
+     "id": "eq3KyFixtgU7nBIXJYQ0oXk_Q5Oh0FiLlCX9UJLel4E=",
+     "time": "2026-11-04T13:02:39+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Neeko",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:basiil#fan",
+     "region": "NA",
+     "time_tw": "11/04 12:02",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgX5XZbf6LFVMDTDCKobtjCeIBmXD9tP0Tk=",
+     "time": "2026-11-04T12:35:15+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Neeko",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 8,
+     "account": "NA:basiil#fan",
+     "region": "NA",
+     "time_tw": "11/04 11:35",
+     "on_role": true
+    },
+    {
      "id": "eq3KyFixtgVLGI46qJliogEzZb4WX4fOp1-ChQn6xIY=",
      "time": "2026-11-04T11:55:00+09:00",
      "queue": "SOLORANKED",
@@ -9671,119 +11464,120 @@
      "account": "NA:basiil#fan",
      "region": "NA",
      "time_tw": "11/02 02:24",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     }
    ],
    "summary": {
-    "games": 18,
-    "wins": 12,
-    "win_rate": 66.7,
+    "games": 20,
+    "wins": 14,
+    "win_rate": 70.0,
     "first": "2026-11-02T03:24:57+09:00",
-    "last": "2026-11-04T11:55:00+09:00",
+    "last": "2026-11-04T13:02:39+09:00",
     "positions": {
-     "SUPPORT": 13,
+     "SUPPORT": 15,
      "MID": 3,
      "TOP": 1,
      "JUNGLE": 1
     },
     "champions": [
      {
+      "champion": "Neeko",
+      "games": 4,
+      "wins": 3,
+      "pick_rate": 20.0,
+      "win_rate": 75.0
+     },
+     {
       "champion": "Seraphine",
       "games": 3,
       "wins": 1,
-      "pick_rate": 16.7,
+      "pick_rate": 15.0,
       "win_rate": 33.3
      },
      {
       "champion": "Blitzcrank",
       "games": 2,
       "wins": 2,
-      "pick_rate": 11.1,
+      "pick_rate": 10.0,
       "win_rate": 100.0
      },
      {
       "champion": "Zoe",
       "games": 2,
       "wins": 2,
-      "pick_rate": 11.1,
+      "pick_rate": 10.0,
       "win_rate": 100.0
-     },
-     {
-      "champion": "Neeko",
-      "games": 2,
-      "wins": 1,
-      "pick_rate": 11.1,
-      "win_rate": 50.0
      },
      {
       "champion": "Ahri",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Bard",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Kha'Zix",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Pyke",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Rakan",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Vel'Koz",
       "games": 1,
       "wins": 1,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 100.0
      },
      {
       "champion": "Alistar",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 0.0
      },
      {
       "champion": "Gragas",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 0.0
      },
      {
       "champion": "Lux",
       "games": 1,
       "wins": 0,
-      "pick_rate": 5.6,
+      "pick_rate": 5.0,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 13,
-   "last": "11/04 10:55",
+   "on_role": 15,
+   "last": "11/04 12:02",
    "last_region": "NA",
-   "last_na": "11/04 10:55"
+   "last_na": "11/04 12:02"
   },
   {
    "team": "LYON",
@@ -9797,6 +11591,45 @@
     "NA:Dhokla#NA1"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgVW_UIldpNG5KD8RvnpnuPhaGtgzN5gZqs=",
+     "time": "2026-11-04T16:47:29+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Gnar",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 5,
+     "account": "NA:Dhokla#NA1",
+     "region": "NA",
+     "time_tw": "11/04 15:47",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXKsGhZOy36pcalaWoW3mC23dKeWQyY5JA=",
+     "time": "2026-11-04T15:26:44+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "WIN",
+     "op_rank": 5,
+     "account": "NA:Dhokla#NA1",
+     "region": "NA",
+     "time_tw": "11/04 14:26",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgXrxPgjXLl8-KR6ZLAsnQJJE7c4redRZUQ=",
+     "time": "2026-11-04T14:58:30+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Swain",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 7,
+     "account": "NA:Dhokla#NA1",
+     "region": "NA",
+     "time_tw": "11/04 13:58",
+     "on_role": true
+    },
     {
      "id": "eq3KyFixtgWfSiHTeYOZgVgDObX9q9OGAZFpOMaODYs=",
      "time": "2026-11-03T16:11:52+09:00",
@@ -9864,56 +11697,77 @@
     }
    ],
    "summary": {
-    "games": 5,
-    "wins": 1,
-    "win_rate": 20.0,
+    "games": 8,
+    "wins": 2,
+    "win_rate": 25.0,
     "first": "2026-11-02T14:10:46+09:00",
-    "last": "2026-11-03T16:11:52+09:00",
+    "last": "2026-11-04T16:47:29+09:00",
     "positions": {
-     "TOP": 5
+     "TOP": 8
     },
     "champions": [
      {
       "champion": "Gragas",
       "games": 1,
       "wins": 1,
-      "pick_rate": 20.0,
+      "pick_rate": 12.5,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jayce",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 12.5,
       "win_rate": 100.0
      },
      {
       "champion": "Gangplank",
       "games": 1,
       "wins": 0,
-      "pick_rate": 20.0,
+      "pick_rate": 12.5,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Gnar",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 12.5,
       "win_rate": 0.0
      },
      {
       "champion": "Jax",
       "games": 1,
       "wins": 0,
-      "pick_rate": 20.0,
+      "pick_rate": 12.5,
       "win_rate": 0.0
      },
      {
       "champion": "Renekton",
       "games": 1,
       "wins": 0,
-      "pick_rate": 20.0,
+      "pick_rate": 12.5,
       "win_rate": 0.0
      },
      {
       "champion": "Rumble",
       "games": 1,
       "wins": 0,
-      "pick_rate": 20.0,
+      "pick_rate": 12.5,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Swain",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 12.5,
       "win_rate": 0.0
      }
     ]
    },
-   "on_role": 5,
-   "last": "11/03 15:11",
+   "on_role": 8,
+   "last": "11/04 15:47",
    "last_region": "NA",
-   "last_na": "11/03 15:11"
+   "last_na": "11/04 15:47"
   },
   {
    "team": "LYON",
@@ -9927,6 +11781,71 @@
     "NA:a Special One#1of1"
    ],
    "games": [
+    {
+     "id": "eq3KyFixtgWo3LxSBM_9jJmSV49GXfZ1j-DaSLVZtwc=",
+     "time": "2026-11-04T17:32:04+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Malphite",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 9,
+     "account": "NA:a Special One#1of1",
+     "region": "NA",
+     "time_tw": "11/04 16:32",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgVW_UIldpNG5KD8RvnpnuPhaGtgzN5gZqs=",
+     "time": "2026-11-04T16:47:29+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Tristana",
+     "position": "ADC",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:a Special One#1of1",
+     "region": "NA",
+     "time_tw": "11/04 15:47",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgWebTYOeMAon0px5726VDngnU0Y1XFCpJ4=",
+     "time": "2026-11-04T16:18:19+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jayce",
+     "position": "TOP",
+     "result": "LOSE",
+     "op_rank": 10,
+     "account": "NA:a Special One#1of1",
+     "region": "NA",
+     "time_tw": "11/04 15:18",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgW0qKxJGKAlmoD11z-RCnsp9k_De4vWetc=",
+     "time": "2026-11-04T15:48:41+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Galio",
+     "position": "MID",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:a Special One#1of1",
+     "region": "NA",
+     "time_tw": "11/04 14:48",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgWmWS3u9n1FGYLVBbe_FGJLl8Tm2RtilNQ=",
+     "time": "2026-11-04T15:11:32+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Alistar",
+     "position": "SUPPORT",
+     "result": "LOSE",
+     "op_rank": 8,
+     "account": "NA:a Special One#1of1",
+     "region": "NA",
+     "time_tw": "11/04 14:11",
+     "on_role": false
+    },
     {
      "id": "eq3KyFixtgX9lwfl4RE8i3CZkkDixH4vAz1e2f8BLTY=",
      "time": "2026-11-04T11:56:34+09:00",
@@ -10133,7 +12052,8 @@
      "account": "NA:a Special One#1of1",
      "region": "NA",
      "time_tw": "11/02 16:11",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXVkbP8AshDAuQ8aUVnTMUyxK6GiMLZQpE=",
@@ -10146,7 +12066,8 @@
      "account": "NA:a Special One#1of1",
      "region": "NA",
      "time_tw": "11/02 15:28",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUIa7JiZvrwUtzAB-yhocz1o1hfWKqahZY=",
@@ -10159,7 +12080,8 @@
      "account": "NA:a Special One#1of1",
      "region": "NA",
      "time_tw": "11/02 14:55",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgV9kJj511ue18X0VnJIlOsbIz0O3BuHGh8=",
@@ -10172,7 +12094,8 @@
      "account": "NA:a Special One#1of1",
      "region": "NA",
      "time_tw": "11/02 14:35",
-     "on_role": true
+     "on_role": true,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgXWfFS9NgXYuQ1cauOb7eYT79q8AywcmeI=",
@@ -10185,7 +12108,8 @@
      "account": "NA:a Special One#1of1",
      "region": "NA",
      "time_tw": "11/02 14:02",
-     "on_role": false
+     "on_role": false,
+     "kept": true
     },
     {
      "id": "eq3KyFixtgUpSQTZuPy9VK_fMbBJmMmJfHTpJpSYvdM=",
@@ -10329,115 +12253,137 @@
     }
    ],
    "summary": {
-    "games": 30,
-    "wins": 18,
-    "win_rate": 60.0,
+    "games": 35,
+    "wins": 19,
+    "win_rate": 54.3,
     "first": "2026-11-01T15:41:12+09:00",
-    "last": "2026-11-04T11:56:34+09:00",
+    "last": "2026-11-04T17:32:04+09:00",
     "positions": {
      "JUNGLE": 16,
-     "SUPPORT": 6,
-     "MID": 5,
-     "TOP": 3
+     "SUPPORT": 7,
+     "MID": 6,
+     "TOP": 5,
+     "ADC": 1
     },
     "champions": [
      {
       "champion": "Sylas",
       "games": 5,
       "wins": 4,
-      "pick_rate": 16.7,
+      "pick_rate": 14.3,
       "win_rate": 80.0
      },
      {
       "champion": "Jarvan IV",
       "games": 4,
       "wins": 3,
-      "pick_rate": 13.3,
+      "pick_rate": 11.4,
       "win_rate": 75.0
      },
      {
       "champion": "Kha'Zix",
       "games": 4,
       "wins": 3,
-      "pick_rate": 13.3,
+      "pick_rate": 11.4,
       "win_rate": 75.0
      },
      {
       "champion": "Lee Sin",
       "games": 3,
       "wins": 2,
-      "pick_rate": 10.0,
+      "pick_rate": 8.6,
       "win_rate": 66.7
      },
      {
       "champion": "Qiyana",
       "games": 3,
       "wins": 2,
-      "pick_rate": 10.0,
+      "pick_rate": 8.6,
       "win_rate": 66.7
      },
      {
       "champion": "Nautilus",
       "games": 3,
       "wins": 1,
-      "pick_rate": 10.0,
+      "pick_rate": 8.6,
       "win_rate": 33.3
      },
      {
       "champion": "Alistar",
+      "games": 3,
+      "wins": 0,
+      "pick_rate": 8.6,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Tristana",
       "games": 2,
       "wins": 0,
-      "pick_rate": 6.7,
+      "pick_rate": 5.7,
       "win_rate": 0.0
      },
      {
       "champion": "Fiddlesticks",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.3,
+      "pick_rate": 2.9,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Galio",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Gragas",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.3,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Kindred",
       "games": 1,
       "wins": 1,
-      "pick_rate": 3.3,
+      "pick_rate": 2.9,
       "win_rate": 100.0
      },
      {
       "champion": "Camille",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.3,
+      "pick_rate": 2.9,
+      "win_rate": 0.0
+     },
+     {
+      "champion": "Jayce",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 2.9,
       "win_rate": 0.0
      },
      {
       "champion": "Lulu",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.3,
+      "pick_rate": 2.9,
       "win_rate": 0.0
      },
      {
-      "champion": "Tristana",
+      "champion": "Malphite",
       "games": 1,
       "wins": 0,
-      "pick_rate": 3.3,
+      "pick_rate": 2.9,
       "win_rate": 0.0
      }
     ]
    },
    "on_role": 16,
-   "last": "11/04 10:56",
+   "last": "11/04 16:32",
    "last_region": "NA",
-   "last_na": "11/04 10:56"
+   "last_na": "11/04 16:32"
   },
   {
    "team": "LYON",
@@ -10450,20 +12396,86 @@
    "all_accounts": [
     "NA:Jesse Pinkman#LYON"
    ],
-   "games": [],
+   "games": [
+    {
+     "id": "eq3KyFixtgW1EADjmOUcAth1h_OI5OD-jdrcbcBvEx8=",
+     "time": "2026-11-04T17:12:58+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Alistar",
+     "position": "SUPPORT",
+     "result": "WIN",
+     "op_rank": 3,
+     "account": "NA:Jesse Pinkman#LYON",
+     "region": "NA",
+     "time_tw": "11/04 16:12",
+     "on_role": false
+    },
+    {
+     "id": "eq3KyFixtgWebTYOeMAon0px5726VDngnU0Y1XFCpJ4=",
+     "time": "2026-11-04T16:18:19+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Tristana",
+     "position": "MID",
+     "result": "LOSE",
+     "op_rank": 7,
+     "account": "NA:Jesse Pinkman#LYON",
+     "region": "NA",
+     "time_tw": "11/04 15:18",
+     "on_role": true
+    },
+    {
+     "id": "eq3KyFixtgX4QJhulp7Q1256xpCH2FF0r7OnfwNRIa8=",
+     "time": "2026-11-04T15:06:11+09:00",
+     "queue": "SOLORANKED",
+     "champion": "Jinx",
+     "position": "ADC",
+     "result": "WIN",
+     "op_rank": 4,
+     "account": "NA:Jesse Pinkman#LYON",
+     "region": "NA",
+     "time_tw": "11/04 14:06",
+     "on_role": false
+    }
+   ],
    "summary": {
-    "games": 0,
-    "wins": 0,
-    "win_rate": null,
-    "first": null,
-    "last": null,
-    "positions": {},
-    "champions": []
+    "games": 3,
+    "wins": 2,
+    "win_rate": 66.7,
+    "first": "2026-11-04T15:06:11+09:00",
+    "last": "2026-11-04T17:12:58+09:00",
+    "positions": {
+     "SUPPORT": 1,
+     "MID": 1,
+     "ADC": 1
+    },
+    "champions": [
+     {
+      "champion": "Alistar",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 33.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Jinx",
+      "games": 1,
+      "wins": 1,
+      "pick_rate": 33.3,
+      "win_rate": 100.0
+     },
+     {
+      "champion": "Tristana",
+      "games": 1,
+      "wins": 0,
+      "pick_rate": 33.3,
+      "win_rate": 0.0
+     }
+    ]
    },
-   "on_role": 0,
-   "last": "10/28 08:50",
+   "on_role": 1,
+   "last": "11/04 16:12",
    "last_region": "NA",
-   "last_na": "10/28 08:50"
+   "last_na": "11/04 16:12"
   },
   {
    "team": "LYON",

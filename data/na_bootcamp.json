@@ -297,14 +297,6 @@
  },
  {
   "team": "BLG",
-  "role": "top",
-  "player": "Bin",
-  "region": "NA",
-  "riot_id": "hfdgjhfgdnh#123",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "BLG",
   "role": "support",
   "player": "ON",
   "region": "NA",
@@ -317,6 +309,14 @@
   "player": "Oner",
   "region": "NA",
   "riot_id": "worlds#111",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "BLG",
+  "role": "top",
+  "player": "Bin",
+  "region": "NA",
+  "riot_id": "hfdgjhfgdnh#123",
   "source": "ttp-bootcamp"
  },
  {
@@ -520,14 +520,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "TLAW",
-  "role": "mid",
-  "player": "Quid",
-  "region": "NA",
-  "riot_id": "Jake Tiberi#BALD",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "AL",
   "role": "bot",
   "player": "Hope",
@@ -557,6 +549,14 @@
   "player": "Rest",
   "region": "NA",
   "riot_id": "qwdfa#usa1",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "TLAW",
+  "role": "mid",
+  "player": "Quid",
+  "region": "NA",
+  "riot_id": "Jake Tiberi#BALD",
   "source": "ttp-bootcamp"
  },
  {
@@ -640,19 +640,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "LYON",
-  "role": "support",
-  "player": "Isles",
-  "region": "NA",
-  "riot_id": "depresion#NA2",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "KC",
   "role": "support",
   "player": "Busio",
   "region": "NA",
   "riot_id": "KC Busio#000",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "LYON",
+  "role": "support",
+  "player": "Isles",
+  "region": "NA",
+  "riot_id": "depresion#NA2",
   "source": "ttp-bootcamp"
  },
  {
