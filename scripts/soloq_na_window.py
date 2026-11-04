@@ -75,11 +75,13 @@ def main(data_dir, roster_path, start, end, teams):
     with ThreadPoolExecutor(6) as ex:
         players = list(ex.map(run, jobs))
     # OP.GG only returns an account's latest 20 games of any queue, so newer games (normals too) can push window games
-    # out between pulls; games the previous pull saw inside the same window are kept (they were played and seen)
+    # out between pulls; games the previous pull saw inside the window are kept (they were played and seen). The window
+    # may have grown since (same start, later end), and the previous games still fall inside it
     prev_path = f"{data_dir}/soloq_na.json"
     if os.path.exists(prev_path):
         prev = json.load(open(prev_path))
-        if prev.get("window") == [lo, hi]:
+        pw = prev.get("window") or [None, None]
+        if pw[0] == lo and pw[1] <= hi:
             seen = {(p["team"], p["role"]): p["games"] for p in prev["players"]}
             for p in players:
                 have = {g["id"] for g in p["games"]}

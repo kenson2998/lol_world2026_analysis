@@ -573,6 +573,7 @@ a.kt-m { color: inherit; text-decoration: none } a.kt-m:hover, a.kt-m:focus-visi
 .sq-ph:hover, .sq-ph:focus-visible { color: var(--accent) }
 .sq-ph span { font: 500 12px var(--f-data); color: var(--muted) }
 .sq-pg { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px; align-items: start }
+@media (min-width: 720px) { .sq-pg.one { grid-template-columns: 1fr 1fr } }   /* a lone team keeps a pair's half width */
 .sq-top { list-style: none; margin: 0; padding: 4px 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 24px;
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px }
 .sq-top li { display: grid; grid-template-columns: 1.6em 32px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
@@ -956,7 +957,7 @@ function teamDraft(team) {
   const add = (o, c, win) => { const x = (o[c] ||= { n: 0, w: 0 }); x.n++; x.w += win; };
   games.forEach(g => {
     const opp = g.a === team ? g.b : g.a, win = g.winner === team;
-    g.draft.picks.forEach(p => { add(p.team === team ? s.pick : s.oppPick, p.champion, win); (s.roles[p.champion] ||= new Set()).add(p.role); });
+    g.draft.picks.forEach(p => { add(p.team === team ? s.pick : s.oppPick, p.champion, win); if (p.role) (s.roles[p.champion] ||= new Set()).add(p.role); });
     (g.draft.bans?.[team] || []).forEach(c => add(s.ban, c, win));
     (g.draft.bans?.[opp] || []).forEach(c => add(s.against, c, win));
   });
@@ -1082,7 +1083,8 @@ function champStats(W, upto) {
   const get = c => { if (!st.has(c)) st.set(c, { champion: c, picks: 0, bans: 0, wins: 0, roles: new Set() }); return st.get(c); };
   gs.forEach(g => {
     Object.values(g.draft.bans || {}).flat().forEach(c => get(c).bans++);
-    g.draft.picks.forEach(p => { const s = get(p.champion); s.picks++; s.roles.add(p.role); if (p.team === g.winner) s.wins++; });
+    // a draft without roles yet (Leaguepedia before the scoreboards are up) still counts, it just adds no role
+    g.draft.picks.forEach(p => { const s = get(p.champion); s.picks++; if (p.role) s.roles.add(p.role); if (p.team === g.winner) s.wins++; });
   });
   return { games: gs.length, rows: [...st.values()] };
 }
@@ -1683,8 +1685,8 @@ function renderSoloq(sec) {
   const md = d => d.slice(5).replace("-", "/");
   const win = `${md(S.window[0])}–${md(S.window[1])}`;
   // only games in the player's own Worlds role (OP.GG's position); everything below is computed from these
-  // what is new since the previous pull (same window only): own-role games whose id wasn't there before
-  const PV = DATA.soloq_na_prev && DATA.soloq_na_prev.window.join() === S.window.join() ? DATA.soloq_na_prev : null;
+  // what is new since the previous pull (same start; the end may have moved later): own-role games whose id wasn't there before
+  const PV = DATA.soloq_na_prev && DATA.soloq_na_prev.window[0] === S.window[0] && DATA.soloq_na_prev.window[1] <= S.window[1] ? DATA.soloq_na_prev : null;
   const P = S.players.map(p => { const gs = p.games.filter(g => g.on_role), w = gs.filter(g => g.result === "WIN").length;
     const pool = {}; gs.forEach(g => { const c = (pool[g.champion] ||= { champion: g.champion, games: 0, wins: 0 }); c.games++; c.wins += g.result === "WIN"; });
     const before = PV?.ids[`${p.team}/${p.role}`], fresh = before ? gs.filter(g => !before.includes(g.id)) : [];
@@ -1735,11 +1737,17 @@ function renderSoloq(sec) {
   const W = DATA.worlds, QR = W?.rounds[SW_ROUNDS], qf = (QR?.matches || []).map((m, k) => ({ m, k }))
     .filter(({ m }) => S.teams.includes(m.a) && S.teams.includes(m.b)).sort((x, y) => (x.m.time_tw || "").localeCompare(y.m.time_tw || ""));
   const paired = new Set(qf.flatMap(({ m }) => [m.a, m.b]));
+  // a team whose quarterfinal is over (its opponent is out, so not in S.teams): headed with its semifinal time
+  const sfTime = t => { const k = (QR?.matches || []).findIndex(m => m.winner === t), id = `r${SW_ROUNDS + 1}-m${k + 1}`;
+    const j = (W?.knockout?.rounds[0]?.feeds || []).findIndex(f => f.includes(id)); return k < 0 || j < 0 ? "" : W.knockout.rounds[0].time_tw?.[j] || ""; };
+  const solo = S.teams.filter(t => !paired.has(t)), through = solo.filter(t => QR?.matches.some(m => m.winner === t));
   const cards = qf.map(({ m, k }) => `<div class="sq-pair"><a class="sq-ph" href="#${matchId(SW_ROUNDS, k)}" title="看這場比賽">${esc(QR.name)}・${esc(m.a)} vs ${esc(m.b)}${m.time_tw ? `<span>${esc(m.time_tw)}</span>` : ""}${m.winner ? `<span>${esc(m.winner)} 勝${m.score ? ` ${m.score.join("-")}` : ""}</span>` : ""}</a>
       <div class="sq-pg">${card(m.a)}${card(m.b)}</div></div>`).join("")
-    + (S.teams.some(t => !paired.has(t)) ? `<div class="cb-grid">${S.teams.filter(t => !paired.has(t)).map(card).join("")}</div>` : "");
-  body.innerHTML = sec("最常用英雄", `${win} 所有淘汰賽隊伍先發選手的美服＋韓服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
-    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${hasRank ? "★ MVP 為本位場次中 OP.GG 評分全場第 1 的次數（滑鼠移上可看是哪幾場）。" : ""}${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}依八強對戰兩兩並排，最早開打的在最上面。`, `<div class="sq-pairs">${cards}</div>`, "sq-teams");
+    + through.map(t => `<div class="sq-pair"><div class="sq-ph">已晉級四強・${esc(t)}${sfTime(t) ? `<span>四強 ${esc(sfTime(t))}</span>` : ""}</div>
+      <div class="sq-pg one">${card(t)}</div></div>`).join("")
+    + (solo.some(t => !through.includes(t)) ? `<div class="cb-grid">${solo.filter(t => !through.includes(t)).map(card).join("")}</div>` : "");
+  body.innerHTML = sec("最常用英雄", `${win} 仍在賽中的隊伍（${esc(S.teams.join("、"))}）先發選手的美服＋韓服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
+    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${hasRank ? "★ MVP 為本位場次中 OP.GG 評分全場第 1 的次數（滑鼠移上可看是哪幾場）。" : ""}${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}依八強對戰兩兩並排，最早開打的在最上面；八強已打完的隊伍排在後面。`, `<div class="sq-pairs">${cards}</div>`, "sq-teams");
 }
 
 // Worlds player stats table

@@ -56,22 +56,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "G2",
-  "role": "jungle",
-  "player": "SkewMond",
-  "region": "NA",
-  "riot_id": "G2 Egghead#Bald",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "BLG",
-  "role": "bot",
-  "player": "Viper",
-  "region": "NA",
-  "riot_id": "painn#110",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "KC",
   "role": "bot",
   "player": "Caliste",
@@ -80,11 +64,27 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "G2",
+  "role": "jungle",
+  "player": "SkewMond",
+  "region": "NA",
+  "riot_id": "G2 Egghead#Bald",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "DK",
   "role": "support",
   "player": "Career",
   "region": "NA",
   "riot_id": "하이용#1015",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "BLG",
+  "role": "bot",
+  "player": "Viper",
+  "region": "NA",
+  "riot_id": "painn#110",
   "source": "ttp-bootcamp"
  },
  {
@@ -152,6 +152,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "KC",
+  "role": "support",
+  "player": "Busio",
+  "region": "NA",
+  "riot_id": "basiil#fan",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "T1",
   "role": "bot",
   "player": "Peyz",
@@ -168,19 +176,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "KC",
-  "role": "support",
-  "player": "Busio",
-  "region": "NA",
-  "riot_id": "basiil#fan",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "GEN",
   "role": "support",
   "player": "Duro",
   "region": "NA",
   "riot_id": "New York#1114",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "KC",
+  "role": "mid",
+  "player": "Kyeahoo",
+  "region": "NA",
+  "riot_id": "yeahoo#yaho",
   "source": "ttp-bootcamp"
  },
  {
@@ -192,19 +200,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "DK",
-  "role": "jungle",
-  "player": "Lucid",
-  "region": "NA",
-  "riot_id": "tyjoierg#123",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "LYON",
   "role": "bot",
   "player": "Berserker",
   "region": "NA",
   "riot_id": "chud#LYON",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "DK",
+  "role": "jungle",
+  "player": "Lucid",
+  "region": "NA",
+  "riot_id": "tyjoierg#123",
   "source": "ttp-bootcamp"
  },
  {
@@ -224,14 +232,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "DK",
-  "role": "bot",
-  "player": "Smash",
-  "region": "NA",
-  "riot_id": "123321#KR12",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "HLE",
   "role": "mid",
   "player": "Zeka",
@@ -248,19 +248,19 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "DK",
+  "role": "bot",
+  "player": "Smash",
+  "region": "NA",
+  "riot_id": "123321#KR12",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "KC",
   "role": "top",
   "player": "Canna",
   "region": "NA",
   "riot_id": "worldspro0073#world",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "KC",
-  "role": "mid",
-  "player": "Kyeahoo",
-  "region": "NA",
-  "riot_id": "yeahoo#yaho",
   "source": "ttp-bootcamp"
  },
  {
@@ -304,19 +304,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "BLG",
-  "role": "support",
-  "player": "ON",
-  "region": "NA",
-  "riot_id": "burgershutiao#zxcvb",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "T1",
   "role": "jungle",
   "player": "Oner",
   "region": "NA",
   "riot_id": "worlds#111",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "BLG",
+  "role": "support",
+  "player": "ON",
+  "region": "NA",
+  "riot_id": "burgershutiao#zxcvb",
   "source": "ttp-bootcamp"
  },
  {
@@ -392,19 +392,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "HLE",
-  "role": "support",
-  "player": "Delight",
-  "region": "NA",
-  "riot_id": "2026sup1#111",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "T1",
   "role": "support",
   "player": "Keria",
   "region": "NA",
   "riot_id": "doryunnim#Frank",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "HLE",
+  "role": "support",
+  "player": "Delight",
+  "region": "NA",
+  "riot_id": "2026sup1#111",
   "source": "ttp-bootcamp"
  },
  {
@@ -592,19 +592,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "TES",
-  "role": "top",
-  "player": "369",
-  "region": "NA",
-  "riot_id": "godrjs#gktpd",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "TLAW",
   "role": "support",
   "player": "CoreJJ",
   "region": "NA",
   "riot_id": "EDG Meiko#NA12",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "TES",
+  "role": "top",
+  "player": "369",
+  "region": "NA",
+  "riot_id": "godrjs#gktpd",
   "source": "ttp-bootcamp"
  },
  {
