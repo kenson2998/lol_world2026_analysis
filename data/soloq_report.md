@@ -160,9 +160,9 @@
 | 下路 | Duduhh | 15 | 10-5 | 67% | [KR] —<br>[NA] 2小時34分前 | Aphelios (亞菲利歐) 2場 13% 100%、Jhin (燼) 2場 13% 50%、Akali (阿卡莉) 1場 7% 100%、Caitlyn (凱特琳) 1場 7% 100%、Irelia (伊瑞莉雅) 1場 7% 100%、Kalista (克黎思妲) 1場 7% 100% |
 | 輔助 | Ackerman | 14 | 12-2 | 86% | [KR] —<br>[NA] 2小時53分前 | Camille (卡蜜兒) 3場 21% 67%、Bard (巴德) 2場 14% 100%、Annie (安妮) 1場 7% 100%、Blitzcrank (布里茨) 1場 7% 100%、Karma (卡瑪) 1場 7% 100%、Pantheon (潘森) 1場 7% 100% |
 
-## 世界賽戰況（整理於 2026-11-04 12:16（台灣時間））
+## 世界賽戰況（整理於 2026-11-05 10:42（台灣時間））
 
-八強賽進行中：IG 3-1 TES，IG 晉級四強（11/8 06:00 對 GEN / LYON 勝方）。接下來台灣時間 11/5 06:00 GEN vs LYON、11/6 06:00 DK vs BLG、11/7 06:00 T1 vs KC；四強 11/8、11/9 06:00，決賽 11/15 03:00。
+八強賽進行中：IG 3-1 TES、GEN 3-0 LYON，四強 11/8 06:00 GEN vs IG。接下來台灣時間 11/6 06:00 DK vs BLG、11/7 06:00 T1 vs KC（勝方 11/9 06:00 四強）；決賽 11/15 03:00。
 
 ### 第一輪結果（Bo1）
 
@@ -248,12 +248,14 @@
 | TES vs IG 第2局 | TES | 20-17 | 47:09 | TES Orianna (奧莉安娜)、IG Lulu (露璐)、IG Yunara (尤娜拉)、TES Kalista (克黎思妲)、TES Renata Glasc (睿娜妲．格萊斯克)、IG Viktor (維克特)、IG Wukong (悟空)、TES Xin Zhao (趙信)、TES Renekton (雷尼克頓)、IG Vayne (汎) |  |
 | TES vs IG 第3局 | IG | 9-16 | 29:29 | IG Jayce (杰西)、TES Ashe (艾希)、TES Seraphine (瑟菈紛)、IG Zeri (婕莉)、IG Yuumi (悠咪)、TES Skarner (史加納)、TES Rumble (藍寶)、IG Annie (安妮)、IG Ornn (鄂爾)、TES Yone (犽凝) |  |
 | TES vs IG 第4局 | IG | 10-16 | 30:58 | TES Lucian (路西恩)、IG Jhin (燼)、IG Naafiri (娜菲芮)、TES Milio (米里歐)、TES Maokai (茂凱)、IG Alistar (亞歷斯塔)、IG K'Sante (卡桑帝)、TES Aatrox (厄薩斯)、TES Aurora (歐羅拉)、IG Taliyah (塔莉雅) |  |
+| GEN vs LYON 第1局 | GEN | 19-8 | 32:13 | LYON Ezreal (伊澤瑞爾)、GEN Qiyana (姬亞娜)、GEN Jhin (燼)、LYON Lee Sin (李星)、LYON Nautilus (納帝魯斯)、GEN Leona (雷歐娜)、GEN Olaf (歐拉夫)、LYON Jax (賈克斯)、LYON Orianna (奧莉安娜)、GEN Galio (加里歐) |  |
+| GEN vs LYON 第2局 | GEN | 22-6 | 26:32 | LYON Cassiopeia (卡莎碧雅)、GEN Jarvan IV (嘉文四世)、GEN Ashe (艾希)、LYON Wukong (悟空)、LYON Jayce (杰西)、GEN Seraphine (瑟菈紛)、GEN Sion (賽恩)、LYON Mel (梅爾)、LYON Pyke (派克)、GEN Viktor (維克特) |  |
+| GEN vs LYON 第3局 | GEN | 16-10 | 33:29 | GEN Pantheon (潘森)、LYON Alistar (亞歷斯塔)、LYON Trundle (特朗德)、GEN Xayah (剎雅)、GEN Rakan (銳空)、LYON Corki (庫奇)、LYON Anivia (艾妮維亞)、GEN Aurora (歐羅拉)、GEN Taliyah (塔莉雅)、LYON Gangplank (剛普朗克) |  |
 
 ### 八強賽（Bo5，未開打）
 
 | 台灣時間 | 組別 | 對戰 | Polymarket 勝率 | 賠率 Polymarket | 賠率 Kalshi |
 |---|---|---|---|---|---|
-| 11/05 06:00 | 八強 | GEN vs LYON | — | — | — |
 | 11/06 06:00 | 八強 | DK vs BLG | — | — | — |
 | 11/07 06:00 | 八強 | T1 vs KC | — | — | — |
 
@@ -304,6 +306,8 @@
 - outdrafted.lol 八強模型勝率（11/3 10:10 抓取，模型非市場）：TES 52.8 / IG 47.2、GEN 92.0 / LYON 8.0、DK 49.3 / BLG 50.7、T1 78.1 / KC 21.9；其頁面內嵌的 Polymarket 奪冠價格（未直接取得）GEN 48%、T1 21%、BLG 15.3%、DK 8.6%、IG 5.3%、TES 2.9%、KC 1.6%、LYON 0.7%。冠軍賠率表仍為 10/26 快照（找不到可直接核對的新奪冠賠率）。
 - STRAFE 11/3 八強預測文的「Indicative odds」（未註明莊家）：GEN 1.08 / LYON 11.50、DK 2.26 / BLG 1.61、T1 1.30 / KC 3.75；因未註明來源莊家，賽前勝率仍採 rg.org 引用 esports.gg 的多家去水平均。outdrafted 11/4 11:08 模型勝率不變（GEN 92.0 / LYON 8.0、DK 49.3 / BLG 50.7、T1 78.1 / KC 21.9）。
 - outdrafted.lol 奪冠模型（11/4 11:08 抓取，已反映 IG 3-1 TES）：GEN 49%、T1 20%、BLG 12%、DK 11%、IG 6.0%、KC 1.2%、LYON <1%。
-- TES vs IG（八強，11/4）：IG 3-1 TES（G1 IG、G2 TES、G3 IG、G4 IG），Liquipedia API 與 Leaguepedia 一致。gol.gg 此系列頁面（83694–83697）到 11/4 12:16 仍為空白，BP 順序、藍紅方、先選取自 Leaguepedia Picks_and_Bans（T1=先選隊，依 T1P1、T2P1-2、T1P2-3、T2P3、T2P4、T1P4-5、T2P5 轉為整體順序）；擊殺、時長、選手與位置及選手數據（K/D/A、補兵、金錢、對英雄傷害、視野）取自 Leaguepedia Scoreboards/Quarterfinals（11/4 12:16），每分數據／參團率／傷害與經濟佔比由此換算；15 分差、承受傷害、單殺、搶重擊留空。單局 MVP 無來源（Liquipedia 只列系列賽 MVP Wei），不顯示。
+- TES vs IG（八強，11/4）：IG 3-1 TES。11/5 起 gol.gg（83694–83697）已上線，與先前 Leaguepedia 的勝方、藍紅方、時長、選角一致，選手數據改用 gol.gg（含 15 分差、承受傷害等）；BP 順序沿用 Leaguepedia。
+- GEN vs LYON（八強，11/5）：GEN 3-0 LYON（gol.gg 83699–83701，Liquipedia API 核對一致）。pick 順序（n）依 gol.gg 各隊 pick 排列與標準 BP 順序（先選方 1、4-5、8-9，後選方 2-3、6-7、10）推得。
+- outdrafted 11/5 10:42：DK 49.6 / BLG 50.4、T1 78.1 / KC 21.9（模型）；奪冠模型 GEN 56%、T1 18%、BLG 11%、DK 10%、IG 3.9%、KC 0.9%。outdrafted 頁面轉述的 Polymarket（DK 42 / BLG 59、T1 83 / KC 18；奪冠 GEN 53、T1 20、BLG 14.8、DK 8.2、IG 8.8、KC 0.9）未直接取得，不採用。八強賠率仍為 rg.org 11/1 的多家去水平均（未找到註明莊家的新賠率）。
 
-來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)、[Leaguepedia Scoreboards Round 4](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Round_4)、[Liquipedia：Worlds 2026 淘汰賽](https://liquipedia.net/leagueoflegends/World_Championship/2026)、[Leaguepedia：Picks and Bans](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans)、[rg.org：八強市場平均（esports.gg 彙整）](https://rg.org/news/esports/worlds-2026-quarterfinals-market-favorites-gen-g-t1-ig-blg-tes-zuian-visa)、[Outdrafted：Worlds 模型](https://outdrafted.lol/worlds)、[OP.GG：選手單排](https://op.gg)、[TrackingThePros：選手帳號](https://www.trackingthepros.com)、[Leaguepedia Scoreboards Quarterfinals](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Quarterfinals)
+來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)、[Leaguepedia Scoreboards Round 4](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Round_4)、[Liquipedia：Worlds 2026 淘汰賽](https://liquipedia.net/leagueoflegends/World_Championship/2026)、[Leaguepedia：Picks and Bans](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans)、[rg.org：八強市場平均（esports.gg 彙整）](https://rg.org/news/esports/worlds-2026-quarterfinals-market-favorites-gen-g-t1-ig-blg-tes-zuian-visa)、[Outdrafted：Worlds 模型](https://outdrafted.lol/worlds)、[OP.GG：選手單排](https://op.gg)、[TrackingThePros：選手帳號](https://www.trackingthepros.com)

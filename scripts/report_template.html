@@ -1771,17 +1771,21 @@ function renderSoloq(sec) {
   const W = DATA.worlds, QR = W?.rounds[SW_ROUNDS], qf = (QR?.matches || []).map((m, k) => ({ m, k }))
     .filter(({ m }) => S.teams.includes(m.a) && S.teams.includes(m.b)).sort((x, y) => (x.m.time_tw || "").localeCompare(y.m.time_tw || ""));
   const paired = new Set(qf.flatMap(({ m }) => [m.a, m.b]));
-  // a team whose quarterfinal is over (its opponent is out, so not in S.teams): headed with its semifinal time
-  const sfTime = t => { const k = (QR?.matches || []).findIndex(m => m.winner === t), id = `r${SW_ROUNDS + 1}-m${k + 1}`;
-    const j = (W?.knockout?.rounds[0]?.feeds || []).findIndex(f => f.includes(id)); return k < 0 || j < 0 ? "" : W.knockout.rounds[0].time_tw?.[j] || ""; };
+  // a team whose quarterfinal is over (its opponent is out, so not in S.teams) goes under its semifinal: both semifinal
+  // teams known -> they sit side by side as "四強・A vs B"; only one known -> "已晉級四強・A" (the opponent isn't shown yet)
+  const SF = W?.knockout?.rounds[0];
+  const sfOf = t => { const k = (QR?.matches || []).findIndex(m => m.winner === t);
+    return k < 0 ? -1 : (SF?.feeds || []).findIndex(f => f.includes(`r${SW_ROUNDS + 1}-m${k + 1}`)); };
   const solo = S.teams.filter(t => !paired.has(t)), through = solo.filter(t => QR?.matches.some(m => m.winner === t));
+  const sfGroups = [...new Set(through.map(sfOf))].map(j => ({ j, teams: through.filter(t => sfOf(t) === j), time: SF?.time_tw?.[j] || "" }))
+    .sort((x, y) => x.time.localeCompare(y.time));
   const cards = qf.map(({ m, k }) => `<div class="sq-pair"><a class="sq-ph" href="#${matchId(SW_ROUNDS, k)}" title="看這場比賽">${esc(QR.name)}・${esc(m.a)} vs ${esc(m.b)}${m.time_tw ? `<span>${esc(m.time_tw)}</span>` : ""}${m.winner ? `<span>${esc(m.winner)} 勝${m.score ? ` ${m.score.join("-")}` : ""}</span>` : ""}</a>
       <div class="sq-pg">${card(m.a)}${card(m.b)}</div></div>`).join("")
-    + through.map(t => `<div class="sq-pair"><div class="sq-ph">已晉級四強・${esc(t)}${sfTime(t) ? `<span>四強 ${esc(sfTime(t))}</span>` : ""}</div>
-      <div class="sq-pg one">${card(t)}</div></div>`).join("")
+    + sfGroups.map(g => `<div class="sq-pair"><div class="sq-ph">${g.teams.length > 1 ? `四強・${g.teams.map(esc).join(" vs ")}` : `已晉級四強・${esc(g.teams[0])}`}${g.time ? `<span>${g.teams.length > 1 ? "" : "四強 "}${esc(g.time)}</span>` : ""}</div>
+      <div class="sq-pg${g.teams.length > 1 ? "" : " one"}">${g.teams.map(card).join("")}</div></div>`).join("")
     + (solo.some(t => !through.includes(t)) ? `<div class="cb-grid">${solo.filter(t => !through.includes(t)).map(card).join("")}</div>` : "");
   body.innerHTML = sec("最常用英雄", `${win} 仍在賽中的隊伍（${esc(S.teams.join("、"))}）先發選手的美服＋韓服本位單排，使用次數最多的 10 隻英雄與勝率。`, champList, "sq-champs")
-    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${hasRank ? "★ MVP 為本位場次中 OP.GG 評分全場第 1 的次數（滑鼠移上可看是哪幾場）。" : ""}${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}依八強對戰兩兩並排，最早開打的在最上面；八強已打完的隊伍排在後面。`, `<div class="sq-pairs">${cards}</div>`, "sq-teams");
+    + sec(`各隊選手（${win}）`, `每位先發選手的本位場數、戰績、最常用的 3 隻英雄與最後一場本位單排的時間（台灣時間）；非本位的場次不計。灰色為區間內沒有本位單排。${hasRank ? "★ MVP 為本位場次中 OP.GG 評分全場第 1 的次數（滑鼠移上可看是哪幾場）。" : ""}${PV ? `高亮與「+N」為 ${since}（${esc(PV.fetched)}）後新增的場次。` : ""}依八強對戰兩兩並排，最早開打的在最上面；八強已打完的隊伍排在後面（四強對手已確定的也並排）。`, `<div class="sq-pairs">${cards}</div>`, "sq-teams");
 }
 
 // Worlds player stats table
