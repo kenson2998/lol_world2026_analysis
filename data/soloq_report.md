@@ -259,6 +259,12 @@
 | 11/06 06:00 | 八強 | DK vs BLG | — | — | — |
 | 11/07 06:00 | 八強 | T1 vs KC | — | — | — |
 
+### 四強（Bo5，未開打）
+
+| 台灣時間 | 組別 | 對戰 | Polymarket 勝率 | 賠率 Polymarket | 賠率 Kalshi |
+|---|---|---|---|---|---|
+| 11/08 06:00 | 四強 | GEN vs IG | — | — | — |
+
 
 ### 冠軍機率（10/26 14:46 台灣時間，對比 10/24 00:00 台灣時間，第一輪開打前 1 小時）
 
@@ -309,5 +315,6 @@
 - TES vs IG（八強，11/4）：IG 3-1 TES。11/5 起 gol.gg（83694–83697）已上線，與先前 Leaguepedia 的勝方、藍紅方、時長、選角一致，選手數據改用 gol.gg（含 15 分差、承受傷害等）；BP 順序沿用 Leaguepedia。
 - GEN vs LYON（八強，11/5）：GEN 3-0 LYON（gol.gg 83699–83701，Liquipedia API 核對一致）。pick 順序（n）依 gol.gg 各隊 pick 排列與標準 BP 順序（先選方 1、4-5、8-9，後選方 2-3、6-7、10）推得。
 - outdrafted 11/5 10:42：DK 49.6 / BLG 50.4、T1 78.1 / KC 21.9（模型）；奪冠模型 GEN 56%、T1 18%、BLG 11%、DK 10%、IG 3.9%、KC 0.9%。outdrafted 頁面轉述的 Polymarket（DK 42 / BLG 59、T1 83 / KC 18；奪冠 GEN 53、T1 20、BLG 14.8、DK 8.2、IG 8.8、KC 0.9）未直接取得，不採用。八強賠率仍為 rg.org 11/1 的多家去水平均（未找到註明莊家的新賠率）。
+- 四強 GEN vs IG（11/8 06:00）：outdrafted 模型 Bo5 勝率 GEN 83.4 / IG 16.6（11/5 19:01，https://outdrafted.lol/lol/match/115660540726095127，模型非市場）；頁面轉述的 Polymarket（GEN 81 / IG 20）未直接取得，不採用。win.gg、STRAFE、rg.org 尚無四強賠率頁，tips.gg 403；搜尋摘要中的 bet365 晉級決賽盤口不採用。
 
 來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)、[Leaguepedia Scoreboards Round 4](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Round_4)、[Liquipedia：Worlds 2026 淘汰賽](https://liquipedia.net/leagueoflegends/World_Championship/2026)、[Leaguepedia：Picks and Bans](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans)、[rg.org：八強市場平均（esports.gg 彙整）](https://rg.org/news/esports/worlds-2026-quarterfinals-market-favorites-gen-g-t1-ig-blg-tes-zuian-visa)、[Outdrafted：Worlds 模型](https://outdrafted.lol/worlds)、[OP.GG：選手單排](https://op.gg)、[TrackingThePros：選手帳號](https://www.trackingthepros.com)

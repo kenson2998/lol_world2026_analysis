@@ -370,7 +370,7 @@ def main():
                 open(f"{export}/{stem}.txt", "w").write(as_text(a, b, mid, *res))
             made.append((mid, stem))
             summaries[mid] = res[-1]
-        break   # only the round in progress
+        # every round not yet done: a knockout round can already list a later match (e.g. a semifinal whose two teams are set)
     json.dump(dict(made), open(f"{out_dir}/index.json", "w"), ensure_ascii=False, indent=1)
     # the same 賽事總結 for the site's match previews (build_report.py embeds it)
     json.dump(summaries, open(f"{out_dir}/summary.json", "w"), ensure_ascii=False, indent=1)

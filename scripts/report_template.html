@@ -1905,9 +1905,15 @@ function swissTree(W) {
       <div class="sw-h">${head(b)}${count(b) ? `<small>${b.out ? `${count(b)} 隊` : `${count(b)} 場`}</small>` : ""}</div>${body(b)}</div>`).join("")}</div></div>`).join("")}
     <svg class="sw-lines" aria-hidden="true"></svg></div></div>`;
 }
+// a scheduled knockout match after the quarterfinals (ri 0 = 四強, 1 = 決賽) between two known teams, with its index in
+// that round; found by its teams, so the round can list a semifinal as soon as its pairing is set, in any order
+const koMatch = (W, ri, a, b) => { if (!a || !b) return null;
+  const ms = W.rounds[SW_ROUNDS + 1 + ri]?.matches || [], k = ms.findIndex(m => (m.a === a && m.b === b) || (m.a === b && m.b === a));
+  return k < 0 ? null : { m: ms[k], k }; };
 // ---- 水晶球: knockout prediction tree (八強 → 四強 → 決賽 → 冠軍) ----
-// 八強 uses each match's own pre-match win chance (market, bookmaker average, else model); later rounds have no match
-// odds yet, so the side with the higher model title chance (W.outright_model) moves on. A played match uses its winner.
+// Every match uses its own pre-match win chance (market, bookmaker average, else model) once it is scheduled with odds;
+// a later match with no odds (teams not set yet) is decided by the higher model title chance (W.outright_model).
+// A played match uses its winner.
 function koPredict(W) {
   const K = W.knockout; if (!K) return "";
   const byId = id => { const m = /^r(\d+)-m(\d+)$/.exec(id); return m && W.rounds[+m[1] - 1]?.matches[+m[2] - 1]; };
@@ -1918,8 +1924,10 @@ function koPredict(W) {
   const boxOf = (a, b, m, label) => {
     if (m) {
       const book = bookPct(m.books), pct = m.pct || book || m.model, src = m.pct ? "" : book ? "莊" : m.model ? "模" : "";
-      const w = m.winner || (pct ? (pct[0] >= pct[1] ? m.a : m.b) : null);
-      return { a: m.a, b: m.b, pa: pct?.[0], pb: pct?.[1], src, winner: w, played: !!m.winner, score: m.score, label, time: m.time_tw };
+      // scheduled but no odds yet: fall back to the title model like an unscheduled match
+      const w = m.winner || (pct ? (pct[0] >= pct[1] ? m.a : m.b) : tnum(m.a) >= tnum(m.b) ? m.a : m.b);
+      return { a: m.a, b: m.b, pa: pct?.[0], pb: pct?.[1], src, winner: w, played: !!m.winner, score: m.score, label, time: m.time_tw,
+        byTitle: !m.winner && !pct };
     }
     const w = a && b ? (tnum(a) >= tnum(b) ? a : b) : null;
     return { a, b, winner: w, byTitle: true, label };
@@ -1931,16 +1939,17 @@ function koPredict(W) {
   const order = (K.rounds[0]?.feeds || []).flat();
   qfBoxes.sort((x, y) => (order.indexOf(x.label) + 1 || 99) - (order.indexOf(y.label) + 1 || 99));
   cols.push({ name: W.rounds[SW_ROUNDS]?.name || "八強", boxes: qfBoxes });
-  const done = { };
-  cols[0].boxes.forEach(x => { done[x.label] = x.winner; });
+  // done: who moves on (actual or predicted); act: only actual results, used to find a scheduled later match
+  const done = { }, act = { };
+  cols[0].boxes.forEach(x => { done[x.label] = x.winner; act[x.label] = x.played ? x.winner : null; });
   K.rounds.forEach((r, ri) => {
     const boxes = r.feeds.map(([x, y], k) => {
       const id = ri === K.rounds.length - 1 ? "final" : `sf${k + 1}`;
-      // a later round actually played lives in W.rounds after the quarterfinals
-      const real = W.rounds[SW_ROUNDS + 1 + ri]?.matches?.[k];
-      const bx = boxOf(done[x], done[y], real?.a ? real : null, id);
+      // a later round's scheduled match (in W.rounds after the quarterfinals) brings its own odds / result
+      const real = koMatch(W, ri, act[x], act[y])?.m;
+      const bx = boxOf(done[x], done[y], real || null, id);
       bx.time = bx.time || r.time_tw?.[k];
-      done[id] = bx.winner; return bx; });
+      done[id] = bx.winner; act[id] = real?.winner || null; return bx; });
     cols.push({ name: r.name, boxes });
   });
   const champ = done.final;
@@ -1987,9 +1996,9 @@ function koBracket(W) {
     const html = r.feeds.map(([x, y], k) => {
       const id = ri === K.rounds.length - 1 ? "final" : `sf${k + 1}`;
       links.push([x, id], [y, id]);
-      // a later round actually scheduled lives in W.rounds after the quarterfinals
-      const real = W.rounds[SW_ROUNDS + 1 + ri]?.matches?.[k];
-      return real?.a ? box(id, real.a, real.b, real, SW_ROUNDS + 1 + ri, k, real.time_tw) : box(id, win[x], win[y], null, 0, 0, r.time_tw?.[k]);
+      // a later round actually scheduled lives in W.rounds after the quarterfinals, found by its two teams
+      const real = koMatch(W, ri, win[x], win[y]);
+      return real ? box(id, real.m.a, real.m.b, real.m, SW_ROUNDS + 1 + ri, real.k, real.m.time_tw) : box(id, win[x], win[y], null, 0, 0, r.time_tw?.[k]);
     }).join("");
     cols.push({ name: r.name, html });
   });
@@ -2123,7 +2132,7 @@ function renderWorlds(W) {
   const cb = sec("水晶球題目", `世界賽 Pick'Em 水晶球 18 題，依目前已結束 ${nDone} 場的數據列出前三名；選手數據取自 gol.gg${usesLP(W) ? "（無法連線的場次用 Leaguepedia）" : ""}，KDA =（擊殺 + 助攻）÷ 死亡（0 死以 1 計）。${PREV ? `名字旁的 ${prevNote()}單一數值的題目顯示數值變化；滑鼠移到標記上可看當時名次與數值。` : ""}`,
     crystalBall(W), "pv-cb");
   const kpHtml = koPredict(W);
-  const kpSec = kpHtml ? sec("淘汰賽預測樹狀圖", `八強每場依賽前勝率（市場平均標「莊」、沒有市場時用 outdrafted 模型標「模」）由看好方晉級；四強與決賽還沒有單場賠率，改以 ${esc(W.outright_model?.label || "模型奪冠機率")}較高的一方推進。已結束的場次以實際勝方取代預測。${esc(W.knockout?.note || "")}`,
+  const kpSec = kpHtml ? sec("淘汰賽預測樹狀圖", `對陣已確定的場次（八強，以及兩隊已定的四強／決賽）依該場賽前勝率（市場平均標「莊」、沒有市場時用 outdrafted 模型標「模」）由看好方晉級；對陣還沒確定、沒有單場賠率的場次，改以 ${esc(W.outright_model?.label || "模型奪冠機率")}較高的一方推進（標「依模型奪冠機率推進」）。已結束的場次以實際勝方取代預測。${esc(W.knockout?.note || "")}`,
     kpHtml, "pv-ko") : "";
   document.getElementById("pv-body").innerHTML = cb + kpSec + accuracy(W, sec) + nextSec + outright + advance;
   const kp = document.getElementById("kp");

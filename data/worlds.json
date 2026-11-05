@@ -6643,6 +6643,31 @@
     }
    ],
    "pre_label": "Polymarket 賽前價格"
+  },
+  {
+   "name": "四強",
+   "status": "upcoming",
+   "format": "Bo5",
+   "date": "11/7–11/8 CT · 11/8–11/9 06:00 台灣時間",
+   "note": "四強 Bo5（Fearless）。GEN vs IG 對陣與時間取自 Liquipedia；DK/BLG 勝方 vs T1/KC 勝方 11/9 06:00（八強打完後加入）。賽前勝率為 outdrafted 模型（11/5 19:01，模型非市場；未找到註明莊家的四強賠率）",
+   "matches": [
+    {
+     "pool": "四強",
+     "a": "GEN",
+     "b": "IG",
+     "format": "Bo5",
+     "time_tw": "11/08 06:00",
+     "time_ct": "11/07 16:00",
+     "pct": null,
+     "poly": null,
+     "kalshi": null,
+     "books": [],
+     "model": [
+      83.4,
+      16.6
+     ]
+    }
+   ]
   }
  ],
  "standings": {
@@ -7054,7 +7079,8 @@
   "outdrafted.lol 奪冠模型（11/4 11:08 抓取，已反映 IG 3-1 TES）：GEN 49%、T1 20%、BLG 12%、DK 11%、IG 6.0%、KC 1.2%、LYON <1%。",
   "TES vs IG（八強，11/4）：IG 3-1 TES。11/5 起 gol.gg（83694–83697）已上線，與先前 Leaguepedia 的勝方、藍紅方、時長、選角一致，選手數據改用 gol.gg（含 15 分差、承受傷害等）；BP 順序沿用 Leaguepedia。",
   "GEN vs LYON（八強，11/5）：GEN 3-0 LYON（gol.gg 83699–83701，Liquipedia API 核對一致）。pick 順序（n）依 gol.gg 各隊 pick 排列與標準 BP 順序（先選方 1、4-5、8-9，後選方 2-3、6-7、10）推得。",
-  "outdrafted 11/5 10:42：DK 49.6 / BLG 50.4、T1 78.1 / KC 21.9（模型）；奪冠模型 GEN 56%、T1 18%、BLG 11%、DK 10%、IG 3.9%、KC 0.9%。outdrafted 頁面轉述的 Polymarket（DK 42 / BLG 59、T1 83 / KC 18；奪冠 GEN 53、T1 20、BLG 14.8、DK 8.2、IG 8.8、KC 0.9）未直接取得，不採用。八強賠率仍為 rg.org 11/1 的多家去水平均（未找到註明莊家的新賠率）。"
+  "outdrafted 11/5 10:42：DK 49.6 / BLG 50.4、T1 78.1 / KC 21.9（模型）；奪冠模型 GEN 56%、T1 18%、BLG 11%、DK 10%、IG 3.9%、KC 0.9%。outdrafted 頁面轉述的 Polymarket（DK 42 / BLG 59、T1 83 / KC 18；奪冠 GEN 53、T1 20、BLG 14.8、DK 8.2、IG 8.8、KC 0.9）未直接取得，不採用。八強賠率仍為 rg.org 11/1 的多家去水平均（未找到註明莊家的新賠率）。",
+  "四強 GEN vs IG（11/8 06:00）：outdrafted 模型 Bo5 勝率 GEN 83.4 / IG 16.6（11/5 19:01，https://outdrafted.lol/lol/match/115660540726095127，模型非市場）；頁面轉述的 Polymarket（GEN 81 / IG 20）未直接取得，不採用。win.gg、STRAFE、rg.org 尚無四強賠率頁，tips.gg 403；搜尋摘要中的 bet365 晉級決賽盤口不採用。"
  ],
  "sources": [
   [
