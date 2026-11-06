@@ -10,7 +10,7 @@
    {
     "region": "KR",
     "riot_id": "kiin#KR1",
-    "rank": "Ch 1,939LP",
+    "rank": "Ch 1,864LP",
     "active": true
    },
    {
@@ -68,13 +68,7 @@
    {
     "region": "NA",
     "riot_id": "Concrete jungle#USA",
-    "rank": "Ch 2,168LP",
-    "active": true
-   },
-   {
-    "region": "KR",
-    "riot_id": "JUGKlNG#kr",
-    "rank": "Ch 1,910LP",
+    "rank": "Ch 2,174LP",
     "active": true
    },
    {
@@ -82,6 +76,12 @@
     "riot_id": "HUANG TONG DAYE#KR1",
     "rank": "Ch 1,417LP",
     "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "JUGKlNG#kr",
+    "rank": "GM 1,835LP",
+    "active": true
    },
    {
     "region": "BR",
@@ -138,7 +138,7 @@
    {
     "region": "KR",
     "riot_id": "허거덩#0303",
-    "rank": "Master 388LP",
+    "rank": "Master 313LP",
     "active": true
    },
    {
@@ -220,13 +220,13 @@
    {
     "region": "KR",
     "riot_id": "강 철#샤 넬",
-    "rank": "GM 1,371LP",
+    "rank": "Master 1,296LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "proteinmonster#thief",
-    "rank": "Master 1,144LP",
+    "rank": "Master 1,177LP",
     "active": true
    },
    {
@@ -302,7 +302,7 @@
    {
     "region": "KR",
     "riot_id": "Duro#Gen",
-    "rank": "Ch 2,064LP",
+    "rank": "Ch 1,989LP",
     "active": true
    },
    {
@@ -336,7 +336,7 @@
    {
     "region": "KR",
     "riot_id": "Athene#lll",
-    "rank": "Ch 1,889LP",
+    "rank": "GM 1,814LP",
     "active": true
    },
    {
@@ -405,13 +405,13 @@
    },
    {
     "region": "KR",
-    "riot_id": "Black#294",
-    "rank": "Master 67LP",
+    "riot_id": "vinaka#KR1",
+    "rank": "Diamond I",
     "active": true
    },
    {
     "region": "KR",
-    "riot_id": "vinaka#KR1",
+    "riot_id": "Black#294",
     "rank": "Diamond I",
     "active": true
    },
@@ -458,7 +458,7 @@
    {
     "region": "KR",
     "riot_id": "suis#kr7",
-    "rank": "GM 1,662LP",
+    "rank": "GM 1,587LP",
     "active": true
    },
    {
@@ -492,7 +492,7 @@
    {
     "region": "KR",
     "riot_id": "HLE Gumayusi#0298",
-    "rank": "Ch 2,117LP",
+    "rank": "Ch 2,042LP",
     "active": true
    },
    {
@@ -556,7 +556,7 @@
    {
     "region": "KR",
     "riot_id": "플레이리스트겨울#KR1",
-    "rank": "Master 1,323LP",
+    "rank": "Master 1,248LP",
     "active": true
    },
    {
@@ -590,13 +590,13 @@
    {
     "region": "KR",
     "riot_id": "어리고싶다#KR1",
-    "rank": "Master 1,300LP",
+    "rank": "Master 1,225LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "buriburii#1234",
-    "rank": "Master 625LP",
+    "rank": "Master 604LP",
     "active": true
    },
    {
@@ -660,13 +660,13 @@
    {
     "region": "KR",
     "riot_id": "오 너#111",
-    "rank": "GM 1,762LP",
+    "rank": "GM 1,687LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "worlds#111",
-    "rank": "Master 854LP",
+    "rank": "Master 839LP",
     "active": true
    },
    {
@@ -730,13 +730,13 @@
    {
     "region": "KR",
     "riot_id": "Hide on bush#KR1",
-    "rank": "Ch 1,956LP",
+    "rank": "Ch 1,881LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "Hide in bush#NYKR",
-    "rank": "Master 835LP",
+    "rank": "Master 967LP",
     "active": true
    },
    {
@@ -782,13 +782,13 @@
    {
     "region": "KR",
     "riot_id": "Peyz#KR11",
-    "rank": "Ch 1,906LP",
+    "rank": "GM 1,831LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "gaesalbuger#aaaa",
-    "rank": "GM 1,570LP",
+    "rank": "GM 1,638LP",
     "active": true
    },
    {
@@ -816,13 +816,13 @@
    {
     "region": "KR",
     "riot_id": "Ciro#KR10",
-    "rank": "GM 1,571LP",
+    "rank": "GM 1,496LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "doryunnim#Frank",
-    "rank": "Master 690LP",
+    "rank": "Master 675LP",
     "active": true
    },
    {
@@ -874,19 +874,19 @@
    {
     "region": "NA",
     "riot_id": "Siuuuuuuuuuuuuuu#yarrr",
-    "rank": "GM 1,706LP",
+    "rank": "GM 1,877LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "TOPKING#asd",
-    "rank": "Master 879LP",
+    "rank": "Master 804LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "다죽이는게정#L을가져가",
-    "rank": "Master 706LP",
+    "rank": "Master 631LP",
     "active": true
    }
   ]
@@ -902,13 +902,13 @@
    {
     "region": "KR",
     "riot_id": "DK Lucid#KR1",
-    "rank": "GM 1,831LP",
+    "rank": "GM 1,756LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "tyjoierg#123",
-    "rank": "GM 1,462LP",
+    "rank": "GM 1,520LP",
     "active": true
    },
    {
@@ -930,13 +930,13 @@
    {
     "region": "KR",
     "riot_id": "DK ShowMaker#KR1",
-    "rank": "GM 1,806LP",
+    "rank": "GM 1,731LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "MIDKING#asd",
-    "rank": "GM 1,397LP",
+    "rank": "Master 1,322LP",
     "active": true
    },
    {
@@ -988,13 +988,13 @@
    {
     "region": "KR",
     "riot_id": "DK Smash#KR7",
-    "rank": "Ch 2,139LP",
+    "rank": "Ch 2,064LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "123321#KR12",
-    "rank": "Master 1,227LP",
+    "rank": "GM 1,402LP",
     "active": true
    }
   ]
@@ -1010,13 +1010,13 @@
    {
     "region": "NA",
     "riot_id": "하이용#1015",
-    "rank": "GM 1,927LP",
+    "rank": "Ch 1,964LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "팽도리#1015",
-    "rank": "GM 1,708LP",
+    "rank": "GM 1,633LP",
     "active": true
    }
   ]
@@ -1044,7 +1044,7 @@
    {
     "region": "KR",
     "riot_id": "aierlanxiaozhu#01321",
-    "rank": "Master 1,257LP",
+    "rank": "Master 1,182LP",
     "active": true
    },
    {
@@ -1096,7 +1096,7 @@
    {
     "region": "KR",
     "riot_id": "타 잔#KR1",
-    "rank": "Ch 2,104LP",
+    "rank": "Ch 2,029LP",
     "active": true
    },
    {
@@ -1294,13 +1294,13 @@
    {
     "region": "KR",
     "riot_id": "AL Kael#0211",
-    "rank": "Ch 2,154LP",
+    "rank": "Ch 2,079LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "봄방학기간#KR1",
-    "rank": "Ch 1,996LP",
+    "rank": "Ch 2,008LP",
     "active": true
    },
    {
@@ -1328,13 +1328,13 @@
    {
     "region": "NA",
     "riot_id": "hfdgjhfgdnh#123",
-    "rank": "Master 765LP",
+    "rank": "Master 808LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "빈 스토리#KR1",
-    "rank": "Master 564LP",
+    "rank": "Master 489LP",
     "active": true
    },
    {
@@ -1386,7 +1386,7 @@
    {
     "region": "NA",
     "riot_id": "xxxzz#8988",
-    "rank": "Master 613LP",
+    "rank": "Master 757LP",
     "active": true
    },
    {
@@ -1520,13 +1520,13 @@
    {
     "region": "NA",
     "riot_id": "painn#110",
-    "rank": "GM 1,829LP",
+    "rank": "GM 1,877LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "Blue#KR33",
-    "rank": "GM 1,693LP",
+    "rank": "GM 1,618LP",
     "active": true
    },
    {
@@ -1596,19 +1596,19 @@
    {
     "region": "KR",
     "riot_id": "키보드에음료쏟아서고장내는이도윤#KR1",
-    "rank": "Ch 2,124LP",
+    "rank": "Ch 2,049LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "burgershutiao#zxcvb",
-    "rank": "Master 849LP",
+    "rank": "Master 843LP",
     "active": true
    },
    {
     "region": "KR",
     "riot_id": "BLG 온#KR1",
-    "rank": "Master 105LP",
+    "rank": "Master 30LP",
     "active": true
    },
    {
@@ -1671,15 +1671,15 @@
    },
    {
     "region": "KR",
-    "riot_id": "qsxmiocmio#KR1",
-    "rank": "Master 130LP",
-    "active": true
-   },
-   {
-    "region": "KR",
     "riot_id": "78120855del#KR1",
     "rank": "Master 97LP",
     "active": false
+   },
+   {
+    "region": "KR",
+    "riot_id": "qsxmiocmio#KR1",
+    "rank": "Master 55LP",
+    "active": true
    },
    {
     "region": "NA",
@@ -1806,7 +1806,7 @@
    {
     "region": "KR",
     "riot_id": "livinli#KR1",
-    "rank": "GM 1,483LP",
+    "rank": "GM 1,408LP",
     "active": true
    },
    {
@@ -1840,7 +1840,7 @@
    {
     "region": "KR",
     "riot_id": "qweasdqweasdqw#KR1",
-    "rank": "GM 1,585LP",
+    "rank": "GM 1,510LP",
     "active": true
    },
    {
@@ -1978,7 +1978,7 @@
    {
     "region": "KR",
     "riot_id": "Kimman#zxfkk",
-    "rank": "GM 1,766LP",
+    "rank": "GM 1,691LP",
     "active": true
    },
    {
@@ -2024,13 +2024,13 @@
    {
     "region": "KR",
     "riot_id": "모든일은같이#KR1",
-    "rank": "GM 1,648LP",
+    "rank": "GM 1,573LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "qwerasdfzxcv#0311",
-    "rank": "GM 1,538LP",
+    "rank": "GM 1,541LP",
     "active": true
    },
    {
@@ -2106,7 +2106,7 @@
    {
     "region": "KR",
     "riot_id": "wanan theworld#xdbx1",
-    "rank": "GM 1,654LP",
+    "rank": "GM 1,608LP",
     "active": true
    },
    {
@@ -2118,7 +2118,7 @@
    {
     "region": "KR",
     "riot_id": "번치코#블레이즈킥",
-    "rank": "Diamond I",
+    "rank": "Master 1LP",
     "active": true
    },
    {
@@ -2158,7 +2158,7 @@
    {
     "region": "KR",
     "riot_id": "qweasdqweasdb#1372",
-    "rank": "Master 956LP",
+    "rank": "Master 881LP",
     "active": true
    },
    {
@@ -2240,7 +2240,7 @@
    {
     "region": "EUW",
     "riot_id": "G2 BrokenBlade#1918",
-    "rank": "Master 502LP",
+    "rank": "Master 427LP",
     "active": true
    },
    {
@@ -2328,7 +2328,7 @@
    {
     "region": "EUW",
     "riot_id": "G2 SkewMond#3327",
-    "rank": "Master 1,717LP",
+    "rank": "Master 1,642LP",
     "active": true
    },
    {
@@ -2368,7 +2368,7 @@
    {
     "region": "EUW",
     "riot_id": "G2 Caps#1323",
-    "rank": "Master 954LP",
+    "rank": "Master 879LP",
     "active": true
    },
    {
@@ -2471,7 +2471,7 @@
    {
     "region": "EUW",
     "riot_id": "G2 Labrov#8085",
-    "rank": "Master 1,289LP",
+    "rank": "Master 1,214LP",
     "active": true
    },
    {
@@ -2697,7 +2697,7 @@
    {
     "region": "EUW",
     "riot_id": "tukaan#tukan",
-    "rank": "Master 975LP",
+    "rank": "Master 900LP",
     "active": true
    },
    {
@@ -2743,7 +2743,7 @@
    {
     "region": "EUW",
     "riot_id": "alvarooo#000",
-    "rank": "Master 229LP",
+    "rank": "Master 154LP",
     "active": true
    },
    {
@@ -2765,7 +2765,7 @@
    {
     "region": "NA",
     "riot_id": "worldspro0073#world",
-    "rank": "Master 1,191LP",
+    "rank": "Master 1,197LP",
     "active": true
    },
    {
@@ -2799,13 +2799,13 @@
    {
     "region": "NA",
     "riot_id": "quentin#dawg",
-    "rank": "GM 1,434LP",
+    "rank": "GM 1,500LP",
     "active": true
    },
    {
     "region": "EUW",
     "riot_id": "KC Yiken#1111",
-    "rank": "Master 392LP",
+    "rank": "Master 317LP",
     "active": true
    },
    {
@@ -2845,7 +2845,7 @@
    {
     "region": "NA",
     "riot_id": "yeahoo#yaho",
-    "rank": "GM 1,380LP",
+    "rank": "GM 1,512LP",
     "active": true
    },
    {
@@ -2873,13 +2873,13 @@
    {
     "region": "NA",
     "riot_id": "MASTERMOVE#WORLD",
-    "rank": "GM 1,993LP",
+    "rank": "Ch 2,089LP",
     "active": true
    },
    {
     "region": "EUW",
     "riot_id": "KC NEXT ADKING#EUW",
-    "rank": "Master 1,254LP",
+    "rank": "Master 1,179LP",
     "active": true
    },
    {
@@ -2913,7 +2913,7 @@
    {
     "region": "NA",
     "riot_id": "basiil#fan",
-    "rank": "GM 1,601LP",
+    "rank": "GM 1,733LP",
     "active": true
    },
    {
@@ -3051,13 +3051,13 @@
    {
     "region": "NA",
     "riot_id": "Samuel Broadley#Gday",
-    "rank": "Ch 3,041LP",
+    "rank": "Ch 2,966LP",
     "active": true
    },
    {
     "region": "NA",
     "riot_id": "Jake Tiberi#BALD",
-    "rank": "Master 0LP",
+    "rank": "Diamond I",
     "active": true
    },
    {
@@ -3265,7 +3265,7 @@
    {
     "region": "NA",
     "riot_id": "a Special One#1of1",
-    "rank": "Ch 2,292LP",
+    "rank": "Ch 2,261LP",
     "active": true
    },
    {
@@ -3469,7 +3469,7 @@
    {
     "region": "NA",
     "riot_id": "depresion#NA2",
-    "rank": "Diamond IV",
+    "rank": "Unranked",
     "active": true
    }
   ]
@@ -3513,7 +3513,7 @@
    {
     "region": "KR",
     "riot_id": "hjzt0ahjhj#KR2",
-    "rank": "Master 744LP",
+    "rank": "Master 669LP",
     "active": true
    },
    {
@@ -3569,7 +3569,7 @@
    {
     "region": "KR",
     "riot_id": "edhdcntsw#KR11",
-    "rank": "GM 1,642LP",
+    "rank": "GM 1,567LP",
     "active": true
    },
    {
@@ -3615,7 +3615,7 @@
    {
     "region": "KR",
     "riot_id": "caideoma#KR2",
-    "rank": "Diamond IV",
+    "rank": "Unranked",
     "active": true
    },
    {
@@ -3649,7 +3649,7 @@
    {
     "region": "KR",
     "riot_id": "ieada#KR1",
-    "rank": "Master 509LP",
+    "rank": "Master 434LP",
     "active": true
    },
    {
@@ -3775,7 +3775,7 @@
    {
     "region": "KR",
     "riot_id": "hongqkule#1212",
-    "rank": "GM 1,775LP",
+    "rank": "GM 1,700LP",
     "active": true
    },
    {

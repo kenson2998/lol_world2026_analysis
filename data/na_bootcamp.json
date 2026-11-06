@@ -48,6 +48,14 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "KC",
+  "role": "bot",
+  "player": "Caliste",
+  "region": "NA",
+  "riot_id": "MASTERMOVE#WORLD",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "LYON",
   "role": "top",
   "player": "Dhokla",
@@ -56,11 +64,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "KC",
-  "role": "bot",
-  "player": "Caliste",
+  "team": "DK",
+  "role": "support",
+  "player": "Career",
   "region": "NA",
-  "riot_id": "MASTERMOVE#WORLD",
+  "riot_id": "하이용#1015",
   "source": "ttp-bootcamp"
  },
  {
@@ -73,10 +81,10 @@
  },
  {
   "team": "DK",
-  "role": "support",
-  "player": "Career",
+  "role": "top",
+  "player": "Siwoo",
   "region": "NA",
-  "riot_id": "하이용#1015",
+  "riot_id": "Siuuuuuuuuuuuuuu#yarrr",
   "source": "ttp-bootcamp"
  },
  {
@@ -104,11 +112,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "DK",
-  "role": "top",
-  "player": "Siwoo",
+  "team": "KC",
+  "role": "support",
+  "player": "Busio",
   "region": "NA",
-  "riot_id": "Siuuuuuuuuuuuuuu#yarrr",
+  "riot_id": "basiil#fan",
   "source": "ttp-bootcamp"
  },
  {
@@ -120,11 +128,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "KC",
-  "role": "support",
-  "player": "Busio",
+  "team": "T1",
+  "role": "bot",
+  "player": "Peyz",
   "region": "NA",
-  "riot_id": "basiil#fan",
+  "riot_id": "gaesalbuger#aaaa",
   "source": "ttp-bootcamp"
  },
  {
@@ -152,14 +160,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "T1",
-  "role": "bot",
-  "player": "Peyz",
-  "region": "NA",
-  "riot_id": "gaesalbuger#aaaa",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "IG",
   "role": "mid",
   "player": "Rookie",
@@ -176,11 +176,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "GEN",
-  "role": "support",
-  "player": "Duro",
+  "team": "KC",
+  "role": "mid",
+  "player": "Kyeahoo",
   "region": "NA",
-  "riot_id": "New York#1114",
+  "riot_id": "yeahoo#yaho",
   "source": "ttp-bootcamp"
  },
  {
@@ -192,27 +192,11 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "IG",
-  "role": "jungle",
-  "player": "Wei",
+  "team": "GEN",
+  "role": "support",
+  "player": "Duro",
   "region": "NA",
-  "riot_id": "qweasdzxc#TWSJM",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "KC",
-  "role": "mid",
-  "player": "Kyeahoo",
-  "region": "NA",
-  "riot_id": "yeahoo#yaho",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "LYON",
-  "role": "bot",
-  "player": "Berserker",
-  "region": "NA",
-  "riot_id": "chud#LYON",
+  "riot_id": "New York#1114",
   "source": "ttp-bootcamp"
  },
  {
@@ -221,6 +205,22 @@
   "player": "Smash",
   "region": "NA",
   "riot_id": "123321#KR12",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "IG",
+  "role": "jungle",
+  "player": "Wei",
+  "region": "NA",
+  "riot_id": "qweasdzxc#TWSJM",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "LYON",
+  "role": "bot",
+  "player": "Berserker",
+  "region": "NA",
+  "riot_id": "chud#LYON",
   "source": "ttp-bootcamp"
  },
  {
@@ -249,18 +249,18 @@
  },
  {
   "team": "GEN",
-  "role": "top",
-  "player": "Kiin",
-  "region": "NA",
-  "riot_id": "asdzxcvqwe#123",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "GEN",
   "role": "bot",
   "player": "Ruler",
   "region": "NA",
   "riot_id": "proteinmonster#thief",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "GEN",
+  "role": "top",
+  "player": "Kiin",
+  "region": "NA",
+  "riot_id": "asdzxcvqwe#123",
   "source": "ttp-bootcamp"
  },
  {
@@ -288,19 +288,19 @@
   "source": "ttp-bootcamp"
  },
  {
+  "team": "T1",
+  "role": "mid",
+  "player": "Faker",
+  "region": "NA",
+  "riot_id": "Hide in bush#NYKR",
+  "source": "ttp-bootcamp"
+ },
+ {
   "team": "TES",
   "role": "mid",
   "player": "Creme",
   "region": "NA",
   "riot_id": "tideeee#21314",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "T1",
-  "role": "jungle",
-  "player": "Oner",
-  "region": "NA",
-  "riot_id": "worlds#111",
   "source": "ttp-bootcamp"
  },
  {
@@ -313,10 +313,10 @@
  },
  {
   "team": "T1",
-  "role": "mid",
-  "player": "Faker",
+  "role": "jungle",
+  "player": "Oner",
   "region": "NA",
-  "riot_id": "Hide in bush#NYKR",
+  "riot_id": "worlds#111",
   "source": "ttp-bootcamp"
  },
  {
@@ -325,6 +325,14 @@
   "player": "Bin",
   "region": "NA",
   "riot_id": "hfdgjhfgdnh#123",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "BLG",
+  "role": "jungle",
+  "player": "Xun",
+  "region": "NA",
+  "riot_id": "xxxzz#8988",
   "source": "ttp-bootcamp"
  },
  {
@@ -384,19 +392,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "T1",
-  "role": "support",
-  "player": "Keria",
-  "region": "NA",
-  "riot_id": "doryunnim#Frank",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "TSW",
   "role": "mid",
   "player": "Dire",
   "region": "NA",
   "riot_id": "reina#244",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "T1",
+  "role": "support",
+  "player": "Keria",
+  "region": "NA",
+  "riot_id": "doryunnim#Frank",
   "source": "ttp-bootcamp"
  },
  {
@@ -416,27 +424,19 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "T1",
-  "role": "top",
-  "player": "Doran",
-  "region": "NA",
-  "riot_id": "buriburii#1234",
-  "source": "ttp-bootcamp"
- },
- {
-  "team": "BLG",
-  "role": "jungle",
-  "player": "Xun",
-  "region": "NA",
-  "riot_id": "xxxzz#8988",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "TES",
   "role": "jungle",
   "player": "Tian",
   "region": "NA",
   "riot_id": "sharkbee#369",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "T1",
+  "role": "top",
+  "player": "Doran",
+  "region": "NA",
+  "riot_id": "buriburii#1234",
   "source": "ttp-bootcamp"
  },
  {
@@ -552,14 +552,6 @@
   "source": "ttp-bootcamp"
  },
  {
-  "team": "TLAW",
-  "role": "mid",
-  "player": "Quid",
-  "region": "NA",
-  "riot_id": "Jake Tiberi#BALD",
-  "source": "ttp-bootcamp"
- },
- {
   "team": "TSW",
   "role": "support",
   "player": "Bie",
@@ -573,6 +565,14 @@
   "player": "369",
   "region": "NA",
   "riot_id": "godrjs#gktpd",
+  "source": "ttp-bootcamp"
+ },
+ {
+  "team": "TLAW",
+  "role": "mid",
+  "player": "Quid",
+  "region": "NA",
+  "riot_id": "Jake Tiberi#BALD",
   "source": "ttp-bootcamp"
  },
  {
