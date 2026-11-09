@@ -160,9 +160,9 @@
 | 下路 | Duduhh | 15 | 10-5 | 67% | [KR] —<br>[NA] 2小時34分前 | Aphelios (亞菲利歐) 2場 13% 100%、Jhin (燼) 2場 13% 50%、Akali (阿卡莉) 1場 7% 100%、Caitlyn (凱特琳) 1場 7% 100%、Irelia (伊瑞莉雅) 1場 7% 100%、Kalista (克黎思妲) 1場 7% 100% |
 | 輔助 | Ackerman | 14 | 12-2 | 86% | [KR] —<br>[NA] 2小時53分前 | Camille (卡蜜兒) 3場 21% 67%、Bard (巴德) 2場 14% 100%、Annie (安妮) 1場 7% 100%、Blitzcrank (布里茨) 1場 7% 100%、Karma (卡瑪) 1場 7% 100%、Pantheon (潘森) 1場 7% 100% |
 
-## 世界賽戰況（整理於 2026-11-07 12:15（台灣時間））
+## 世界賽戰況（整理於 2026-11-09 10:16（台灣時間））
 
-八強賽結束：IG 3-1 TES、GEN 3-0 LYON、BLG 3-0 DK、T1 3-1 KC。四強台灣時間 11/8 06:00 GEN vs IG、11/9 06:00 BLG vs T1；決賽 11/15 03:00。
+四強結束：GEN 3-0 IG、BLG 3-1 T1。決賽 GEN vs BLG，台灣時間 11/15 03:00（紐約 Barclays Center）。
 
 ### 第一輪結果（Bo1）
 
@@ -259,12 +259,23 @@
 | T1 vs KC 第3局 | KC | 6-8 | 36:44 | T1 Jayce (杰西)、KC Ashe (艾希)、KC Seraphine (瑟菈紛)、T1 Zeri (婕莉)、T1 Yuumi (悠咪)、KC Xin Zhao (趙信)、KC Anivia (艾妮維亞)、T1 Sejuani (史瓦妮)、T1 Taliyah (塔莉雅)、KC K'Sante (卡桑帝) |  |
 | T1 vs KC 第4局 | T1 | 17-8 | 35:15 | T1 Nocturne (夜曲)、KC Xayah (剎雅)、KC Rakan (銳空)、T1 Neeko (妮可)、T1 Miss Fortune (好運姐)、KC Wukong (悟空)、KC Ahri (阿璃)、T1 Annie (安妮)、T1 Camille (卡蜜兒)、KC Renekton (雷尼克頓) |  |
 
-### 四強（Bo5，未開打）
+### 四強結果（Bo5）
+
+| 對戰 | 勝方 | 擊殺 | 時長 | 選用（BP 順序） | 備註 |
+|---|---|---|---|---|---|
+| GEN vs IG 第1局 | GEN | 29-9 | 33:38 | IG Vi (菲艾)、GEN Olaf (歐拉夫)、GEN Qiyana (姬亞娜)、IG Kled (克雷德)、IG Syndra (星朵拉)、GEN Cassiopeia (卡莎碧雅)、GEN Jhin (燼)、IG Xayah (剎雅)、IG Rakan (銳空)、GEN Leona (雷歐娜) |  |
+| GEN vs IG 第2局 | GEN | 26-9 | 29:16 | IG Nocturne (夜曲)、GEN Seraphine (瑟菈紛)、GEN Ashe (艾希)、IG Lucian (路西恩)、IG Milio (米里歐)、GEN Lee Sin (李星)、GEN Ahri (阿璃)、IG Sylas (賽勒斯)、IG Rumble (藍寶)、GEN Gwen (關) |  |
+| GEN vs IG 第3局 | GEN | 16-18 | 40:08 | GEN Nautilus (納帝魯斯)、IG Alistar (亞歷斯塔)、IG Naafiri (娜菲芮)、GEN Wukong (悟空)、GEN Taliyah (塔莉雅)、IG Locke (洛克)、IG Ezreal (伊澤瑞爾)、GEN Camille (卡蜜兒)、GEN Yunara (尤娜拉)、IG Gnar (吶兒) |  |
+| BLG vs T1 第1局 | BLG | 18-6 | 30:25 | T1 Nocturne (夜曲)、BLG Nautilus (納帝魯斯)、BLG Orianna (奧莉安娜)、T1 Locke (洛克)、T1 Rumble (藍寶)、BLG K'Sante (卡桑帝)、BLG Naafiri (娜菲芮)、T1 Xayah (剎雅)、T1 Rakan (銳空)、BLG Corki (庫奇) |  |
+| BLG vs T1 第2局 | T1 | 10-22 | 32:15 | T1 Olaf (歐拉夫)、BLG Qiyana (姬亞娜)、BLG Camille (卡蜜兒)、T1 Lee Sin (李星)、T1 Jhin (燼)、BLG Kai'Sa (凱莎)、BLG Alistar (亞歷斯塔)、T1 Poppy (波比)、T1 Syndra (星朵拉)、BLG LeBlanc (勒布朗) |  |
+| BLG vs T1 第3局 | BLG | 19-10 | 36:58 | BLG Ezreal (伊澤瑞爾)、T1 Karma (卡瑪)、T1 Jarvan IV (嘉文四世)、BLG Pantheon (潘森)、BLG Gnar (吶兒)、T1 Ambessa (安比薩)、T1 Sivir (希維爾)、BLG Nami (娜米)、BLG Taliyah (塔莉雅)、T1 Ahri (阿璃) |  |
+| BLG vs T1 第4局 | BLG | 21-9 | 37:47 | BLG Viktor (維克特)、T1 Lucian (路西恩)、T1 Milio (米里歐)、BLG Ashe (艾希)、BLG Seraphine (瑟菈紛)、T1 Akali (阿卡莉)、T1 Wukong (悟空)、BLG Skarner (史加納)、BLG Renekton (雷尼克頓)、T1 Vayne (汎) |  |
+
+### 決賽（Bo5，未開打）
 
 | 台灣時間 | 組別 | 對戰 | Polymarket 勝率 | 賠率 Polymarket | 賠率 Kalshi |
 |---|---|---|---|---|---|
-| 11/08 06:00 | 四強 | GEN vs IG | — | — | — |
-| 11/09 06:00 | 四強 | BLG vs T1 | — | — | — |
+| 11/15 03:00 | 決賽 | GEN vs BLG | — | — | — |
 
 
 ### 冠軍機率（10/26 14:46 台灣時間，對比 10/24 00:00 台灣時間，第一輪開打前 1 小時）
@@ -321,5 +332,7 @@
 - outdrafted 11/6 10:04：T1 78.1 / KC 21.9（模型，不變）；奪冠模型 GEN 56%、BLG 21%、T1 18%、IG 3.9%、KC 0.9%。頁面轉述的 Polymarket（T1 83 / KC 18；奪冠 GEN 53、BLG 25.4、T1 18、IG 7.2、KC 1.1）未直接取得，不採用。T1 vs KC 莊家賠率仍為 rg.org 11/1 的多家去水平均。
 - T1 vs KC（八強，11/7）：T1 3-1 KC（gol.gg 83709–83712，Liquipedia API 核對一致；83713 為未打的第 5 局空白頁）。pick 順序（n）依 gol.gg 各隊 pick 排列與標準 BP 順序推得。Liquipedia 只列系列賽 MVP（Peyz），無單局 MVP，不顯示。
 - 四強賽前勝率（outdrafted 模型，11/7 12:15）：GEN 83.4 / IG 16.6、BLG 48.2 / T1 51.8（https://outdrafted.lol/lol/match/115660540726095121）；頁面轉述的 Polymarket（GEN 81 / IG 20、T1 44 / BLG 57）未直接取得，不採用。奪冠模型 GEN 56%、T1 21%、BLG 19%、IG 3.8%（Polymarket 轉述 GEN 54、BLG 24.3、T1 17、IG 7.4，不採用）。
+- 四強（11/8、11/9）：GEN 3-0 IG（gol.gg 83713–83715）、BLG 3-1 T1（gol.gg 83718–83721），Liquipedia API 核對勝方、比分、時長一致；pick 順序（n）依 gol.gg 各隊 pick 排列與標準 BP 順序推得。Liquipedia 只列系列賽 MVP（Canyon、Bin），無單局 MVP，不顯示。
+- 決賽 GEN vs BLG（11/15 03:00）：outdrafted 模型 Bo5 勝率 GEN 68.7 / BLG 31.3（11/9 10:16，https://outdrafted.lol/lol/match/115660540726095133）；奪冠模型 GEN 69%、BLG 31%。頁面轉述的 Polymarket（決賽 GEN 64 / BLG 37；奪冠 GEN 65、BLG 36.8）未直接取得，不採用；未找到註明莊家的決賽賠率。
 
 來源：[Liquipedia：Worlds 2026 Swiss Stage](https://liquipedia.net/leagueoflegends/World_Championship/2026/Swiss_Stage)、[Hotspawn：Swiss Stage Day 1](https://www.hotspawn.com/league-of-legends/news/worlds-2026-swiss-stage-day-1)、[Polymarket：Worlds 2026 winner](https://polymarket.com/event/worlds-2026-winner)、[Polymarket：Reach knockout stage](https://polymarket.com/event/worlds-2026-team-to-reach-knockout-stage)、[Polymarket：Go 3-0](https://polymarket.com/event/worlds-2026-teams-to-go-3-0-in-swiss-stage)、[Polymarket：Go 0-3](https://polymarket.com/event/worlds-2026-teams-to-go-0-3-in-swiss-stage)、[Kalshi](https://kalshi.com)、[Outdrafted：Swiss model](https://outdrafted.lol/worlds/swiss)、[win.gg：賽前賠率（Stake）](https://win.gg/lol-worlds-betting-preview-odds/)、[gol.gg：Worlds 2026 各場 BP](https://gol.gg/game/stats/83638/page-game/)、[Polymarket 價格歷史（CLOB）](https://clob.polymarket.com/prices-history)、[GG.BET 賠率（win.gg）](https://win.gg/mkoi-vs-t1-betting-odds-2026-worlds/)、[SpinBetter 賠率（tips.gg）](https://tips.gg/article/worlds-championship-2026-swiss-stage-round-3-recap-round-4-betting-predictions-tournament-winner-event-story/)、[Leaguepedia Scoreboards Round 4](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Scoreboards/Round_4)、[Liquipedia：Worlds 2026 淘汰賽](https://liquipedia.net/leagueoflegends/World_Championship/2026)、[Leaguepedia：Picks and Bans](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event/Picks_and_Bans)、[rg.org：八強市場平均（esports.gg 彙整）](https://rg.org/news/esports/worlds-2026-quarterfinals-market-favorites-gen-g-t1-ig-blg-tes-zuian-visa)、[Outdrafted：Worlds 模型](https://outdrafted.lol/worlds)、[OP.GG：選手單排](https://op.gg)、[TrackingThePros：選手帳號](https://www.trackingthepros.com)
