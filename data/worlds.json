@@ -8167,7 +8167,7 @@
    "status": "upcoming",
    "format": "Bo5",
    "date": "11/14 CT · 11/15 03:00 台灣時間",
-   "note": "決賽 Bo5（Fearless），紐約 Barclays Center。對陣與時間取自 Liquipedia（11/14 14:00 EST＝台灣 11/15 03:00）。賽前勝率為 outdrafted 模型（11/9 10:16，模型非市場；未找到註明莊家的決賽賠率）",
+   "note": "決賽 Bo5（Fearless），紐約 Barclays Center。對陣與時間取自 Liquipedia（11/14 14:00 EST＝台灣 11/15 03:00）。賽前勝率為 outdrafted 模型（11/11 10:18 確認，與 11/9 相同，模型非市場；未找到註明莊家的決賽賠率）",
    "matches": [
     {
      "pool": "決賽",
@@ -8604,7 +8604,8 @@
   "T1 vs KC（八強，11/7）：T1 3-1 KC（gol.gg 83709–83712，Liquipedia API 核對一致；83713 為未打的第 5 局空白頁）。pick 順序（n）依 gol.gg 各隊 pick 排列與標準 BP 順序推得。Liquipedia 只列系列賽 MVP（Peyz），無單局 MVP，不顯示。",
   "四強賽前勝率（outdrafted 模型，11/7 12:15）：GEN 83.4 / IG 16.6、BLG 48.2 / T1 51.8（https://outdrafted.lol/lol/match/115660540726095121）；頁面轉述的 Polymarket（GEN 81 / IG 20、T1 44 / BLG 57）未直接取得，不採用。奪冠模型 GEN 56%、T1 21%、BLG 19%、IG 3.8%（Polymarket 轉述 GEN 54、BLG 24.3、T1 17、IG 7.4，不採用）。",
   "四強（11/8、11/9）：GEN 3-0 IG（gol.gg 83713–83715）、BLG 3-1 T1（gol.gg 83718–83721），Liquipedia API 核對勝方、比分、時長一致；pick 順序（n）依 gol.gg 各隊 pick 排列與標準 BP 順序推得。Liquipedia 只列系列賽 MVP（Canyon、Bin），無單局 MVP，不顯示。",
-  "決賽 GEN vs BLG（11/15 03:00）：outdrafted 模型 Bo5 勝率 GEN 68.7 / BLG 31.3（11/9 10:16，https://outdrafted.lol/lol/match/115660540726095133）；奪冠模型 GEN 69%、BLG 31%。頁面轉述的 Polymarket（決賽 GEN 64 / BLG 37；奪冠 GEN 65、BLG 36.8）未直接取得，不採用；未找到註明莊家的決賽賠率。"
+  "決賽 GEN vs BLG（11/15 03:00）：outdrafted 模型 Bo5 勝率 GEN 68.7 / BLG 31.3（11/9 10:16，https://outdrafted.lol/lol/match/115660540726095133）；奪冠模型 GEN 69%、BLG 31%。頁面轉述的 Polymarket（決賽 GEN 64 / BLG 37；奪冠 GEN 65、BLG 36.8）未直接取得，不採用；未找到註明莊家的決賽賠率。",
+  "決賽賠率（11/11 10:18 查）：outdrafted 決賽模型 GEN 68.7 / BLG 31.3、奪冠模型 GEN 69 / BLG 31，與 11/9 相同。win.gg 11/10 決賽預測引 GG.Bet（11/10 02:00 CEST）GEN 系列賽勝 1.5，但沒有 BLG 賠率，無法組成一對，不採用。outdrafted 轉述的 Polymarket（決賽 GEN 63 / BLG 38）未直接取得，不採用；tips.gg、rg.org 403，oddspedia 連不上；只見於搜尋摘要的數字不採用。"
  ],
  "sources": [
   [
@@ -31875,7 +31876,7 @@
   }
  ],
  "outright_model": {
-  "label": "outdrafted.lol 模型奪冠機率（2026-11-09 10:16 台灣時間抓取，模型非市場）",
+  "label": "outdrafted.lol 模型奪冠機率（2026-11-11 10:18 台灣時間抓取，模型非市場）",
   "src": "https://outdrafted.lol/worlds",
   "rows": {
    "GEN": 69,
